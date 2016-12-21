@@ -211,13 +211,13 @@
               </td>
               <td class="metavalue">
                 <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject">
-                  <xsl:for-each select="mods:topic">
+                  <xsl:for-each select="mods:topic | mods:geographic">
                     <xsl:value-of select="."/>
-                    <xsl:if test="position() = last()" >
+                    <xsl:if test="not (position() = last())" >
                       <xsl:value-of select="'/'"/>
                     </xsl:if>
                   </xsl:for-each>
-                  <xsl:if test="position() = last()" >
+                  <xsl:if test="not (position() = last())" >
                     <xsl:value-of select="';'"/>
                   </xsl:if>
                 </xsl:for-each>
