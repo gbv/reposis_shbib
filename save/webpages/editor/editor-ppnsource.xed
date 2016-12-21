@@ -50,6 +50,20 @@
           <xed:include uri="webapp:editor/editor-includes.xed" ref="failed-validation-messages" />
         
           <fieldset>
+            <div class="form-group">
+              <label class="col-md-3 control-label">
+                Sachgruppe:
+              </label>
+              <div class="col-md-6">
+                <xed:load-resource name="shbib_sachgruppen" uri="classification:metadata:-1:children:shbib_sachgruppen" />
+                <xed:bind xpath="mods:classification[@authorityURI=$mir_genres/label[@xml:lang='x-uri']/@text]/@valueURIxEditor">
+                  <select class="form-control form-control-inline">
+                    <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_sachgruppen" />
+                  </select>
+                </xed:bind>
+              </div>
+            </div>
+  
             <xed:bind xpath="mods:note[@type='ndsbib']">
               <div class="form-group">
                 <label class="col-md-3 control-label">Kommentar mit Bezug zu Niedersachsen:</label>
