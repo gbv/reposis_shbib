@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xed:template xmlns:xed="http://www.mycore.de/xeditor" xmlns:mir="http://www.mycore.de/mir">
+  
+  <xed:template id="sachgruppe">
+    <div class="form-group">
+      <label class="col-md-3 control-label">
+        Sachgruppe:
+      </label>
+      <div class="col-md-6">
+        <xed:load-resource name="shbib_sachgruppen" uri="classification:metadata:-1:children:shbib_sachgruppen" />
+        <xed:bind xpath="mods:classification[@authorityURI=$shbib_sachgruppen/label[@xml:lang='x-uri']/@text]">
+          <xed:bind xpath="@valueURIxEditor">
+            <select class="form-control form-control-inline">
+              <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_sachgruppen" />
+            </select>
+          </xed:bind>  
+        </xed:bind>
+      </div>
+    </div>
+  </xed:template>
+  
+  <xed:template id="zeitschluessel">
+    <div class="form-group">
+      <label class="col-md-3 control-label">
+        Zeitschlüssel:
+      </label>
+      <div class="col-md-6">
+        <xed:load-resource name="shbib_zeitschluessel" uri="classification:metadata:-1:children:shbib_zeitschluessel" />
+        <xed:bind xpath="mods:classification[@authorityURI=$shbib_zeitschluessel/label[@xml:lang='x-uri']/@text]">
+          <xed:bind xpath="@valueURIxEditor">
+            <select class="form-control form-control-inline">
+              <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_zeitschluessel" />
+            </select>
+          </xed:bind>  
+        </xed:bind>
+      </div>
+    </div>
+  </xed:template>
+  
+  <xed:template id="formschluessel">
+    <div class="form-group">
+      <label class="col-md-3 control-label">
+        Sachgruppe:
+      </label>
+      <div class="col-md-6">
+        <xed:load-resource name="shbib_formschluessel" uri="classification:metadata:-1:children:shbib_formschluessel" />
+        <xed:bind xpath="mods:classification[@authorityURI=$shbib_formschluessel/label[@xml:lang='x-uri']/@text]">
+          <xed:bind xpath="@valueURIxEditor">
+            <select class="form-control form-control-inline">
+              <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_formschluessel" />
+            </select>
+          </xed:bind>  
+        </xed:bind>
+      </div>
+    </div>
+  </xed:template>
+  
+  <xed:template id="admincomment">
+    <xed:bind xpath="mods:note[@type='admin']">
+      <div class="form-group">
+        <label class="col-md-3 control-label">Interner Kommentar:</label>
+        <div class="col-md-6">
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+    </xed:bind>
+  </xed:template>
+  
+  <xed:template id="source_note">
+    <xed:bind xpath="mods:note[@type='source_note']">
+      <div class="form-group">
+        <label class="col-md-3 control-label">Quellenkommentar:</label>
+        <div class="col-md-6">
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+    </xed:bind>
+  </xed:template>
+    
+
+</xed:template>
