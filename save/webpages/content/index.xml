@@ -3,25 +3,25 @@
   <section xml:lang="de" title="Willkommen auf den Seiten des Publikationsservers OpenAgrar">
     <div class="jumbotwo">
 
-      <h1>
-        Willkommen auf den Seiten des Publikationsservers OpenAgrar
-      </h1>
+      <div class="col-md-7" style="background-color: #a9beee; border-radius: 4px;">
+        <h1>
+          Schleswig-Holsteinische Bibliographie online
+        </h1>
+      </div>
       <div class="row">
-        <div class="col-md-8 oa-borderbox" lang="de">
-          <h2>Sie suchen Literatur - versuchen Sie es doch hier</h2>
+        <div class="col-md-6" lang="de">
+          
           <p>
-            Zum Ressortbereich des Bundesministeriums für Ernährung und Landwirtschaft
-            (BMEL) gehören Bundesforschungsinstitute und weitere Bundesbehörden sowie Einrichtungen der
-            Wissenschaftsgemeinschaft Gottfried Wilhelm Leibniz (WGL). Für die von den Einrichtungen und
-            deren Mitarbeitern stammenden Veröffentlichungen wurde im Rahmen eines Projektes ein
-            institutionelles Repositorium aufgebaut. Die dort gespeicherten Dokumente stehen jedem
-            Interessierten für die Nutzung zur Verfügung.
+            Die Schleswig-Holsteinische Bibliographie ist eine Literaturdokumentation. Erfaßt werden Bücher,
+            Karten, Zeitschriften, Aufsätze aus Zeitschriften und (in Ausnahmefällen) aus Tageszeitungen
+            sowie Einzelbeiträge aus Sammelwerken, die einen Bezug zu Schleswig-Holstein, einzelnen Regionen, 
+            Inseln oder Orten des Landes oder schleswig-holsteinischen Persönlichkeiten haben. Dabei sind ehemals schleswig-holsteinische Gebiete (z.B. Nordschleswig, Altona) einbezogen, soweit die erfaßte Literatur die Zeit der Zugehörigkeit zu Schleswig-Holstein oder grenzüberschreitende Fragen (z.B. Verkehr, Küstenschutz, Minderheiten) betrifft. Der inhaltliche Bezug wird in jedem Falle weit ausgelegt und umfaßt alle Wissensgebiete und Lebensbereiche. Rezensionen werden nur in Ausnahmefällen, Haushaltspläne, Fahrpläne, Telefonbücher usw. seit 1987 gar nicht mehr verzeichnet.
           </p>
-          <p>
-            In der Aufbauphase werden es überwiegend Literaturnachweise sein, die in der Folgezeit nach
-            und nach mit Volltexten, Abbildungen und anderen Medien ergänzt werden. Das Repositorium weist
-            Hochschulschriften, Reports, Konferenzbände, Bücher und Zeitschriften sowie AV-Medien nach.
+          <p>  
+            Das hier vorliegende Titelmaterial geht zurück bis zum Berichtsjahr 1987. Die Retrokonvertierung der
+            früheren, in gedruckter Form vorliegenden Bände ist in Arbeit. 
           </p>
+          
         </div>
       </div>
     </div>
