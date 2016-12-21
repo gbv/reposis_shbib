@@ -39,7 +39,8 @@ function checkPPNValue() {
 		
 		$.ajax({
   			method: "GET",
-			url: "http://unapi.gbv.de/?format=mods36&id=gvk:ppn:"+value,
+			//url: "http://unapi.gbv.de/?format=mods36&id=gvk:ppn:"+value,
+			url: "https://reposis-test.gbv.de/shbib/unapiproxy/?format=mods36&id=gvk:ppn:"+value,
 			dataType: "xml"
 		}) .done(function( xml ) {
 			mods2Preview(xml);
