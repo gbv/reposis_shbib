@@ -213,9 +213,13 @@
                 <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject">
                   <xsl:for-each select="mods:topic">
                     <xsl:value-of select="."/>
-                    <xsl:value-of select="'/'"/>
+                    <xsl:if test="position() = last()" >
+                      <xsl:value-of select="'/'"/>
+                    </xsl:if>
                   </xsl:for-each>
-                  <xsl:value-of select="."/>
+                  <xsl:if test="position() = last()" >
+                    <xsl:value-of select="';'"/>
+                  </xsl:if>
                 </xsl:for-each>
               </td>
             </tr>
