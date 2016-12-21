@@ -56,6 +56,14 @@
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="formschluessel" />
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="admincomment" />
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="source_note" />
+            
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex" />
+            
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="geographic" />
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="cartographics" />
+            
+            
+            
               
           </fieldset>
 
