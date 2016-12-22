@@ -91,6 +91,24 @@
           <mir:textfield  xpath="mods:topicSimple" repeat="true" min="1" max="10" label="mir.subject.topic" help-text="{i18n:mir.help.subject.topic}" />
           <mir:topic.repeated min="1" max="10" label="mir.subject.topic.gnd" help-text="{i18n:mir.help.subject.topic.gnd}" extended="true" />
           <mir:textfield xpath="mods:geographic" repeat="true" min="1" max="10" label="mir.geographic" help-text="{i18n:mir.help.cartographics.place}" />
+          <div class="form-group">
+            <label class="col-md-3 control-label">
+              Schlagwort:
+            </label>
+            <div class="col-md-6">
+              <xed:load-resource name="shbib_subjects" uri="classification:metadata:-1:children:shbib_subjects" />
+              <xed:bind xpath="mods:topic[@authorityURI=$shbib_subjects/label[@xml:lang='x-uri']/@text]">
+              <xed:bind xpath="@valueURIxEditor">
+                <select class="form-control form-control-inline">
+                  <option value="">
+                    <xed:output i18n="mir.select" />
+                  </option>
+                  <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_subjects" />
+                </select>
+              </xed:bind>  
+              </xed:bind>
+            </div>
+          </div>
         </div>
       </fieldset>
     </xed:repeat>
