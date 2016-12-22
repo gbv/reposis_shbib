@@ -212,7 +212,14 @@
               <td class="metavalue">
                 <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject">
                   <xsl:for-each select="mods:topic | mods:geographic">
-                    <xsl:value-of select="."/>
+                    <xsl:choose>
+                      <xsl:when test="starts-with(@authorityURI,'http://www.mycore.org/classifications/')">
+                        <xsl:apply-templates select="." mode="printModsClassInfo" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="."/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:if test="not (position() = last())" >
                       <xsl:value-of select="'/'"/>
                     </xsl:if>
