@@ -239,10 +239,8 @@
     </xsl:copy>
   </xsl:template>
   
-  <xsl:template match="mods:mirTopic">
-    <xsl:copy>
-      <xsl:apply-templates />
-    </xsl:copy>
+  <xsl:template match="mods:mirTopic"> 
+    <xsl:apply-templates />
   </xsl:template>
 
 </xsl:stylesheet>
