@@ -238,5 +238,11 @@
       <xsl:apply-templates select="mods:holdingExternal" />
     </xsl:copy>
   </xsl:template>
+  
+  <xsl:template match="mods:mirTopic">
+    <xsl:copy>
+      <xsl:apply-templates />
+    </xsl:copy>
+  </xsl:template>
 
 </xsl:stylesheet>

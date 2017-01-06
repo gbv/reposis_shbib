@@ -48,6 +48,9 @@
         <xed:bind xpath="mods:classification[@authorityURI=$shbib_formschluessel/label[@xml:lang='x-uri']/@text]">
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
+              <option value="">
+                <xed:output i18n="mir.select.optional" />
+              </option>
               <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_formschluessel" />
             </select>
           </xed:bind>  
@@ -78,6 +81,51 @@
     </xed:bind>
   </xed:template>
   
+  <xed:template id="subject.complex.topic">
+    <div class="subject_select">
+      <mir:textfield  xpath="mods:topic" label="mir.subject.topic" help-text="{i18n:mir.help.subject.topic}" />
+      <mir:topic.repeated label="mir.subject.topic.gnd" help-text="{i18n:mir.help.subject.topic.gnd}" extended="true" />
+      <mir:textfield xpath="mods:geographic" label="mir.geographic" help-text="{i18n:mir.help.cartographics.place}" />
+      <div class="form-group">
+        <label class="col-md-3 control-label">
+          Schlagwort(Klass.):
+        </label>
+        <div class="col-md-6">
+          <xed:load-resource name="shbib_subjects" uri="classification:metadata:-1:children:shbib_subjects" />
+          <xed:bind xpath="mods:topic[@authorityURI=$shbib_subjects/label[@xml:lang='x-uri']/@text]">
+            <xed:bind xpath="@valueURIxEditor">
+              <select class="form-control form-control-inline">
+                <option value="">
+                  <xed:output i18n="mir.select" />
+                </option>
+                <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_subjects" />
+              </select>
+            </xed:bind>  
+          </xed:bind>
+        </div>
+      </div>
+    </div>
+  </xed:template>
+  
+  <xed:template id="subject.complex2">
+    <xed:repeat xpath="mods:subject" min="1" max="10">
+      <fieldset>
+        <div class="row mir-fieldset-legend">
+          <legend class="col-md-9" style="margin-bottom:0px;padding-top:10px;">
+            <xed:output i18n="mir.subject.topic.complex" />
+          </legend>
+          <mir:help-pmud pmud="true" help-text="{i18n:mir.help.subject.topic.complex}" />
+        </div>
+        <div class="mir-fieldset-content">
+          <xed:repeat xpath="mods:mirTopic" min="4" max="4">
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex.topic" />
+          </xed:repeat>
+        </div>
+      </fieldset>
+    </xed:repeat>
+    <script type="text/javascript" src="{$WebApplicationBaseURL}js/mir/xeditor-subject-complex.js"></script> 
+  </xed:template>
+  
   <xed:template id="subject.complex">
     <xed:repeat xpath="mods:subject" min="1" max="10">
       <fieldset>
@@ -93,7 +141,7 @@
           <mir:textfield xpath="mods:geographic" repeat="true" min="1" max="10" label="mir.geographic" help-text="{i18n:mir.help.cartographics.place}" />
           <div class="form-group">
             <label class="col-md-3 control-label">
-              Schlagwort:
+              Schlagwort(Klass.):
             </label>
             <div class="col-md-6">
               <xed:load-resource name="shbib_subjects" uri="classification:metadata:-1:children:shbib_subjects" />

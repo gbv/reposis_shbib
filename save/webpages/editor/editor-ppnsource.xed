@@ -57,7 +57,7 @@
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="admincomment" />
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="source_note" />
             
-            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex" />
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex2" />
             <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="cartographics" />
               
           </fieldset>
@@ -67,6 +67,7 @@
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="javascript" />
           <!-- frame for modal window -->
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="modal.body" />
+          <xed:include uri="webapp:editor/editor-includes.xed" ref="cleanup-rules" />
 
         </xed:bind>
       </xed:bind>
