@@ -21,13 +21,13 @@
     <xsl:copy>
       <xsl:for-each select="./*">
         <mods:mirTopic>
-          <xsl:apply-templates />
-        </mods:mirTopic>
+          <xsl:apply-templates select='.'/>
+        </mods:mirTopic> 
       </xsl:for-each>
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="mods:subject/mods:topic/@valueURI">
+  <xsl:template match="mods:topic/@valueURI">
     <xsl:attribute name="valueURIxEditor">
       <xsl:value-of select="substring-after(.,../@authorityURI)" />
     </xsl:attribute>
@@ -232,7 +232,7 @@
     <xsl:value-of select="text()" />
   </xsl:template>
 
-  <xsl:template match="mods:subject/mods:topic[not(@authority)]">
+  <xsl:template match="mods:topic[not(@authority)]">
     <mods:topicSimple>
       <xsl:value-of select="."/>
     </mods:topicSimple>

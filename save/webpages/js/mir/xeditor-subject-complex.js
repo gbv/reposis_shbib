@@ -2,26 +2,54 @@
 
 function SubjectComplex (element) {
   this.element = element;
-  this.topics=$(element).find(".form-group");
+  this.topics=$(element).children(".form-group");
   this.labels = new Array;
   this.select;
   this.replaceLabels();
-  this.changeTopic(0);
+  this.initTopic();
+  
+  
+  //subject.changeTopic(0);
+  
 };
 
 SubjectComplex.prototype= {
   constructor: SubjectComplex
   
+  ,initTopic: function () {
+      subject=this;
+      var setTopic = false;
+  
+      this.topics.each( function (index,topic) {
+          if ( $(topic).find("input").val() != "" ) {
+              subject.changeTopic(index);
+              setTopic = true;
+              return false;
+          };
+      });
+      
+      if (! setTopic) {
+          subject.changeTopic(0);
+      }
+  
+  }
+  
   ,changeTopic: function (index) {
       if (index < this.topics.length && index >= 0) {
           var subject = this;
-          //subject.topics.addClass("hidden");
+          subject.topics.addClass("hidden");
           subject.topics.each( function (tindex,topic) {
+              $(topic).find("label").children().detach();
               $(topic).find("label").text(subject.labels[tindex]);
+              if (index != tindex) {
+                  $(topic).find("input").val("");
+              }
           }); 
+          this.select.find("option").eq(index).prop('selected', true);
           subject.topics.eq(index).removeClass("hidden");
           subject.topics.eq(index).find("label").empty();
           subject.topics.eq(index).find("label").append(this.select);
+          
       }
   }
   
@@ -32,7 +60,7 @@ SubjectComplex.prototype= {
   ,replaceLabels: function () {
       var subject = this;
       var select = $('<select>');
-      this.select = select;
+      select.addClass("topicSelect");
       
       this.topics.each(function(index, child) {
           option = $('<option>');
@@ -43,10 +71,14 @@ SubjectComplex.prototype= {
 	      select.append(option);  
 	  });
 	  
-	  this.select.change(function () {
+	  select.change(function () {
           var topicIndex = $(this).find("option:selected" ).data('topicindex');
           subject.changeTopic(topicIndex)
       });
+      
+      //this.topics.eq(0).find("label").append(select);
+      
+      this.select = select;
 	  
   }
   
