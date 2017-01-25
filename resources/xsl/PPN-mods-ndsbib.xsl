@@ -30,10 +30,20 @@
     </xsl:if>
   </xsl:template>
 
+  
+  <xsl:template name="yearRAK2w3cdtf">
+    <xsl:param name="date"/>
+    <xsl:value-of select="translate($date,'[]?ca','')"/>
+  </xsl:template>
+  
+
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
     <mods:dateIssued encoding="w3cdtf">
-      <xsl:apply-templates select="node()|@*" />
+      <xsl:call-template  name="yearRAK2w3cdtf">
+        <xsl:with-param name="date" select="node()"/>
+      </xsl:call-template>
+      <xsl:apply-templates select="@*" />
     </mods:dateIssued>
   </xsl:template>
   
