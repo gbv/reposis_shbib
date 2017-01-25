@@ -23,8 +23,8 @@ function getFirstValueByXPath (xml,path) {
 
 function mods2Preview(xml) {
     
-    title = $(xml).find( "title" ).html();
-    publisher = $(xml).find( "publisher" ).html();
+    title = $(xml).find( "title" ).text();
+    publisher = $(xml).find( "publisher" ).text();
     html  = '<div style="margin-left:15px">';
     html += '<strong>' + title + '</strong> <br/>' ;
     html +=  publisher + '<br/>' ;
