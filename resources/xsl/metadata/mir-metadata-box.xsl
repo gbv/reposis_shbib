@@ -211,10 +211,13 @@
               </td>
               <td class="metavalue">
                 <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject">
-                  <xsl:for-each select="mods:topic | mods:geographic">
+                  <xsl:for-each select="mods:topic | mods:geographic | mods:name">
                     <xsl:choose>
                       <xsl:when test="starts-with(@authorityURI,'http://www.mycore.org/classifications/')">
                         <xsl:apply-templates select="." mode="printModsClassInfo" />
+                      </xsl:when>
+                      <xsl:when test="mods:displayForm">
+                        <xsl:value-of select="mods:displayForm"/>
                       </xsl:when>
                       <xsl:otherwise>
                         <xsl:value-of select="."/>
