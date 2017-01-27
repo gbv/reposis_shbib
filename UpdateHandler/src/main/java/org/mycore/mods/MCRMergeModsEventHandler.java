@@ -61,7 +61,6 @@ public class MCRMergeModsEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectCreated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("So ich merge jetzt das mods mit meiner Klasse MCRMergeMods");
     	mergeMetadataFromSource(obj);
     }
 
@@ -70,7 +69,6 @@ public class MCRMergeModsEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectUpdated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("So ich merge jetzt das mods mit meiner Klasse MCRMergeMods");
     	mergeMetadataFromSource(obj);
     }
 
@@ -102,12 +100,10 @@ public class MCRMergeModsEventHandler extends MCREventHandlerBase {
                 
                 if (elm.getName() =="mods"){
                 	mergedMods.addContent(elm.cloneContent());
-                	LOGGER.info("gefundenes mods: "+outp.outputString(elm));
                 }
             }
 		}
     	
-    	LOGGER.info("Ergebnissmods (gemerged): "+outp.outputString(mergedMods));
     	
     	MCRMetaElement  modsContainer = obj.getMetadata().getMetadataElement("def.modsContainer");
     	MCRMetaXML mx = (MCRMetaXML) modsContainer.getElement(0);
@@ -115,7 +111,6 @@ public class MCRMergeModsEventHandler extends MCREventHandlerBase {
     	Namespace nsmods = Namespace.getNamespace ("mods","http://www.loc.gov/mods/v3");
     	metadata.removeChild("mods" , nsmods );
     	metadata.addContent(mergedMods);
-    	LOGGER.info("Ergebnissmetadata (gemerged): "+outp.outputString(mergedMods));
     	mx.setFromDOM(metadata);
 	}
     
