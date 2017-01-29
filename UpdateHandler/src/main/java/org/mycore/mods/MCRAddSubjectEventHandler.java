@@ -24,12 +24,16 @@
 package org.mycore.mods;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.jdom2.Content;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
+import org.jdom2.filter.Filters;
 import org.jdom2.output.XMLOutputter;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 import org.mycore.access.MCRAccessException;
 import org.mycore.common.MCRConstants;
 import org.mycore.common.MCRException;
@@ -41,6 +45,12 @@ import org.mycore.datamodel.metadata.MCRMetadataManager;
 import org.mycore.datamodel.metadata.MCRObject;
 import org.mycore.datamodel.metadata.MCRObjectID;
 import org.mycore.mods.MCRMODSWrapper;
+import org.mycore.datamodel.classifications2.MCRCategory;
+import org.mycore.datamodel.classifications2.MCRCategoryDAO;
+import org.mycore.datamodel.classifications2.MCRCategoryDAOFactory;
+import org.mycore.datamodel.classifications2.MCRCategoryID;
+import org.mycore.datamodel.classifications2.MCRLabel;
+import org.mycore.datamodel.metadata.MCRObject;
 
 
 import org.mycore.common.xml.MCRURIResolver;
@@ -83,48 +93,47 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
     	addSubject(obj);
     }
 
-    private final static Logger LOGGER = Logger.getLogger(MCRMergeModsEventHandler.class);
+    private final static Logger LOGGER = Logger.getLogger(MCRAddSubjectEventHandler.class);
+    
+    private static final MCRCategoryDAO DAO = MCRCategoryDAOFactory.getInstance();
 
     
     private void addSubject(MCRObject obj) {
     	    	
-		XMLOutputter outp = new XMLOutputter();
-    	MCRMetaElement  modsSourceContainer = obj.getMetadata().getMetadataElement("def.modsContainer");
-    	    	
-    	//Element mergedMods = new Element("mods","mods","http://www.loc.gov/mods/v3");
-    	
-		MCRMetaXML mx = (MCRMetaXML) modsSourceContainer.getElement(0);
-		
-		Element metadata = mx.createXML();
-		
-		//Element mods = null;
-	    //Element importedMods = null;
-		
-		XPathFactory xFactory = XPathFactory.instance();
-        XPathExpression<Element> expr = xFactory.compile("mods:classification", Filters.element()
-        		, null, MCRConstants.MODS_NAMESPACE, MCRConstants.XLINK_NAMESPACE);
-	    	
-		for (Element elm : metadata.getChildren()) {
-            if (elm.getName() =="mods"){
-            	List<Element> classifications = expr.evaluate(elm);
-            	for (Element classification : classifications) {
-            		LOGGER.info("authorityURI: "+classification.getAttribute("authorityURI"));
-            		LOGGER.info("valueURI: "+classification.getAttribute("valueURI"));
-            	}
-            }
+		MCRMODSWrapper mcrmodsWrapper = new MCRMODSWrapper(obj);
+        if(mcrmodsWrapper.getMODS()==null){
+            return;
         }
-		
+        
+        for (MCRCategoryID categoryId : mcrmodsWrapper.getMcrCategoryIDs()) {
+            MCRCategory category = DAO.getCategory(categoryId, 0);
+            LOGGER.info ("Klassifikationid:"+category.getId());
+            Optional<MCRLabel> label = category.getLabel("x-topic");
+            if (label.isPresent()) {
+            	String taskMessage = "add subject from "+category.getId()+" to "+label.toString()+"";
+                LOGGER.info(taskMessage);
+                Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+                Element topic = new Element ("topic", MCRConstants.MODS_NAMESPACE);
+                topic.setText(label.get().getText());
+                subject.setContent(topic);
+                mcrmodsWrapper.addElement(subject);
+            };
+            Optional<MCRLabel> label = category.getLabel("x-geographic");
+            if (label.isPresent()) {
+            	String taskMessage = "add subject from "+category.getId()+" to "+label.toString()+"";
+                LOGGER.info(taskMessage);
+                Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+                Element topic = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
+                topic.setText(label.get().getText());
+                subject.setContent(topic);
+                mcrmodsWrapper.addElement(subject);
+            };
+            
+        }
+        
+        		
     	
-    	/*LOGGER.info("Ergebnissmods (gemerged): "+outp.outputString(mergedMods));
     	
-    	MCRMetaElement  modsContainer = obj.getMetadata().getMetadataElement("def.modsContainer");
-    	MCRMetaXML mx = (MCRMetaXML) modsContainer.getElement(0);
-    	Element metadata = mx.createXML();
-    	Namespace nsmods = Namespace.getNamespace ("mods","http://www.loc.gov/mods/v3");
-    	metadata.removeChild("mods" , nsmods );
-    	metadata.addContent(mergedMods);
-    	LOGGER.info("Ergebnissmetadata (gemerged): "+outp.outputString(mergedMods));
-    	mx.setFromDOM(metadata);*/
 	}
     
 }
