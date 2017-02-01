@@ -118,7 +118,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
                 subject.setContent(topic);
                 mcrmodsWrapper.addElement(subject);
             };
-            Optional<MCRLabel> label = category.getLabel("x-geographic");
+            label = category.getLabel("x-geogra");
             if (label.isPresent()) {
             	String taskMessage = "add subject from "+category.getId()+" to "+label.toString()+"";
                 LOGGER.info(taskMessage);
@@ -130,10 +130,6 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
             };
             
         }
-        
-        		
-    	
-    	
 	}
     
 }
