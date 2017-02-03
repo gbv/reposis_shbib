@@ -21,15 +21,78 @@ function getFirstValueByXPath (xml,path) {
 	return null;
 };
 
+function showHintNoDoc (ppn) {
+    var html;
+    html  = '<div>';
+    html += '  Der übergeordnete Titel ist im System noch nicht aufgenommen worden. <br/>';
+    html += '  <a href="https://reposis-test.gbv.de/shbib/editor/editor-ppnsource.xed?ppn='+ ppn +'"> Jetzt aufnehmen </a>';
+    html += '</div>';
+    $('#PPNPreview').prepend(html);
+}
+
+function showHintToMuchDoc (ppn,solrURL) {
+    var html;
+    html  = '<div>';
+    html += '  Die Suche hat mehrere Kandidaten für den übergeordneten Titel gefunden.  <br/>';
+    html += '  <a href="'+solrURL+'"> Liste </a>';
+    html += '</div>';
+    $('#PPNPreview').prepend(html);
+}
+
+function checkRelatedItem(ppn) {
+    var solrURL = "https://reposis-test.gbv.de/shbib/servlets/solr/select?q=mods.identifier%3A*PPN%3D"+ppn+"&wt=xml&XSL.Style=xml"; 
+    $.ajax({
+  		method: "GET",
+		url: solrURL,
+		dataType: "xml"
+	}) .done(function( xml ) {
+	    var numFound = $(xml).find('result[name="response"]').attr("numFound");
+	    if (numFound == 0) {
+	        showHintNoDoc(ppn);
+	    } else if (numFound > 1) {
+	        showHintToMuchDoc(ppn,solrURL);
+	    } 
+	}) .fail(function( jqXHR, ajaxOptions, thrownError ) {
+		if(jqXHR.status==404) {
+		    var html='<div style="text-align:center;color:red;" >'+jqXHR.responseText+'</div>';
+       		$('#PPNPreview').html(html);
+    	} else {
+    		$('#PPNPreview').html("Unknown Error");
+    	}
+  	});
+
+}
+
 function mods2Preview(xml) {
     
-    title = $(xml).find( "title" ).text();
-    publisher = $(xml).find( "publisher" ).text();
+    var title = $(xml).find( "title" ).text();
+    var publisher = $(xml).find( "publisher" ).text();
+    var authors = [];
+    $(xml).find( 'name' ).each ( function( index, name ) {
+        var role = $(name).find ('roleTerm [authority="marcrelator"]').text();
+        var givenName = $(name).find('namePart[type="given"]').text();
+        var familyName = $(name).find('namePart[type="family"]').text();
+        if (role='aut') authors.push( givenName + ' ' + familyName );
+    });
+    var relatedItemPPN; 
+    $(xml).find('relatedItem[type="host"] > identifier ').each ( function (index, identifier ) {
+        var text = $(identifier).text();
+        if (text.substring(0, 8) == "(DE-601)") {
+            relatedItemPPN=text.substring(8);
+        };
+    });
+    
     html  = '<div style="margin-left:15px">';
     html += '<strong>' + title + '</strong> <br/>' ;
+    $.each(authors, function( index, author ) {
+        html += author + ";";
+    });
+    html +=  '<br/>' ;
     html +=  publisher + '<br/>' ;
     html += '</div>';
 	$('#PPNPreview').html(html);
+	
+	checkRelatedItem(relatedItemPPN);
 };
 
 function checkPPNValue() {
@@ -39,7 +102,6 @@ function checkPPNValue() {
 		
 		$.ajax({
   			method: "GET",
-			//url: "http://unapi.gbv.de/?format=mods36&id=gvk:ppn:"+value,
 			url: "https://reposis-test.gbv.de/shbib/unapiproxy/?format=mods36&id=gvk:ppn:"+value,
 			dataType: "xml"
 		}) .done(function( xml ) {
