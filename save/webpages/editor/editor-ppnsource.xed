@@ -26,7 +26,7 @@
             <xed:bind xpath="sourceuri">
               <input id="sourceuri" type="hidden" />
             </xed:bind>
-            <xed:bind xpath="sourceid">
+            <xed:bind xpath="sourceid" default="{$ppn}">
               <div class="form-group">
                 <label class="col-md-3 control-label">PPN</label>
                 <div class="col-md-6">
