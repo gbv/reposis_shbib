@@ -89,6 +89,10 @@
       <label xml:lang="de">Personen</label>
       <label xml:lang="en">Persons</label>
     </item>
+    <item href="/content/browse/subjects.xml" type="extern">
+      <label xml:lang="de">Schlagwörter</label>
+      <label xml:lang="en">Subjects</label>
+    </item>
   </menu>
   <menu id="user">
     <label xml:lang="de">Nutzermenü</label>
