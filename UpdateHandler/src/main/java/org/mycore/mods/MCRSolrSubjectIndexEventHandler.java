@@ -23,6 +23,7 @@
 
 package org.mycore.mods;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
@@ -114,6 +116,8 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     	
     	String mycoreid = obj.getId().toString();
     	SolrClient solrClient = new HttpSolrClient.Builder(solrURL).build();
+    	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
+    	UpdateResponse response = null;
     	
     	try {
             SolrQuery query = new SolrQuery();
@@ -124,21 +128,29 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
             query.setRequestHandler("find");
             
             QueryResponse queryResponse = solrClient.query(query);
+            
                         
             for (SolrDocument subject : queryResponse.getResults()) {
+            	
             	SolrInputDocument delDoc = new SolrInputDocument();
                 delDoc.addField("id",subject.getFieldValue("id"));
                 Map<String, String> mycoreidRemove = new HashMap<String, String>();
                 mycoreidRemove.put("removeregex", mycoreid);
                 delDoc.addField("mycoreid", mycoreidRemove);
-                solrClient.add(delDoc);
+                response = solrClient.add(delDoc);
+                if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
                 mycoreidRemove = new HashMap<String, String>();
                 mycoreidRemove.put("removeregex", mycoreid);
                 delDoc.addField("mycoreid.published", mycoreidRemove);
-                solrClient.add(delDoc);
+                response = solrClient.add(delDoc);
+                if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+                
+                
+                
             }
             
-            solrClient.commit();
+            response = solrClient.commit();
+            if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
             
         } catch (SolrServerException e) {
     	    LOGGER.warn("Solr Error while delete old mycoreids- Subjects of (" + mycoreid + ") were not indexed.");
@@ -149,12 +161,36 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         	LOGGER.warn(e.getMessage());
         	return false;
         }
+    	
+    	// delete all Subjectsids from objectindex
+    	try { 
+    		SolrInputDocument delModsDoc = new SolrInputDocument();
+    	
+    	    delModsDoc.addField("id",mycoreid);
+    	    Map<String, String> subjectidRemove = new HashMap<String, String>();
+    	    subjectidRemove.put("removeregex", ".*");
+    	    delModsDoc.addField("subjectid",subjectidRemove);
+        
+    	    response = modsSolrClient.add (delModsDoc);
+    	    if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+    	    response = modsSolrClient.commit();
+    	} catch (SolrServerException e) {
+    	    LOGGER.warn("Solr Error while delete old mycoreids- Subjects of (" + mycoreid + ") were not indexed.");
+    	    LOGGER.warn(e.getMessage());
+    	    return false;
+        } catch (IOException e) {
+        	LOGGER.warn("IO Error while delete old mycoreids- Subjects of (" + mycoreid + ") were not indexed.");
+        	LOGGER.warn(e.getMessage());
+        	return false;
+        }
+    	
     	return true;
     }
     
     private void handleSubjectsOfModsObject(MCRObject obj) {
     	
     	SolrClient solrClient = new HttpSolrClient.Builder(solrURL).build();
+    	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	
     	if (!MCRMODSWrapper.isSupported(obj)){
             return;
@@ -173,6 +209,8 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         for (Element subject : subjects) {
         	LOGGER.info("Process Subject :" + subject);
         	List<Element> children = subject.getChildren();
+        	List<String> gnds = new ArrayList<String>();
+        	List<String> displayFormes = new ArrayList<String>();
         	for (Element child : children){
                 type = child.getName();
                 LOGGER.info("Process Subject (type):" + type);
@@ -214,32 +252,121 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 LOGGER.info("Process Subject (mycoreid):" + mycoreid);
                 LOGGER.info("Process Subject (publicationState):" + publicationState);
                 
+                displayFormes.add(displayForm);
+                gnds.add(gnd);
+                
                 
                 SolrInputDocument doc = new SolrInputDocument();
                 doc.addField("id",idHash);
                 doc.addField("displayForm",displayForm);
                 doc.addField("subjectType",type);
                 doc.addField("identifier.gnd",gnd);
+                
                 Map<String, String> mycoreidUpdate = new HashMap<String, String>();
-                mycoreidUpdate.put("add", mycoreid);
+                mycoreidUpdate.put("add", mycoreid); 
                 doc.addField("mycoreid", mycoreidUpdate);
+                
                 if (publicationState.equals("published")) {
                 	mycoreidUpdate = new HashMap<String, String>();
                     mycoreidUpdate.put("add", mycoreid);
                     doc.addField("mycoreid.published", mycoreidUpdate);
                 }
                 
-                try {
-                    solrClient.add(doc);
-                    solrClient.commit();
+                try { 
+                	LOGGER.info("Process Subject: add Subject to index." );
+                	UpdateResponse response = null;
+                	response = solrClient.add(doc);
+                	if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+                	response = solrClient.commit();
+                	if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
                 } catch (SolrServerException e) {
-                	LOGGER.warn("Solr Error - Subjects of (" + mycoreid + ") were not indexed.");
-                	LOGGER.warn(e.getMessage());
+                	LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed.");
+                	LOGGER.error(e.getMessage());
                 } catch (IOException e) {
-                	LOGGER.warn("IO Error - Subjects of (" + mycoreid + ") were not indexed.");
-                	LOGGER.warn(e.getMessage());
+                	LOGGER.error("IO Error - Subjects of (" + mycoreid + ") were not indexed.");
+                	LOGGER.error(e.getMessage());
                 }
+                
+                addSubjectIdToObjectIndex(mycoreid,Integer.toString(idHash));
             }
+        	
+        	if (displayFormes.size() > 1) {
+        		String displayForm2 = "";
+        	    
+        	    SolrInputDocument chain = new SolrInputDocument();
+        	    for (int i = 0; i < displayFormes.size(); i++) {
+        	    	displayForm2 += displayFormes.get(i) + "/";
+        	    	Map<String, String> gndUpdate = new HashMap<String, String>();
+        	    	gndUpdate.put("add", gnds.get(i));
+        	    	chain.addField("identifier.gnd",gndUpdate);
+        	    }
+        	    
+        	    
+        	    displayForm2=displayForm2.substring(0, displayForm2.length() - 1);
+        	    chain.addField("displayForm",displayForm2);
+        	    Map<String, String> mycoreidUpdate = new HashMap<String, String>();
+                mycoreidUpdate.put("add", mycoreid); 
+                chain.addField("mycoreid", mycoreidUpdate);
+                if (publicationState.equals("published")) {
+                	mycoreidUpdate = new HashMap<String, String>();
+                    mycoreidUpdate.put("add", mycoreid);
+                    chain.addField("mycoreid.published", mycoreidUpdate);
+                }
+                
+                String hashString = displayForm2;
+                int idHash = hashString.hashCode();
+                chain.addField("id", idHash);
+                chain.addField("type", "chain");
+                
+                LOGGER.info("Process Subject (displayForm):" + displayForm2);
+                //LOGGER.info("Process Subject (gnd):" + gnd);
+                LOGGER.info("Process Subject (hash):" + idHash);
+                LOGGER.info("Process Subject (mycoreid):" + mycoreid);
+                LOGGER.info("Process Subject (publicationState):" + publicationState);
+        	    
+        	    try { 
+        	    	LOGGER.info("Process Subject: add Subject (complex) to index." );
+                	UpdateResponse response = null;
+                	response = solrClient.add(chain);
+                	if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+                	response = solrClient.commit();
+                	if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+                } catch (SolrServerException e) {
+                	LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed.");
+                	LOGGER.error(e.getMessage());
+                } catch (IOException e) {
+                	LOGGER.error("IO Error - Subjects of (" + mycoreid + ") were not indexed.");
+                	LOGGER.error(e.getMessage());
+                }
+        	    addSubjectIdToObjectIndex(mycoreid,Integer.toString(idHash));
+        	}
         }
+    }
+    
+    private void addSubjectIdToObjectIndex (mycoreid,subjectid) {
+    	
+    	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
+    	SolrInputDocument modsDoc = new SolrInputDocument();
+        modsDoc.addField("id",mycoreid);
+                        
+        Map<String, String> subjectidUpdate = new HashMap<String, String>();
+        mycoreidUpdate.put("add", subjectid); 
+        modsDoc.addField("subjectid", mycoreidUpdate);
+        
+        try { 
+        	LOGGER.info("Process Subject: add subjectid to objectindex." );
+        	UpdateResponse response = null;
+        	response = modsSolrClient.add(modsDoc);
+        	if (response.getStatus() != 0) LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated:" + response);
+        	response = modsSolrClient.commit();
+        	if (response.getStatus() != 0) LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated:" + response);
+        } catch (SolrServerException e) {
+        	LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated.");
+        	LOGGER.error(e.getMessage());
+        } catch (IOException e) {
+        	LOGGER.error("IO Error - mods (" + mycoreid + ") were not updated.");
+        	LOGGER.error(e.getMessage());
+        }
+    
     }
 }
