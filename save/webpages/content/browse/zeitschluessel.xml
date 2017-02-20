@@ -3,12 +3,12 @@
 
 <MyCoReWebPage>
 
-  <section i18n="browse.zeitgruppen" xml:lang="all">
+  <section i18n="browse.zeitschluessel" xml:lang="all">
 
     <div class="row">
       <div class="col-md-8" lang="de">
-        <h3><i18n key="browse.zeitgruppen" /></h3>
-        <classificationbrowser classification="shbib_zeitgruppen"
+        <h3><i18n key="browse.zeitschluessel" /></h3>
+        <classificationbrowser classification="shbib_zeitschluessel"
                                    objecttype="mods"
                                   restriction="+category.top:&quot;state:published&quot;"
                                         field="category.top"
