@@ -59,7 +59,7 @@ function checkRelatedItem(ppn) {
 		    var html='<div style="text-align:center;color:red;" >'+jqXHR.responseText+'</div>';
        		$('#PPNPreview').html(html);
     	} else {
-    		$('#PPNPreview').html("Unknown Error");
+    		$('#PPNPreview').html("Unknown Error during get relatedItem");
     	}
   	});
 
