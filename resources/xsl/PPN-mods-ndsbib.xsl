@@ -57,9 +57,16 @@
     </mods:languageTerm>
   </xsl:template>
   
-  <xsl:template match="mods:classification[@authority='sdnb']">
-    
+  <!-- remove all classifications -->
+  <xsl:template match="mods:classification">
   </xsl:template>
   
+  <!-- remove all subjects -->
+  <xsl:template match="mods:subject">
+  </xsl:template>
+  
+  <!-- remove invalid mods -->
+  <xsl:template match="mods:extent[text()]">
+  </xsl:template>
     
 </xsl:stylesheet>
