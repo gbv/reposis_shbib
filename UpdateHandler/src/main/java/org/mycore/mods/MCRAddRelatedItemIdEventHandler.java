@@ -115,7 +115,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
             	// get PPN from xml <mods:identifier type="local">(DE-601)#######</mods:identifier>
             	XPathFactory xFactory = XPathFactory.instance();
                 //XPathExpression<Element> expr = xFactory.compile("//mods:identifier[starts-with(.,'(DE-601)')]", Filters.element());
-            	XPathExpression<Element> expr = xFactory.compile("mods:identifier", Filters.element(),
+            	XPathExpression<Element> expr = xFactory.compile("mods:identifier[starts-with(.,'(DE-601)')]", Filters.element(),
             			 null, MCRConstants.MODS_NAMESPACE, MCRConstants.XLINK_NAMESPACE);
             	List<Element> identifier = expr.evaluate(relatedItem);
             	LOGGER.info("Found Indefiers: " + identifier.size());
@@ -123,7 +123,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
                 	LOGGER.warn("No PPN found");
                 	continue;
                 }
-                if (identifier.size() > 1) LOGGER.warn("More the 1 PPN found");
+                if (identifier.size() > 1) LOGGER.warn("More than 1 PPN found");
                 String identifierValue = identifier.get(0).getText();
                 String ppn = identifierValue.substring(identifierValue.lastIndexOf(")") + 1);
                 LOGGER.info("Found PPN: " + ppn);
