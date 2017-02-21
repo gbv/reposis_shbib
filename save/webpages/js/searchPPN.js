@@ -23,24 +23,26 @@ function getFirstValueByXPath (xml,path) {
 
 function showHintNoDoc (ppn) {
     var html;
-    html  = '<div>';
+    html  = '<div class="alert alert-warning" role="alert">';
     html += '  Der übergeordnete Titel ist im System noch nicht aufgenommen worden. <br/>';
     html += '  <a href="https://reposis-test.gbv.de/shbib/editor/editor-ppnsource.xed?ppn='+ ppn +'"> Jetzt aufnehmen </a>';
     html += '</div>';
-    $('#PPNPreview').prepend(html);
+    $('#ppn-warning').html(html);
 }
 
 function showHintToMuchDoc (ppn,solrURL) {
+    solrURL = solrURL.replace("&XSL.Style=xml", "");
     var html;
-    html  = '<div>';
+    html  = '<div class="alert alert-danger" role="alert">';
     html += '  Die Suche hat mehrere Kandidaten für den übergeordneten Titel gefunden.  <br/>';
     html += '  <a href="'+solrURL+'"> Liste </a>';
     html += '</div>';
-    $('#PPNPreview').prepend(html);
+    $('#ppn-warning').html(html);
 }
 
 function checkRelatedItem(ppn) {
-    var solrURL = "https://reposis-test.gbv.de/shbib/servlets/solr/select?q=mods.identifier%3A*PPN%3D"+ppn+"&wt=xml&XSL.Style=xml"; 
+    var solrURL = "https://reposis-test.gbv.de/shbib/servlets/solr/select?q=mods.identifier%3A*PPN%3D"+ppn+"&wt=xml&XSL.Style=xml";
+    var cppn = ppn; 
     $.ajax({
   		method: "GET",
 		url: solrURL,
@@ -48,7 +50,7 @@ function checkRelatedItem(ppn) {
 	}) .done(function( xml ) {
 	    var numFound = $(xml).find('result[name="response"]').attr("numFound");
 	    if (numFound == 0) {
-	        showHintNoDoc(ppn);
+	        showHintNoDoc(cppn);
 	    } else if (numFound > 1) {
 	        showHintToMuchDoc(ppn,solrURL);
 	    } 
@@ -74,7 +76,7 @@ function mods2Preview(xml) {
         var familyName = $(name).find('namePart[type="family"]').text();
         if (role='aut') authors.push( givenName + ' ' + familyName );
     });
-    var relatedItemPPN; 
+    var relatedItemPPN = null; 
     $(xml).find('relatedItem[type="host"] > identifier ').each ( function (index, identifier ) {
         var text = $(identifier).text();
         if (text.substring(0, 8) == "(DE-601)") {
@@ -82,7 +84,8 @@ function mods2Preview(xml) {
         };
     });
     
-    html  = '<div style="margin-left:15px">';
+    html  = '<div id="ppn-warning"> </div>';
+    html += '<div style="margin-left:15px">';
     html += '<strong>' + title + '</strong> <br/>' ;
     $.each(authors, function( index, author ) {
         html += author + ";";
@@ -92,7 +95,7 @@ function mods2Preview(xml) {
     html += '</div>';
 	$('#PPNPreview').html(html);
 	
-	checkRelatedItem(relatedItemPPN);
+	if (relatedItemPPN !== null) checkRelatedItem(relatedItemPPN);
 };
 
 function checkPPNValue() {
