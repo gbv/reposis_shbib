@@ -43,6 +43,7 @@
           </fieldset>
         </xed:bind>
         <script src="{$WebApplicationBaseURL}js/searchPPN.js" type="text/javascript"></script>
+        <script src="{$WebApplicationBaseURL}js/subject-autocomplete.js" type="text/javascript"></script>
         
         <xed:bind xpath="modsSourceContainer[@type='local']/mods:mods">
         
@@ -57,8 +58,8 @@
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="admincomment" />
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="source_note" />
             
-            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex2" />
-            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="cartographics" />
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex3" />
+            
               
           </fieldset>
 
