@@ -135,18 +135,16 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
             	SolrInputDocument delDoc = new SolrInputDocument();
                 delDoc.addField("id",subject.getFieldValue("id"));
                 Map<String, String> mycoreidRemove = new HashMap<String, String>();
-                mycoreidRemove.put("removeregex", mycoreid);
+                mycoreidRemove.put("remove", mycoreid);
                 delDoc.addField("mycoreid", mycoreidRemove);
                 response = solrClient.add(delDoc);
                 if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+                
                 mycoreidRemove = new HashMap<String, String>();
-                mycoreidRemove.put("removeregex", mycoreid);
+                mycoreidRemove.put("remove", mycoreid);
                 delDoc.addField("mycoreid.published", mycoreidRemove);
                 response = solrClient.add(delDoc);
                 if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
-                
-                
-                
             }
             
             response = solrClient.commit();
@@ -168,7 +166,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     	
     	    delModsDoc.addField("id",mycoreid);
     	    Map<String, String> subjectidRemove = new HashMap<String, String>();
-    	    subjectidRemove.put("removeregex", ".*");
+    	    subjectidRemove.put("set", null);
     	    delModsDoc.addField("subjectid",subjectidRemove);
         
     	    response = modsSolrClient.add (delModsDoc);
@@ -343,15 +341,15 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         }
     }
     
-    private void addSubjectIdToObjectIndex (mycoreid,subjectid) {
+    private void addSubjectIdToObjectIndex(String mycoreid, String subjectid) {
     	
     	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	SolrInputDocument modsDoc = new SolrInputDocument();
         modsDoc.addField("id",mycoreid);
                         
         Map<String, String> subjectidUpdate = new HashMap<String, String>();
-        mycoreidUpdate.put("add", subjectid); 
-        modsDoc.addField("subjectid", mycoreidUpdate);
+        subjectidUpdate.put("add", subjectid); 
+        modsDoc.addField("subjectid", subjectidUpdate);
         
         try { 
         	LOGGER.info("Process Subject: add subjectid to objectindex." );
