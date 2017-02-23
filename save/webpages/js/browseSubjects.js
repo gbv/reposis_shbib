@@ -7,7 +7,7 @@ function showresult(json) {
         searchlink = 'https://reposis-test.gbv.de/shbib/servlets/solr/select?q=subjectid%3A\\' + doc.id + '&wt=xml';
         html += '<li> ';
         html += '<a title="Suche nach allen Publikationen" href="' + searchlink + '" >';
-        html +=  doc.displayForm + ' (' + length + ')';
+        //html +=  doc.displayForm + ' (' + length + ')';
         html +=  '</a>';
         html +=  '</li>';
     });
