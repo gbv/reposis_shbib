@@ -39,12 +39,30 @@
 
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
-    <mods:dateIssued encoding="w3cdtf">
+    <xsl:variable name="datevalue">
       <xsl:call-template  name="yearRAK2w3cdtf">
         <xsl:with-param name="date" select="node()"/>
       </xsl:call-template>
-      <xsl:apply-templates select="@*" />
-    </mods:dateIssued>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="contains($datevalue,'-')">
+        <mods:dateIssued encoding="w3cdtf" point="start">
+          <xsl:value-of select="substring-before($datevalue,'-')"/>
+        </mods:dateIssued>
+        <xsl:variable name="datevalueAfter" select="substring-after($datevalue,'-')" />
+        <xsl:if test="string-length($datevalueAfter)">
+          <mods:dateIssued encoding="w3cdtf" point="end">
+            <xsl:value-of select="$datevalueAfter"/>
+          </mods:dateIssued>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="$datevalue"/>
+          <xsl:apply-templates select="@*" />
+        </mods:dateIssued>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
   
   <xsl:template match="mods:languageTerm[@authority='iso639-2b']">
