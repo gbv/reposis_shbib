@@ -42,6 +42,8 @@
             </xed:bind>
           </fieldset>
         </xed:bind>
+        
+        <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="javascript" />
         <script src="{$WebApplicationBaseURL}js/searchPPN.js" type="text/javascript"></script>
         <script src="{$WebApplicationBaseURL}js/subject-autocomplete.js" type="text/javascript"></script>
         

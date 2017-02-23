@@ -129,12 +129,51 @@
   
   <xed:template id="subject.complex.topic3">
     <div class="subject_select">
-      <mir:textfield  xpath="mods:topicSimple" label="mir.subject.topic"  />
-      <mir:textfield xpath="mods:geographic" label="mir.geographic"  />
-      <xed:bind xpath="mods:name">
-        <mir:textfield  xpath="mods:displayForm" label="mir.search.name"  />
-      </xed:bind>
-    </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label "> Schlagwort </label>
+        <div class="col-md-6">
+          <xed:bind xpath="mods:topicSimple">
+            <input class="form-control subjectSuggest" 
+              data-provide="typeahead" data-searchengine="topicSuggest"
+              type="text" autocomplete="off"/>
+          </xed:bind>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label "> Geografica </label>
+        <div class="col-md-6">
+          <xed:bind xpath="mods:geographic">
+            <input class="form-control subjectSuggest" 
+              data-provide="typeahead" data-searchengine="geographicSuggest"
+              type="text" autocomplete="off"/>
+          </xed:bind>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label "> Person </label>
+        <div class="col-md-6">
+          <xed:bind xpath="mods:name[@type='personal']/mods:displayForm">
+            <input class="form-control subjectSuggest" 
+              data-provide="typeahead" data-searchengine="personalSuggest"
+              type="text" autocomplete="off"/>
+          </xed:bind>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label "> Organisation </label>
+        <div class="col-md-6">
+          <xed:bind xpath="mods:name[@type='corporate']/mods:displayForm">
+            <input class="form-control subjectSuggest" 
+              data-provide="typeahead" data-searchengine="corporateSuggest"
+              type="text" autocomplete="off"/>
+          </xed:bind>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+   </div>
   </xed:template>
   
   <xed:template id="subject.complex3">
