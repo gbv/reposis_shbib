@@ -20,7 +20,7 @@ function showresult(json) {
 function search(Query) {
 	$.ajax({
   		method: "GET",
-		url: "https://reposis-test.gbv.de/shbib/solrsubjectproxy/select?q=" + Query + "&wt=json&indent=true&sort=displayForm+asc",
+		url: webApplicationBaseURL + "/solrsubjectproxy/select?q=" + Query + "&wt=json&indent=true&sort=displayForm+asc",
 		dataType: "json"
 	}) .done(function( json ) {
 		showresult(json);
