@@ -137,12 +137,12 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 Map<String, String> mycoreidRemove = new HashMap<String, String>();
                 mycoreidRemove.put("remove", mycoreid);
                 delDoc.addField("mycoreid", mycoreidRemove);
-                response = solrClient.add(delDoc);
-                if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
+                //response = solrClient.add(delDoc);
+                //if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
                 
-                mycoreidRemove = new HashMap<String, String>();
-                mycoreidRemove.put("remove", mycoreid);
-                delDoc.addField("mycoreid.published", mycoreidRemove);
+                Map<String, String> mycoreidRemove2 = new HashMap<String, String>();
+                mycoreidRemove2.put("remove", mycoreid);
+                delDoc.addField("mycoreid.published", mycoreidRemove2);
                 response = solrClient.add(delDoc);
                 if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
             }
@@ -202,6 +202,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         
         String type;
     	String displayForm;
+    	String subjectType;
         String gnd;
     	
         for (Element subject : subjects) {
@@ -213,6 +214,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 type = child.getName();
                 LOGGER.info("Process Subject (type):" + type);
                 displayForm = "";
+                subjectType ="";
                 gnd = "";
                 String authorityURI;
                 switch (type) {
@@ -223,6 +225,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 	    	LOGGER.info("Process Subject (in schleife):" );
                 	    	gnd = StringUtils.substringAfter(child.getAttributeValue("valueURI"),"#"); 
                 	    }
+                	    subjectType="topic";
                         break;
                     case "geographic":
                     	displayForm = child.getText();
@@ -230,12 +233,14 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                     	if (authorityURI != null && authorityURI.equals("http://d-nb.info/gnd/")) {
                 	    	gnd = StringUtils.substringAfter(child.getAttributeValue("valueURI"),"#"); 
                 	    }
+                    	subjectType="geographic";
                         break;
                     case "name":
                         displayForm = child.getChild("displayForm",MCRConstants.MODS_NAMESPACE).getText();
                         for (Element identifier : child.getChildren("nameIdentifier",MCRConstants.MODS_NAMESPACE)) {
                         	gnd = (identifier.getAttributeValue("type").equals("gnd")) ? identifier.getText() : null; 
                         }
+                        subjectType = (child.getAttributeValue("type") != null) ? child.getAttributeValue("type") : "personal";
                         break;
                     default:
                     //throw 
@@ -248,6 +253,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 LOGGER.info("Process Subject (gnd):" + gnd);
                 LOGGER.info("Process Subject (hash):" + idHash);
                 LOGGER.info("Process Subject (mycoreid):" + mycoreid);
+                LOGGER.info("Process Subject (subjectType):" + subjectType);
                 LOGGER.info("Process Subject (publicationState):" + publicationState);
                 
                 displayFormes.add(displayForm);
@@ -257,7 +263,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 SolrInputDocument doc = new SolrInputDocument();
                 doc.addField("id",idHash);
                 doc.addField("displayForm",displayForm);
-                doc.addField("subjectType",type);
+                doc.addField("subjectType",subjectType);
                 doc.addField("identifier.gnd",gnd);
                 
                 Map<String, String> mycoreidUpdate = new HashMap<String, String>();
@@ -343,6 +349,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     
     private void addSubjectIdToObjectIndex(String mycoreid, String subjectid) {
     	
+    	LOGGER.info("Process Subject: add subjectid to objectindex (mycoreid:"+mycoreid+")(subjectid:"+subjectid+")" );
     	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	SolrInputDocument modsDoc = new SolrInputDocument();
         modsDoc.addField("id",mycoreid);
