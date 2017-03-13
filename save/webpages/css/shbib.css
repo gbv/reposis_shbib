@@ -566,10 +566,25 @@ ul.navbar-nav {
 #header_heading {
   font-family: RobotoSlab;
   font-size: 30px;
+  padding-left: 15px;
+  padding-top: 25px;
 }
 
 #header_subheading {
   font-family: Roboto;
   color: #c74a39;
   font-size: 30px;
+  padding-left: 15px;
+}
+
+#header_ship {
+  background-image: url("../images/ship.png");
+  position:absolute;
+  left: 100px;
+}
+
+#header_building {
+  background-image: url("../images/building.png");
+  position:absolute;
+  left: 200px;
 }

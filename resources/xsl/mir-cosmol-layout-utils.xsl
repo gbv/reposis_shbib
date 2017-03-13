@@ -13,6 +13,8 @@
         <div id="header_back">
           <div id="header_heading"> Schleswig-Holsteinische <br/> Landesbibliothek</div>
           <div id="header_subheading"> Bibliografie online </div>
+          <div id="header_ship"></div>
+          <div id="header_building"></div>
         </div>
         <noscript>
           <div class="mir-no-script alert alert-warning text-center" style="border-radius: 0;">
