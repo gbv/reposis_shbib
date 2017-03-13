@@ -86,5 +86,34 @@
   <!-- remove invalid mods -->
   <xsl:template match="mods:extent[text()]">
   </xsl:template>
+  
+  <xsl:template match="mods:identifier[@type='isbn'][string-length(.)=10]">
+    <mods:identifier>
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="substring(.,1,1)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,2,5)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,7,3)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,10,1)"/>
+    </mods:identifier>
+  </xsl:template>
+  
+  <xsl:template match="mods:identifier[@type='isbn'][string-length(.)=13]">
+    <mods:identifier>
+      <xsl:apply-templates select="@*" />
+      <xsl:value-of select="substring(.,1,3)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,4,1)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,5,5)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,10,3)"/>
+      <xsl:text>-</xsl:text>
+      <xsl:value-of select="substring(.,13,1)"/>
+    </mods:identifier>
+  </xsl:template>
+  
     
 </xsl:stylesheet>
