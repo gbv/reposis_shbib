@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MyCoReWebPage>
   <section xml:lang="de" title="Willkommen auf den Seiten des Publikationsservers OpenAgrar">
-    <div class="jumbotwo">
+    <div class="row">
 
-      <div class="col-md-7" style="background-color: #a9beee; border-radius: 4px;">
+      <div class="col-md-12" >
         <h1>
           Schleswig-Holsteinische Bibliographie online
         </h1>
       </div>
-      <div class="row">
-        <div class="col-md-6" lang="de">
+      
+      <div class="col-md-12" lang="de">
           
-          <p>
-            Die Schleswig-Holsteinische Bibliographie ist eine Literaturdokumentation. Erfaßt werden Bücher,
-            Karten, Zeitschriften, Aufsätze aus Zeitschriften und (in Ausnahmefällen) aus Tageszeitungen
-            sowie Einzelbeiträge aus Sammelwerken, die einen Bezug zu Schleswig-Holstein, einzelnen Regionen, 
-            Inseln oder Orten des Landes oder schleswig-holsteinischen Persönlichkeiten haben. Dabei sind ehemals schleswig-holsteinische Gebiete (z.B. Nordschleswig, Altona) einbezogen, soweit die erfaßte Literatur die Zeit der Zugehörigkeit zu Schleswig-Holstein oder grenzüberschreitende Fragen (z.B. Verkehr, Küstenschutz, Minderheiten) betrifft. Der inhaltliche Bezug wird in jedem Falle weit ausgelegt und umfaßt alle Wissensgebiete und Lebensbereiche. Rezensionen werden nur in Ausnahmefällen, Haushaltspläne, Fahrpläne, Telefonbücher usw. seit 1987 gar nicht mehr verzeichnet.
-          </p>
-          <p>  
-            Das hier vorliegende Titelmaterial geht zurück bis zum Berichtsjahr 1987. Die Retrokonvertierung der
-            früheren, in gedruckter Form vorliegenden Bände ist in Arbeit. 
-          </p>
+        <p>
+          Die Schleswig-Holsteinische Bibliographie ist eine Literaturdokumentation. Erfaßt werden Bücher,
+          Karten, Zeitschriften, Aufsätze aus Zeitschriften und (in Ausnahmefällen) aus Tageszeitungen
+          sowie Einzelbeiträge aus Sammelwerken, die einen Bezug zu Schleswig-Holstein, einzelnen Regionen, 
+          Inseln oder Orten des Landes oder schleswig-holsteinischen Persönlichkeiten haben. Dabei sind ehemals schleswig-holsteinische Gebiete (z.B. Nordschleswig, Altona) einbezogen, soweit die erfaßte Literatur die Zeit der Zugehörigkeit zu Schleswig-Holstein oder grenzüberschreitende Fragen (z.B. Verkehr, Küstenschutz, Minderheiten) betrifft. Der inhaltliche Bezug wird in jedem Falle weit ausgelegt und umfaßt alle Wissensgebiete und Lebensbereiche. Rezensionen werden nur in Ausnahmefällen, Haushaltspläne, Fahrpläne, Telefonbücher usw. seit 1987 gar nicht mehr verzeichnet.
+        </p>
+        <p>  
+          Das hier vorliegende Titelmaterial geht zurück bis zum Berichtsjahr 1987. Die Retrokonvertierung der
+          früheren, in gedruckter Form vorliegenden Bände ist in Arbeit. 
+        </p>
           
-        </div>
       </div>
+      
     </div>
     </section>
     <meta>
