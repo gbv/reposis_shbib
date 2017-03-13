@@ -7,7 +7,7 @@ function showresult(json) {
         searchlink = 'https://reposis-test.gbv.de/shbib/servlets/solr/select?q=subjectid%3A\\' + doc.id + '&wt=xml';
         html += '<li> ';
         html += '<a title="Suche nach allen Publikationen" href="' + searchlink + '" >';
-        //html +=  doc.displayForm + ' (' + length + ')';
+        html +=  doc.displayForm ; //+ ' (' + length + ')';
         html +=  '</a>';
         html +=  '</li>';
     });
@@ -37,5 +37,12 @@ $(document).ready( function() {
 	
 	var query = 'mycoreid:[""+TO+*]';
 	search(query);
+	$('#subjectSearch_submit').click( function () {
+	    var searchValue = $('#subjectSearch_subject').val();
+	    var fuzzyQuery= "suggest:" + searchValue +"~";
+	    var trunkQuery= "suggest:" + searchValue +"*";
+	    var onlyWithMIDs = 'mycoreid:[""+TO+*]';
+		search( "((" + fuzzyQuery + ")OR(" + trunkQuery + "))AND("+onlyWithMIDs+")");
+	});
 	
 });
