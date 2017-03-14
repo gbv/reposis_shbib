@@ -11,8 +11,11 @@
     <div id="head" class="container">
       <div class="row">
         <div id="header_back">
-          <div id="header_heading"> Schleswig-Holsteinische <br/> Landesbibliothek</div>
-          <div id="header_subheading"> Bibliografie online </div>
+          <div id="header_heading">
+            <div> Schleswig-Holsteinische <br/> Landesbibliothek</div>
+            <div id="header_subheading"> Bibliografie online </div>
+          </div>
+          <div id="header_flag"></div>
           <div id="header_ship"></div>
           <div id="header_building"></div>
         </div>

@@ -47,6 +47,7 @@ header {
 
 header #head .row #header_back,
 header .container .row #header_back {
+    background-image:none;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
@@ -68,7 +69,7 @@ header .mir-prop-nav .navbar-nav > li > a {
 /* xs: default up to 750px ***************************************************/
 
 header .container .row #header_back {
-  background-image: url("../images/banner_350.jpg");
+  
   background-position: top left;
   background-size: cover;
   height: 110px;
@@ -84,7 +85,7 @@ header .container .row #header_back {
 /* xs hd */
 @media (min-width: 350px) {
   header .container .row #header_back {
-    background-image: url("../images/banner_750.jpg");
+    
     height: 100px;
   }
 }
@@ -112,7 +113,7 @@ header .container .row #header_back {
 /* sm: up to 970 px **********************************************************/
 @media (min-width: 751px) {
   header .container .row #header_back {
-    background-image: url("../images/banner_970.jpg");
+    b
     height: 180px;
   }
 }
@@ -121,7 +122,7 @@ header .container .row #header_back {
 /* md: up to 1170 px *********************************************************/
 @media (min-width: 971px) {
   header .container .row #header_back {
-    background-image: url("../images/banner_1170.jpg");
+    
     height: 180px;
   }
 }
@@ -564,8 +565,9 @@ ul.navbar-nav {
 }
 
 #header_heading {
+  position:relative;
   font-family: RobotoSlab;
-  font-size: 30px;
+  font-size: 40px;
   padding-left: 15px;
   padding-top: 25px;
 }
@@ -573,18 +575,29 @@ ul.navbar-nav {
 #header_subheading {
   font-family: Roboto;
   color: #c74a39;
-  font-size: 30px;
-  padding-left: 15px;
+  font-size: 26px;
 }
 
 #header_ship {
   background-image: url("../images/ship.png");
+  width: 280px;
+  height: 250px;
   position:absolute;
-  left: 100px;
-}
+  top: 0px;
+  right: 310px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+ }
 
 #header_building {
   background-image: url("../images/building.png");
+  width: 500px;
+  height: 250px;
   position:absolute;
-  left: 200px;
+  top: 0px;
+  right: 15px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
