@@ -46,12 +46,12 @@
   <xsl:template name="mir.navigation">
     <div class="navbar navbar-default mir-side-nav">
       <nav class="mir-main-nav-entries">
-        <form action="{$WebApplicationBaseURL}servlets/solr/find?q={0}" class="navbar-form form-inline" role="search">
+        <!-- <form action="{$WebApplicationBaseURL}servlets/solr/find?q={0}" class="navbar-form form-inline" role="search">
           <div class="form-group">
             <input name="q" placeholder="{i18n:translate('mir.cosmol.navsearch.placeholder')}" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="form-control search-query" id="searchInput" type="text" />
           </div>
           <button type="submit" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-        </form>
+        </form>  -->
         <ul class="nav navbar-nav">
           <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='main']" />
           <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='search']" />
@@ -65,6 +65,7 @@
   </xsl:template>
 
   <xsl:template name="mir.footer">
+    <div id="footer_wave" />
     <div class="container">
         <div id="menu" class="row">
             <div class="col-xs-6">

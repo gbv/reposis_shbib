@@ -59,7 +59,7 @@
 
             <div id="main_content_column" class="col-xs-12 col-sm-9">
 
-              <div class="button_box">
+              <div id="menu_toggle" class="button_box">
                 <button id="hide_side_button"
                         class="navbar-toggle"
                         type="button">

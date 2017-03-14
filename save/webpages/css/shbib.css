@@ -142,6 +142,7 @@ header .container .row #header_back {
 footer .container {
   border-top: 1px solid #DDD;
   padding-top: 0px;
+  background-color: #002d4f;
 }
 
 footer .container #menu {
@@ -427,15 +428,15 @@ ul.navbar-nav {
 }
 
 .button_box #hide_side_button.navbar-toggle {
-  background-color: #A9BEEE;
-  border-color: #A9BEEE #A9BEEE transparent #A9BEEE;
+  background-color: #e19e95;
+  border-color: #e19e95;
   border-radius: 0;
 }
 
 .button_box #hide_side_button.navbar-toggle:hover,
 #side_nav_column .mir-side-nav nav .navbar-form .btn:hover {
-  background-color: #3685D4;
-  border-color: #3685D4; /*#27568E*/;
+  background-color: #c74a39;
+  border-color: #c74a39; /*#27568E*/;
   color: white;
 }
 
@@ -620,11 +621,16 @@ ul.navbar-nav {
 }
 
 #header_login {
-  width: 100px;
+  width: 180px;
   height: 50px;
   position:absolute;
-  top: 30px;
+  top: 15px;
   right: 15px;
+}
+
+#menu_toggle {
+  position: absolute;
+  left: -25px;
 }
 
 #page {
@@ -633,4 +639,11 @@ ul.navbar-nav {
 
 #page::before {
   background-image: url("../images/left-top-bd.png");
+}
+
+#footer_wave {
+  background-image: url("../images/wave.png");
+  width: 100%px;
+  height: 10px;
+  background-repeat: repeat-x;
 }
