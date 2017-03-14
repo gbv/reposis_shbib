@@ -18,6 +18,7 @@
           <div id="header_flag"></div>
           <div id="header_ship"></div>
           <div id="header_building"></div>
+          <div id="header_login"><xsl:call-template name="mir.top-navigation" /></div>
         </div>
         <noscript>
           <div class="mir-no-script alert alert-warning text-center" style="border-radius: 0;">

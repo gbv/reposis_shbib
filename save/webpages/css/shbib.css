@@ -43,6 +43,7 @@ a, a:hover, a:focus {
 
 header {
   margin-top: 0px;
+  
 }
 
 header #head .row #header_back,
@@ -113,8 +114,7 @@ header .container .row #header_back {
 /* sm: up to 970 px **********************************************************/
 @media (min-width: 751px) {
   header .container .row #header_back {
-    b
-    height: 180px;
+    height: 250px;
   }
 }
 
@@ -123,13 +123,17 @@ header .container .row #header_back {
 @media (min-width: 971px) {
   header .container .row #header_back {
     
-    height: 180px;
+    height: 250px;
   }
 }
 
 
 /* lg: larger than 1170 px ***************************************************/
 @media (min-width: 1171px) {
+  header .container .row #header_back {
+    
+    height: 250px;
+  }
 }
 
 
@@ -568,6 +572,7 @@ ul.navbar-nav {
   position:relative;
   font-family: RobotoSlab;
   font-size: 40px;
+  height: 250px;
   padding-left: 15px;
   padding-top: 25px;
 }
@@ -592,7 +597,7 @@ ul.navbar-nav {
 
 #header_building {
   background-image: url("../images/building.png");
-  width: 500px;
+  width: 550px;
   height: 250px;
   position:absolute;
   top: 0px;
@@ -600,4 +605,32 @@ ul.navbar-nav {
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+#header_flag {
+  background-image: url("../images/flag.png");
+  width: 70px;
+  height: 50px;
+  position:absolute;
+  top: 30px;
+  left: 435px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#header_login {
+  width: 100px;
+  height: 50px;
+  position:absolute;
+  top: 30px;
+  right: 15px;
+}
+
+#page {
+  border-top: solid 4px #0065ca;  
+}
+
+#page::before {
+  background-image: url("../images/left-top-bd.png");
 }
