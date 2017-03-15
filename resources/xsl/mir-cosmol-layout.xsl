@@ -51,8 +51,14 @@
         </header>
 
         <div class="container" id="page">
+          <div id="left-top-bd">
+          </div>
+          
+          <div id="right-top-bd">
+          </div>
+          
           <div class="row" id="main_content">
-
+            
             <div id="side_nav_column" class="hidden-xs col-sm-3">
               <xsl:call-template name="mir.navigation" />
             </div>

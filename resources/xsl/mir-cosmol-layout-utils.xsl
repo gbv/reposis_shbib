@@ -19,6 +19,14 @@
           <div id="header_ship"></div>
           <div id="header_building"></div>
           <div id="header_login"><xsl:call-template name="mir.top-navigation" /></div>
+          <div id="header_search">
+            <form action="{$WebApplicationBaseURL}servlets/solr/find?q={0}" class="navbar-form form-inline" role="search">
+              <div class="form-group">
+                <input name="q" placeholder="{i18n:translate('mir.cosmol.navsearch.placeholder')}" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="form-control search-query" id="searchInput" type="text" />
+              </div>
+              <button type="submit" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </form> 
+          </div>
         </div>
         <noscript>
           <div class="mir-no-script alert alert-warning text-center" style="border-radius: 0;">
@@ -73,31 +81,33 @@
         <div id="menu" class="row">
             <div class="col-xs-2">
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-8 text-center">
                 <ul id="sub_menu">
-                    <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='below']/item[@href='/content/brand/impressum.xml']" />
-                    <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='brand']/item[@href='/content/brand/contact.xml']" />
+                    <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='below']/item[@href='/content/below/impressum.xml']" />
+                    <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='below']/item[@href='/content/below/contact.xml']" />
                 </ul>
             </div>
             <div class="col-xs-2">
-                <div id="powered_by">
+                <div >
                     <a href="https://www.gbv.de/Verbundzentrale/index">
-                        <img src="{$WebApplicationBaseURL}images/logo_vzg.png" title="Verbundzentrale des GBV" alt="hosted by VZG"/>
+                        <img src="{$WebApplicationBaseURL}images/logo_vzg.png" class="img-responsive" title="Verbundzentrale des GBV" alt="hosted by VZG"/>
                     </a>
                 </div>
             </div>
         </div>
         <div id="credits" class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-4">
+                <div id="copyright">© Niedersächsische Landesbibliografie 2016</div>
+            </div>
+            <div class="col-xs-4">
                 <div id="powered_by">
                     <a href="http://www.mycore.de">
                         <xsl:variable name="mcr_version" select="concat('MyCoRe ',mcrver:getCompleteVersion())" />
-                        <img src="{$WebApplicationBaseURL}images/logo_mycore.png" title="{$mcr_version}" alt="powered by MyCoRe"/>
+                        <img src="{$WebApplicationBaseURL}images/logo_mycore.png" style="height: 30px;" title="{$mcr_version}" alt="powered by MyCoRe"/>
                     </a>
                 </div>
             </div>
-            <div class="col-xs-12">
-                <div id="copyright">© <xsl:value-of select="$MCR.NameOfProject" /> 2016</div>
+            <div class="col-xs-4">
             </div>
         </div>
     </div>
