@@ -142,6 +142,7 @@ header .container .row #header_back {
 footer .container {
   padding-top: 0px;
   background-color: #002d4f;
+  color: #85d7ed; 
 }
 
 footer .container #menu {
@@ -152,7 +153,8 @@ footer .container #menu {
 }
 
 footer .container #menu #sub_menu li a, footer .container #menu #sub_menu li:before {
-  color: #27568F;
+  color: #85d7ed;
+  content: ' ';
 }
 
 footer .container #menu #copyright {
@@ -563,6 +565,8 @@ ul.navbar-nav {
   }
 }
 
+
+/* shbib related *********************************************************** */
 #side_nav_column .mir-side-nav nav .navbar-nav > li .dropdown-menu > li > a, #side_nav_column .mir-side-nav nav .navbar-nav > li.active .dropdown-menu > li > a 
 {
   color: #4d4d4d;
@@ -627,17 +631,41 @@ ul.navbar-nav {
   right: 15px;
 }
 
+#left-top-bd {
+  background-image: url("../images/left-top-bd.png");
+  width: 5px;
+  height: 10px;
+  position:absolute;
+  top: -4px;
+  left: -5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#right-top-bd {
+  background-image: url("../images/right-top-bd.png");
+  width: 4px;
+  height: 10px;
+  position:absolute;
+  top: -4px;
+  left: -5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 #menu_toggle {
   position: absolute;
   left: -25px;
 }
 
 #page {
-  border-top: solid 4px #0065ca;  
-}
-
-#page::before {
-  background-image: url("../images/left-top-bd.png");
+  background-image: url("../images/top-bd.png");
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: 4px;
+  position:relative; 
 }
 
 ul .navbar-nav > li {
@@ -658,4 +686,9 @@ ul .navbar-nav > li {
 
 #credits {
   background-color: #002948;
+  padding-top: 15px;
+}
+
+#powered_by {
+  padding: 0px !important;
 }
