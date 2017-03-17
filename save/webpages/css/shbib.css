@@ -73,42 +73,24 @@ header .container .row #header_back {
   
   background-position: top left;
   background-size: cover;
-  height: 110px;
+  height: 250px;
 }
 
 @media (min-width: 320px) {
   header .container .row #header_back {
-    height: 120px;
+    height: 250px;
   }
 }
 
 
-/* xs hd */
-@media (min-width: 350px) {
-  header .container .row #header_back {
-    
-    height: 100px;
-  }
-}
-
-@media (min-width: 410px) {
-  header .container .row #header_back {
-    height: 120px;
-  }
-}
-@media (min-width: 450px) {
-  header .container .row #header_back {
-    height: 140px;
-  }
-}
 @media (min-width: 570px) {
   header .container .row #header_back {
-    height: 160px;
+    height: 250px;
   }
 }
 @media (min-width: 650px) {
   header .container .row #header_back {
-    height: 180px;
+    height: 250px;
   }
 }
 /* sm: up to 970 px **********************************************************/
@@ -377,7 +359,8 @@ ul.navbar-nav {
 /* sidenav ****************************************************************** */
 
 #searchInput {
-  padding: 4px 8px;
+  padding: 4px 8px !important;
+  margin-top:0px !important;
   border-radius: 0;
   font-family: verdana,arial,sans-serif;
   font-weight: normal;
@@ -577,7 +560,8 @@ ul.navbar-nav {
   font-family: RobotoSlab;
   font-size: 40px;
   height: 250px;
-  padding-left: 15px;
+  width: 450px;
+  padding-left: 27px;
   padding-top: 25px;
 }
 
@@ -615,25 +599,72 @@ ul.navbar-nav {
   width: 180px;
   height: 50px;
   position:absolute;
-  top: 15px;
+  top: 25px;
   right: 15px;
 }
 
 #header_search {
-  width: 180px;
-  height: 30px;
-  position:absolute;
-  top: 200px;
-  left: 75px;
+  width: 440px;
+  height: 50px;
+  position: absolute;
+  top: 204px;
+  left: 15px;
+  background-color: white;
+  z-index: 30;
+  padding-left: 0px;
+  padding-top: 8px;
 }
 
-@media (min-width: 751px) {
+#header_searchInput {
+  margin-top:0px;
+  padding: 6px 12px 7px 12px;
+  border: none;
+  width: 392px;
+  font-size: 20px;
+  -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075) ! important;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,0.075) ! important;
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s ! important;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s ! important;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s ! important;
+}
+
+#header_searchInput:focus {
+  outline:0;
+  -webkit-box-shadow:inset 0 0px 0px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6) ! important;
+  box-shadow:inset 0 0px 0px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6) ! important;
+}
+
+#header_searchSubmit {
+  border:none;
+  color: #4d4d4d;
+  font-size: 20px;
+  height: 40px;
+  margin-right: 0px;
+}
+
+
+@media (min-width: 650px) {
+
   #header_flag {
     width: 70px;
     height: 50px;
     top: 30px;
     left: 435px;
   }
+  
+  #header_search {
+    top: 204px;
+    left: 15px;
+  }
+  
+}
+
+@media (min-width: 751px) {
+  #header_search {
+    top: 204px;
+    left: 15px;
+  }
+  
 }
 
 @media (min-width: 768px) {
@@ -652,12 +683,6 @@ ul.navbar-nav {
     right: 15px;
   }
 
-  #header_flag {
-    width: 70px;
-    height: 50px;
-    top: 30px;
-    left: 435px;
-  }
 }
 
 @media (min-width: 992px) {
@@ -676,12 +701,6 @@ ul.navbar-nav {
     right: 15px;
   }
 
-  #header_flag {
-    width: 70px;
-    height: 50px;
-    top: 30px;
-    left: 435px;
-  }
 }
 
 @media (min-width: 1200px) {
@@ -700,18 +719,12 @@ ul.navbar-nav {
     right: 15px;
   }
 
-  #header_flag {
-    width: 70px;
-    height: 50px;
-    top: 30px;
-    left: 435px;
-  }
 }
 
 #left-top-bd {
   background-image: url("../images/left-top-bd.png");
-  width: 6px;
-  height: 12px;
+  width: 8px;
+  height: 16px;
   position:absolute;
   top: -0px;
   left: -5px;
@@ -722,8 +735,8 @@ ul.navbar-nav {
 
 #right-top-bd {
   background-image: url("../images/right-top-bd.png");
-  width: 6px;
-  height: 12px;
+  width: 8px;
+  height: 16px;
   position:absolute;
   top: -0px;
   right: -5px;
@@ -736,7 +749,7 @@ ul.navbar-nav {
   background-image: url("../images/top-bd.png");
   background-position: top;
   background-repeat: repeat-x;
-  background-size: auto 6px;
+  background-size: auto 8px;
   position:relative; 
 }
 

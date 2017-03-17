@@ -12,7 +12,7 @@
       <div class="row">
         <div id="header_back">
           <div id="header_heading">
-            <div> Schleswig-Holsteinische <br/> Landesbibliothek</div>
+            <div> Schleswig-Holsteinische <br/>Landesbibliothek</div>
             <div id="header_subheading"> Bibliografie online </div>
           </div>
           <div id="header_flag"></div>
@@ -20,11 +20,11 @@
           <div id="header_building"></div>
           <div id="header_login"><xsl:call-template name="mir.top-navigation" /></div>
           <div id="header_search">
-            <form action="{$WebApplicationBaseURL}servlets/solr/find?q={0}" class="navbar-form form-inline" role="search">
-              <div class="form-group">
-                <input name="q" placeholder="{i18n:translate('mir.cosmol.navsearch.placeholder')}" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="form-control search-query" id="searchInput" type="text" />
+            <form action="{$WebApplicationBaseURL}servlets/solr/find?q={0}" role="search">
+              <div>
+                <input id="header_searchInput" name="q" placeholder="Schnellsuche" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="search-query" type="text" />
+                <button id="header_searchSubmit" type="submit" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
               </div>
-              <button type="submit" title="{i18n:translate('mir.cosmol.navsearch.title')}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </form> 
           </div>
         </div>
@@ -39,6 +39,7 @@
         </noscript>
       </div>
     </div>
+    
   </xsl:template>
 
   <xsl:template name="mir.top-navigation">
