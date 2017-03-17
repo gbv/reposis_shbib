@@ -7,23 +7,7 @@
       Datenschutz
     </h1>
     <div class="row">
-      <div class="col-md-8 oa-borderbox" lang="de">
-        <h2>Urheberrecht</h2>
-        <p>
-          Alle Rechte vorbehalten, Senat der Bundesforschungsinstitute, Königin-Luise-Straße 19, 14195 Berlin
-        </p>
-        <p>
-          Die Online-Dokumente und Webseiten einschließlich ihrer Teile sind urheberrechtlich geschützt. Sie dürfen
-          nur zum privaten, wissenschaftlichen und nichtgewerblichen Gebrauch zum Zweck der Information kopiert und
-          ausgedruckt werden. Auf eventuelle Nutzungseinschränkungen wird bei den jeweiligen Dokumenten hingewiesen.
-        </p>
-
-        <h2>Bildrechte</h2>
-        <p>
-          Eine Vervielfältigung oder Verwendung der Abbildungen ist in anderen elektronischen oder gedruckten Publikationen
-          ohne ausdrückliche Einwilligung des Urhebers nicht gestattet.
-        </p>
-
+      <div class="col-md-8" lang="de">
         <h2>Hinweise zum Datenschutz</h2>
         <p>
           Der Schutz persönlicher Daten ist dem Senat ein wichtiges Anliegen. Daher werden auf dieser Website Nutzungsdaten
@@ -38,15 +22,7 @@
           auf der Internetseite Ihren Bedürfnissen besser anzupassen. So können häufig gelesene Artikel identifiziert werden und
           die Darstellung der Internetseite an die am häufigsten eingesetzten Browser angepasst werden.
         </p>
-        <p>
-          Die Nutzung dieser Internetseite ist also ohne Bekanntgabe personenbezogener Informationen möglich. Wenn Sie jedoch
-          das Kontaktformular nutzen, werden Sie gebeten, die für die Bearbeitung erforderlichen persönlichen Informationen zu
-          übermitteln. Dabei sind wir bemüht, nur die nötigsten Angaben von Ihnen abzufragen.
-        </p>
-        <p>
-          Wenn Sie uns eine E-Mail senden, so wird diese und Ihre E-Mail-Adresse ausschließlich für die Korrespondenz mit Ihnen
-          verwendet.
-        </p>
+        
         <p>
           Nur insoweit eine gesetzliche oder durch Gerichtsentscheidung ergangene Verpflichtung besteht oder dies im Falle von
           Angriffen auf die Internetinfrastruktur des Serverbetreibers zur Rechts- oder Strafverfolgung erforderlich ist, erfolgt
@@ -73,21 +49,7 @@
             >"Verbraucher sicher Online"</a>
         </p>
 
-        <h2>Technische Daten</h2>
-        <p>
-          Jeder PC, über den man das Internet nutzen kann, erhält bei der Einwahl eine so genannte IP- (Internet Protocol) Adresse.
-          Diese technisch notwendige Adresse ist eine bis zu 12-stellige Zahl in vier Blöcken. Bei jedem Angebot, das Sie online
-          besuchen, wird diese IP-Adresse auf dem jeweiligen Server erkannt und in einem technischen Protokoll gespeichert (geloggt).
-          Ruft eine Nutzerin oder ein Nutzer die OpenAgrar-Internetseite auf, so wird diese IP-Nummer neben der aufgerufenen Seite in
-          einer Log-Datei gespeichert. Dies geschieht bei jedem Server im Internet automatisch. Bei der statistischen Auswertung der
-          Seitenabrufe werden nur die ersten beiden Blöcke der IP-Nummern dargestellt, so dass diese Daten anonymisiert sind.
-        </p>
-        <p>
-          Der Browser, mit dem Sie das OpenAgrar-Internetangebot aufrufen, sendet in der Regel Daten, welcher Browsertyp er ist,
-          das Betriebssystem, die zuvor besuchte Webseite und die beim Verlassen der Seite aufgerufene nächste Webseite. Diese Daten
-          werden ebenfalls im technischen Protokoll gespeichert.
-        </p>
-
+        
         <h2>Seitenaufrufe</h2>
         <p>
           Das Auswertungsprogramm speichert, wann eine Seite von openagrar.bmelv-forschung.de aufgerufen, welche Seite vorher und
@@ -104,13 +66,13 @@
         <p>
           <strong>Widerspruch:</strong>
         </p>
-        <iframe style="border: 0; height: 200px; width: 758px;" src="https://openagrar.bmel-forschung.de/piwik/piwik/index.php?module=CoreAdminHome&amp;action=optOut&amp;idsite=1&amp;language=de"></iframe>
+        <iframe style="border: 0; height: 200px; width: 758px;" src="https://reposis.gbv.de/shbib/piwik/piwik/index.php?module=CoreAdminHome&amp;action=optOut&amp;idsite=1&amp;language=de"></iframe>
 
       </div>
     </div>
   </div>
   </section>
   <meta>
-    <log date="2016-06-30" time="09:19" labelPath=" » Kontakt" lastEditor="Kathleen Neumann" />
+    <log date="2016-06-30" time="09:19" labelPath=" » Kontakt" lastEditor="Paul Borchert" />
   </meta>
 </MyCoReWebPage>

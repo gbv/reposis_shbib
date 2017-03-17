@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MyCoReWebPage>
-  <section xml:lang="de" title="Willkommen auf den Seiten des Publikationsservers OpenAgrar">
+  <section xml:lang="de" title="Schleswig-Holsteinische Bibliographie">
     <div class="row">
 
       <div class="col-md-12" >
@@ -27,6 +27,6 @@
     </div>
     </section>
     <meta>
-        <log lastEditor="administrator" date="2016-06-30" time="09:18"/>
+        <log lastEditor="administrator" date="2017-02-30" time="09:18"/>
     </meta>
 </MyCoReWebPage>
