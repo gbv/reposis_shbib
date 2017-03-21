@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mycoreclass xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="MCRClassification.xsd" ID="shbib_zeitschluessel">
+  <label xml:lang="de" text="Zeitschlüssel" />
+  <label xml:lang="x-uri" text="http://www.mycore.org/classifications/shbib_zeitschluessel" />
+  <categories>
+    <category ID="00">
+      <label xml:lang="de" text="00 kein zeitlicher Bezug" />
+    </category>
+    <category ID="01">
+      <label xml:lang="de" text="01 Präkambrium" />
+    </category>
+    <category ID="02">
+      <label xml:lang="de" text="02 Paläozoikum (allgemein)" />
+      <category ID="03">
+        <label xml:lang="de" text="03 Kambrium" />
+      </category>
+      <category ID="04">
+        <label xml:lang="de" text="04 Ordovizium" />
+      </category>
+      <category ID="05">
+        <label xml:lang="de" text="05 Silur" />
+      </category>
+      <category ID="06">
+        <label xml:lang="de" text="06 Devon" />
+      </category>
+      <category ID="07">
+        <label xml:lang="de" text="07 Karbon" />
+      </category>
+      <category ID="08">
+        <label xml:lang="de" text="08 Perm" />
+      </category>
+    </category>
+    <category ID="10">
+      <label xml:lang="de" text="10 Mesozoikum (allgemein)" />
+      <category ID="11">
+        <label xml:lang="de" text="11 Trias" />
+      </category>
+      <category ID="12">
+        <label xml:lang="de" text="12 Jura" />
+      </category>
+      <category ID="13">
+        <label xml:lang="de" text="13 Kreide" />
+      </category>
+    </category>
+    <category ID="14">
+      <label xml:lang="de" text="14 Neozoikum (allgemein)" />
+      <category ID="15">
+        <label xml:lang="de" text="15 Tertiär" />
+      </category>
+      <category ID="16">
+        <label xml:lang="de" text="16 Quartär [allgemein]" />
+      </category>
+      <category ID="17">
+        <label xml:lang="de" text="17 Pleistozän" />
+      </category>
+      <category ID="18">
+        <label xml:lang="de" text="18 Holozän" />
+      </category>
+    </category>
+    <category ID="19">
+      <label xml:lang="de" text="19 Gesamtgeschichte" />
+    </category>
+    <category ID="20">
+      <label xml:lang="de" text="20 Vorgeschichtliche Zeit" />
+    </category>
+    <category ID="21">
+      <label xml:lang="de" text="21 Steinzeit [allgemein]" />
+      <category ID="22">
+        <label xml:lang="de" text="22 Alt- und Mittelsteinzeit" />
+      </category>
+      <category ID="23">
+        <label xml:lang="de" text="23 Jungsteinzeit" />
+      </category>
+    </category>
+    <category ID="52">
+      <label xml:lang="de" text="52 19./20. Jahrhundert" />
+    </category>
+    <category ID="24">
+      <label xml:lang="de" text="24 Bronzezeit" />
+    </category>
+    <category ID="25">
+      <label xml:lang="de" text="25 Vorrömische Eisenzeit" />
+    </category>
+    <category ID="26">
+      <label xml:lang="de" text="26 Römische Kaiserzeit; Völkerwanderungszeit" />
+    </category>
+    <category ID="29">
+      <label xml:lang="de" text="29 Mittelalter und Neuzeit" />
+    </category>
+    <category ID="30">
+      <label xml:lang="de" text="30 Mittelalter [allgemein]" />
+      <category ID="31">
+        <label xml:lang="de" text="31 Frühmittelalter und Wikingerzeit" />
+      </category>
+      <category ID="32">
+        <label xml:lang="de" text="32 Mittelalter 12. Jahrhundert bis 1460" />
+      </category>
+      <category ID="33">
+        <label xml:lang="de" text="33 Mittelalter 1460-1530" />
+      </category>
+    </category>
+    <category ID="40">
+      <label xml:lang="de" text="40 Neuzeit [allgemein]" />
+      <category ID="41">
+        <label xml:lang="de" text="41 Neuzeit 1530-1815" />
+      </category>
+      <category ID="42">
+        <label xml:lang="de" text="42 Neuzeit 16. Jahrhundert" />
+      </category>
+      <category ID="43">
+        <label xml:lang="de" text="43 Neuzeit 17. Jahrhundert" />
+      </category>
+      <category ID="44">
+        <label xml:lang="de" text="44 Neuzeit 17./18. Jahrhundert" />
+      </category>
+      <category ID="45">
+        <label xml:lang="de" text="45 Neuzeit 18. Jahrhundert" />
+      </category>
+      <category ID="46">
+        <label xml:lang="de" text="46 Neuzeit 18./19. Jahrhundert" />
+      </category>
+    </category>
+    <category ID="50">
+      <label xml:lang="de" text="50 Neuzeit 1800-Gegenwart" />
+      <category ID="51">
+        <label xml:lang="de" text="51 Neuzeit 1797-1918" />
+      </category>
+      <category ID="53">
+        <label xml:lang="de" text="53 Neuzeit 19. Jahrhundert" />
+      </category>
+      <category ID="54">
+        <label xml:lang="de" text="54 Neuzeit 1797-1848" />
+      </category>
+      <category ID="55">
+        <label xml:lang="de" text="55 Neuzeit 1848-1866" />
+      </category>
+      <category ID="56">
+        <label xml:lang="de" text="56 Neuzeit 1864-1866" />
+      </category>
+      <category ID="57">
+        <label xml:lang="de" text="57 Neuzeit 1866-1918" />
+      </category>
+      <category ID="59">
+        <label xml:lang="de" text="59 Neuzeit 1866-1945" />
+      </category>
+    </category>
+    <category ID="60">
+      <label xml:lang="de" text="60 20. Jahrhundert" />
+      <category ID="61">
+        <label xml:lang="de" text="61 1918-1920" />
+      </category>
+      <category ID="62">
+        <label xml:lang="de" text="62 1920-1933" />
+      </category>
+      <category ID="63">
+        <label xml:lang="de" text="63 1933-1945" />
+      </category>
+      <category ID="70">
+        <label xml:lang="de" text="70 1945-" />
+      </category>
+    </category>
+    <category ID="64">
+      <label xml:lang="de" text="64 20./21. Jahrhundert" />
+    </category>
+    <category ID="75">
+      <label xml:lang="de" text="75 21. Jahrhundert" />
+    </category>
+  </categories>
+</mycoreclass>
