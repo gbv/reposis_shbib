@@ -8,27 +8,6 @@
     </h1>
     <div class="row">
       <div class="col-md-8" lang="de">
-        <h2>Hinweise zum Datenschutz</h2>
-        <p>
-          Der Schutz persönlicher Daten ist dem Senat ein wichtiges Anliegen. Daher werden auf dieser Website Nutzungsdaten
-          nur in anonymisierter Form zu Optimierungszwecken gesammelt und gespeichert. Über diese Daten können Sie nicht als
-          Besucher dieser Website persönlich identifiziert werden und es kann kein Nutzungsprofil angelegt werden. Die Daten
-          dienen ausschließlich der Verbesserung des Service, den der Senat mit seiner Internetseite anbietet.
-        </p>
-        <p>
-          Über die anonymisierten und kumulierten Daten erhält der Betreiber Informationen über die Nutzung dieser Internetseite,
-          zum Beispiel, wie häufig verschiedene Artikel aufgerufen wurden oder mit welchem Browser (beispielsweise Firefox,
-          Internet Explorer) die Internetseite betrachtet wird. Diese Informationen nutzt der Betreiber, um die Informationen
-          auf der Internetseite Ihren Bedürfnissen besser anzupassen. So können häufig gelesene Artikel identifiziert werden und
-          die Darstellung der Internetseite an die am häufigsten eingesetzten Browser angepasst werden.
-        </p>
-        
-        <p>
-          Nur insoweit eine gesetzliche oder durch Gerichtsentscheidung ergangene Verpflichtung besteht oder dies im Falle von
-          Angriffen auf die Internetinfrastruktur des Serverbetreibers zur Rechts- oder Strafverfolgung erforderlich ist, erfolgt
-          eine auf den rechtlich zwingend vorgegebenen Umfang beschränkte Weitergabe und Herleitung zu personenbezogenen Daten.
-        </p>
-
         <h2>Cookies</h2>
         <p>
           Für einige Funktionen werden Cookies gesetzt, die aber nach der Sitzung gleich wieder gelöscht werden (Session-Cookies).
@@ -66,8 +45,8 @@
         <p>
           <strong>Widerspruch:</strong>
         </p>
-        <iframe style="border: 0; height: 200px; width: 758px;" src="https://reposis.gbv.de/shbib/piwik/piwik/index.php?module=CoreAdminHome&amp;action=optOut&amp;idsite=1&amp;language=de"></iframe>
-
+        <iframe src="https://piwik.gbv.de/index.php?module=CustomOptOut&amp;action=optOut&amp;language=de&amp;idSite=XX&amp;cssfile=http://reposis.gbv.de/shbib/mir-layout/css/cosmol/cosmol.min.css" style="border: 0; height: 180px; width: 100%;"></iframe>
+        
       </div>
     </div>
   </div>
