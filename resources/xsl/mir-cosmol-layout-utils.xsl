@@ -99,7 +99,7 @@
         </div>
         <div id="credits" class="row">
             <div class="col-xs-4">
-                <div id="copyright">© Niedersächsische Landesbibliografie 2016</div>
+                <div id="copyright">© Schleswig-Holsteinische Bibliografie 2016</div>
             </div>
             <div class="col-xs-4">
                 <div id="powered_by">
