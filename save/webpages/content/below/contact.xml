@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-12" lang="de">
         <h3> Fachliche Fragen </h3>
-        <p>
+        <p style="padding-left: 10px;">
           <b>Schleswig-Holsteinische Landesbibliothek</b>
           <br/>
           Bibliographie
@@ -27,7 +27,7 @@
             shape="rect">Anne.Bartels@shlb.landsh.de</a>
         </p>
         <h3> Technischer Betrieb</h3>
-        <p>
+        <p style="padding-left: 10px;">
           <b>Verbundzentrale des GBV (VZG)</b>
           <br/>
           Platz der Göttinger Sieben 1
