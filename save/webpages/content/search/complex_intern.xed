@@ -39,24 +39,6 @@
                             <option value="mods.name">
                               <xed:output i18n="editor.search.mir.name" />
                             </option>
-                            <option value="mods.nameIdentifier">
-                              <xed:output i18n="editor.search.oa.nameIdentifier" />
-                            </option>
-                            <option value="mods.subject">
-                              <xed:output i18n="editor.search.oa.subject" />
-                            </option>
-                            <option value="mods.annual_review">
-                              <xed:output i18n="editor.search.oa.annualReviewYear" />
-                            </option>
-                            <option value="mods.physicalLocation">
-                              <xed:output i18n="editor.search.oa.physicalLocation" />
-                            </option>
-                            <option value="createdby">
-                              <xed:output i18n="editor.search.oa.createdBy" />
-                            </option>
-                            <option value="modifiedby">
-                              <xed:output i18n="editor.search.oa.modifiedBy" />
-                            </option>
                             <option value="allMeta">
                               <xed:output i18n="editor.search.mir.metadata" />
                             </option>
@@ -111,11 +93,11 @@
                     xpath="condition[@field='category.top'][3]/@value" id="inputGenre1"
                     i18n="editor.search.mir.genre" tooltip="editor.search.genre.tooltip"
                     uri="xslStyle:items2options:classification:editorComplete:-1:children:mir_genres" />
-                  <!-- Jahresberichtskategorie -->
+                  <!-- Licenses -->
                   <mir:template name="selectInput"
-                    xpath="condition[@field='category.top'][4]/@value" id="inputAnnualReview1"
-                    i18n="editor.search.oa.annualReview" tooltip="editor.search.oa.annualReview.tooltip"
-                    uri="xslStyle:items2options:classification:editorComplete:-1:children:annual_review" />
+                    xpath="condition[@field='category.top'][4]/@value" id="inputLicense1"
+                    i18n="editor.search.mir.license" tooltip="editor.search.license.tooltip"
+                    uri="xslStyle:items2options:classification:editorComplete:-1:children:mir_licenses" />
                   <!-- Status -->
                   <mir:template name="selectInput"
                     xpath="condition[@field='state']/@value" id="inputStatus1"
@@ -123,9 +105,9 @@
                     uri="xslStyle:items2options:classification:editor:-1:children:state" />
                   <!-- Datum -->
                   <div class="form-group">
-                    <xed:bind xpath="condition[@field='mods.yearIssued']">
+                    <xed:bind xpath="condition[@field='mods.dateIssued']">
                       <label for="inputDate1" class="col-md-3 control-label">
-                        <xed:output i18n="component.mods.metaData.dictionary.yearIssued" />
+                        <xed:output i18n="component.mods.metaData.dictionary.dateIssued" />
                       </label>
                       <div class="col-md-2">
                         <xed:bind xpath="@operator">
@@ -141,7 +123,7 @@
                       <div class="col-md-7">
                         <xed:bind xpath="@value">
                           <input type="text" class="form-control" id="inputDate1"
-                            placeholder="YYYY" />
+                            placeholder="YYYY-MM-DD" />
                         </xed:bind>
                       </div>
                     </xed:bind>
@@ -198,9 +180,6 @@
                       <select class="form-control">
                         <option value="mods.dateIssued">
                           <xed:output i18n="component.mods.metaData.dictionary.dateIssued" />
-                        </option>
-                        <option value="mods.mainAuthor">
-                          <xed:output i18n="editor.search.oa.mainAuthor" />
                         </option>
                         <option value="score">
                           <xed:output i18n="editor.search.score" />
