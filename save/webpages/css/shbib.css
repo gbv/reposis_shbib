@@ -558,9 +558,9 @@ ul.navbar-nav {
 #header_heading {
   position:relative;
   font-family: RobotoSlab;
-  font-size: 40px;
+  font-size: 35px;
   height: 250px;
-  width: 450px;
+  width: 550px;
   padding-left: 27px;
   padding-top: 25px;
 }
@@ -569,6 +569,7 @@ ul.navbar-nav {
   font-family: Roboto;
   color: #c74a39;
   font-size: 26px;
+  padding-top: 10px;
 }
 
 #header_ship {

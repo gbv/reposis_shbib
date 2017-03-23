@@ -13,7 +13,7 @@
         <div id="header_back">
           <div id="header_heading">
             <div> Schleswig-Holsteinische <br/>Landesbibliothek</div>
-            <div id="header_subheading"> Bibliografie online </div>
+            <div id="header_subheading"> Schleswig-Holsteinische Bibliographie online </div>
           </div>
           <div id="header_flag"></div>
           <div id="header_ship"></div>
@@ -99,7 +99,7 @@
         </div>
         <div id="credits" class="row">
             <div class="col-xs-4">
-                <div id="copyright">© Schleswig-Holsteinische Bibliografie 2016</div>
+                <div id="copyright">© Schleswig-Holsteinische Bibliographie 2016</div>
             </div>
             <div class="col-xs-4">
                 <div id="powered_by">
