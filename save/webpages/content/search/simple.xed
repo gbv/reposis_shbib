@@ -24,6 +24,8 @@
               <mir:template name="textInput" xpath="condition[@field='mods.title']/@value" id="inputTitle1" i18n="editor.search.mir.title" tooltip="editor.search.mir.title.tooltip" />
             <!-- Name -->
               <mir:template name="textInput" xpath="condition[@field='mods.name']/@value" id="inputName1" i18n="editor.search.mir.name" tooltip="editor.search.mir.name.tooltip" />
+            <!-- Topic -->
+              <mir:template name="textInput" xpath="condition[@field='topic']/@value" id="inputTopic1" i18n="editor.search.mir.topic" tooltip="editor.search.mir.topic.tooltip" />
             <!-- Content -->
               <!-- 
                 <mir:template name="textInput" xpath="condition[@field='content']/@value" id="inputContent1" i18n="editor.search.derivate" tooltip="editor.search.derivate.tooltip" />
