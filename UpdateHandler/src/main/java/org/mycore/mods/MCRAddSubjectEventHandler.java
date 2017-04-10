@@ -110,23 +110,35 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
             LOGGER.info ("Klassifikationid:"+category.getId());
             Optional<MCRLabel> label = category.getLabel("x-topic");
             if (label.isPresent()) {
-            	String taskMessage = "add subject from "+category.getId()+" to "+label.toString()+"";
-                LOGGER.info(taskMessage);
-                Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
-                Element topic = new Element ("topic", MCRConstants.MODS_NAMESPACE);
-                topic.setText(label.get().getText());
-                subject.setContent(topic);
-                mcrmodsWrapper.addElement(subject);
+            	String[] sChains = label.get().getText().split(";");
+            	for (String sChain : sChains) {
+            		String[] sTopics = sChain.split("/");
+            		Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+            		for (String sTopic: sTopics) {
+            	        String taskMessage = "add subject: "+category.getId()+" "+sTopic+"";
+                        LOGGER.info(taskMessage);
+                        Element topic = new Element ("topic", MCRConstants.MODS_NAMESPACE);
+                        topic.setText(sTopic);
+                        subject.addContent(topic);
+                    }
+            		mcrmodsWrapper.addElement(subject);
+            	}
             };
             label = category.getLabel("x-geogra");
             if (label.isPresent()) {
-            	String taskMessage = "add subject from "+category.getId()+" to "+label.toString()+"";
-                LOGGER.info(taskMessage);
-                Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
-                Element topic = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
-                topic.setText(label.get().getText());
-                subject.setContent(topic);
-                mcrmodsWrapper.addElement(subject);
+            	String[] sChains = label.get().getText().split(";");
+            	for (String sChain : sChains) {
+            		String[] sGeographics = sChain.split("/");
+            		Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+            		for (String sGeographic: sGeographics) {
+            	        String taskMessage = "add subject: "+category.getId()+" "+sGeographic+"";
+                        LOGGER.info(taskMessage);
+                        Element geographic = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
+                        geographic.setText(sGeographic);
+                        subject.setContent(geographic);
+            		}
+                    mcrmodsWrapper.addElement(subject);
+            	}
             };
             
         }
