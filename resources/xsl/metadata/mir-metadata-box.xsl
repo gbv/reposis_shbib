@@ -215,6 +215,7 @@
             <tr>
               <td class="metaname" valign="top">
                 <xsl:value-of select="i18n:translate('component.mods.metaData.dictionary.subject')" />
+                <xsl:value-of select="':'" />
               </td>
               <td class="metavalue">
                 <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject">
@@ -240,9 +241,10 @@
                 </xsl:for-each>
               </td>
             </tr>
-            <xsl:call-template name="printMetaDate.mods">
+            <!-- <xsl:call-template name="printMetaDate.mods">
               <xsl:with-param name="nodes" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject/mods:geographic" />
             </xsl:call-template>
+             -->
             <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:subject/mods:cartographics/mods:coordinates">
               <tr>
                 <td class="metaname" valign="top">
