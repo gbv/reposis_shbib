@@ -179,7 +179,7 @@
                 </tr>
             </xsl:for-each>
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:language" />
-            <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:typeOfResource">
+            <!-- <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:typeOfResource">
               <tr>
                 <td class="metaname" valign="top">
                   <xsl:value-of select="i18n:translate('component.mods.metaData.dictionary.typeOfResource')" />
@@ -190,6 +190,7 @@
                 </td>
               </tr>
             </xsl:for-each>
+             -->
             <xsl:call-template name="printMetaDate.mods">
               <xsl:with-param name="nodes"
                 select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:physicalDescription/mods:extent" />
