@@ -231,7 +231,7 @@
                       </xsl:otherwise>
                     </xsl:choose>
                     <xsl:if test="not (position() = last())" >
-                      <xsl:value-of select="'/'"/>
+                      <xsl:value-of select="' / '"/>
                     </xsl:if>
                   </xsl:for-each>
                   <xsl:if test="not (position() = last())" >
