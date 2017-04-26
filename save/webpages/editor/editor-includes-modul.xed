@@ -3,49 +3,57 @@
 <xed:template xmlns:xed="http://www.mycore.de/xeditor" xmlns:mir="http://www.mycore.de/mir">
   
   <xed:template id="sachgruppe">
-    <div class="form-group">
-      <label class="col-md-3 control-label">
-        Sachgruppe:
-      </label>
-      <div class="col-md-6">
-        <xed:load-resource name="shbib_sachgruppen" uri="classification:metadata:-1:children:shbib_sachgruppen" />
-        <xed:bind xpath="mods:classification[@authorityURI=$shbib_sachgruppen/label[@xml:lang='x-uri']/@text]">
+    <!-- <xed:load-resource name="shbib_sachgruppen" uri="classification:metadata:-1:children:shbib_sachgruppen" />
+    <xed:repeat xpath="mods:classification[@authorityURI=$shbib_sachgruppen/label[@xml:lang='x-uri']/@text]" min="1" max="10">
+    -->
+    <xed:repeat xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen']" min="1" max="10">
+      <div class="form-group">
+        <label class="col-md-3 control-label">
+          Sachgruppe:
+        </label>
+        <div class="col-md-6">
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
               <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_sachgruppen" />
             </select>
           </xed:bind>  
-        </xed:bind>
+        </div>
+        <mir:help-pmud pmud="true" />
       </div>
-    </div>
+    </xed:repeat>
   </xed:template>
   
   <xed:template id="zeitschluessel">
-    <div class="form-group">
-      <label class="col-md-3 control-label">
-        Zeitschlüssel:
-      </label>
-      <div class="col-md-6">
-        <xed:load-resource name="shbib_zeitschluessel" uri="classification:metadata:-1:children:shbib_zeitschluessel" />
-        <xed:bind xpath="mods:classification[@authorityURI=$shbib_zeitschluessel/label[@xml:lang='x-uri']/@text]">
+    <!-- <xed:load-resource name="shbib_zeitschluessel" uri="classification:metadata:-1:children:shbib_zeitschluessel" />
+    <xed:repeat xpath="mods:classification[@authorityURI=$shbib_zeitschluessel/label[@xml:lang='x-uri']/@text]" min="1" max="10">
+     -->
+    <xed:repeat xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_zeitschluessel']" min="1" max="10">
+      <div class="form-group">
+        <label class="col-md-3 control-label">
+          Zeitschlüssel:
+        </label>
+        <div class="col-md-6">
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
               <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_zeitschluessel" />
             </select>
           </xed:bind>  
-        </xed:bind>
+        </div>
+        <mir:help-pmud pmud="true" />
       </div>
-    </div>
+    </xed:repeat>
   </xed:template>
   
   <xed:template id="formschluessel">
-    <div class="form-group">
-      <label class="col-md-3 control-label">
-        Formschlüssel:
-      </label>
-      <div class="col-md-6">
-        <xed:load-resource name="shbib_formschluessel" uri="classification:metadata:-1:children:shbib_formschluessel" />
-        <xed:bind xpath="mods:classification[@authorityURI=$shbib_formschluessel/label[@xml:lang='x-uri']/@text]">
+    <!-- <xed:load-resource name="shbib_formschluessel" uri="classification:metadata:-1:children:shbib_formschluessel" />
+    <xed:repeat xpath="mods:classification[@authorityURI=$shbib_formschluessel/label[@xml:lang='x-uri']/@text]" min="1" max="10">
+     -->
+    <xed:repeat xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_formschluessel']" min="1" max="10">
+      <div class="form-group">
+        <label class="col-md-3 control-label">
+          Formschlüssel:
+        </label>
+        <div class="col-md-6">
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
               <option value="">
@@ -54,9 +62,10 @@
               <xed:include uri="xslStyle:items2options:classification:editor:-1:children:shbib_formschluessel" />
             </select>
           </xed:bind>  
-        </xed:bind>
+        </div>
+        <mir:help-pmud pmud="true" />
       </div>
-    </div>
+    </xed:repeat>
   </xed:template>
   
   <xed:template id="admincomment">

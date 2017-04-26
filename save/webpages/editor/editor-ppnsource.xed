@@ -54,9 +54,9 @@
         
           <fieldset>
             
-            <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="sachgruppe" />
-            <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="zeitschluessel" />
-            <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="formschluessel" />
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="sachgruppe" />
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="zeitschluessel" />
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="formschluessel" />
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="admincomment" />
             <xed:include uri="webapp:editor/editor-includes-modul.xed" ref="source_note" />
             
