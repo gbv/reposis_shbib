@@ -12,6 +12,7 @@
           Sachgruppe:
         </label>
         <div class="col-md-6">
+          <xed:bind xpath="@displayLabel" set="shbib_sachgruppen" />
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
               <xed:include uri="xslStyle:items2options_nsp:classification:editor:-1:children:shbib_sachgruppen" />
@@ -33,6 +34,7 @@
           Zeit / Epoche:
         </label>
         <div class="col-md-6">
+          <xed:bind xpath="@displayLabel" set="shbib_zeitschluessel" />
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
               <xed:include uri="xslStyle:items2options_nsp:classification:editor:-1:children:shbib_zeitschluessel" />
@@ -54,6 +56,7 @@
           Publikationsform:
         </label>
         <div class="col-md-6">
+          <xed:bind xpath="@displayLabel" set="shbib_formschluessel" />
           <xed:bind xpath="@valueURIxEditor">
             <select class="form-control form-control-inline">
               <option value="">
