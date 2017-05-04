@@ -17,7 +17,20 @@
       <!--<xed:bind xpath="metadata/def.modsContainer[@class='MCRMetaXML'][@notinherit='true']/modsContainer/mods:mods/mods:typeOfResource" default="text"/>-->
       <xed:bind xpath="metadata/def.modsContainer[@class='MCRMetaXML'][@notinherit='true']/modsContainer/mods:mods/mods:typeOfResource[@mcr:categId='typeOfResource:text']" />
       <xed:bind xpath="service">
-        <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="status" />
+        <div class="form-group">
+          <label class="col-md-3 control-label">
+            <xed:output i18n="component.mods.metaData.dictionary.status" />
+          </label>
+          <xed:bind xpath="servstates[@class='MCRMetaClassification']/servstate[@classid='state']/@categid" initially="published">
+            <div class="col-md-6">
+              <div class="controls">
+                <select class="form-control form-control-inline">
+                  <xed:include uri="xslStyle:items2options:classification:editor:-1:children:state" />
+                </select>
+              </div>
+            </div>
+          </xed:bind>
+        </div>
       </xed:bind>
       
       <xed:bind xpath="metadata/def.modsSourceContainer[@class='MCRMetaXML'][@notinherit='true']">
