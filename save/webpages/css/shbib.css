@@ -1,3 +1,45 @@
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37Zo4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Slab Light'), local('RobotoSlab-Light'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJUo2lTMeWA_kmIyWrkNCwPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 /* base ******************************************************************** */
 
 body {
@@ -13,7 +55,7 @@ html body #page {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: Roboto;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.1;
   color: inherit;
 }
@@ -152,10 +194,10 @@ footer .container #menu #copyright {
 .btn-primary:focus,
 .btn-default:active,
 .btn-primary:active {
-  color: #c74a39;
-  background-color: transparent;
+  color: #ffffff;
+  background-color: #c74a39;
   border-color: #4D4D4D;
-  border-radius: 0;
+  
 }
 
 .btn-default:hover,
@@ -199,7 +241,7 @@ footer .container #menu #copyright {
 /* forms ******************************************************************* */
 
 .form-control {
-  border-radius: 0px;
+  
 }
 
 .navbar-default .form-control:focus {
@@ -309,7 +351,6 @@ h3 label {
 
 ul.cbList li {
   background-color: #EDF5FB;
-  border-radius: 0px;
 }
 
 ul.cbList li:nth-child(2n+1) {
@@ -361,7 +402,6 @@ ul.navbar-nav {
 #searchInput {
   padding: 4px 8px !important;
   margin-top:0px !important;
-  border-radius: 0;
   font-family: verdana,arial,sans-serif;
   font-weight: normal;
 }
@@ -414,7 +454,6 @@ ul.navbar-nav {
 .button_box #hide_side_button.navbar-toggle {
   background-color: #e19e95;
   border-color: #e19e95;
-  border-radius: 0;
 }
 
 .button_box #hide_side_button.navbar-toggle:hover,
@@ -641,6 +680,7 @@ ul.navbar-nav {
   font-size: 20px;
   height: 40px;
   margin-right: 0px;
+  background-color: transparent;
 }
 
 
