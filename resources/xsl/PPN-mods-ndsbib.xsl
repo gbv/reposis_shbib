@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mods="http://www.loc.gov/mods/v3"
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation" exclude-result-prefixes="i18n xlink xsl mods" >
+<xsl:stylesheet version="1.0" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:mods="http://www.loc.gov/mods/v3"
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation" 
+  xmlns:pica="info:srw/schema/5/picaXML-v1.0"
+  exclude-result-prefixes="i18n xlink xsl mods" >
   <xsl:param name="parentId" />
 
   <xsl:include href="xslInclude:PPN-mods-simple"/>
@@ -9,9 +14,19 @@
   <xsl:template match="/">
     <mods:mods>
       <xsl:apply-templates select="mods:mods/*" />
+      <xsl:variable name="ppn" select="mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
       <mods:identifier invalid="yes" type="uri">
-        <xsl:value-of select="concat('//gso.gbv.de/DB=2.1/PPNSET?PPN=', mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601'])" />
+        <xsl:value-of select="concat('//gso.gbv.de/DB=2.1/PPNSET?PPN=', $ppn)" />
       </mods:identifier>
+      <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
+      <xsl:variable name="picaXml" select="document($picaUrl)" />
+      <mods:location> 
+        <mods:shelfLocator>
+          <!--  <xsl:value-of select="$picaXml/record/datafield[@tag='201D']/subfield[@code='a']" /> -->
+          <xsl:value-of select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']"/>
+        </mods:shelfLocator>
+      </mods:location>
+      
     </mods:mods>
   </xsl:template>
 
