@@ -27,7 +27,7 @@
         </mods:shelfLocator>
       </mods:location>
       <xsl:variable name="cat002at" select="$picaXml/pica:record/pica:datafield[@tag='002@']/pica:subfield[@code='0']" />
-      <xsl:variable name="pubKind" select="substring($cat002at,1,1)"/>
+      <xsl:variable name="pubKind" select="substring($cat002at,2,1)"/>
       <mods:genre type="intern" authorityURI="http://www.mycore.org/classifications/mir_genres" valueURI="http://www.mycore.org/classifications/mir_genres#{$pubKind}"/>
     </mods:mods>
   </xsl:template>
