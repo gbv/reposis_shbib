@@ -107,7 +107,8 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
         
         for (MCRCategoryID categoryId : mcrmodsWrapper.getMcrCategoryIDs()) {
             MCRCategory category = DAO.getCategory(categoryId, 0);
-            LOGGER.info ("Klassifikationid:"+category.getId());
+            if (category == null) continue;
+            LOGGER.info ("Classificationid:"+category.getId());
             Optional<MCRLabel> label = category.getLabel("x-topic");
             if (label.isPresent()) {
             	String[] sChains = label.get().getText().split(";");
