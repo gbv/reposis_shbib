@@ -284,6 +284,12 @@
               <xsl:with-param name="nodes" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:location/mods:shelfLocator" />
               <xsl:with-param name="label" select="i18n:translate('mir.shelfmark')" />
             </xsl:call-template>
+            <xsl:if test="string-length(mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:location/mods:shelfLocator) &gt; 0">
+              <xsl:call-template name="printMetaDate.mods">
+                <xsl:with-param name="nodes" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:relatedItem/mods:location/mods:shelfLocator" />
+                <xsl:with-param name="label" select="i18n:translate('mir.shelfmark')" />
+              </xsl:call-template>
+            </xsl:if>
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:name[@type='corporate'][@ID or @authorityURI=$institutesURI]" />
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:extension[@displayLabel='characteristics']" />
             <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:note">
