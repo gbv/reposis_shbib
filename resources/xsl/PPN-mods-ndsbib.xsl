@@ -20,12 +20,14 @@
       </mods:identifier>
       <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
       <xsl:variable name="picaXml" select="document($picaUrl)" />
-      <mods:location> 
-        <mods:shelfLocator>
-          <!--  <xsl:value-of select="$picaXml/record/datafield[@tag='201D']/subfield[@code='a']" /> -->
-          <xsl:value-of select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']"/>
-        </mods:shelfLocator>
-      </mods:location>
+      <xsl:variable name="shelfmark" select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']" />
+      <xsl:if test="$shelfmark">
+        <mods:location> 
+          <mods:shelfLocator>
+            <xsl:value-of select="$shelfmark"/>
+          </mods:shelfLocator>
+        </mods:location>
+      </xsl:if>
       <xsl:variable name="cat002at" select="$picaXml/pica:record/pica:datafield[@tag='002@']/pica:subfield[@code='0']" />
       <xsl:variable name="pubKind" select="substring($cat002at,2,1)"/>
       <mods:genre type="intern" authorityURI="http://www.mycore.org/classifications/mir_genres" valueURI="http://www.mycore.org/classifications/mir_genres#{$pubKind}"/>
