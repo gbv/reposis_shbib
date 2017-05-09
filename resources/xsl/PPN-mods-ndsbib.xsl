@@ -29,8 +29,17 @@
         </mods:location>
       </xsl:if>
       <xsl:variable name="cat002at" select="$picaXml/pica:record/pica:datafield[@tag='002@']/pica:subfield[@code='0']" />
+      <xsl:variable name="physForm" select="substring($cat002at,1,1)"/>
       <xsl:variable name="pubKind" select="substring($cat002at,2,1)"/>
-      <mods:genre type="intern" authorityURI="http://www.mycore.org/classifications/mir_genres" valueURI="http://www.mycore.org/classifications/mir_genres#{$pubKind}"/>
+      <xsl:choose>
+        <xsl:when test="contains('acfF',$pubKind) and $physForm='A'">
+          <mods:genre type="intern" authorityURI="http://www.mycore.org/classifications/mir_genres" valueURI="http://www.mycore.org/classifications/mir_genres#book"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <mods:genre type="intern" authorityURI="http://www.mycore.org/classifications/mir_genres" valueURI="http://www.mycore.org/classifications/mir_genres#{$pubKind}"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      
     </mods:mods>
   </xsl:template>
 
@@ -134,5 +143,7 @@
     </mods:identifier>
   </xsl:template>
   
+  <xsl:template match="mods:identifier[@type='oclc']">
+  </xsl:template>
     
 </xsl:stylesheet>
