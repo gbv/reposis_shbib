@@ -128,8 +128,8 @@
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:call-template name="printMetaDate.mods">
-                    <xsl:with-param name="nodes" select="./mods:titleInfo/mods:title" />
+                  <xsl:call-template name="printMetaDate.mods.relatedItems">
+                    <xsl:with-param name="parentID" select="''" />
                     <xsl:with-param name="label" select="i18n:translate(concat('mir.relatedItem.', @type))" />
                   </xsl:call-template>
                 </xsl:otherwise>
