@@ -145,5 +145,10 @@
   
   <xsl:template match="mods:identifier[@type='oclc']">
   </xsl:template>
-    
+  
+  <xsl:template match="mods:number">
+    <xsl:copy>
+      <xsl:value-of select="substring-after(.,'Band')"/>
+    </xsl:copy>
+  </xsl:template>  
 </xsl:stylesheet>
