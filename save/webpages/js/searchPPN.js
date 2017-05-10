@@ -25,7 +25,7 @@ function showHintNoDoc (ppn) {
     var html;
     html  = '<div class="alert alert-warning" role="alert">';
     html += '  Der übergeordnete Titel ist im System noch nicht aufgenommen worden. <br/>';
-    html += '  <a href="https://reposis-test.gbv.de/shbib/editor/editor-ppnsource.xed?ppn='+ ppn +'"> Jetzt aufnehmen </a>';
+    html += '  <a href="' + webApplicationBaseURL + '/editor/editor-ppnsource.xed?ppn='+ ppn +'"> Jetzt aufnehmen </a>';
     html += '</div>';
     $('#ppn-warning').html(html);
 }
@@ -41,7 +41,7 @@ function showHintToMuchDoc (ppn,solrURL) {
 }
 
 function checkRelatedItem(ppn) {
-    var solrURL = "https://reposis-test.gbv.de/shbib/servlets/solr/select?q=mods.identifier%3A*PPN%3D"+ppn+"&wt=xml&XSL.Style=xml";
+    var solrURL = webApplicationBaseURL + "/servlets/solr/select?q=mods.identifier%3A*PPN%3D" + ppn + "&wt=xml&XSL.Style=xml";
     var cppn = ppn; 
     $.ajax({
   		method: "GET",
@@ -105,7 +105,7 @@ function checkPPNValue() {
 		
 		$.ajax({
   			method: "GET",
-			url: "https://reposis-test.gbv.de/shbib/unapiproxy/?format=mods36&id=gvk:ppn:"+value,
+			url: webApplicationBaseURL + "/unapiproxy/?format=mods36&id=gvk:ppn:"+value,
 			dataType: "xml"
 		}) .done(function( xml ) {
 			mods2Preview(xml);
