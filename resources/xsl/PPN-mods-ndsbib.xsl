@@ -5,21 +5,23 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation" 
   xmlns:pica="info:srw/schema/5/picaXML-v1.0"
-  exclude-result-prefixes="i18n xlink xsl mods" >
+  exclude-result-prefixes="i18n xsl" >
   <xsl:param name="parentId" />
 
   <xsl:include href="xslInclude:PPN-mods-simple"/>
   <xsl:include href="copynodes.xsl" />
+  
+  <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
+  <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
+  <xsl:variable name="picaXml" select="document($picaUrl)" />
 
   <xsl:template match="/">
     <mods:mods>
       <xsl:apply-templates select="mods:mods/*" />
-      <xsl:variable name="ppn" select="mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
       <mods:identifier invalid="yes" type="uri">
         <xsl:value-of select="concat('//gso.gbv.de/DB=2.1/PPNSET?PPN=', $ppn)" />
       </mods:identifier>
-      <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
-      <xsl:variable name="picaXml" select="document($picaUrl)" />
+      
       <xsl:variable name="shelfmark" select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']" />
       <xsl:if test="$shelfmark">
         <mods:location> 
@@ -146,9 +148,22 @@
   <xsl:template match="mods:identifier[@type='oclc']">
   </xsl:template>
   
+  <xsl:template match="mods:relatedItem[@type='series'][not (starts-with(mods:identifier[@type='local'],'(DE-601)'))]">
+    <mods:relatedItem type="series">
+      <xsl:variable name="seriesTitle" select="mods:titleInfo/mods:title" />
+      <xsl:variable name="seriesPPN" select="$picaXml/pica:record/pica:datafield[@tag='036F'][pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
+      <!-- <xsl:if test="$seriesPPN">  -->
+        <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN" /></mods:identifier>
+      <!-- </xsl:if>  -->
+      <xsl:apply-templates select="*" />
+    </mods:relatedItem>
+  </xsl:template>
+  
   <xsl:template match="mods:number">
     <xsl:copy>
       <xsl:value-of select="substring-after(.,'Band')"/>
     </xsl:copy>
   </xsl:template>  
+  
+    
 </xsl:stylesheet>
