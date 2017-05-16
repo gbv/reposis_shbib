@@ -17,7 +17,7 @@
                 <br/> <br/>
                 <xsl:value-of select="substring-before(substring-after(exception/trace,'category marcrelator:'),'at')"/>
                 <br/> <br/>
-                Eine Liste aller Rollen ist  <a href="https://www.loc.gov/marc/relators/relaterm.html">hier</a> auf der Webseite der LoC zu finden.
+                Eine Liste aller Rollen ist  <a target="_blank" href="https://www.loc.gov/marc/relators/relaterm.html">hier</a> auf der Webseite der LoC zu finden.
                 <br/><br/>
                 Vielen Dank!
               </p>
