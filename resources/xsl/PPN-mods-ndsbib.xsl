@@ -69,9 +69,11 @@
 
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
+    <!-- Wait for MCR-1609 
     <mods:dateIssued encoding="text">
       <xsl:value-of select="."/>
     </mods:dateIssued>
+     -->
     <xsl:choose>
       <xsl:when test="starts-with(.,'Januar')">
         <mods:dateIssued encoding="w3cdtf">
