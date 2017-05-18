@@ -69,28 +69,95 @@
 
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
-    <xsl:variable name="datevalue">
-      <xsl:call-template  name="yearRAK2w3cdtf">
-        <xsl:with-param name="date" select="node()"/>
-      </xsl:call-template>
-    </xsl:variable>
+    <mods:dateIssued encoding="text">
+      <xsl:value-of select="."/>
+    </mods:dateIssued>
     <xsl:choose>
-      <xsl:when test="contains($datevalue,'-')">
-        <mods:dateIssued encoding="w3cdtf" point="start">
-          <xsl:value-of select="substring-before($datevalue,'-')"/>
+      <xsl:when test="starts-with(.,'Januar')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-01')"/>
         </mods:dateIssued>
-        <xsl:variable name="datevalueAfter" select="substring-after($datevalue,'-')" />
-        <xsl:if test="string-length($datevalueAfter)">
-          <mods:dateIssued encoding="w3cdtf" point="end">
-            <xsl:value-of select="$datevalueAfter"/>
-          </mods:dateIssued>
-        </xsl:if>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'Februar')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-02')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'März')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-02')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'April')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-04')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'Mai')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-05')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'Juni')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-06')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'Juli')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-07')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'August')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-08')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'September')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-09')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'Oktober')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-10')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'November')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-11')"/>
+        </mods:dateIssued>
+      </xsl:when>
+      <xsl:when test="starts-with(.,'Dezember')">
+        <mods:dateIssued encoding="w3cdtf">
+          <xsl:value-of select="concat(substring-after(.,' '),'-12')"/>
+        </mods:dateIssued>
       </xsl:when>
       <xsl:otherwise>
-        <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="$datevalue"/>
-          <xsl:apply-templates select="@*" />
-        </mods:dateIssued>
+        <xsl:variable name="datevalue">
+          <xsl:call-template  name="yearRAK2w3cdtf">
+            <xsl:with-param name="date" select="node()"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="contains($datevalue,'-')">
+            <mods:dateIssued encoding="w3cdtf" point="start">
+              <xsl:value-of select="substring-before($datevalue,'-')"/>
+            </mods:dateIssued>
+            <xsl:variable name="datevalueAfter" select="substring-after($datevalue,'-')" />
+            <xsl:if test="string-length($datevalueAfter)">
+              <mods:dateIssued encoding="w3cdtf" point="end">
+                <xsl:value-of select="$datevalueAfter"/>
+              </mods:dateIssued>
+            </xsl:if>
+          </xsl:when>
+          <xsl:otherwise>
+            <mods:dateIssued encoding="w3cdtf">
+              <xsl:value-of select="$datevalue"/>
+              <xsl:apply-templates select="@*" />
+            </mods:dateIssued>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
