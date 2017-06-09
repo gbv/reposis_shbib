@@ -59,9 +59,17 @@
       </mods:originInfo>
     </xsl:if>
   </xsl:template>
-
   
-  <xsl:template name="yearRAK2w3cdtf">
+  <xsl:template match="mods:originInfo[@eventType='publication']">
+    <xsl:copy>
+      <xsl:apply-templates select="node()|@*" />
+      <xsl:if test="not(mods:edition) and ../mods:originInfo[not(@eventType)]/mods:edition">
+        <xsl:copy-of select="../mods:originInfo[not(@eventType)]/mods:edition" />
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template> 
+
+    <xsl:template name="yearRAK2w3cdtf">
     <xsl:param name="date"/>
     <xsl:value-of select="translate($date,'[]?ca','')"/>
   </xsl:template>
@@ -69,11 +77,9 @@
 
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
-    <!-- Wait for MCR-1609 
-    <mods:dateIssued encoding="text">
+    <mods:dateIssued>
       <xsl:value-of select="."/>
     </mods:dateIssued>
-     -->
     <xsl:choose>
       <xsl:when test="starts-with(.,'Januar')">
         <mods:dateIssued encoding="w3cdtf">
