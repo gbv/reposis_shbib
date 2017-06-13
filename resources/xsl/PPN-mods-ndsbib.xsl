@@ -74,6 +74,9 @@
     <xsl:value-of select="translate($date,'[]?ca','')"/>
   </xsl:template>
   
+  <xsl:template match="mods:genre[@authority='marcgt']">
+  </xsl:template>
+  
 
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
