@@ -192,9 +192,9 @@
   </xsl:template>
   
   <!-- remove invalid mods -->
-  <xsl:template match="mods:extent[text()]">
+  <!-- <xsl:template match="mods:extent[text()]">
   </xsl:template>
-  
+   -->
   <xsl:template match="mods:identifier[@type='isbn'][string-length(.)=10]">
     <mods:identifier>
       <xsl:apply-templates select="@*" />
