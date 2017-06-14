@@ -189,7 +189,7 @@
   </xed:template>
   
   <xed:template id="subject.complex3">
-    <xed:repeat xpath="mods:subject" min="1" max="10">
+    <xed:repeat xpath="mods:subject" min="1" max="30">
       <fieldset>
         <div class="row mir-fieldset-legend">
           <legend class="col-md-9" style="margin-bottom:0px;padding-top:10px;">
