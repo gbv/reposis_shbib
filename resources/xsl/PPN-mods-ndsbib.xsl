@@ -23,7 +23,7 @@
       </mods:identifier>
       
       <xsl:variable name="shelfmark" select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']" />
-      <xsl:if test="$shelfmark">
+      <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
         <mods:location> 
           <mods:shelfLocator>
             <xsl:value-of select="$shelfmark"/>
