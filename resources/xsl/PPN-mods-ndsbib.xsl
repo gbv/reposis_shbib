@@ -69,7 +69,7 @@
     </xsl:copy>
   </xsl:template> 
 
-    <xsl:template name="yearRAK2w3cdtf">
+  <xsl:template name="yearRAK2w3cdtf">
     <xsl:param name="date"/>
     <xsl:value-of select="translate($date,'[]?ca','')"/>
   </xsl:template>
@@ -239,7 +239,14 @@
   
   <xsl:template match="mods:number">
     <xsl:copy>
-      <xsl:value-of select="substring-after(.,'Band')"/>
+      <xsl:choose>
+        <xsl:when test="contains(.,'Band')">
+          <xsl:value-of select="substring-after(.,'Band')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:copy>
   </xsl:template>  
   
