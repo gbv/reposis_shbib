@@ -243,6 +243,9 @@
         <xsl:when test="contains(.,'Band')">
           <xsl:value-of select="substring-after(.,'Band')"/>
         </xsl:when>
+        <xsl:when test="contains(.,'Teil')">
+          <xsl:value-of select="substring-after(.,'Teil')"/>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="."/>
         </xsl:otherwise>
