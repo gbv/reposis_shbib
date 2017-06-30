@@ -27,6 +27,10 @@
               <mir:template name="textInput" xpath="condition[@field='mods.name']/@value" id="inputName1" i18n="editor.search.mir.name" tooltip="editor.search.mir.name.tooltip" />
             <!-- Topic -->
               <mir:template name="textInput" xpath="condition[@field='topic']/@value" id="inputTopic1" i18n="editor.search.mir.topic" tooltip="editor.search.mir.topic.tooltip" />
+            <!-- PPN -->
+              <mir:template name="textInput" xpath="condition[@field='recordIdentifier']/@value" id="inputPPN1" i18n="editor.search.mir.ppn" tooltip="editor.search.mir.ppn.tooltip" />
+            <!-- Signatur -->
+              <mir:template name="textInput" xpath="condition[@field='shelfLocator']/@value" id="inputShelfmark1" i18n="editor.search.mir.shelfmark" tooltip="editor.search.mir.shelfmark.tooltip" />    
             
             <!-- Content -->
               <!-- 
