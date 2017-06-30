@@ -240,7 +240,9 @@
         alternately, change the type="ignored" to some other type e.g. "text" if you want
         unknown fields indexed and/or stored by default -->
    <!--dynamicField name="*" type="ignored" multiValued="true" /-->
-
+     <!-- SHIB specific schema-->
+     <field name="recordIdentifier" type="string" multiValued="true" />
+     <field name="recordIdentifier.source.DE-601" type="string" />
 
 
 
