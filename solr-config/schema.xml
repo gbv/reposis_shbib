@@ -243,6 +243,7 @@
      <!-- SHIB specific schema-->
      <field name="recordIdentifier" type="string" multiValued="true" />
      <field name="recordIdentifier.source.DE-601" type="string" />
+     <field name="shelfLocator" type="string" multiValued="true" />
 
 
 
