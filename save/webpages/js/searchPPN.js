@@ -40,6 +40,17 @@ function showHintToMuchDoc (ppn,solrURL) {
     $('#ppn-warning').html(html);
 }
 
+function showHintDocExsist(ppn,solrURL,numFound) {
+	solrURL = solrURL.replace("&XSL.Style=xml", "");
+    var html;
+    html  = '<div class="alert alert-danger" role="alert">';
+    html += '  ' + numFound + ' Dokument mit der PPN wurde schon erfasst.  <br/>';
+    html += '  <a href="'+solrURL+'"> Liste </a>';
+    html += '</div>';
+    $('#PPNPreview').html(html);
+}
+
+
 function checkRelatedItem(ppn) {
     var solrURL = webApplicationBaseURL + "/servlets/solr/select?q=mods.identifier%3A*PPN%3D" + ppn + "&wt=xml&XSL.Style=xml";
     var cppn = ppn; 
@@ -98,26 +109,53 @@ function mods2Preview(xml) {
 	if (relatedItemPPN !== null) checkRelatedItem(relatedItemPPN);
 };
 
+function loadFromUNAPI(ppn) {
+	$.ajax({
+  		method: "GET",
+		url: webApplicationBaseURL + "/unapiproxy/?format=mods36&id=gvk:ppn:"+ppn,
+		dataType: "xml"
+	}) .done(function( xml ) {
+		mods2Preview(xml);
+		$('#sourceuri').val('http://unapi.gbv.de/?format=mods36&id=gvk:ppn:'+ppn);
+	}) .fail(function( jqXHR, ajaxOptions, thrownError ) {
+		if(jqXHR.status==404) {
+		    var html='<div style="text-align:center;color:red;" >'+jqXHR.responseText+'</div>';
+       		$('#PPNPreview').html(html);
+    	} else {
+    		$('#PPNPreview').html("Unknown Error");
+    	}
+  	});
+}
+
 function checkPPNValue() {
-	value = $('#PPN').val();
-	if (isPPN (value)) {
-		$('#PPNPreview').html('<div style="text-align:center;color:gray;" ><i class="fa fa-spinner" aria-hidden="true"></i> <br/> PPN wird geladen </div>');
+	ppn = $('#PPN').val();
+	mycoreid = $("input[name='id']").val();
+	if (isPPN (ppn)) {
 		
-		$.ajax({
+		$('#PPNPreview').html('<div style="text-align:center;color:gray;" ><i class="fa fa-spinner" aria-hidden="true"></i> <br/> PPN wird geladen </div>');
+	
+		//var solrURL = webApplicationBaseURL + "/servlets/solr/select?q=mods.identifier%3A*PPN%3D" + ppn + "+-id%3A" + mycoreid + "&wt=xml&XSL.Style=xml";
+		var solrURL = webApplicationBaseURL + "/servlets/solr/select?q=mods.identifier%3A*PPN%3D" + ppn + "+-id%3A" + mycoreid + "&wt=xml&XSL.Style=xml";
+    	$.ajax({
   			method: "GET",
-			url: webApplicationBaseURL + "/unapiproxy/?format=mods36&id=gvk:ppn:"+value,
+			url: solrURL,
 			dataType: "xml"
 		}) .done(function( xml ) {
-			mods2Preview(xml);
-			$('#sourceuri').val('http://unapi.gbv.de/?format=mods36&id=gvk:ppn:'+value);
+		    var numFound = $(xml).find('result[name="response"]').attr("numFound");
+	    	if (numFound == 0) {
+		        loadFromUNAPI(ppn);
+		    } else if (numFound >= 1) {
+	    	    showHintDocExsist(ppn,solrURL,numFound);
+	    	} 
 		}) .fail(function( jqXHR, ajaxOptions, thrownError ) {
 			if(jqXHR.status==404) {
 			    var html='<div style="text-align:center;color:red;" >'+jqXHR.responseText+'</div>';
-        		$('#PPNPreview').html(html);
+       			$('#PPNPreview').html(html);
     		} else {
-    			$('#PPNPreview').html("Unknown Error");
+    			$('#PPNPreview').html("Unknown Error during get relatedItem");
     		}
   		});
+	
 	} else {
 		$('#PPNPreview').html('<div style="text-align:center;color:gray;" >Bitte PPN eingeben.</div>');
 	}
