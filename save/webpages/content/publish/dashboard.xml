@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MyCoReWebPage>
+  <section title="Arbeitshilfen" xml:lang="de"/>
+  <section title="Dashboard" xml:lang="en"/>
+  <section xml:lang="all">
+    <script src='../../js/searchDuplicates.js'> </script>
+    
+    <h1> Arbeitshilfen </h1>
+    
+    <h2> PPN Duplikate </h2>
+    
+    <div class="row">
+      Liste aller PPN die in mehr als einem Titel vorkommen:
+      <div data-duplicate-searchfield="recordIdentifier"> 
+        <div style="text-align:center;color:gray;" ><i class="fa fa-spinner" aria-hidden="true"></i> </div>
+      </div>
+    </div>
+    
+    <h2> nicht indexierte Aufnahmen </h2>
+    
+    <div class="row">
+      <div id="nonindexedTitles">  Bitte Suche starten </div>
+    </div>
+
+    
+  </section>
+</MyCoReWebPage>
