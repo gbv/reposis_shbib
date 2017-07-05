@@ -77,6 +77,14 @@
   <xsl:template match="mods:genre[@authority='marcgt']">
   </xsl:template>
   
+  <xsl:template match="mods:dateIssued[@encoding='marc'][not(../mods:dateIssued[not(@encoding)])]">
+    <mods:dateIssued encoding="marc">
+      <xsl:value-of select="."/>
+    </mods:dateIssued>
+    <mods:dateIssued encoding="w3cdtf">
+      <xsl:value-of select="."/>
+    </mods:dateIssued>
+  </xsl:template>
 
   <xsl:template match="mods:dateIssued[not(@encoding)]">
     <!-- TODO: check date format first! -->
@@ -253,5 +261,21 @@
     </xsl:copy>
   </xsl:template>  
   
+  <xsl:template match="mods:detail[@level='1'][not(../mods:detail[@type='volume'])]">
+    <mods:detail type="volume" level="1">
+      <xsl:apply-templates />
+    </mods:detail>
+  </xsl:template>
+  
+  <xsl:template match="mods:detail[@level='2'][not(../mods:detail[@type='issue'])]">
+    <mods:detail type="issue" level="2">
+      <xsl:apply-templates />
+    </mods:detail>
+  </xsl:template>
+  
+  <xsl:template match="mods:start[contains(.,'-')]">
+    <mods:start><xsl:value-of select="substring-before(.,'-')"/></mods:start>
+    <mods:end><xsl:value-of select="substring-after(.,'-')"/></mods:end>
+  </xsl:template>
     
 </xsl:stylesheet>
