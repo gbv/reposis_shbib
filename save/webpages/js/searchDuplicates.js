@@ -17,7 +17,9 @@ function getDuplicates() {
 		    	ppn=facets[i];
 		    	count=facets[i+1];
 		    	link= webApplicationBaseURL + "/servlets/solr/select?q=%2BobjectType%3A%22mods%22+%2BrecordIdentifier%3A%22" + ppn + "%22&fl=*%2Cscore&rows=20";
-		    	html += '<li> <a href="' + link + '">' + ppn + '-' + count + '</a> </li>';
+		    	if (count < 2) {
+		    		html += '<li> <a href="' + link + '">' + ppn + '-' + count + '</a> </li>';
+		    	}
 		    	i=i+2;
 		    }
 		    
