@@ -261,21 +261,31 @@
     </xsl:copy>
   </xsl:template>  
   
-  <xsl:template match="mods:detail[@level='1'][not(../mods:detail[@type='volume'])]">
+  
+  
+  <!-- not useable because level switches between volume and issue -->
+  <!-- <xsl:template match="mods:detail[@level='1'][not(../mods:detail[@type='volume'])][string-length(text()) > 0]">
     <mods:detail type="volume" level="1">
       <xsl:apply-templates />
     </mods:detail>
   </xsl:template>
   
-  <xsl:template match="mods:detail[@level='2'][not(../mods:detail[@type='issue'])]">
+  <xsl:template match="mods:detail[@level='2'][not(../mods:detail[@type='issue'])][string-length(text()) > 0]">
     <mods:detail type="issue" level="2">
       <xsl:apply-templates />
     </mods:detail>
   </xsl:template>
+   -->
   
   <xsl:template match="mods:start[contains(.,'-')]">
     <mods:start><xsl:value-of select="substring-before(.,'-')"/></mods:start>
     <mods:end><xsl:value-of select="substring-after(.,'-')"/></mods:end>
+  </xsl:template>
+  
+  <xsl:template match="mods:nameIdentifier[starts-with(.,'(DE-588)')]">
+    <mods:nameIdentifier type="gnd">
+      <xsl:value-of select="substring-after(.,')')"/>
+    </mods:nameIdentifier>
   </xsl:template>
     
 </xsl:stylesheet>
