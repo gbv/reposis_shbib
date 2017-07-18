@@ -166,10 +166,18 @@
       <div class="form-group">
         <label class="col-md-3 control-label "> Person </label>
         <div class="col-md-6">
-          <xed:bind xpath="mods:name[@type='personal']/mods:displayForm">
-            <input class="form-control subjectSuggest" 
-              data-provide="typeahead" data-searchengine="personalSuggest"
-              type="text" autocomplete="off"/>
+          <xed:bind xpath="mods:name[@type='personal']">
+            <xed:bind xpath="mods:displayForm">
+              <input class="form-control subjectSuggest" 
+                data-provide="typeahead" data-searchengine="personalSuggest"
+                type="text" autocomplete="off"/>
+            </xed:bind>
+            <xed:bind xpath="mods:namePart[@type='family']" set="">
+              <input type="hidden"/>
+            </xed:bind>
+            <xed:bind xpath="mods:namePart[@type='given']" set="">
+              <input type="hidden"/>
+            </xed:bind>
           </xed:bind>
         </div>
         <div class="col-md-3"></div>
