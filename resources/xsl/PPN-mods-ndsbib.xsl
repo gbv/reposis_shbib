@@ -287,5 +287,27 @@
       <xsl:value-of select="substring-after(.,')')"/>
     </mods:nameIdentifier>
   </xsl:template>
+  
+  <xsl:template match="mods:detail[not(@type)]">
+  </xsl:template>
+  
+  <xsl:template match="mods:part[mods:extent/@unit='pages']">
+    <mods:part>
+      <xsl:variable name="issue" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='e']" />
+      <xsl:variable name="volume" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='d']" />
+      <xsl:variable name="year" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='j']" />
+      <xsl:if test="not(mods:detail[@type='issue']) and $issue">
+        <mods:detail type="issue">
+          <mods:number><xsl:value-of select="$issue"/></mods:number>
+        </mods:detail>
+      </xsl:if>
+      <xsl:if test="not(mods:detail[@type='volume']) and $volume">
+        <mods:detail type="volume">
+          <mods:number><xsl:value-of select="$volume"/></mods:number>
+        </mods:detail>
+      </xsl:if>
+      <xsl:apply-templates />
+    </mods:part>
+  </xsl:template>
     
 </xsl:stylesheet>
