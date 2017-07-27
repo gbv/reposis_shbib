@@ -11,7 +11,7 @@
   <xsl:param name="ServletsBaseURL" />
   <xsl:param name="wcms.useTargets" select="'no'" /><!-- TODO: refacture! -->
 
-  <xsl:key use="mods:role/mods:roleTerm" name="name-by-role" match="mods:mods/mods:name" />
+  <xsl:key use="mods:role/mods:roleTerm" name="name-by-role" match="modsContainer/mods:mods/mods:name" />
 
   <xsl:template name="printMetaDate.mods">
     <!-- prints a table row for a given nodeset -->
