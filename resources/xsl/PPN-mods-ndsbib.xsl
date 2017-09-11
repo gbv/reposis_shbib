@@ -235,14 +235,43 @@
   </xsl:template>
   
   <xsl:template match="mods:relatedItem[@type='series'][not (starts-with(mods:identifier[@type='local'],'(DE-601)'))]">
-    <mods:relatedItem type="series">
-      <xsl:variable name="seriesTitle" select="mods:titleInfo/mods:title" />
-      <xsl:variable name="seriesPPN" select="$picaXml/pica:record/pica:datafield[@tag='036F'][pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
-      <!-- <xsl:if test="$seriesPPN">  -->
-        <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN" /></mods:identifier>
-      <!-- </xsl:if>  -->
-      <xsl:apply-templates select="*" />
-    </mods:relatedItem>
+    
+    <xsl:variable name="seriesTitle" select="mods:titleInfo/mods:title" />
+    <xsl:variable name="seriesPPN" select="$picaXml/pica:record/pica:datafield[@tag='036F'][pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
+    <xsl:variable name="seriesPPN2" select="$picaXml/pica:record/pica:datafield[@tag='036F'][position()]/pica:subfield[@code='9']" />
+    <xsl:variable name="hostPPN" select="$picaXml/pica:record/pica:datafield[@tag='036D'][pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
+    <xsl:variable name="hostPPN2" select="$picaXml/pica:record/pica:datafield[@tag='036D'][position()]/pica:subfield[@code='9']" />
+    
+    <xsl:if test="not(following-sibling::mods:relatedItem[@type='series'][mods:titleInfo/mods:title=$seriesTitle])"> 
+      <xsl:choose>
+        <xsl:when test="$hostPPN or $hostPPN2">
+          <mods:relatedItem type="host">
+            <xsl:choose>
+              <xsl:when test="$hostPPN">
+                <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN" /></mods:identifier>
+              </xsl:when>
+              <xsl:when test="$hostPPN2">
+                <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN2" /></mods:identifier>
+              </xsl:when>
+            </xsl:choose>
+            <xsl:apply-templates select="*" />
+          </mods:relatedItem>
+        </xsl:when>
+        <xsl:otherwise>
+          <mods:relatedItem type="series">
+            <xsl:choose>
+              <xsl:when test="$seriesPPN">
+                <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN" /></mods:identifier>
+              </xsl:when>
+              <xsl:when test="$seriesPPN2">
+                <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN2" /></mods:identifier>
+              </xsl:when>
+            </xsl:choose>
+            <xsl:apply-templates select="*" />
+          </mods:relatedItem>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
   
   <xsl:template match="mods:number">
