@@ -202,6 +202,11 @@
         </field>
       </xsl:if>
     </xsl:for-each>
+    <xsl:for-each select="//mods:shelfLocator">
+      <field name="mods.shelfLocator">
+        <xsl:value-of select="." />
+      </field>
+    </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>
