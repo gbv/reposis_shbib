@@ -34,7 +34,7 @@
       <xsl:variable name="physForm" select="substring($cat002at,1,1)"/>
       <xsl:variable name="pubKind" select="substring($cat002at,2,1)"/>
       <xsl:choose>
-        <xsl:when test="contains('acfF',$pubKind) and $physForm='A'">
+        <xsl:when test="contains('a',$pubKind) and $physForm='A'">
           <mods:genre type="intern" authorityURI="http://www.mycore.org/classifications/mir_genres" valueURI="http://www.mycore.org/classifications/mir_genres#book"/>
         </xsl:when>
         <xsl:otherwise>
@@ -309,6 +309,16 @@
   <xsl:template match="mods:start[contains(.,'-')]">
     <mods:start><xsl:value-of select="substring-before(.,'-')"/></mods:start>
     <mods:end><xsl:value-of select="substring-after(.,'-')"/></mods:end>
+  </xsl:template>
+  
+  <xsl:template match="mods:name[@type='corporate'][not(mods:role)]">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" />
+      <xsl:apply-templates select="*" />
+      <mods:role>
+        <mods:roleTerm authority="marcrelator" type="code">ctb</mods:roleTerm>
+      </mods:role>
+    </xsl:copy>
   </xsl:template>
   
   <xsl:template match="mods:nameIdentifier[starts-with(.,'(DE-588)')]">
