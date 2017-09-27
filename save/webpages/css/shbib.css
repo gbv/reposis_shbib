@@ -585,7 +585,25 @@ ul.navbar-nav {
   .ellipsis {
     display: none;
   }
+  
+  .result_list {
+    width: 100%;
+  }
+  
+  .result_searchline , .result_filter {
+    display: none;
+  }
+  
+  .hit_item, .panel  {
+    page-break-inside: avoid;
+  }
+  
+  #head, #menu_toggle, #side_nav_column {
+    display: none;
+  }
 }
+
+
 
 
 /* shbib related *********************************************************** */
