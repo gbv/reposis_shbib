@@ -94,62 +94,62 @@
     <xsl:choose>
       <xsl:when test="starts-with(.,'Januar')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-01')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'Februar')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-02')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'März')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-02')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'April')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-04')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'Mai')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-05')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'Juni')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-06')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'Juli')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-07')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'August')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-08')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'September')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-09')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'Oktober')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-10')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'November')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-11')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:when test="starts-with(.,'Dezember')">
         <mods:dateIssued encoding="w3cdtf">
-          <xsl:value-of select="concat(substring-after(.,' '),'-12')"/>
+          <xsl:value-of select="concat(substring-after(.,' '),'')"/>
         </mods:dateIssued>
       </xsl:when>
       <xsl:otherwise>
@@ -232,6 +232,15 @@
   </xsl:template>
   
   <xsl:template match="mods:identifier[@type='oclc']">
+  </xsl:template>
+  
+  <xsl:template match="mods:identifier[string-length(@type) = 0]">
+  </xsl:template>
+  
+  <xsl:template match="mods:relatedItem[count(*) = 0]">
+  </xsl:template>
+  
+  <xsl:template match="mods:relatedItem[string-length(@type) = 0]">
   </xsl:template>
   
   <xsl:template match="mods:relatedItem[@type='series'][not (starts-with(mods:identifier[@type='local'],'(DE-601)'))]">
@@ -347,6 +356,9 @@
       </xsl:if>
       <xsl:apply-templates />
     </mods:part>
+  </xsl:template>
+  
+  <xsl:template match="mods:note[@type='action' or @type='bibliography']">
   </xsl:template>
     
 </xsl:stylesheet>
