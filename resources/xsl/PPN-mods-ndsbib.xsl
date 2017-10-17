@@ -14,6 +14,8 @@
   <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
   <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
   <xsl:variable name="picaXml" select="document($picaUrl)" />
+  
+  <!-- <xsl:key name="kDatafield" match="$picaXml/pica:record/pica:datafield" use="position()"/>  -->
 
   <xsl:template match="/">
     <mods:mods>
@@ -22,14 +24,22 @@
         <xsl:value-of select="concat('//gso.gbv.de/DB=2.1/PPNSET?PPN=', $ppn)" />
       </mods:identifier>
       
-      <xsl:variable name="shelfmark" select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']" />
-      <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
-        <mods:location> 
-          <mods:shelfLocator>
-            <xsl:value-of select="$shelfmark"/>
-          </mods:shelfLocator>
-        </mods:location>
-      </xsl:if>
+      <!--<xsl:variable name="shelfmark" select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']" />-->
+      <xsl:for-each select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]">
+        <xsl:variable name="current201D" select="."/>
+        <xsl:variable name="next201D" select="following-sibling::pica:datafield[@tag='201D']"/>
+        <!-- <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][key('kDatafield',$current201D) < key('kDatafield',.)] [key('kDatafield',.) < key('kDatafield',$next201D) ]">-->
+        <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][preceding-sibling::datafield[@tag='201D'] = $current]">
+          <xsl:variable name="shelfmark" select="pica:subfield[@code='a']"/>
+          <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
+            <mods:location> 
+              <mods:shelfLocator>
+                <xsl:value-of select="$shelfmark"/>
+              </mods:shelfLocator>
+            </mods:location>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:for-each>
       <xsl:variable name="cat002at" select="$picaXml/pica:record/pica:datafield[@tag='002@']/pica:subfield[@code='0']" />
       <xsl:variable name="physForm" select="substring($cat002at,1,1)"/>
       <xsl:variable name="pubKind" select="substring($cat002at,2,1)"/>

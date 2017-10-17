@@ -29,11 +29,17 @@
       </form>
     </div>
     <div class="row" style="margin-top:15px">
-      <div class="col-md-12">  
+      <div class="col-md-8">  
         <div>
           <ul id="resultList">
           </ul>
+          <div id="resultListPagination" class="text-center">
+          </div>
         </div>
+      </div>
+      <div class="col-md-4">
+      	<div id="subjectFacets">
+      	</div>
       </div>
     </div>
     <script src="../../js/browseSubjects.js" type="text/javascript"></script>

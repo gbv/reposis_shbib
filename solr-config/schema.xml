@@ -207,10 +207,10 @@
     <field name="mods.pindexname.published" type="string" multiValued="true" />
     <field name="mods.embargo" type="string" />
     <field name="mods.part" type="string" multiValued="true" />
-    <dynamicField name="mods.part.*" type="string" multiValued="true" />
+    <dynamicField name="mods.part.*" type="string" />
     <dynamicField name="mods.part.order*" type="int" />
     <dynamicField name="mods.relatedItem*" type="string" multiValued="true" />
-    <field name="mods.shelfLocator" type="string" multiValued="true" />
+    <field name="mods.shelfLocator" type="lowercase" multiValued="true" />
 
     <!-- ******************************************** -->
     <!-- * SEARCH -->
@@ -234,6 +234,8 @@
     <!-- End: MyCoRe specific schema definition -->
 
     <!-- MIR specific schema -->
+    <field name="mods.subject" type="string" multiValued="true" />
+    <dynamicField name="mods.subject.*" type="string" multiValued="true" />
     <field name="subjectid" type="string" multiValued="true" />
     <field name="isbn" type="string" multiValued="true" />
    <!-- uncomment the following to ignore any fields that don't already match an existing
@@ -244,7 +246,7 @@
      <!-- SHIB specific schema-->
      <field name="recordIdentifier" type="string" multiValued="true" />
      <field name="recordIdentifier.source.DE-601" type="string" />
-     <field name="shelfLocator" type="string" multiValued="true" />
+     <field name="shelfLocator" type="lowercase" multiValued="true" />
 
 
 

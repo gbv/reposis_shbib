@@ -64,9 +64,10 @@ import org.mycore.solr.MCRSolrClientFactory;
 import org.mycore.solr.search.MCRSolrSearchUtils;
 
 
-import org.mycore.common.xml.MCRURIResolver;
-import org.mycore.datamodel.metadata.MCRMetaElement;
-import org.mycore.datamodel.metadata.MCRMetaXML;
+//import org.mycore.common.xml.MCRURIResolver;
+//import org.mycore.datamodel.metadata.MCRMetaElement;
+//import org.mycore.datamodel.metadata.MCRMetaXML;
+import org.mycore.common.config.MCRConfiguration;
 
 
 /**
@@ -77,7 +78,11 @@ import org.mycore.datamodel.metadata.MCRMetaXML;
  */
 public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
 	
-	private String solrURL = "http://esx-91.gbv.de:8081/solr/shbib_subject/";
+	private static String solrURL;
+	
+	static {
+		solrURL = MCRConfiguration.instance().getString("MCR.solrSubject.ServerURL");
+	}
 	
     /* (non-Javadoc)
      * @see org.mycore.common.events.MCREventHandlerBase#handleObjectCreated(org.mycore.common.events.MCREvent, org.mycore.datamodel.metadata.MCRObject)
@@ -161,12 +166,12 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         }
     	
     	// delete all Subjectsids from objectindex
-    	try { 
+    	/*try { 
     		SolrInputDocument delModsDoc = new SolrInputDocument();
     	
     	    delModsDoc.addField("id",mycoreid);
     	    Map<String, String> subjectidRemove = new HashMap<String, String>();
-    	    subjectidRemove.put("set", null);
+    	    subjectidRemove.put("set", "");
     	    delModsDoc.addField("subjectid",subjectidRemove);
         
     	    response = modsSolrClient.add (delModsDoc);
@@ -180,7 +185,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         	LOGGER.warn("IO Error while delete old mycoreids- Subjects of (" + mycoreid + ") were not indexed.");
         	LOGGER.warn(e.getMessage());
         	return false;
-        }
+        }*/
     	
     	return true;
     }
@@ -291,7 +296,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 	LOGGER.error(e.getMessage());
                 }
                 
-                addSubjectIdToObjectIndex(mycoreid,Integer.toString(idHash));
+                //addSubjectIdToObjectIndex(mycoreid,Integer.toString(idHash),modsSolrClient);
             }
         	
         	if (displayFormes.size() > 1) {
@@ -342,15 +347,15 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 	LOGGER.error("IO Error - Subjects of (" + mycoreid + ") were not indexed.");
                 	LOGGER.error(e.getMessage());
                 }
-        	    addSubjectIdToObjectIndex(mycoreid,Integer.toString(idHash));
+        	    //addSubjectIdToObjectIndex(mycoreid,Integer.toString(idHash),modsSolrClient);
         	}
         }
     }
     
-    private void addSubjectIdToObjectIndex(String mycoreid, String subjectid) {
+    private void addSubjectIdToObjectIndex(String mycoreid, String subjectid,SolrClient modsSolrClient) {
     	
     	LOGGER.info("Process Subject: add subjectid to objectindex (mycoreid:"+mycoreid+")(subjectid:"+subjectid+")" );
-    	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
+    	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	SolrInputDocument modsDoc = new SolrInputDocument();
         modsDoc.addField("id",mycoreid);
                         
@@ -365,6 +370,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         	if (response.getStatus() != 0) LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated:" + response);
         	response = modsSolrClient.commit();
         	if (response.getStatus() != 0) LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated:" + response);
+        	LOGGER.info("Process Subject: done." );
         } catch (SolrServerException e) {
         	LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated.");
         	LOGGER.error(e.getMessage());

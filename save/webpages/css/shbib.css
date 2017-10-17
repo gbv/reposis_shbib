@@ -846,3 +846,14 @@ ul .navbar-nav > li {
 #powered_by {
   padding: 0px !important;
 }
+
+#resultListPagination {
+  margin-top:30px;
+}
+
+.pagination > .active > a, .pagination > .active > span,
+.pagination > .active > a:hover, .pagination > .active > span:hover,
+ .pagination > .active > a:focus, .pagination > .active > span:focus {
+   background-color: #C74A39;
+   color: #fff;
+ }

@@ -169,7 +169,9 @@
           <xsl:value-of select="mods:part/@order" />
         </field>
       </xsl:if>
-      <xsl:if test="@type='host' and mods:part/mods:detail[@type='volume'] and @xlink:href">
+      <xsl:variable name="href" select="@xlink:href"/>
+      <xsl:variable name="href2" select="preceding-sibling::mods:relatedItem/@xlink:href"/>
+      <xsl:if test="@type='host' and mods:part/mods:detail[@type='volume'] and @xlink:href and not($href=$href2)">
         <field name="mods.part.{@xlink:href}">
           <xsl:choose>
             <xsl:when test="mods:part/mods:detail[@type='issue']/mods:number">
@@ -196,7 +198,7 @@
           </xsl:choose>
         </field>
       </xsl:if>
-      <xsl:if test="@type='series' and mods:part/mods:detail[@type='volume']">
+      <xsl:if test="@type='series' and mods:part/mods:detail[@type='volume'] and not($href=$href2)">
         <field name="mods.part.{@xlink:href}">
           <xsl:value-of select="normalize-space(mods:part/mods:detail[@type='volume']/mods:number)" />
         </field>

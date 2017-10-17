@@ -114,8 +114,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
             if (href == null || (href != null && !(MCRObjectID.isValid(href)))) {
             	// get PPN from xml <mods:identifier type="local">(DE-601)#######</mods:identifier>
             	XPathFactory xFactory = XPathFactory.instance();
-                //XPathExpression<Element> expr = xFactory.compile("//mods:identifier[starts-with(.,'(DE-601)')]", Filters.element());
-            	XPathExpression<Element> expr = xFactory.compile("mods:identifier[starts-with(.,'(DE-601)')]", Filters.element(),
+                XPathExpression<Element> expr = xFactory.compile("mods:identifier[starts-with(.,'(DE-601)')]", Filters.element(),
             			 null, MCRConstants.MODS_NAMESPACE, MCRConstants.XLINK_NAMESPACE);
             	List<Element> identifier = expr.evaluate(relatedItem);
             	LOGGER.info("Found Indefiers: " + identifier.size());
@@ -127,28 +126,8 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
                 String identifierValue = identifier.get(0).getText();
                 String ppn = identifierValue.substring(identifierValue.lastIndexOf(")") + 1);
                 LOGGER.info("Found PPN: " + ppn);
-                LOGGER.info("Paul 1 " );
                 try {
                     SolrClient solrClient = MCRSolrClientFactory.getSolrClient();
-                    LOGGER.info("Paul 2 " );
-                    /*SolrQuery query = new SolrQuery();
-                    //query.set("q", "mods.identifier:"+ppn);
-                    LOGGER.info("Paul 3 "  );
-                    query.set("q", "mods.identifier:*PPN="+ppn);
-                    LOGGER.info("Paul 4" );
-                    query.setStart(0);
-                    query.setRows(10);
-                    query.setFields("id");
-                    LOGGER.info("Paul 5" + query);
-                    query.setRequestHandler("find");
-                    LOGGER.info("Paul 6" + query.getRequestHandler());
-                    QueryResponse queryResponse = solrClient.query(query);
-                    SolrDocumentList list = queryResponse.getResults();
-                    LOGGER.info("Found: " + list.getNumFound() + "solrdocuments");
-                    if (list.getNumFound() == 0) continue; 
-                    if (list.getNumFound() > 1) LOGGER.warn("Found to much solrdocuments");
-                    SolrDocument solrDoc = list.get(0);
-                    LOGGER.info("Found mycoreid " + solrDoc.getFieldValue("id"));*/
                     List<String> idList = MCRSolrSearchUtils.listIDs(solrClient,"mods.identifier:*PPN="+ppn);
                     LOGGER.info("Found "+idList.size()+"ids ");
                     if (idList.size() == 0) continue;
@@ -156,9 +135,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
                 } catch (SolrServerException e ) {
                 	LOGGER.warn("SolrError so the mycoreid of relatedItem wasn't set. ");
                 }
-                //} catch (IOException e)  {
-                //	LOGGER.warn("SolrError so the mycoreid of relatedItem wasn't set. ");
-                //}
+               
             } 
              
         }
