@@ -234,7 +234,7 @@
     <!-- End: MyCoRe specific schema definition -->
 
     <!-- MIR specific schema -->
-    <field name="mods.subjectindex" type="text" multiValued="true" />
+    <field name="mods.subjectindex" type="text_de" multiValued="true" />
     <field name="mods.subject" type="string" multiValued="true" />
     <dynamicField name="mods.subject.*" type="string" multiValued="true" />
     <field name="subjectid" type="string" multiValued="true" />
