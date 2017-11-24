@@ -29,7 +29,7 @@
         <xsl:variable name="current201D" select="."/>
         <xsl:variable name="next201D" select="following-sibling::pica:datafield[@tag='201D']"/>
         <!-- <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][key('kDatafield',$current201D) < key('kDatafield',.)] [key('kDatafield',.) < key('kDatafield',$next201D) ]">-->
-        <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][preceding-sibling::datafield[@tag='201D'] = $current]">
+        <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][preceding-sibling::datafield[@tag='201D'] = $current201D]">
           <xsl:variable name="shelfmark" select="pica:subfield[@code='a']"/>
           <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
             <mods:location> 
@@ -255,40 +255,49 @@
   
   <xsl:template match="mods:relatedItem[@type='series'][not (starts-with(mods:identifier[@type='local'],'(DE-601)'))]">
     
-    <xsl:variable name="seriesTitle" select="mods:titleInfo/mods:title" />
-    <xsl:variable name="seriesPPN" select="$picaXml/pica:record/pica:datafield[@tag='036F'][pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
-    <xsl:variable name="seriesPPN2" select="$picaXml/pica:record/pica:datafield[@tag='036F'][position()]/pica:subfield[@code='9']" />
-    <xsl:variable name="hostPPN" select="$picaXml/pica:record/pica:datafield[@tag='036D'][pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
-    <xsl:variable name="hostPPN2" select="$picaXml/pica:record/pica:datafield[@tag='036D'][position()]/pica:subfield[@code='9']" />
+    <xsl:variable name="seriesTitle" select="normalize-space(mods:titleInfo/mods:title)" >
+    </xsl:variable>
+    
+    <xsl:variable name="seriesPPN" select="$picaXml/pica:record/pica:datafield[@tag='036F'][preceding-sibling::*[ 1]/@tag='036E'][preceding-sibling::*[ 1]/pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
+    <xsl:variable name="hostPPN"   select="$picaXml/pica:record/pica:datafield[@tag='036D'][preceding-sibling::*[ 1]/@tag='036C'][preceding-sibling::*[ 1]/pica:subfield[@code='a']=$seriesTitle]/pica:subfield[@code='9']" />
+    <!-- <xsl:variable name="seriesPPN"  select="$picaXml/pica:record/pica:datafield[@tag='036F'][substring(pica:subfield[@code='a'],1,string-length($seriesTitle))=$seriesTitle]/pica:subfield[@code='9']" />  -->
+    <!-- <xsl:variable name="seriesPPN2" select="$picaXml/pica:record/pica:datafield[@tag='036F'][position()]/pica:subfield[@code='9']" />  -->
+    <!-- <xsl:variable name="hostPPN"    select="$picaXml/pica:record/pica:datafield[@tag='036D'][substring(pica:subfield[@code='a'],1,string-length($seriesTitle))=$seriesTitle]/pica:subfield[@code='9']" />  -->
+    
+    <!-- <xsl:variable name="hostPPN2"   select="$picaXml/pica:record/pica:datafield[@tag='036D'][position()]/pica:subfield[@code='9']" />  -->
     
     <xsl:if test="not(following-sibling::mods:relatedItem[@type='series'][mods:titleInfo/mods:title=$seriesTitle])"> 
       <xsl:choose>
-        <xsl:when test="$hostPPN or $hostPPN2">
+        <xsl:when test="$hostPPN">
           <mods:relatedItem type="host">
-            <xsl:choose>
-              <xsl:when test="$hostPPN">
-                <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN" /></mods:identifier>
-              </xsl:when>
-              <xsl:when test="$hostPPN2">
-                <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN2" /></mods:identifier>
-              </xsl:when>
-            </xsl:choose>
+            <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN" /></mods:identifier>
             <xsl:apply-templates select="*" />
+            <mods:note><xsl:value-of select="concat('hostppn -',$seriesTitle,'-')"/></mods:note>
           </mods:relatedItem>
         </xsl:when>
-        <xsl:otherwise>
+        <xsl:when test="$seriesPPN">
           <mods:relatedItem type="series">
-            <xsl:choose>
-              <xsl:when test="$seriesPPN">
-                <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN" /></mods:identifier>
-              </xsl:when>
-              <xsl:when test="$seriesPPN2">
-                <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN2" /></mods:identifier>
-              </xsl:when>
-            </xsl:choose>
+            <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN" /></mods:identifier>
+            <xsl:apply-templates select="*" />
+            <mods:note><xsl:value-of select="concat('seriesppn -',$seriesTitle,'-')"/></mods:note>
+          </mods:relatedItem>
+        </xsl:when>
+        <!-- <xsl:when test="$hostPPN2">
+          <mods:relatedItem type="host">
+            <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN2" /></mods:identifier>
+            <xsl:apply-templates select="*" />
+            <mods:note><xsl:value-of select="concat('hostppn2 -',$seriesTitle,'-')"/></mods:note>
+            <mods:note><xsl:value-of select="concat('hostppn2 - pre:'       ,$picaXml/pica:record/pica:datafield[@tag='036D']/preceding-sibling::*[ 1]/@tag,'-')"/></mods:note>
+            <mods:note><xsl:value-of select="concat('hostppn2 - pre:'       ,$picaXml/pica:record/pica:datafield[@tag='036F']/preceding-sibling::*[ 1]/@tag,'-')"/></mods:note>
+            <mods:note><xsl:value-of select="concat('hostppn2 - pre title2:',$picaXml/pica:record/pica:datafield[@tag='036D']/preceding-sibling::*[ 1]/pica:subfield[@code='a'],'-')"/></mods:note>
+          </mods:relatedItem>
+        </xsl:when>
+        <xsl:when test="$seriesPPN2">
+          <mods:relatedItem type="series">
+            <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN2" /></mods:identifier>
             <xsl:apply-templates select="*" />
           </mods:relatedItem>
-        </xsl:otherwise>
+        </xsl:when> -->
       </xsl:choose>
     </xsl:if>
   </xsl:template>
