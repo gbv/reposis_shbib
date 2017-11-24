@@ -246,14 +246,17 @@
         <xsl:choose>
           <xsl:when test="name() = 'mods:topic'">
             <field name="mods.subject"><xsl:value-of select="text()"/></field>
+            <field name="mods.subjectindex"><xsl:value-of select="text()"/></field>
             <field name="mods.subject.topic"><xsl:value-of select="text()"/></field>
           </xsl:when>
           <xsl:when test="name() = 'mods:geographic'">
             <field name="mods.subject"><xsl:value-of select="text()"/></field>
+            <field name="mods.subjectindex"><xsl:value-of select="text()"/></field>
             <field name="mods.subject.geographic"><xsl:value-of select="text()"/></field>
           </xsl:when>
           <xsl:when test="name() = 'mods:name'">
             <field name="mods.subject"><xsl:value-of select="mods:displayForm/text()"/></field>
+            <field name="mods.subjectindex"><xsl:value-of select="mods:displayForm/text()"/></field>
             <field name="mods.subject.name"><xsl:value-of select="mods:displayForm/text()"/></field>
             <xsl:if test="@type='personal'">
               <field name="mods.subject.name.personal"><xsl:value-of select="mods:displayForm/text()"/></field>
