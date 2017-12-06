@@ -298,6 +298,11 @@
             <xsl:apply-templates select="*" />
           </mods:relatedItem>
         </xsl:when> -->
+        <xsl:otherwise>
+          <mods:relatedItem type="series">
+            <xsl:apply-templates select="*" />
+          </mods:relatedItem>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
   </xsl:template>
