@@ -128,12 +128,24 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
                 LOGGER.info("Found PPN: " + ppn);
                 try {
                     SolrClient solrClient = MCRSolrClientFactory.getSolrClient();
-                    List<String> idList = MCRSolrSearchUtils.listIDs(solrClient,"mods.identifier:*PPN="+ppn);
-                    LOGGER.info("Found "+idList.size()+"ids ");
-                    if (idList.size() == 0) continue;
-                    relatedItem.setAttribute("href", idList.get(0), MCRConstants.XLINK_NAMESPACE);
+                    SolrQuery query = new SolrQuery();
+                    query.set("q", "mods.identifier:*PPN="+ppn);
+                    query.set("waitSearcher", "true");
+                    query.setStart(0);
+                    query.setRows(10);
+                    query.setFields("id");
+                    query.setRequestHandler("find");
+                    
+                    QueryResponse queryResponse = solrClient.query(query);
+                    SolrDocumentList results = queryResponse.getResults();
+                    
+                    LOGGER.info("Found "+results.size()+"ids ");
+                    if (results.size() == 0) continue;
+                    relatedItem.setAttribute("href", results.get(0).getFieldValue("id").toString(), MCRConstants.XLINK_NAMESPACE);
                 } catch (SolrServerException e ) {
                 	LOGGER.warn("SolrError so the mycoreid of relatedItem wasn't set. ");
+                } catch (IOException e) {
+                	LOGGER.warn("IOError so the mycoreid of relatedItem wasn't set. ");
                 }
                
             } 
