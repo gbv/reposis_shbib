@@ -24,12 +24,9 @@
         <xsl:value-of select="concat('//gso.gbv.de/DB=2.1/PPNSET?PPN=', $ppn)" />
       </mods:identifier>
       
-      <!--<xsl:variable name="shelfmark" select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]/following-sibling::pica:datafield[@tag='209A']/pica:subfield[@code='a']" />-->
       <xsl:for-each select="$picaXml/pica:record/pica:datafield[@tag='201D'][pica:subfield[@code='a'][text()='0068']]">
         <xsl:variable name="current201D" select="."/>
-        <xsl:variable name="next201D" select="following-sibling::pica:datafield[@tag='201D']"/>
-        <!-- <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][key('kDatafield',$current201D) < key('kDatafield',.)] [key('kDatafield',.) < key('kDatafield',$next201D) ]">-->
-        <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][preceding-sibling::datafield[@tag='201D'] = $current201D]">
+        <xsl:for-each select="following-sibling::pica:datafield[@tag='209A'][preceding-sibling::pica:datafield[@tag='201D'][1]/pica:subfield[@code='a']/text()=$current201D/pica:subfield[@code='a']/text()][preceding-sibling::pica:datafield[@tag='201D'][1]/@occurrence=$current201D/@occurrence]">
           <xsl:variable name="shelfmark" select="pica:subfield[@code='a']"/>
           <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
             <mods:location> 
