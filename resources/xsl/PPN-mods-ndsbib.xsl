@@ -5,7 +5,8 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation" 
   xmlns:pica="info:srw/schema/5/picaXML-v1.0"
-  exclude-result-prefixes="i18n xsl" >
+  xmlns:str="http://exslt.org/strings"
+  exclude-result-prefixes="i18n xsl str pica" >
   <xsl:param name="parentId" />
 
   <xsl:include href="xslInclude:PPN-mods-simple"/>
@@ -260,7 +261,6 @@
     <!-- <xsl:variable name="seriesPPN"  select="$picaXml/pica:record/pica:datafield[@tag='036F'][substring(pica:subfield[@code='a'],1,string-length($seriesTitle))=$seriesTitle]/pica:subfield[@code='9']" />  -->
     <!-- <xsl:variable name="seriesPPN2" select="$picaXml/pica:record/pica:datafield[@tag='036F'][position()]/pica:subfield[@code='9']" />  -->
     <!-- <xsl:variable name="hostPPN"    select="$picaXml/pica:record/pica:datafield[@tag='036D'][substring(pica:subfield[@code='a'],1,string-length($seriesTitle))=$seriesTitle]/pica:subfield[@code='9']" />  -->
-    
     <!-- <xsl:variable name="hostPPN2"   select="$picaXml/pica:record/pica:datafield[@tag='036D'][position()]/pica:subfield[@code='9']" />  -->
     
     <xsl:if test="not(following-sibling::mods:relatedItem[@type='series'][mods:titleInfo/mods:title=$seriesTitle])"> 
@@ -269,14 +269,12 @@
           <mods:relatedItem type="host">
             <mods:identifier type="local">(DE-601)<xsl:value-of select="$hostPPN" /></mods:identifier>
             <xsl:apply-templates select="*" />
-            <mods:note><xsl:value-of select="concat('hostppn -',$seriesTitle,'-')"/></mods:note>
           </mods:relatedItem>
         </xsl:when>
         <xsl:when test="$seriesPPN">
           <mods:relatedItem type="series">
             <mods:identifier type="local">(DE-601)<xsl:value-of select="$seriesPPN" /></mods:identifier>
             <xsl:apply-templates select="*" />
-            <mods:note><xsl:value-of select="concat('seriesppn -',$seriesTitle,'-')"/></mods:note>
           </mods:relatedItem>
         </xsl:when>
         <!-- <xsl:when test="$hostPPN2">
@@ -305,19 +303,31 @@
   </xsl:template>
   
   <xsl:template match="mods:number">
-    <xsl:copy>
+    <mods:number>
+      <xsl:variable name="number">
+        <xsl:for-each select="str:tokenize(.,';')">
+          <xsl:choose>
+            <xsl:when test="contains(.,'Band')">
+              <xsl:value-of select="substring-after(.,'Band')"/>
+            </xsl:when>
+            <xsl:when test="contains(.,'Bd.')">
+              <xsl:value-of select="substring-after(.,'Bd.')"/>
+            </xsl:when>
+            <xsl:when test="contains(.,'Teil')">
+              <xsl:value-of select="substring-after(.,'Teil')"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:variable>
       <xsl:choose>
-        <xsl:when test="contains(.,'Band')">
-          <xsl:value-of select="substring-after(.,'Band')"/>
-        </xsl:when>
-        <xsl:when test="contains(.,'Teil')">
-          <xsl:value-of select="substring-after(.,'Teil')"/>
+        <xsl:when test="$number">
+          <xsl:value-of select="$number"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="."/>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:copy>
+    </mods:number>
   </xsl:template>  
   
   
