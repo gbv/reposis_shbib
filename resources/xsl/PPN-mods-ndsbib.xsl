@@ -320,7 +320,7 @@
         </xsl:for-each>
       </xsl:variable>
       <xsl:choose>
-        <xsl:when test="$number">
+        <xsl:when test="string-length($number) &gt; 0">
           <xsl:value-of select="$number"/>
         </xsl:when>
         <xsl:otherwise>
