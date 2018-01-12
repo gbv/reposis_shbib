@@ -20,7 +20,6 @@ $(document).ready(function() {
   $('#btn-toogle-head').click(function(){
     // adjust editor from id
     toggleCollapseHead();
-    setCollapseHead();
   });
 
   // side nav toggle button
@@ -56,28 +55,21 @@ $(document).ready(function() {
  *************************************************************************** */
 function setCollapseHead() {
   if ($('#btn-toogle-head') .length == 0) {
-    $('#head').removeClass('collapse');
     return;
   } 
   if ( typeof(Storage) !== "undefined" ) {
-    switch ( localStorage.getItem("collapseHead") ) {
-      case 'true':
-        $('#head').addClass('collapse');
-        break;
-      default:
-        $('#head').removeClass('collapse');
+    if (localStorage.getItem("collapseHead")=="true" ) {
+      $('#head').removeClass('in');
     }
   }
 }
 
 function toggleCollapseHead() {
   if ( typeof(Storage) !== "undefined" ) {
-  	switch ( localStorage.getItem("collapseHead") ) {
-      case 'true':
-        localStorage.setItem("collapseHead","false");
-        break;
-      default:
-        localStorage.setItem("collapseHead","true");
+  	if ( $('#head').hasClass('in') ) {
+      localStorage.setItem("collapseHead","true");
+    } else {
+      localStorage.setItem("collapseHead","false");
     }
   }
 }
