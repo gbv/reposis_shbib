@@ -9,7 +9,7 @@
   <xsl:import href="resource:xsl/layout/mir-common-layout.xsl" />
 
   <xsl:template  name="mir.header">
-    <div id="head" class="container">
+    <div id="head" class="container collapse in">
       <div class="row">
         <div id="header_back">
           <div id="header_heading">
