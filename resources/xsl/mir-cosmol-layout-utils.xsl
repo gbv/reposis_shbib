@@ -3,7 +3,8 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation"
   xmlns:mcrver="xalan://org.mycore.common.MCRCoreVersion"
-  exclude-result-prefixes="i18n mcrver">
+  xmlns:mcrxsl="xalan://org.mycore.common.xml.MCRXMLFunctions"
+  exclude-result-prefixes="i18n mcrver mcrxsl">
 
   <xsl:import href="resource:xsl/layout/mir-common-layout.xsl" />
 
@@ -39,6 +40,27 @@
         </noscript>
       </div>
     </div>
+    <xsl:choose>
+      <xsl:when test="not(mcrxsl:isCurrentUserGuestUser())">
+        <div class="container" style="padding:8px">
+          <div class="col-xs-12 col-sm-9 col-sm-offset-3">
+            <span>
+              <button id="btn-toogle-head" type="button" class="btn btn-default" data-toggle="collapse" data-target="#head" aria-expanded="false">
+                <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+              </button>
+            </span>
+            <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span>
+              <a href="{$WebApplicationBaseURL}editor/editor-ppnsource.xed">Neuaufname</a>
+            </span>
+            <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span>
+              <a href="{$WebApplicationBaseURL}content/search/simple_intern.xed">Einfache Suche</a>
+            </span>
+          </div>
+        </div>
+      </xsl:when> 
+    </xsl:choose>
     
   </xsl:template>
 

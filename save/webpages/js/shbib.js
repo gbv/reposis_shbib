@@ -1,11 +1,6 @@
 
 $(document).ready(function() {
 
-  // replace placeholder USERNAME with username
-  var userID = $("#currentUser strong").html();
-  var newHref = 'http://noa.gwlb.de/servlets/solr/select?q=createdby:' + userID + '&fq=objectType:mods';
-  $("a[href='http://noa.gwlb.de/servlets/solr/select?q=createdby:USERNAME']").attr('href', newHref);
-
   // spam protection for mails
   $('span.madress').each(function(i) {
       var text = $(this).text();
@@ -18,6 +13,15 @@ $(document).ready(function() {
 
   // adjust editor from id
   setEditorID();
+  
+  setCollapseHead();
+  
+  
+  $('#btn-toogle-head').click(function(){
+    // adjust editor from id
+    toggleCollapseHead();
+    setCollapseHead();
+  });
 
   // side nav toggle button
   $('#hide_side_button').click(function(){
@@ -47,6 +51,36 @@ $(document).ready(function() {
 
 });
 
+/* ****************************************************************************
+ * load heapcollapse settings from "session" and adjust head
+ *************************************************************************** */
+function setCollapseHead() {
+  if ($('#btn-toogle-head') .length == 0) {
+    $('#head').removeClass('collapse');
+    return;
+  } 
+  if ( typeof(Storage) !== "undefined" ) {
+    switch ( localStorage.getItem("collapseHead") ) {
+      case 'true':
+        $('#head').addClass('collapse');
+        break;
+      default:
+        $('#head').removeClass('collapse');
+    }
+  }
+}
+
+function toggleCollapseHead() {
+  if ( typeof(Storage) !== "undefined" ) {
+  	switch ( localStorage.getItem("collapseHead") ) {
+      case 'true':
+        localStorage.setItem("collapseHead","false");
+        break;
+      default:
+        localStorage.setItem("collapseHead","true");
+    }
+  }
+}
 
 /* ****************************************************************************
  * load side nav settings from "session" and adjust editor form
