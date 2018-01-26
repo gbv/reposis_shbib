@@ -377,6 +377,10 @@
       <xsl:variable name="volume" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='d']" />
       <xsl:variable name="year" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='j']" />
       <xsl:variable name="spezialIssue" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='f']" />
+      <xsl:variable name="partText" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='y']" />
+      <xsl:if test="$partText">
+        <mods:text><xsl:value-of select="$partText" /></mods:text>
+      </xsl:if>
       <xsl:if test="not(mods:detail[@type='issue']) and ($issue or $spezialIssue)">
         <mods:detail type="issue">
           <xsl:if test="$spezialIssue" >
@@ -397,6 +401,9 @@
   </xsl:template>
   
   <xsl:template match="mods:note[@type='action' or @type='bibliography']">
+  </xsl:template>
+  
+  <xsl:template match="mods:part/mods:text">
   </xsl:template>
     
 </xsl:stylesheet>
