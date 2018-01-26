@@ -890,39 +890,52 @@
         </xsl:otherwise>
       </xsl:choose>
       <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
-      <!-- Volume -->
-      <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
-        <xsl:value-of
-          select="concat('Vol. ',mods:part/mods:detail[@type='volume']/mods:number)" />
-        <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
-          <xsl:text>, </xsl:text>
-        </xsl:if>
-      </xsl:if>
-      <!-- Issue -->
-      <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
-        <xsl:value-of
-          select="concat('H. ',mods:part/mods:detail[@type='issue']/mods:number)" />
-      </xsl:if>
-      <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number and (mods:part/mods:date or mods:originInfo[@eventType='publication']/mods:dateIssued)">
-        <xsl:text> </xsl:text>
-      </xsl:if>
-      <xsl:if test="mods:part/mods:date or mods:originInfo[@eventType='publication']/mods:dateIssued">
-        <xsl:choose>
-          <xsl:when test="mods:part/mods:date"><xsl:value-of select="concat(' (',mods:part/mods:date,')')" /></xsl:when>
-          <xsl:otherwise>
-            <xsl:text>(</xsl:text>
-            <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate" />
-            <xsl:text>)</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:if>
-      <!-- Pages -->
-      <xsl:if test="mods:part/mods:extent[@unit='pages']">
-        <xsl:text>, </xsl:text>
-        <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
-          <xsl:call-template name="printMetaDate.mods.extent" />
-        </xsl:for-each>
-      </xsl:if>
+      <!-- mods:part -->
+      <xsl:choose>
+        <xsl:when test="mods:part/mods:text">
+          <xsl:value-of select="mods:part/mods:text" />
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Volume -->
+          <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
+            <xsl:value-of
+              select="concat('Vol. ',mods:part/mods:detail[@type='volume']/mods:number)" />
+            <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number or mods:part/mods:detail[@type='issue']/mods:caption">
+              <xsl:text>, </xsl:text>
+            </xsl:if>
+          </xsl:if>
+          <!-- Issue -->
+          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:caption">
+            <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:caption" />
+          </xsl:if>
+          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
+            <xsl:if test="not(mods:part/mods:detail[@type='issue']/mods:caption)">
+              <xsl:value-of select="'H. '" />
+            </xsl:if>
+            <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:number" />
+          </xsl:if>
+          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number and (mods:part/mods:date or mods:originInfo[@eventType='publication']/mods:dateIssued)">
+            <xsl:text> </xsl:text>
+          </xsl:if>
+          <xsl:if test="mods:part/mods:date or mods:originInfo[@eventType='publication']/mods:dateIssued">
+            <xsl:choose>
+              <xsl:when test="mods:part/mods:date"><xsl:value-of select="concat(' (',mods:part/mods:date,')')" /></xsl:when>
+              <xsl:otherwise>
+                <xsl:text>(</xsl:text>
+                <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate" />
+                <xsl:text>)</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:if>
+          <!-- Pages -->
+          <xsl:if test="mods:part/mods:extent[@unit='pages']">
+            <xsl:text>, </xsl:text>
+            <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
+              <xsl:call-template name="printMetaDate.mods.extent" />
+            </xsl:for-each>
+          </xsl:if>
+        </xsl:otherwise>
+      </xsl:choose>
     </td>
   </tr>
   </xsl:template>
