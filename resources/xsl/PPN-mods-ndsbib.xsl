@@ -317,6 +317,18 @@
             <xsl:when test="contains(.,'Teil')">
               <xsl:value-of select="substring-after(.,'Teil')"/>
             </xsl:when>
+            <xsl:when test="contains(.,'Vol.')">
+              <xsl:value-of select="substring-after(.,'Vol.')"/>
+            </xsl:when>
+            <xsl:when test="contains(.,'Vol')">
+              <xsl:value-of select="substring-after(.,'Vol')"/>
+            </xsl:when>
+            <xsl:when test="contains(.,'vol.')">
+              <xsl:value-of select="substring-after(.,'Vol.')"/>
+            </xsl:when>
+            <xsl:when test="contains(.,'vol')">
+              <xsl:value-of select="substring-after(.,'Vol')"/>
+            </xsl:when>
           </xsl:choose>
         </xsl:for-each>
       </xsl:variable>
