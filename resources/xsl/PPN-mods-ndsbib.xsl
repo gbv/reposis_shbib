@@ -263,6 +263,7 @@
     <!-- <xsl:variable name="hostPPN"    select="$picaXml/pica:record/pica:datafield[@tag='036D'][substring(pica:subfield[@code='a'],1,string-length($seriesTitle))=$seriesTitle]/pica:subfield[@code='9']" />  -->
     <!-- <xsl:variable name="hostPPN2"   select="$picaXml/pica:record/pica:datafield[@tag='036D'][position()]/pica:subfield[@code='9']" />  -->
     
+    
     <xsl:if test="not(following-sibling::mods:relatedItem[@type='series'][mods:titleInfo/mods:title=$seriesTitle])"> 
       <xsl:choose>
         <xsl:when test="$hostPPN">
@@ -375,9 +376,15 @@
       <xsl:variable name="issue" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='e']" />
       <xsl:variable name="volume" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='d']" />
       <xsl:variable name="year" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='j']" />
-      <xsl:if test="not(mods:detail[@type='issue']) and $issue">
+      <xsl:variable name="spezialIssue" select="$picaXml/pica:record/pica:datafield[@tag='031A']/pica:subfield[@code='f']" />
+      <xsl:if test="not(mods:detail[@type='issue']) and ($issue or $spezialIssue)">
         <mods:detail type="issue">
-          <mods:number><xsl:value-of select="$issue"/></mods:number>
+          <xsl:if test="$spezialIssue" >
+            <mods:caption><xsl:value-of select="$spezialIssue"/></mods:caption>
+          </xsl:if>
+          <xsl:if test="$issue" >
+            <mods:number><xsl:value-of select="$issue"/></mods:number>
+          </xsl:if>
         </mods:detail>
       </xsl:if>
       <xsl:if test="not(mods:detail[@type='volume']) and $volume">
