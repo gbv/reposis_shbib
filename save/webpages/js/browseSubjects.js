@@ -182,7 +182,8 @@ $(document).ready( function() {
 	    var fuzzyQuery= "suggest:" + searchValue +"~";
 	    var trunkQuery= "suggest:" + searchValue +"*";
 	    var onlyWithMIDs = 'mycoreid:[""+TO+*]';
-		searchSubjects( "((" + fuzzyQuery + ")OR(" + trunkQuery + "))AND("+onlyWithMIDs+")",0,20);
+		//searchSubjects( "((" + fuzzyQuery + ")OR(" + trunkQuery + "))AND("+onlyWithMIDs+")",0,20);
+		searchSubjects( "(" + trunkQuery + ")AND("+onlyWithMIDs+")",0,20);
 	});
 	
 });
