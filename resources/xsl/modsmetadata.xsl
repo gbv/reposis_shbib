@@ -897,50 +897,57 @@
         </xsl:when>
         <xsl:otherwise>
           <!-- Volume -->
-          <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
-            <xsl:value-of
-              select="concat('Vol. ',mods:part/mods:detail[@type='volume']/mods:number)" />
-            <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number or mods:part/mods:detail[@type='issue']/mods:caption">
-              <xsl:text>, </xsl:text>
+          <xsl:variable name="volume">
+            <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
+              <xsl:value-of select="concat('Vol. ',mods:part/mods:detail[@type='volume']/mods:number)" />
+              
             </xsl:if>
-          </xsl:if>
-          <!-- Issue -->
-          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:caption">
-            <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:caption" />
-          </xsl:if>
-          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
-            <xsl:if test="not(mods:part/mods:detail[@type='issue']/mods:caption)">
-              <xsl:value-of select="'H. '" />
+            <xsl:if test="mods:part/mods:date or ../mods:originInfo[@eventType='publication']/mods:dateIssued">
+              <xsl:choose>
+                <xsl:when test="mods:part/mods:date"><xsl:value-of select="concat(' (',mods:part/mods:date,')')" /></xsl:when>
+                <xsl:otherwise>
+                  <xsl:variable name="year">
+                    <xsl:choose>
+                      <xsl:when test="contains(../mods:originInfo[@eventType='publication']/mods:dateIssued,'-')">
+                        <xsl:value-of select="substring-before(../mods:originInfo[@eventType='publication']/mods:dateIssued,'-')" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="../mods:originInfo[@eventType='publication']/mods:dateIssued" />
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+                  <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
+                    <xsl:value-of select="'.'" />
+                  </xsl:if>
+                  <xsl:value-of select="$year" />
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:if>
-            <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:number" />
+          </xsl:variable>
+          <xsl:variable name="issue">
+            <xsl:if test="mods:part/mods:detail[@type='issue']/mods:caption">
+              <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:caption" />
+            </xsl:if>
+            <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
+              <!-- <xsl:if test="not(mods:part/mods:detail[@type='issue']/mods:caption)">
+                <xsl:value-of select="'H. '" />
+              </xsl:if> -->
+              <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:number" />
+            </xsl:if>
+          </xsl:variable>
+          <xsl:variable name="pages">
+            <xsl:if test="mods:part/mods:extent[@unit='pages']">
+              <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
+                <xsl:call-template name="printMetaDate.mods.extent" />
+              </xsl:for-each>
+            </xsl:if>
+          </xsl:variable>
+          <xsl:value-of select="$volume" />
+          <xsl:if test="string-length($volume) &gt; 0  and string-length($issue) &gt; 0">
+            <xsl:value-of select="concat(', ',$issue)"/>
           </xsl:if>
-          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number and (mods:part/mods:date or mods:originInfo[@eventType='publication']/mods:dateIssued)">
-            <xsl:text> </xsl:text>
-          </xsl:if>
-          <xsl:if test="mods:part/mods:date or ../mods:originInfo[@eventType='publication']/mods:dateIssued">
-            <xsl:choose>
-              <xsl:when test="mods:part/mods:date"><xsl:value-of select="concat(' (',mods:part/mods:date,')')" /></xsl:when>
-              <xsl:otherwise>
-                <xsl:variable name="year">
-                  <xsl:choose>
-                    <xsl:when test="contains(../mods:originInfo[@eventType='publication']/mods:dateIssued,'-')">
-                      <xsl:value-of select="substring-before(../mods:originInfo[@eventType='publication']/mods:dateIssued,'-')" />
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:value-of select="../mods:originInfo[@eventType='publication']/mods:dateIssued" />
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:variable>
-                <xsl:value-of select="concat('(',$year,')')" />
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:if>
-          <!-- Pages -->
-          <xsl:if test="mods:part/mods:extent[@unit='pages']">
-            <xsl:text>, </xsl:text>
-            <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
-              <xsl:call-template name="printMetaDate.mods.extent" />
-            </xsl:for-each>
+          <xsl:if test="(string-length($volume) &gt; 0 and string-length($issue) &gt; 0) or string-length($pages) &gt; 0">
+            <xsl:value-of select="concat(', ',$pages)"/>
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
