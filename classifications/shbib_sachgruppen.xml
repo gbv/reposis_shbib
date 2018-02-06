@@ -6,15 +6,19 @@
     <category ID="010000">
       <label xml:lang="de" text="010000 Allgemeine Periodika und Statistik" description="Biographien s. Biographien-Teil (992000) und dezentralbei den einzelnen Sachgebieten." />
       <category ID="011000">
+        <label xml:lang="x-topic" text="Bibliographie" />
         <label xml:lang="de" text="011000 Bibliographien" description="Hier nur allgemeine oder mehrere Sachgebiete betr.Bibliographien. Sonst siehe bei den entsprechenden Systemstellen mit ASW: Bibliographie \ sPersonalbibliographien bei den einzelnen &quot;Personen-Systemstellen&quot; mit ASW: Bibliographie / Name, VornameSystemstellen&quot; mit ASW: Bibliographie / Name, Vorname(oder: Bibliographie \ Name, Vorname)" />
       </category>
       <category ID="014000">
+        <label xml:lang="x-topic" text="Zeitung" />
         <label xml:lang="de" text="014000 Zeitungen" description="Hier nur Zeitungen allgemeinen Inhalts. Ortsbezogene Zeitungen und Anzeigenblätter nur nxso; Fachzeitungen zum Sachgebiet. Literatur über Zeitungen und ihre Geschichte -&gt; 882000" />
       </category>
       <category ID="017000">
         <label xml:lang="de" text="017000 Allgemeine Zeitschriften und Kalender" description="Hier nur Zeitschriften allgemeinen Inhalts. Fachzeitschriften zum Sachgebiet.Sekundärliteratur zu den allgemeinen Zeitschriften -&gt; 882024" />
+        <label xml:lang="x-topic" text="Allgemeine Zeitschrift" />
       </category>
       <category ID="019000">
+        <label xml:lang="x-topic" text="Allgemeine Statistik" />
         <label xml:lang="de" text="019000 Allgemeine Statistik" description="Entsprechend 01400 - sachlich begrenzte Statistiken siehe unter den einzelnen Systemstellen (Allgemeines, also ..1000 oder ....10 - Ausnahme: Wirtschaftsstatistik -&gt; 541590), ortsbezogen nur: n; USW: s / Statistik kann vergeben werden.USW  s / Statistik  kann vergeben werden." />
       </category>
     </category>
@@ -22,39 +26,50 @@
       <label xml:lang="de" text="100000 Landesbeschreibung" description="An allen Stellen kann vergeben werden: Bildband / o für Bildbände die ganz Schleswig-Holstein betreffen: Bildband / Schleswig-Holstein Nordseeküste und Ostseeküste ggf. auch zu (oder nur zu) 155020 bzw. 155030" />
       <category ID="101000">
         <label xml:lang="de" text="101000 Allgemeine Landesbeschreibung" />
+        <label xml:lang="x-topic" text="Landesbeschreibung" />
       </category>
       <category ID="102000">
+        <label xml:lang="x-topic" text="Naturkundliche Landesbeschreibung" />
         <label xml:lang="de" text="102000 Naturkundliche Landesbeschreibung" />
       </category>
       <category ID="103000">
         <label xml:lang="de" text="103000 Historische Landesbeschreibung" />
+        <label xml:lang="x-topic" text="Historische Landesbeschreibung" />
       </category>
       <category ID="104000">
         <label xml:lang="de" text="104000 Beschreibung einzelner Kreise und Orte" description="Wirtschaftliche Kreis- und Ortsbeschreibung -&gt; 541000; Bildsammlungen mit historischen Abbildungen (auch alte Postkarten) -&gt; 240400 = einzelne Kreis oder Landschaften: n; 240500 für einzelne Orte: nHier auch Beschreibung einzelner Inseln, soweit nicht rein naturkundlich, dann zum Sachgebiet oder 102000 (n)" />
+        <label xml:lang="x-topic" text="Kreis- und Ortsbeschreibung" />
       </category>
       <category ID="106000">
         <label xml:lang="de" text="106000 Geographische Reisebeschreibung" description="Literarische Reisebeschreibung -&gt; 767044; Reiseberichte, die nur einzelne Orte betreffen: nxso" />
+        <label xml:lang="x-topic" text="Reisebeschreibung" />
       </category>
     </category>
     <category ID="120000">
       <label xml:lang="de" text="120000 Kartographie und Vermessungswesen" />
       <category ID="121000">
-        <label xml:lang="de" text="121000 Allgemeines" />
+        <label xml:lang="x-topic" text="Kartographie und Vermessungswesen" />
+        <label xml:lang="de" text="121000 Kartographie und Vermessungswesen, Allgemeines" />
       </category>
       <category ID="122000">
         <label xml:lang="de" text="122000 Kartographie" description="Hier nur Sekundärliteratur, auch Geschichte der Kartographie und Beschreibung einzelner historischer Karten" />
+        <label xml:lang="x-topic" text="Kartographie" />
       </category>
       <category ID="122300">
         <label xml:lang="de" text="122300 Karteninterpretation" />
+        <label xml:lang="x-topic" text="Karteninterpretation" />
       </category>
       <category ID="122600">
+        <label xml:lang="x-topic" text="Computerkartographie" />
         <label xml:lang="de" text="122600 Computerkartographie" />
       </category>
       <category ID="124000">
+        <label xml:lang="x-topic" text="Luftbildauswertung" />
         <label xml:lang="de" text="124000 Luftbildauswertung" description="Luftbilder einzelner Orte -&gt; 574050 bzw. 574260" />
       </category>
       <category ID="124300">
         <label xml:lang="de" text="124300 Vermessungswesen" description="Neuzeitlich: r; historisch: p" />
+        <label xml:lang="x-topic" text="Vermessungswesen" />
       </category>
       <category ID="126000">
         <label xml:lang="de" text="126000 Karten" />
@@ -75,6 +90,7 @@
     <category ID="140000">
       <label xml:lang="de" text="140000 Geowissenschaften" />
       <category ID="141000">
+        <label xml:lang="x-topic" text="Geophysik" />
         <label xml:lang="de" text="141000 Geophysik" />
       </category>
       <category ID="142000">
@@ -89,8 +105,8 @@
           <label xml:lang="x-topic" text="Tektonik" />
         </category>
         <category ID="142030">
-          <label xml:lang="x-geogra" text="Groß Kleckersdorf" />
           <label xml:lang="de" text="142030 Ingenieurgeologie" />
+          <label xml:lang="x-geogra" text="Groß Kleckersdorf" />
           <label xml:lang="x-topic" text="Ingenieurgeologie" />
         </category>
       </category>
@@ -113,8 +129,8 @@
           <label xml:lang="x-topic" text="Paläozoikum" />
         </category>
         <category ID="142221">
-          <label xml:lang="x-topic" text="Kambrium" />
           <label xml:lang="de" text="142221 Kambrium" />
+          <label xml:lang="x-topic" text="Kambrium" />
         </category>
         <category ID="142222">
           <label xml:lang="x-topic" text="Silur" />
@@ -153,8 +169,8 @@
           <label xml:lang="de" text="142240 Neozoikum" />
         </category>
         <category ID="142242">
-          <label xml:lang="x-topic" text="Tertiär" />
           <label xml:lang="de" text="142242 Tertiär" />
+          <label xml:lang="x-topic" text="Tertiär" />
         </category>
         <category ID="142243">
           <label xml:lang="de" text="142243 Quartär" />
@@ -164,8 +180,8 @@
       <category ID="142400">
         <label xml:lang="de" text="142400 Mineralogie und Petrographie" />
         <category ID="142410">
-          <label xml:lang="x-topic" text="Mineralogie" />
           <label xml:lang="de" text="142410 Mineralogie" />
+          <label xml:lang="x-topic" text="Mineralogie" />
         </category>
         <category ID="142420">
           <label xml:lang="de" text="142420 Minerale und Gesteine" description="Namen der Minerale und Gesteine soweit möglichin der Einzahl" />
@@ -324,8 +340,8 @@
           <label xml:lang="x-topic" text="Wetterlage" />
         </category>
         <category ID="144050">
-          <label xml:lang="de" text="144050 Klimafaktoren" />
           <label xml:lang="x-topic" text="Klimafaktoren" />
+          <label xml:lang="de" text="144050 Klimafaktoren" />
         </category>
         <category ID="144060">
           <label xml:lang="de" text="144060 Klimaänderung" />
@@ -345,9 +361,11 @@
         </category>
       </category>
       <category ID="146000">
+        <label xml:lang="x-topic" text="Landschaftsökologie" />
         <label xml:lang="de" text="146000 Landschaftsökologie" />
       </category>
       <category ID="146500">
+        <label xml:lang="x-topic" text="Naturräumliche Gliederung" />
         <label xml:lang="de" text="146500 Naturräumliche Gliederung" />
       </category>
     </category>
@@ -368,8 +386,8 @@
           <label xml:lang="de" text="151020 Bodenwasser" description="ASW z.B.: Grundwasserabsenkung; Grundwassergefährdung; Hydrochemie" />
         </category>
         <category ID="151030">
-          <label xml:lang="x-topic" text="Wasserhaushalt" />
           <label xml:lang="de" text="151030 Wasserhaushalt" />
+          <label xml:lang="x-topic" text="Wasserhaushalt" />
         </category>
         <category ID="151040">
           <label xml:lang="de" text="151040 Wasserwirtschaft und Wasserplanung" />
@@ -388,8 +406,8 @@
           <label xml:lang="x-topic" text="Entwässerung" />
         </category>
         <category ID="151060">
-          <label xml:lang="x-topic" text="Wasseruntersuchung" />
           <label xml:lang="de" text="151060 Wasseruntersuchung" />
+          <label xml:lang="x-topic" text="Wasseruntersuchung" />
         </category>
         <category ID="151080">
           <label xml:lang="x-topic" text="Hydroökologie" />
@@ -583,8 +601,8 @@
           <label xml:lang="x-topic" text="Sporenpflanzen" />
         </category>
         <category ID="162040">
-          <label xml:lang="x-topic" text="Blütenpflanzen" />
           <label xml:lang="de" text="162040 Blütenpflanzen" description="Einzelne Blütenpflanzen: ASW mit SVW vomlateinischen Namen auf den deutschen." />
+          <label xml:lang="x-topic" text="Blütenpflanzen" />
         </category>
       </category>
       <category ID="163000">
@@ -690,7 +708,7 @@
         <label xml:lang="de" text="164000 Biologische Anthropologie" />
         <category ID="164010">
           <label xml:lang="de" text="164010 Allgemeines" />
-          <label xml:lang="x-topic" text="Biologische Anthropologie" />
+          <label xml:lang="x-topic" text="Biologische Anthropologie, Allgemeines" />
         </category>
         <category ID="164020">
           <label xml:lang="x-topic" text="Rasse" />
@@ -709,7 +727,8 @@
     <category ID="170000">
       <label xml:lang="de" text="170000 Natur- und Umweltschutz" />
       <category ID="171000">
-        <label xml:lang="de" text="171000 Allgemeines" />
+        <label xml:lang="x-topic" text="Natur- und Umweltschutz" />
+        <label xml:lang="de" text="171000 Natur- und Umweltschutz" />
       </category>
       <category ID="173000">
         <label xml:lang="de" text="173000 Naturschutz" />
@@ -800,9 +819,10 @@
     <category ID="200000">
       <label xml:lang="de" text="200000 Historische Hilfswissenschaften" />
       <category ID="201000">
-        <label xml:lang="de" text="201000 Allgemeines" />
+        <label xml:lang="de" text="201000 Historische Hilfswissenschaften, Allgemeines" />
       </category>
       <category ID="202000">
+        <label xml:lang="x-topic" text="Inschrift" />
         <label xml:lang="de" text="202000 Inschriften" description="Einzelne Inschriften beim Sachgebiet mit ASW: Inschrift / s. Hier nur im Sinne von &quot;Inschriftenkunde&quot;" />
       </category>
       <category ID="202200">
@@ -851,31 +871,39 @@
         </category>
       </category>
       <category ID="205000">
+        <label xml:lang="x-topic" text="Wappenkunde" />
         <label xml:lang="de" text="205000 Wappenkunde" />
       </category>
       <category ID="205300">
+        <label xml:lang="x-topic" text="Siegel" />
         <label xml:lang="de" text="205300 Siegel" description="Einzelne Siegel beim Sachgebiet bzw.: n, mit ASW: Siegel \ s. Hier nur im Sinne von &quot;Siegelkunde&quot;" />
       </category>
       <category ID="205500">
+        <label xml:lang="x-topic" text="Orden" />
         <label xml:lang="de" text="205500 Orden und Ehrenzeichen" description="Hier nur im Sinne von &quot;Ordenskunde&quot;, einzelne Auszeichnungen beim Sachgebiet (z.B. Militär)" />
       </category>
       <category ID="206000">
+        <label xml:lang="x-topic" text="Chronologie" />
         <label xml:lang="de" text="206000 Chronologie" />
       </category>
       <category ID="207000">
         <label xml:lang="de" text="207000 Metrologie" />
+        <label xml:lang="x-topic" text="Metrologie" />
       </category>
     </category>
     <category ID="220000">
       <label xml:lang="de" text="220000 Vor- und Frühgeschichte" />
       <category ID="220500">
         <label xml:lang="de" text="220500 Archäologie allgemein" />
+        <label xml:lang="x-topic" text="Archäologie" />
       </category>
       <category ID="221000">
+        <label xml:lang="x-topic" text="Vor- und Frühgeschichtliche Zeit" />
         <label xml:lang="de" text="221000 Vor- und frühgeschichtliche Zeit allgemein" />
       </category>
       <category ID="222000">
         <label xml:lang="de" text="222000 Alt- und Mittelsteinzeit" />
+        <label xml:lang="x-topic" text="Alt- und Mittelsteinzeit" />
       </category>
       <category ID="223000">
         <label xml:lang="de" text="223000 Jungsteinzeit und Bronzezeit" />
@@ -990,25 +1018,32 @@
     <category ID="240000">
       <label xml:lang="de" text="240000 Geschichte" description="Hier nur Geschichte des gesamten Landes und der historischen Regionen (s. nachfolgende Systemstellen). Ortsgeschichte -&gt; 240... und n! [Ausnahmen: 241400 und ggf. 241500]. Neuzeitliche Ortschroniken (Zeitnotation 70) zu 104000. Sammlungen historischer Postkarten und Abbildungen zur Ortsgeschichte (240500) mit Formal-ASW: Bildband / o. Statt p immer zweite Notation mit 240300, 240400 oder 240500 vergeben! Teilregionen nach 1866 (bzw. 1876 Lauenburg; 1937 Land Lübeck) s. Landesteil Schleswig (246200) oder im Regionenteil, dort ggf. mit Zusatz: (Kreis)" />
       <category ID="240300">
+        <label xml:lang="x-topic" text="Politische Geschichte" />
         <label xml:lang="de" text="240300 Politische Geschichte" />
       </category>
       <category ID="240400">
         <label xml:lang="de" text="240400 Regionalgeschichte" />
+        <label xml:lang="x-topic" text="Geschichte" />
       </category>
       <category ID="240500">
         <label xml:lang="de" text="240500 Ortsgeschichte" />
+        <label xml:lang="x-topic" text="Geschichte" />
       </category>
       <category ID="241000">
         <label xml:lang="de" text="241000 Allgemeines" />
+        <label xml:lang="x-topic" text="Geschichte" />
       </category>
       <category ID="241300">
         <label xml:lang="de" text="241300 Geschichtsschreibung" />
+        <label xml:lang="x-topic" text="Geschichtsschreibung" />
       </category>
       <category ID="241400">
+        <label xml:lang="x-topic" text="Geschichtsverein" />
         <label xml:lang="de" text="241400 Geschichtsverein" />
       </category>
       <category ID="241500">
         <label xml:lang="de" text="241500 Geschichtsquelle" />
+        <label xml:lang="x-topic" text="Geschichtsquelle" />
       </category>
       <category ID="242000">
         <label xml:lang="de" text="242000 Schleswig-Holstein im Mittelalter" />
@@ -1018,7 +1053,7 @@
         </category>
         <category ID="242030">
           <label xml:lang="de" text="242030 Übergang vom Mittelalter zur Neuzeit" />
-          <label xml:lang="x-topic" text="Geschichte (Mittelalter/Neuzeit)" />
+          <label xml:lang="x-topic" text="Geschichte (Mittelalter / Neuzeit)" />
         </category>
         <category ID="242050">
           <label xml:lang="de" text="242050 Einzelne Schleswig-Holsteinische Gebiete im Mittelalter" />
@@ -1027,6 +1062,7 @@
       </category>
       <category ID="242500">
         <label xml:lang="de" text="242500 Hanse" description="Hier nur Geschichte der gesamten Hanse oder mehrer schl.-holst. Hansestädte. Einzelne Städte betreffende Titel zur Ortsgeschichte (240500) mit ASW o \ Hanse (ebenso Zweiteintragungen im Ortsteil). Handelsgeschichte der Hanse -&gt; 545220 mit ASW Hanse / s (entsprechend bei anderen Sachgebieten)" />
+        <label xml:lang="x-topic" text="Hanse / Geschichte" />
       </category>
       <category ID="243000">
         <label xml:lang="de" text="243000 Schleswig-Holstein in der Neuzeit bis 1866" />
@@ -1035,8 +1071,8 @@
           <label xml:lang="de" text="243010 Allgemeines" />
         </category>
         <category ID="243020">
-          <label xml:lang="x-topic" text="Geschichte (1581-1721)" />
           <label xml:lang="de" text="243020 1581-1721" />
+          <label xml:lang="x-topic" text="Geschichte (1581-1721)" />
         </category>
         <category ID="243030">
           <label xml:lang="de" text="243030 1721-1866" />
@@ -1066,112 +1102,112 @@
       <category ID="243200">
         <label xml:lang="de" text="243200 Herzogtum Schleswig in Mittelalter und Neuzeit bis 1866" />
         <category ID="243210">
-          <label xml:lang="x-topic" text="Herzogtum Schleswig / s=Geschichte" />
+          <label xml:lang="x-topic" text="Herzogtum Schleswig / Geschichte" />
           <label xml:lang="de" text="243210 Allgemeines" />
         </category>
         <category ID="243220">
+          <label xml:lang="x-topic" text="Herzogtum Schleswig / Geschichte (800-1460)" />
           <label xml:lang="de" text="243220 800-1460" />
-          <label xml:lang="x-topic" text="Herzogtum Schleswig / s=Geschichte (800-1460)" />
         </category>
         <category ID="243222">
-          <label xml:lang="x-topic" text="Dänen / s=Herzogtum Schleswig" />
           <label xml:lang="de" text="243222 Dänen" />
+          <label xml:lang="x-topic" text="Dänen / Herzogtum Schleswig" />
         </category>
         <category ID="243224">
-          <label xml:lang="x-topic" text="Friesen / s=Herzogtum Schleswig" />
           <label xml:lang="de" text="243224 Friesen" />
+          <label xml:lang="x-topic" text="Friesen / Herzogtum Schleswig" />
         </category>
         <category ID="243230">
           <label xml:lang="de" text="243230 1460-1721" />
-          <label xml:lang="x-topic" text="Herzogtum Schleswig / s=Geschichte (1460-1721)" />
+          <label xml:lang="x-topic" text="Herzogtum Schleswig / Geschichte (1460-1721)" />
         </category>
         <category ID="243240">
-          <label xml:lang="x-topic" text="Herzogtum Schleswig / s=Geschichte (1721-1866)" />
+          <label xml:lang="x-topic" text="Herzogtum Schleswig / Geschichte (1721-1866)" />
           <label xml:lang="de" text="243240 1721-1866" />
         </category>
       </category>
       <category ID="243400">
         <label xml:lang="de" text="243400 Holstein in Mittelalter und Neuzeit" />
         <category ID="243410">
+          <label xml:lang="x-topic" text="Holstein / Geschichte" />
           <label xml:lang="de" text="243410 Allgemeines" />
-          <label xml:lang="x-topic" text="Holstein / s=Geschichte" />
         </category>
         <category ID="243420">
           <label xml:lang="de" text="243420 800-1460" />
-          <label xml:lang="x-topic" text="Holstein / s=Geschichte (800-1460)" />
+          <label xml:lang="x-topic" text="Holstein / Geschichte (800-1460)" />
         </category>
         <category ID="243422">
+          <label xml:lang="x-topic" text="Sachsen / Holstein" />
           <label xml:lang="de" text="243422 Sachsen" />
-          <label xml:lang="x-topic" text="Sachsen / s=Holstein" />
         </category>
         <category ID="243424">
-          <label xml:lang="x-topic" text="Slawen / s=Holstein" />
+          <label xml:lang="x-topic" text="Slawen / Holstein" />
           <label xml:lang="de" text="243424 Slawen" />
         </category>
         <category ID="243430">
           <label xml:lang="de" text="243430 1460-1773" />
-          <label xml:lang="x-topic" text="Holstein / s=Geschichte (1460-1773)" />
+          <label xml:lang="x-topic" text="Holstein / Geschichte (1460-1773)" />
         </category>
         <category ID="243433">
           <label xml:lang="de" text="243433 Dithmarschen bis 1559" />
-          <label xml:lang="x-topic" text="Dithmarschen / s=Geschichte (bis 1559)" />
+          <label xml:lang="x-topic" text="Dithmarschen / Geschichte (bis 1559)" />
         </category>
         <category ID="243435">
-          <label xml:lang="x-topic" text="Holstein-Pinneberg (Grafschaft) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Holstein-Pinneberg (Grafschaft) / Geschichte" />
           <label xml:lang="de" text="243435 Grafschaft Holstein-Pinneberg 1390-1640" />
         </category>
         <category ID="243437">
           <label xml:lang="de" text="243437 Herzogtum Plön 1622-1761" />
-          <label xml:lang="x-topic" text="Plön (Herzogtum) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Plön (Herzogtum) / Geschichte" />
         </category>
         <category ID="243440">
+          <label xml:lang="x-topic" text="Holstein / Geschichte (1773-1866)" />
           <label xml:lang="de" text="243440 1773-1866" />
-          <label xml:lang="x-topic" text="Holstein / s=Geschichte (1773-1866)" />
         </category>
       </category>
       <category ID="243600">
         <label xml:lang="de" text="243600 Herzogtum Lauenburg" />
         <category ID="243610">
+          <label xml:lang="x-topic" text="Herzogtum Lauenburg / Geschichte (800-1876)" />
           <label xml:lang="de" text="243610 Allgemeines" />
-          <label xml:lang="x-topic" text="Herzogtum Lauenburg / s=Geschichte (800-1876)" />
         </category>
         <category ID="243620">
-          <label xml:lang="x-topic" text="Lauenburg (Land) / s=Geschichte (800-1296)" />
           <label xml:lang="de" text="243620 Land Lauenburg und Grafschaft Ratzeburg 800-1296" />
+          <label xml:lang="x-topic" text="Lauenburg (Land) / Geschichte (800-1296)" />
         </category>
         <category ID="243630">
-          <label xml:lang="x-topic" text="Sachsen-Lauenburg (Herzogtum) / s=Geschichte (1296-1689)" />
+          <label xml:lang="x-topic" text="Sachsen-Lauenburg (Herzogtum) / Geschichte (1296-1689)" />
           <label xml:lang="de" text="243630 Herzogtum Sachsen-Lauenburg 1296-1689" />
         </category>
         <category ID="243640">
           <label xml:lang="de" text="243640 Herzogtum Sachsen-Lauenburg 1689-1816" />
-          <label xml:lang="x-topic" text="Sachsen-Lauenburg (Herzogtum) / s=Geschichte (1689-1816)" />
+          <label xml:lang="x-topic" text="Sachsen-Lauenburg (Herzogtum) / Geschichte (1689-1816)" />
         </category>
         <category ID="243650">
+          <label xml:lang="x-topic" text="Herzogtum Lauenburg / Geschichte (1816-1876)" />
           <label xml:lang="de" text="243650 Herzogtum Lauenburg 1816-1876" />
-          <label xml:lang="x-topic" text="Herzogtum Lauenburg / s=Geschichte (1816-1876)" />
         </category>
       </category>
       <category ID="243800">
         <label xml:lang="de" text="243800 Bistum und Fürstentum Lübeck" />
         <category ID="243810">
-          <label xml:lang="x-topic" text="Lübeck (Bistum und Fürstentum) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Lübeck (Bistum und Fürstentum) / Geschichte" />
           <label xml:lang="de" text="243810 Allgemeines" />
         </category>
         <category ID="243820">
-          <label xml:lang="x-topic" text="Lübeck (Bistum) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Lübeck (Bistum) / Geschichte" />
           <label xml:lang="de" text="243820 Bistum Lübeck bis 1530" />
         </category>
         <category ID="243830">
-          <label xml:lang="x-topic" text="Lübeck (Hochstift) / s=Geschichte" />
           <label xml:lang="de" text="243830 Hochstift Lübeck 1530-1803" />
+          <label xml:lang="x-topic" text="Lübeck (Hochstift) / Geschichte" />
         </category>
         <category ID="243840">
-          <label xml:lang="de" text="243840 Fürstentum Lübeck 1803-1918" />
-          <label xml:lang="x-topic" text="Lübeck (Fürstentum) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Lübeck (Fürstentum) / Geschichte" />
+          <label xml:lang="de" text="243840 Fürstentum Lübeck 1803-1918Lübeck (Hochstift) / Geschichte" />
         </category>
         <category ID="243850">
-          <label xml:lang="x-topic" text="Lübeck (Landesteil) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Lübeck (Landesteil) / Geschichte" />
           <label xml:lang="de" text="243850 Landesteil Lübeck 1918-1937" />
         </category>
       </category>
@@ -1179,7 +1215,7 @@
         <label xml:lang="de" text="245000 Schleswig-Holstein als preußische Provinz" />
         <category ID="245010">
           <label xml:lang="x-topic" text="Geschichte (1866-1945)" />
-          <label xml:lang="de" text="245010 Allgemeines" />
+          <label xml:lang="de" text="245010  Allgemeines" />
         </category>
         <category ID="245020">
           <label xml:lang="x-topic" text="Geschichte (1866-1918)" />
@@ -1199,10 +1235,10 @@
         </category>
       </category>
       <category ID="246200">
-        <label xml:lang="de" text="246200 Schleswig nach 1867" />
+        <label xml:lang="de" text="246200 Landesteil Schleswig nach 1867" />
         <category ID="246201">
-          <label xml:lang="de" text="246201 Allgemeines" />
-          <label xml:lang="x-topic" text="Schleswig (Landesteil) / s=Geschichte" />
+          <label xml:lang="x-topic" text="Schleswig (Landesteil) / Geschichte" />
+          <label xml:lang="de" text="246201 Landesteil Schleswig nach 1867, Allgemeines" />
         </category>
         <category ID="246210">
           <label xml:lang="x-topic" text="Schleswig (Landesteil) / s=Geschichte (1867-1920)" />
@@ -1217,8 +1253,8 @@
           <label xml:lang="de" text="246220 1920-1945" />
         </category>
         <category ID="246230">
-          <label xml:lang="x-topic" text="Schleswig (Landesteil) / s=Geschichte (1945-)" />
           <label xml:lang="de" text="246230 Schleswig nach 1945" />
+          <label xml:lang="x-topic" text="Schleswig (Landesteil) / Geschichte (1945-)" />
         </category>
         <category ID="246250">
           <label xml:lang="x-topic" text="Dänen im Landesteil Schleswig" />
@@ -1230,6 +1266,7 @@
         </category>
       </category>
       <category ID="247000">
+        <label xml:lang="x-topic" text="Geschichte (1945-Gegenwart)" />
         <label xml:lang="de" text="247000 Land Schleswig-Holstein nach 1945" description="Hier nur geschichtliche Rückblicke, sonst zum Sachgebiet (z.B. Verwaltung; Politik)" />
       </category>
     </category>
@@ -1348,9 +1385,11 @@
       </category>
       <category ID="263000">
         <label xml:lang="de" text="263000 Kriege" />
+        <label xml:lang="x-topic" text="Kriege" />
       </category>
       <category ID="263100">
         <label xml:lang="de" text="263100 Kriege im Mittelalter" />
+        <label xml:lang="x-topic" text="Kriege im Mittelalter" />
       </category>
       <category ID="263200">
         <label xml:lang="de" text="263200 Kriege im 16.-18. Jahrhundert" />
@@ -1423,6 +1462,7 @@
       <label xml:lang="de" text="400000 Staat und Politik" />
       <category ID="401000">
         <label xml:lang="de" text="401000 Allgemeines" />
+        <label xml:lang="x-topic" text="Staat und Politik" />
       </category>
       <category ID="402000">
         <label xml:lang="de" text="402000 Staatsgrundlagen" />
@@ -1520,8 +1560,8 @@
           <label xml:lang="de" text="404323 Ständeversammlungen" />
         </category>
         <category ID="404330">
+          <label xml:lang="x-topic" text="Parlament / Recht" />
           <label xml:lang="de" text="404330 Rechte und Pflichten des Parlaments" description="Datenschutz s. 422064" />
-          <label xml:lang="x-topic" text="Parlament / s=Recht" />
         </category>
         <category ID="404340">
           <label xml:lang="x-topic" text="Regierungspartei" />
@@ -1532,8 +1572,8 @@
           <label xml:lang="de" text="404341 Opposition" />
         </category>
         <category ID="404343">
-          <label xml:lang="x-topic" text="Dänen im Landesteil Schleswig / s=Landtagsmandat" />
           <label xml:lang="de" text="404343 Dänische Minderheitenvertretung im Landtag" />
+          <label xml:lang="x-topic" text="Dänen im Landesteil Schleswig / Landtagsmandat" />
         </category>
         <category ID="404350">
           <label xml:lang="x-topic" text="Parlamentsorganisation" />
@@ -1563,8 +1603,8 @@
       <category ID="406000">
         <label xml:lang="de" text="406000 Politische Willensbildung" />
         <category ID="406010">
-          <label xml:lang="de" text="406010 Allgemeines" />
           <label xml:lang="x-topic" text="Politische Willensbildung" />
+          <label xml:lang="de" text="406010 Allgemeines" />
         </category>
         <category ID="406020">
           <label xml:lang="x-topic" text="Politische Öffentlichkeitsarbeit" />
@@ -1613,12 +1653,12 @@
           <label xml:lang="x-topic" text="Politischer Verband" />
         </category>
         <category ID="406250">
-          <label xml:lang="de" text="406250 Bürgerinitiativen" />
           <label xml:lang="x-topic" text="Bürgerinitiative" />
+          <label xml:lang="de" text="406250 Bürgerinitiativen" />
         </category>
         <category ID="406270">
-          <label xml:lang="x-topic" text="Protestgruppen" />
           <label xml:lang="de" text="406270 Protestgruppen" />
+          <label xml:lang="x-topic" text="Protestgruppen" />
         </category>
       </category>
       <category ID="406300">
@@ -1628,8 +1668,8 @@
           <label xml:lang="de" text="406310 Allgemeines" description="Hier auch Geschichtliches (z.B. Reichstagswahl mit ASW)" />
         </category>
         <category ID="406312">
-          <label xml:lang="de" text="406312 Wahlrecht" />
           <label xml:lang="x-topic" text="Wahlrecht" />
+          <label xml:lang="de" text="406312 Wahlrecht" />
         </category>
         <category ID="406313">
           <label xml:lang="x-topic" text="Wahlkreiseinteilung" />
@@ -1663,8 +1703,8 @@
       <category ID="407000">
         <label xml:lang="de" text="407000 Widerstand und politische Verfolgung" />
         <category ID="407010">
-          <label xml:lang="x-topic" text="Widerstand und politische Verfolgung" />
           <label xml:lang="de" text="407010 Allgemeines" />
+          <label xml:lang="x-topic" text="Widerstand und politische Verfolgung" />
         </category>
         <category ID="407020">
           <label xml:lang="x-topic" text="Politische Verfolgung im 19. Jahrhundert" />
@@ -1679,16 +1719,20 @@
     <category ID="420000">
       <label xml:lang="de" text="420000 Verwaltung" description="Ortsbezogene Literatur in der Regel nxso!" />
       <category ID="421000">
+        <label xml:lang="x-topic" text="Verwaltung" />
         <label xml:lang="de" text="421000 Allgemeines" />
       </category>
       <category ID="421200">
         <label xml:lang="de" text="421200 Verwaltungsgeschichte" />
+        <label xml:lang="x-topic" text="Verwaltungsgeschichte" />
       </category>
       <category ID="421300">
+        <label xml:lang="x-topic" text="Verwaltungsrecht" />
         <label xml:lang="de" text="421300 Verwaltungsrecht" />
       </category>
       <category ID="421500">
         <label xml:lang="de" text="421500 Verwaltungskontrolle" />
+        <label xml:lang="x-topic" text="Verwaltungskontrolle" />
       </category>
       <category ID="422000">
         <label xml:lang="de" text="422000 Allgemeine Verwaltung" description="Hier &quot;Allgemeine Verwaltung&quot; als Verwaltungsbereich. Allgemeines der Verwaltung -&gt; 421000" />
@@ -1713,8 +1757,8 @@
           <label xml:lang="de" text="422039 Kreispartnerschaft" />
         </category>
         <category ID="422040">
-          <label xml:lang="de" text="422040 Gemeindeverwaltung" />
           <label xml:lang="x-topic" text="Gemeindeverwaltung" />
+          <label xml:lang="de" text="422040 Gemeindeverwaltung" />
         </category>
         <category ID="422041">
           <label xml:lang="x-topic" text="Kommunale Selbstverwaltung" />
@@ -1749,8 +1793,8 @@
           <label xml:lang="de" text="422050 Verwaltungsreform" />
         </category>
         <category ID="422052">
-          <label xml:lang="de" text="422052 Länderneugliederung" />
           <label xml:lang="x-topic" text="Länderneugliederung" />
+          <label xml:lang="de" text="422052 Länderneugliederung" />
         </category>
         <category ID="422053">
           <label xml:lang="x-topic" text="Gebietsreform" />
@@ -1884,36 +1928,46 @@
         </category>
       </category>
       <category ID="426300">
+        <label xml:lang="x-topic" text="Brandbekämpfung" />
         <label xml:lang="de" text="426300 Brandbekämpfung" description="SVW: Feuerwehr s. Brandbekämpfung (gilt nur für die Verwendung als Haupt-SW). Bei örtlichen Freiwilligen Feuerwehren zusätzliches ASW: o / Freiwillige Feuerwehr. ASW: Jugendfeuerwehr" />
       </category>
       <category ID="426500">
+        <label xml:lang="x-topic" text="Rettungswesen" />
         <label xml:lang="de" text="426500 Rettungswesen" />
       </category>
       <category ID="426700">
+        <label xml:lang="x-topic" text="Katastrophen und Unglücksfälle" />
         <label xml:lang="de" text="426700 Katastrophen und Unglücksfälle" />
       </category>
     </category>
     <category ID="440000">
       <label xml:lang="de" text="440000 Recht" />
       <category ID="441000">
+        <label xml:lang="x-topic" text="Recht" />
         <label xml:lang="de" text="441000 Allgemeines" />
       </category>
       <category ID="441100">
+        <label xml:lang="x-topic" text="Gesetzessammlung;Amtsblatt" />
         <label xml:lang="de" text="441100 Gesetzessammlungen und Amtsblätter" description="Amtliche Gemeindeblätter zu: Gemeindeverwaltung (n)" />
       </category>
       <category ID="441200">
         <label xml:lang="de" text="441200 Entscheidungssammlungen" />
+        <label xml:lang="x-topic" text="Entscheidungsammlung" />
       </category>
       <category ID="442000">
+        <label xml:lang="x-topic" text="Rechtsgeschichtliche Quelle" />
         <label xml:lang="de" text="442000 Rechtsgeschichtliche Quellen" />
       </category>
       <category ID="442100">
         <label xml:lang="de" text="442100 Rechtsgeschichte" description="Geschichte einzelner Rechtsgebiete bei den entsprechenden Sachgebieten" />
+        <label xml:lang="x-topic" text="Rechtsgeschichte" />
       </category>
       <category ID="443000">
         <label xml:lang="de" text="443000 Privatrecht" />
+        <label xml:lang="x-topic" text="Privatrecht" />
       </category>
       <category ID="444000">
+        <label xml:lang="x-topic" text="Gerichtsverfassung" />
         <label xml:lang="de" text="444000 Gerichtsverfassung" />
       </category>
       <category ID="446000">
@@ -1933,18 +1987,22 @@
       </category>
       <category ID="447000">
         <label xml:lang="de" text="447000 Rechtsprechung" />
+        <label xml:lang="x-topic" text="Rechtsprechung" />
       </category>
       <category ID="448000">
+        <label xml:lang="x-topic" text="Rechtspflegeberuf" />
         <label xml:lang="de" text="448000 Rechtspflegeberufe" description="Biographisches mit Namens-SW und ASW:Biographie / Rechtspflegeberufe.Ggf. zus. Eintragung bei 992000" />
       </category>
     </category>
     <category ID="500000">
       <label xml:lang="de" text="500000 Bevölkerung" />
       <category ID="501000">
+        <label xml:lang="x-topic" text="Bevölkerung" />
         <label xml:lang="de" text="501000 Allgemeines" />
       </category>
       <category ID="501200">
         <label xml:lang="de" text="501200 Bevölkerungsgeschichte" />
+        <label xml:lang="x-topic" text="Bevölkerungsgeschichte" />
       </category>
       <category ID="503000">
         <label xml:lang="de" text="503000 Bevölkerungsstruktur" description="Umfassende Darstellungen über Bevölkerungsstruktur zu 503030  -  Einzelfragen zu 503050, 503060, 503070, 503080 bzw. 503090. Ortsbezogene Literatur: nxso (außer 503040)" />
@@ -1981,8 +2039,8 @@
           <label xml:lang="x-topic" text="Kirchenbuch" />
         </category>
         <category ID="503050">
-          <label xml:lang="de" text="503050 Haushaltsgröße" />
           <label xml:lang="x-topic" text="Haushaltsgröße" />
+          <label xml:lang="de" text="503050 Haushaltsgröße" />
         </category>
         <category ID="503060">
           <label xml:lang="de" text="503060 Wohn- und Lebensverhältnisse" />
@@ -2066,9 +2124,11 @@
     <category ID="520000">
       <label xml:lang="de" text="520000 Sozialverwaltung und Wohlfahrtspflege" />
       <category ID="521000">
+        <label xml:lang="x-topic" text="Sozialverwaltung" />
         <label xml:lang="de" text="521000 Allgemeines" />
       </category>
       <category ID="521100">
+        <label xml:lang="x-topic" text="Sozialpolitik" />
         <label xml:lang="de" text="521100 Sozialpolitik" />
       </category>
       <category ID="522000">
@@ -2187,14 +2247,15 @@
           <label xml:lang="de" text="524060 Sozialhilfe" />
         </category>
         <category ID="524070">
-          <label xml:lang="x-topic" text="Kriegsopferfürsorge" />
           <label xml:lang="de" text="524070 Kriegsopferfürsorge" />
+          <label xml:lang="x-topic" text="Kriegsopferfürsorge" />
         </category>
       </category>
     </category>
     <category ID="530000">
       <label xml:lang="de" text="530000 Gesundheitswesen" />
       <category ID="531000">
+        <label xml:lang="x-topic" text="Gesundheitswesen" />
         <label xml:lang="de" text="531000 Allgemeines" />
       </category>
       <category ID="532000">
@@ -2296,18 +2357,22 @@
       </category>
       <category ID="535000">
         <label xml:lang="de" text="535000 Hygiene" />
+        <label xml:lang="x-topic" text="Hygiene" />
       </category>
       <category ID="537000">
+        <label xml:lang="x-topic" text="Veterinärwesen" />
         <label xml:lang="de" text="537000 Veterinärwesen" />
       </category>
     </category>
     <category ID="540000">
       <label xml:lang="de" text="540000 Wirtschaft" description="Landwirtschaft s. 55...." />
       <category ID="541000">
+        <label xml:lang="x-topic" text="Wirtschaft" />
         <label xml:lang="de" text="541000 Allgemeines" />
       </category>
       <category ID="541200">
         <label xml:lang="de" text="541200 Wirtschaftsgeschichte" />
+        <label xml:lang="x-topic" text="Wirtschaftsgeschichte" />
       </category>
       <category ID="541500">
         <label xml:lang="de" text="541500 Wirtschaftsstruktur" />
@@ -2549,6 +2614,7 @@
         </category>
       </category>
       <category ID="545400">
+        <label xml:lang="x-topic" text="Dienstleistungsgewerbe" />
         <label xml:lang="de" text="545400 Dienstleistungsgewerbe" />
       </category>
       <category ID="545600">
@@ -2587,6 +2653,7 @@
         </category>
       </category>
       <category ID="547000">
+        <label xml:lang="x-topic" text="Technik" />
         <label xml:lang="de" text="547000 Technik" />
       </category>
       <category ID="547400">
@@ -2628,11 +2695,12 @@
           <label xml:lang="de" text="547464 Ausflugslokale" />
         </category>
         <category ID="547470">
-          <label xml:lang="x-topic" text="Jugendherberge" />
           <label xml:lang="de" text="547470 Jugendherbergen" />
+          <label xml:lang="x-topic" text="Jugendherberge" />
         </category>
       </category>
       <category ID="547600">
+        <label xml:lang="x-topic" text="Verbraucher" />
         <label xml:lang="de" text="547600 Verbraucher" />
       </category>
     </category>
@@ -2640,8 +2708,10 @@
       <label xml:lang="de" text="550000 Land- und Forstwirtschaft, Fischerei" description="Nur ortsbezogene Literatur: nxso" />
       <category ID="551000">
         <label xml:lang="de" text="551000 Allgemeines" />
+        <label xml:lang="x-topic" text="Land- und Forstwirtschaft, Fischerei" />
       </category>
       <category ID="552000">
+        <label xml:lang="x-topic" text="Agrargeschichte" />
         <label xml:lang="de" text="552000 Agrargeschichte" description="Hier auch Geschichte einzelner Höfe, soweit nicht nur genealogisch. In der Regel nxso  mit ASW: Ort / Name des Hofes; ggf. mit Verweisung vom Namen des Hofes auf dieses ASW" />
       </category>
       <category ID="552300">
@@ -2671,6 +2741,7 @@
         </category>
       </category>
       <category ID="553000">
+        <label xml:lang="x-topic" text="Agrarpolitik" />
         <label xml:lang="de" text="553000 Agrarpolitik" />
       </category>
       <category ID="554000">
@@ -2812,12 +2883,13 @@
           <label xml:lang="de" text="557080 Viehschlachtung" />
         </category>
         <category ID="557090">
-          <label xml:lang="x-topic" text="Imkerei" />
           <label xml:lang="de" text="557090 Imkerei" />
+          <label xml:lang="x-topic" text="Imkerei" />
         </category>
       </category>
       <category ID="557300">
         <label xml:lang="de" text="557300 Milchwirtschaft" />
+        <label xml:lang="x-topic" text="Milchwirtschaft" />
       </category>
       <category ID="558000">
         <label xml:lang="de" text="558000 Forstwirtschaft" />
@@ -2877,8 +2949,8 @@
           <label xml:lang="x-topic" text="Jäger" />
         </category>
         <category ID="558240">
-          <label xml:lang="de" text="558240 Wild allgemein" />
           <label xml:lang="x-topic" text="Wild" />
+          <label xml:lang="de" text="558240 Wild allgemein" />
         </category>
         <category ID="558242">
           <label xml:lang="de" text="558242 Haarwild" description="Einzelne Haarwildarten: g (deutsche Form)" />
@@ -2916,8 +2988,8 @@
           <label xml:lang="x-topic" text="Fischereiproduktion" />
         </category>
         <category ID="559042">
-          <label xml:lang="x-topic" text="Fischhandel" />
           <label xml:lang="de" text="559042 Fischhandel und Fischräucherei" />
+          <label xml:lang="x-topic" text="Fischhandel" />
         </category>
         <category ID="559050">
           <label xml:lang="de" text="559050 Binnenfischerei" description="Hier auch Literatur über Fischerei einzelner Süßwasserfische, mit ASW und Zusatz: (Fischerei)" />
@@ -2949,8 +3021,10 @@
       <label xml:lang="de" text="560000 Verkehr" />
       <category ID="561000">
         <label xml:lang="de" text="561000 Allgemeines" />
+        <label xml:lang="x-topic" text="Verkehr" />
       </category>
       <category ID="562000">
+        <label xml:lang="x-topic" text="Verkehrsgeschichte" />
         <label xml:lang="de" text="562000 Verkehrsgeschichte" description="Hier nur allgemeine Verkehrsgeschichte. Geschichte einzelner Verkehrsmittel zu den folgenden Stellen" />
       </category>
       <category ID="563000">
@@ -2964,8 +3038,8 @@
           <label xml:lang="x-topic" text="Straßen- und Brückenbau" />
         </category>
         <category ID="563030">
-          <label xml:lang="de" text="563030 Radfahrverkehr" />
           <label xml:lang="x-topic" text="Radfahrverkehr" />
+          <label xml:lang="de" text="563030 Radfahrverkehr" />
         </category>
         <category ID="563040">
           <label xml:lang="x-topic" text="Kraftfahrzeugverkehr" />
@@ -2973,6 +3047,7 @@
         </category>
       </category>
       <category ID="564000">
+        <label xml:lang="x-topic" text="Öffentlicher Nahverkehr" />
         <label xml:lang="de" text="564000 Öffentlicher Nahverkehr" />
       </category>
       <category ID="565000">
@@ -3007,6 +3082,7 @@
         </category>
       </category>
       <category ID="566000">
+        <label xml:lang="x-topic" text="Flugverkehr" />
         <label xml:lang="de" text="566000 Flugverkehr" />
       </category>
       <category ID="567000">
@@ -3108,6 +3184,7 @@
       <label xml:lang="de" text="570000 Siedlung" />
       <category ID="571000">
         <label xml:lang="de" text="571000 Allgemeines" />
+        <label xml:lang="x-topic" text="Siedlung" />
       </category>
       <category ID="572000">
         <label xml:lang="de" text="572000 Siedlungsgeschichte" description="Siedlungsnamen -&gt; 745040; Stein- und Flurdenkmale -&gt; 277070; Naturdenkmale -&gt; 173040" />
@@ -3126,9 +3203,11 @@
       </category>
       <category ID="572300">
         <label xml:lang="de" text="572300 Kulturlandschaft" />
+        <label xml:lang="x-topic" text="Kulturlandschaft" />
       </category>
       <category ID="572600">
         <label xml:lang="de" text="572600 Siedlungsstandort" />
+        <label xml:lang="x-topic" text="Siedlungsstandort" />
       </category>
       <category ID="574000">
         <label xml:lang="de" text="574000 Ländliche Siedlung" description="Architektonische Aspekte der heutigen ländlichen Siedlung -&gt; 8420..; Bau- und Kunstdenkmäler -&gt; 8422..; Bäuerliche Haus- und Hofformen -&gt; 707030 ff.; Einzelne Höfe als Landwirtschaftsbetriebe -&gt; 5543.. (deren Geschichte -&gt; 552000 )" />
@@ -3157,8 +3236,8 @@
           <label xml:lang="de" text="574054 Dorfdenkmal" />
         </category>
         <category ID="574080">
-          <label xml:lang="de" text="574080 Dorferneuerung" />
           <label xml:lang="x-topic" text="Dorferneuerung" />
+          <label xml:lang="de" text="574080 Dorferneuerung" />
         </category>
       </category>
       <category ID="574200">
@@ -3222,9 +3301,11 @@
       </category>
       <category ID="574300">
         <label xml:lang="de" text="574300 Verstädterung" />
+        <label xml:lang="x-topic" text="Verstädterung" />
       </category>
       <category ID="576000">
         <label xml:lang="de" text="576000 Stadt-Umland-Beziehungen" />
+        <label xml:lang="x-topic" text="Stadt-Umland-Beziehungen" />
       </category>
       <category ID="576300">
         <label xml:lang="de" text="576300 Siedlungstypen (funktional)" description="Hier nur allgemeine und komparatistische Literatur. Sonstiges -&gt; 5740.. bzw. 5742..; Fremdenverkehrssiedlungen -&gt; 547410 bzw. 547422" />
@@ -3267,8 +3348,8 @@
           <label xml:lang="de" text="582040 Planungsraum I" description="= Kreise Pinneberg, Segeberg, Stormarn und Herzogtum Lauenburg" />
         </category>
         <category ID="582050">
-          <label xml:lang="de" text="582050 Planungsraum II" description="= Hansestadt Lübeck und Kreis Ostholstein" />
           <label xml:lang="x-topic" text="Planungsraum II" />
+          <label xml:lang="de" text="582050 Planungsraum II" description="= Hansestadt Lübeck und Kreis Ostholstein" />
         </category>
         <category ID="582060">
           <label xml:lang="x-topic" text="Planungsraum III" />
@@ -3311,6 +3392,7 @@
       <label xml:lang="de" text="610000 Kirchen und Glaubensgemeinschaften" />
       <category ID="611000">
         <label xml:lang="de" text="611000 Allgemeines" />
+        <label xml:lang="x-topic" text="Kirchen und Glaubensgemeinschaften" />
       </category>
       <category ID="611200">
         <label xml:lang="de" text="611200 Evangelische Kirchenverwaltung" />
@@ -3319,8 +3401,8 @@
           <label xml:lang="de" text="611210 Allgemeines" />
         </category>
         <category ID="611220">
-          <label xml:lang="de" text="611220 Kirchenrecht" />
           <label xml:lang="x-topic" text="Evangelisches Kirchenrecht" />
+          <label xml:lang="de" text="611220 Kirchenrecht" />
         </category>
       </category>
       <category ID="611300">
@@ -3353,8 +3435,8 @@
           <label xml:lang="de" text="611520 Katholisches Kirchenrecht" />
         </category>
         <category ID="611530">
-          <label xml:lang="de" text="611530 Einzelne Bistümer" />
           <label xml:lang="x-topic" text="Bistum (Katholische Kirchengliederung)" />
+          <label xml:lang="de" text="611530 Einzelne Bistümer" />
         </category>
         <category ID="611540">
           <label xml:lang="de" text="611540 Katholische Kirchengemeinde" />
@@ -3363,8 +3445,10 @@
       </category>
       <category ID="612000">
         <label xml:lang="de" text="612000 Kirchengeschichte allgemein" />
+        <label xml:lang="x-topic" text="Kirchengeschichte" />
       </category>
       <category ID="612200">
+        <label xml:lang="x-topic" text="Kirchengeschichte" />
         <label xml:lang="de" text="612200 Kirchengeschichte des Mittelalters" />
       </category>
       <category ID="612400">
@@ -3518,8 +3602,8 @@
           <label xml:lang="x-topic" text="Kirchliches Bestattungswesen" />
         </category>
         <category ID="616530">
-          <label xml:lang="x-topic" text="Friedhof" />
           <label xml:lang="de" text="616530 Friedhöfe" />
+          <label xml:lang="x-topic" text="Friedhof" />
         </category>
         <category ID="616550">
           <label xml:lang="de" text="616550 Grabdenkmäler" />
@@ -3549,8 +3633,8 @@
           <label xml:lang="x-topic" text="Freikirche" />
         </category>
         <category ID="617080">
-          <label xml:lang="de" text="617080 Anthroposophie" />
           <label xml:lang="x-topic" text="Anthroposophie" />
+          <label xml:lang="de" text="617080 Anthroposophie" />
         </category>
         <category ID="617090">
           <label xml:lang="x-topic" text="Sekte" />
@@ -3589,9 +3673,11 @@
         </category>
       </category>
       <category ID="619000">
+        <label xml:lang="x-topic" text="Nichtchristliche Religion" />
         <label xml:lang="de" text="619000 Nichtchristliche Religionen" />
       </category>
       <category ID="619500">
+        <label xml:lang="x-topic" text="Freimaurer" />
         <label xml:lang="de" text="619500 Freimaurer" />
       </category>
     </category>
@@ -3599,6 +3685,7 @@
       <label xml:lang="de" text="700000 Volkskunde" />
       <category ID="701000">
         <label xml:lang="de" text="701000 Allgemeines" />
+        <label xml:lang="x-topic" text="Volkskunde" />
       </category>
       <category ID="702000">
         <label xml:lang="de" text="702000 Volkstum" />
@@ -3607,7 +3694,7 @@
           <label xml:lang="de" text="702010 Allgemeines" />
         </category>
         <category ID="702020">
-          <label xml:lang="x-topic" text="Volkstum / s=Auswanderer" />
+          <label xml:lang="x-topic" text="Volkstum / Auswanderer" />
           <label xml:lang="de" text="702020 Schleswig-holsteinisches Volkstum im Ausland" />
         </category>
         <category ID="702030">
@@ -3632,6 +3719,7 @@
         </category>
       </category>
       <category ID="703300">
+        <label xml:lang="x-topic" text="Alltagskultur" />
         <label xml:lang="de" text="703300 Alltagskultur" />
       </category>
       <category ID="704000">
@@ -3741,10 +3829,12 @@
         </category>
       </category>
       <category ID="704400">
+        <label xml:lang="x-topic" text="Rechtliche Volkskunde" />
         <label xml:lang="de" text="704400 Rechtliche Volkskunde" description="Hier nur volkskundliche Rechtsbräuche. Prozesse zur Rechtsgeschichte bzw. zum Kirchenrecht (auch Hexenprozesse!)" />
       </category>
       <category ID="704600">
         <label xml:lang="de" text="704600 Religiöse Volkskunde" />
+        <label xml:lang="x-topic" text="Religiöse Volkskunde" />
       </category>
       <category ID="704700">
         <label xml:lang="de" text="704700 Volksglauben" />
@@ -3765,8 +3855,8 @@
           <label xml:lang="x-topic" text="Volksglauben (Gegenstände)" />
         </category>
         <category ID="704760">
-          <label xml:lang="de" text="704760 Zauberformeln" />
           <label xml:lang="x-topic" text="Zauberformel" />
+          <label xml:lang="de" text="704760 Zauberformeln" />
         </category>
         <category ID="704770">
           <label xml:lang="x-topic" text="Orakel" />
@@ -3815,8 +3905,8 @@
       <category ID="706200">
         <label xml:lang="de" text="706200 Volksmusik und Tanz" />
         <category ID="706210">
-          <label xml:lang="de" text="706210 Allgemeines" />
           <label xml:lang="x-topic" text="Volksmusik und Tanz" />
+          <label xml:lang="de" text="706210 Allgemeines" />
         </category>
         <category ID="706220">
           <label xml:lang="x-topic" text="Volksmusikinstrument" />
@@ -3936,8 +4026,8 @@
           <label xml:lang="x-topic" text="Steinbearbeitung (Volkskunst)" />
         </category>
         <category ID="708270">
-          <label xml:lang="x-topic" text="Metallbearbeitung (Volkskunst)" />
           <label xml:lang="de" text="708270 Metallbearbeitung" />
+          <label xml:lang="x-topic" text="Metallbearbeitung (Volkskunst)" />
         </category>
         <category ID="708280">
           <label xml:lang="x-topic" text="Glas (Volkskunst)" />
@@ -3967,19 +4057,24 @@
     <category ID="720000">
       <label xml:lang="de" text="720000 Gesellschaft" />
       <category ID="721000">
+        <label xml:lang="x-topic" text="Gesellschaft" />
         <label xml:lang="de" text="721000 Allgemeines" />
       </category>
       <category ID="722100">
+        <label xml:lang="x-topic" text="Kulturgeschichte" />
         <label xml:lang="de" text="722100 Kulturgeschichte" description="Hier nur historisch und vorwiegend ortsbezogene Literatur. Kulturelles Leben der Gegenwart -&gt; 7290.." />
       </category>
       <category ID="722300">
+        <label xml:lang="x-topic" text="Sozialgeschichte" />
         <label xml:lang="de" text="722300 Sozialgeschichte" />
       </category>
       <category ID="722600">
+        <label xml:lang="x-topic" text="Sozialsysteme" />
         <label xml:lang="de" text="722600 Sozialsysteme" />
       </category>
       <category ID="723100">
         <label xml:lang="de" text="723100 Sexualität" />
+        <label xml:lang="x-topic" text="Sexualität" />
       </category>
       <category ID="724000">
         <label xml:lang="de" text="724000 Sozialstruktur" />
@@ -4057,6 +4152,7 @@
       </category>
       <category ID="728000">
         <label xml:lang="de" text="728000 Sozialer Wandel" />
+        <label xml:lang="x-topic" text="Sozialer Wandel" />
       </category>
       <category ID="729000">
         <label xml:lang="de" text="729000 Kulturelles Leben" />
@@ -4082,14 +4178,16 @@
       <label xml:lang="de" text="730000 Freizeit und Sport" />
       <category ID="731000">
         <label xml:lang="de" text="731000 Allgemeines" />
+        <label xml:lang="x-topic" text="Freizeit und Sport" />
       </category>
       <category ID="732000">
+        <label xml:lang="x-topic" text="Festveranstaltung" />
         <label xml:lang="de" text="732000 Feiern und Feste" description="Historische und überlieferte Volksfeste -&gt; 704050; Hier nur neuzeitliche Festveranstaltungen mit übergreifendem Programm; ASW: o / Name des Festes; ggf. auch: Name des Festes (wenn überörtliche Bedeutung)" />
       </category>
       <category ID="733000">
         <label xml:lang="de" text="733000 Freizeit und Erholung" />
         <category ID="733010">
-          <label xml:lang="x-topic" text="Freizeit" />
+          <label xml:lang="x-topic" text="Freizeit und Erholung" />
           <label xml:lang="de" text="733010 Allgemeines" />
         </category>
         <category ID="733040">
@@ -4129,30 +4227,39 @@
       <label xml:lang="de" text="740000 Sprache" />
       <category ID="741000">
         <label xml:lang="de" text="741000 Allgemeines" />
+        <label xml:lang="x-topic" text="Sprache" />
       </category>
       <category ID="741200">
         <label xml:lang="de" text="741200 Sprachgeschichte" />
+        <label xml:lang="x-topic" text="Sprachgeschichte" />
       </category>
       <category ID="741400">
+        <label xml:lang="x-topic" text="Runenforschung" />
         <label xml:lang="de" text="741400 Runenforschung" />
       </category>
       <category ID="742100">
+        <label xml:lang="x-topic" text="Soziolinguistik" />
         <label xml:lang="de" text="742100 Soziolinguistik" />
       </category>
       <category ID="742300">
+        <label xml:lang="x-topic" text="Umgangssprache" />
         <label xml:lang="de" text="742300 Umgangssprache" />
       </category>
       <category ID="742400">
         <label xml:lang="de" text="742400 Fach- und Gruppensprache" />
+        <label xml:lang="x-topic" text="Fachsprache" />
       </category>
       <category ID="742500">
         <label xml:lang="de" text="742500 Geheimsprache" />
+        <label xml:lang="x-topic" text="Geheimsprache" />
       </category>
       <category ID="743000">
         <label xml:lang="de" text="743000 Sprachunterricht" />
+        <label xml:lang="x-topic" text="Sprachunterricht" />
       </category>
       <category ID="743200">
         <label xml:lang="de" text="743200 Sprachpflege" />
+        <label xml:lang="x-topic" text="Sprachpflege" />
       </category>
       <category ID="744000">
         <label xml:lang="de" text="744000 Grammatik" description="Zu 7440.. nur hochdeutsche Sprache; Niederdeutsche Grammatik -&gt; 747140; Friesisch -&gt; 747300" />
@@ -4220,8 +4327,8 @@
           <label xml:lang="x-topic" text="Bergname" />
         </category>
         <category ID="745070">
-          <label xml:lang="de" text="745070 Gewässernamen" />
           <label xml:lang="x-topic" text="Gewässername" />
+          <label xml:lang="de" text="745070 Gewässernamen" />
         </category>
         <category ID="745080">
           <label xml:lang="de" text="745080 Schiffsnamen" />
@@ -4233,10 +4340,12 @@
         </category>
       </category>
       <category ID="746000">
+        <label xml:lang="x-topic" text="Sprachgeographie" />
         <label xml:lang="de" text="746000 Sprachgeographie" />
       </category>
       <category ID="747000">
         <label xml:lang="de" text="747000 Sprachkontakte" />
+        <label xml:lang="x-topic" text="Sprachkontakt" />
       </category>
       <category ID="747100">
         <label xml:lang="de" text="747100 Niederdeutsch" />
@@ -4258,21 +4367,27 @@
         </category>
       </category>
       <category ID="747200">
+        <label xml:lang="x-topic" text="Missingsch" />
         <label xml:lang="de" text="747200 Missingsch" />
       </category>
       <category ID="747300">
         <label xml:lang="de" text="747300 Friesisch" />
+        <label xml:lang="x-topic" text="Friesisch" />
       </category>
       <category ID="747400">
+        <label xml:lang="x-topic" text="Nordische Sprachen" />
         <label xml:lang="de" text="747400 Nordische Sprachen" />
       </category>
       <category ID="747500">
+        <label xml:lang="x-topic" text="Dänisch" />
         <label xml:lang="de" text="747500 Dänisch" />
       </category>
       <category ID="747700">
         <label xml:lang="de" text="747700 Fremdsprachen" />
+        <label xml:lang="x-topic" text="Fremdsprachen" />
       </category>
       <category ID="748000">
+        <label xml:lang="x-topic" text="Mehrsprachigkeit" />
         <label xml:lang="de" text="748000 Mehrsprachigkeit" />
       </category>
     </category>
@@ -4280,14 +4395,18 @@
       <label xml:lang="de" text="760000 Literatur" description="Aufgenommen werden:1. Literarische Werke von in Schleswig-Holstein geborenen und / oder in Schleswig-Holstein nennenswerte Zeit tätigen Schriftstellern. In der Regel wird nur die erste in der Landesbibliothek vorhandene Auflage einerjeden Bearb. bzw. Herausgabe mit abweichenden Teilen (wie Vorwort, Nachwort, Illustrationen usw.) aufgenommen, außerdem sämtliche Schriften über diese Autoren (dann mit dem Überlesungszeichen vor dem g).2. Werke nicht schleswig-holsteinischer Autoren, die thematischen Bezug zu Schleswig-Holstein haben oder in einer schleswig-holsteinischen Mundart geschrieben sind, werden entweder bei der entsprechenden System- stelle oder nur im Raumteil aufgenommen: (rx 94....). ASW: s / Literarisches Motiv (oder: nx 94.... o). ASW: o / 765500 - außerdem ASW: Schriftstellername Schriftsteller der Weltliteratur, die in Schleswig-Holstein geboren sind (wie Thomas Mann) werden nur begrenzt berücksichtigt: Werke, die hier entstanden sind, einschließlich Sekundärliteratur darüber, sowie biographische Schriften. Schriftsteller, die Bedeutung für Schleswig-Holstein erlangt haben oder einem der literarischen Kreise in Schleswig-Holstein angehören, werden entsprechend berücksichtigt Auch ausschließlich in niederdeutscher, friesischer oder dänischer Sprache schreibende Schleswig-Holsteiner (einschl. Nordschleswig) hier." />
       <category ID="761000">
         <label xml:lang="de" text="761000 Allgemeines" />
+        <label xml:lang="x-topic" text="Literaturwissenschaft" />
       </category>
       <category ID="761100">
         <label xml:lang="de" text="761100 Literaturbeziehungen zu anderen Gebieten" />
+        <label xml:lang="x-topic" text="Literaturbeziehungen" />
       </category>
       <category ID="761200">
+        <label xml:lang="x-topic" text="Literaturkritik" />
         <label xml:lang="de" text="761200 Literaturkritik" />
       </category>
       <category ID="761400">
+        <label xml:lang="x-topic" text="Literaturgeographie" />
         <label xml:lang="de" text="761400 Literaturgeographie" />
       </category>
       <category ID="762000">
@@ -4306,13 +4425,16 @@
         </category>
       </category>
       <category ID="762200">
+        <label xml:lang="x-topic" text="Niederdeutsche Literatur" />
         <label xml:lang="de" text="762200 Niederdeutsche Literatur" />
       </category>
       <category ID="762300">
+        <label xml:lang="x-topic" text="Friesische Literatur" />
         <label xml:lang="de" text="762300 Friesische Literatur" />
       </category>
       <category ID="762500">
         <label xml:lang="de" text="762500 Dänische Literatur" />
+        <label xml:lang="x-topic" text="Dänische Literatur" />
       </category>
       <category ID="763000">
         <label xml:lang="de" text="763000 Literatursoziologie" />
@@ -4342,9 +4464,11 @@
         </category>
       </category>
       <category ID="765000">
+        <label xml:lang="x-topic" text="Komparatistik" />
         <label xml:lang="de" text="765000 Komparatistik" description="Vergleichende Literaturwissenschaft: Arbeiten, die Einflüsse, Wechselwirkungen und Unterschiede der Literatur bzw. Literaturen untersuchen" />
       </category>
       <category ID="765500">
+        <label xml:lang="x-topic" text="Literarisches Motiv;Literarischer Stoff" />
         <label xml:lang="de" text="765500 Literarische Stoffe und Motive" description="Hier nur die literaturwissenschaftliche Stoff- und Motivforschung. Diese Stalle kann mit nx vergeben werden, wenn die Eintragung: &quot;o / Literarische Motiv&quot; erzeugt werden soll  (s. auch einleitende Anmerkung)" />
       </category>
       <category ID="767000">
@@ -4434,6 +4558,7 @@
         </category>
       </category>
       <category ID="769000">
+        <label xml:lang="x-topic" text="Schriftsteller" />
         <label xml:lang="de" text="769000 Einzelne Schriftsteller" description="s.a. einleitende Anmerkungen; p nur, wenn der betreffende Autor vorwiegend Bedeutung für einen Ort (eine Region) gehabt oder dort gearbeitet hat. ASW: Gedichtband; Gedichtband / Niederdeutsch; Niederdeutsche Erzählung; Jugendbuch; Jugendbuch / Niederdeutsch; Friesische Erzählung; Jugendbuch / Friesisch usw." />
       </category>
     </category>
@@ -4441,12 +4566,15 @@
       <label xml:lang="de" text="780000 Bildung und Erziehung" />
       <category ID="780300">
         <label xml:lang="de" text="780300 Bildungspolitik" />
+        <label xml:lang="x-topic" text="Bildungspolitik" />
       </category>
       <category ID="781000">
         <label xml:lang="de" text="781000 Erziehungswesen allgemein" />
+        <label xml:lang="x-topic" text="Erziehungswesen" />
       </category>
       <category ID="781400">
         <label xml:lang="de" text="781400 Schulgeschichte" />
+        <label xml:lang="x-topic" text="Schulgeschichte" />
       </category>
       <category ID="782100">
         <label xml:lang="de" text="782100 Allgemeinbildendes Schulwesen" />
@@ -4623,22 +4751,26 @@
         </category>
       </category>
       <category ID="784000">
+        <label xml:lang="x-topic" text="Erwachsenenbildung" />
         <label xml:lang="de" text="784000 Erwachsenenbildung" description="ASW: Landesverband der Volkshochschulen; Heimvolkshochschule" />
       </category>
       <category ID="784400">
         <label xml:lang="de" text="784400 Außerschulische Bildungseinrichtungen" />
+        <label xml:lang="x-topic" text="Bildungseinrichtung" />
       </category>
       <category ID="785000">
         <label xml:lang="de" text="785000 Stiftungen für Bildung und Ausbildung" />
+        <label xml:lang="x-topic" text="Bildungsstiftung" />
       </category>
     </category>
     <category ID="790000">
       <label xml:lang="de" text="790000 Hochschulwesen und Wissenschaft" />
       <category ID="791000">
+        <label xml:lang="x-topic" text="Hochschulwesen und Wissenschaft" />
         <label xml:lang="de" text="791000 Allgemeines" description="Wenn mehrere Hochschulen behandelt werden (Kiel und Lübeck): p; sonst an den nachfolgenden Stellen für die einzelnen Hochschulen" />
         <category ID="791020">
-          <label xml:lang="x-topic" text="Hochschulpolitik" />
           <label xml:lang="de" text="791020 Hochschulpolitik" description="Hier nur überörtlich - bei lokalem Bezug: zu den einzelnen Hochschulen" />
+          <label xml:lang="x-topic" text="Hochschulpolitik" />
         </category>
         <category ID="791030">
           <label xml:lang="de" text="791030 Hochschulplanung" />
@@ -4684,8 +4816,8 @@
           <label xml:lang="de" text="793012 Universitätsgeschichte" />
         </category>
         <category ID="793014">
-          <label xml:lang="x-topic" text="Universität Kiel / s=Organisation" />
           <label xml:lang="de" text="793014 Gliederung und Verwaltung der Universität Kiel" description="Universitätsbibliothek -&gt; 864040" />
+          <label xml:lang="x-topic" text="Universität Kiel / Organisation" />
         </category>
         <category ID="793020">
           <label xml:lang="x-topic" text="Theologische Fakultät" />
@@ -4693,15 +4825,15 @@
         </category>
         <category ID="793023">
           <label xml:lang="de" text="793023 Theologische Institute und Seminare" />
-          <label xml:lang="x-topic" text="Theologische Fakultät / s=Institut" />
+          <label xml:lang="x-topic" text="Theologische Fakultät / Institut" />
         </category>
         <category ID="793030">
           <label xml:lang="x-topic" text="Rechtswissenschaftliche Fakultät" />
           <label xml:lang="de" text="793030 Rechtswissenschaftliche Fakultät" />
         </category>
         <category ID="793033">
-          <label xml:lang="x-topic" text="Rechtswissenschaftliche Fakultät / s=Institut" />
           <label xml:lang="de" text="793033 Rechtswissenschaftliche Institute und Seminare" />
+          <label xml:lang="x-topic" text="Rechtswissenschaftliche Fakultät / Institut" />
         </category>
         <category ID="793040">
           <label xml:lang="x-topic" text="Wirtschaftswissenschaftliche Fakultät" />
@@ -4724,8 +4856,8 @@
           <label xml:lang="x-topic" text="Medizinische Fakultät (Kiel)" />
         </category>
         <category ID="793053">
-          <label xml:lang="x-topic" text="Medizinische Fakultät (Kiel) / s=Institut" />
           <label xml:lang="de" text="793053 Medizinische Universitätsinstitute (Kiel)" description="Universitätskliniken hier nur, soweit die Schrift die Klinik als Universitätsinstitut behandelt Schriften über die Funktion als Krankenanstalt und über das Krankengut -&gt; 5340.." />
+          <label xml:lang="x-topic" text="Medizinische Fakultät (Kiel) / Institut" />
         </category>
         <category ID="793054">
           <label xml:lang="x-topic" text="Medizinisches Zentrum (Kiel)" />
@@ -4736,8 +4868,8 @@
           <label xml:lang="de" text="793060 Philosophische Fakultät" />
         </category>
         <category ID="793063">
-          <label xml:lang="x-topic" text="Philosophische Fakultät / s=Institut" />
           <label xml:lang="de" text="793063 Philosophische Universitätsinstitute und Seminare" />
+          <label xml:lang="x-topic" text="Philosophische Fakultät / Institut" />
         </category>
         <category ID="793070">
           <label xml:lang="x-topic" text="Mathematisch-Naturwissenschaftliche Fakultät" />
@@ -4765,7 +4897,7 @@
         </category>
         <category ID="793083">
           <label xml:lang="de" text="793083 Agrarwissenschaftliche Universitätsinstitute" />
-          <label xml:lang="x-topic" text="Agrarwissenschaftliche Fakultät / s=Institut" />
+          <label xml:lang="x-topic" text="Agrarwissenschaftliche Fakultät / Institut" />
         </category>
         <category ID="793090">
           <label xml:lang="de" text="793090 Technische Fakultät" />
@@ -4787,19 +4919,21 @@
           <label xml:lang="x-topic" text="Universitätsgeschichte (Lübeck)" />
         </category>
         <category ID="793240">
-          <label xml:lang="x-topic" text="Medizinische Universität / s=Institut" />
+          <label xml:lang="x-topic" text="Medizinische Universität / Institut" />
           <label xml:lang="de" text="793240 Medizinische Universitätsinstitute (Lübeck)" description="Anmerkung zu 793053 gilt hier sinngemäß" />
         </category>
         <category ID="793260">
-          <label xml:lang="x-topic" text="Medizinisch-technische Forschung (Lübeck)" />
           <label xml:lang="de" text="793260 Medizinisch-technische Forschung" />
+          <label xml:lang="x-topic" text="Medizinisch-technische Forschung (Lübeck)" />
         </category>
       </category>
       <category ID="793500">
+        <label xml:lang="x-topic" text="Musikhochschule Lübeck" />
         <label xml:lang="de" text="793500 Musikhochschule Lübeck" description="Hier nur Literatur zur Hochschule. Musik-Literatur zum Sachgebiet -&gt; 82...." />
       </category>
       <category ID="793700">
         <label xml:lang="de" text="793700 Privatuniversität" />
+        <label xml:lang="x-topic" text="Privatuniversität" />
       </category>
       <category ID="794000">
         <label xml:lang="de" text="794000 Pädagogische Hochschulen" />
@@ -4849,18 +4983,22 @@
       </category>
       <category ID="797000">
         <label xml:lang="de" text="797000 Außeruniversitäre Forschungsstellen" description="Behördliche Forschungsstellen zum Sachgebiet. Hier nur Literatur, die sich mit der Forschungsstelle als solcher befaßt. Die Ergebnisse der Tätigkeit ebenfalls zum Sachgebiet" />
+        <label xml:lang="x-topic" text="Forschungsstelle" />
       </category>
       <category ID="799000">
+        <label xml:lang="x-topic" text="Stiftung der Wissenschaftsförderung" />
         <label xml:lang="de" text="799000 Stiftungen der Wissenschaftsförderung" />
       </category>
       <category ID="799200">
         <label xml:lang="de" text="799200 Wissenschaftliche Vereinigungen" description="ASW: o / Vereinsname - (bei lediglich lokaler Bedeutung) oder: Vereinsname (Ort) - (bei überregionaler Bedeutung); Geschichtsvereine -&gt; 241400; Literarische Gesellschaften -&gt; 763020; Literatur über die Tätigkeit der Vereinigungen zum Sachgebiet" />
+        <label xml:lang="x-topic" text="Wissenschaftliche Vereinigung" />
       </category>
     </category>
     <category ID="800000">
       <label xml:lang="de" text="800000 Darstellende Kunst" />
       <category ID="801000">
         <label xml:lang="de" text="801000 Allgemeines" />
+        <label xml:lang="x-topic" text="Darstellende Kunst" />
       </category>
       <category ID="803000">
         <label xml:lang="de" text="803000 Theater" description="Einzelne Theater: n (vorwiegend dann 803022); mit ASW: o / Theatername. Nur bei überörtlicher Bedeutung bzw. ortsübergreifende Literatur zu r oder p dann einzelne Theater -&gt; 803025 mit g: o / Theatername; bzw. -&gt; 803035 bis 803040" />
@@ -4921,16 +5059,16 @@
           <label xml:lang="x-topic" text="Jugendtheater" />
         </category>
         <category ID="803070">
-          <label xml:lang="x-topic" text="Kabarett" />
           <label xml:lang="de" text="803070 Kabarett" />
+          <label xml:lang="x-topic" text="Kabarett" />
         </category>
         <category ID="803080">
           <label xml:lang="x-topic" text="Kleinkunst" />
           <label xml:lang="de" text="803080 Kleinkunst" />
         </category>
         <category ID="803082">
-          <label xml:lang="de" text="803082 Puppentheater" />
           <label xml:lang="x-topic" text="Puppentheater" />
+          <label xml:lang="de" text="803082 Puppentheater" />
         </category>
       </category>
       <category ID="805000">
@@ -4960,52 +5098,67 @@
     <category ID="820000">
       <label xml:lang="de" text="820000 Musik" />
       <category ID="821000">
+        <label xml:lang="x-topic" text="Musik" />
         <label xml:lang="de" text="821000 Allgemeines" />
       </category>
       <category ID="821500">
         <label xml:lang="de" text="821500 Musikwissenschaft" />
+        <label xml:lang="x-topic" text="Musikwissenschaft" />
       </category>
       <category ID="822000">
+        <label xml:lang="x-topic" text="Musikgeschichte" />
         <label xml:lang="de" text="822000 Musikgeschichte" />
       </category>
       <category ID="823000">
         <label xml:lang="de" text="823000 Musikveranstaltungen" description="Schleswig-Holsteinisches Musikfestival: r; Einzelveranstaltung des Musikfestivals: p; Örtliche Musikveranstaltungen an überörtliche anschließen mit Ort als g, falls p" />
+        <label xml:lang="x-topic" text="Musikveranstaltung" />
       </category>
       <category ID="824000">
         <label xml:lang="de" text="824000 Kirchenmusik" description="Hier auch Glockenspiel mit ASW" />
+        <label xml:lang="x-topic" text="Kirchenmusik" />
       </category>
       <category ID="824200">
+        <label xml:lang="x-topic" text="Orgel" />
         <label xml:lang="de" text="824200 Orgelbau und Orgelmusik" description="Aufführungen von Orgelmusik -&gt; 824000 bzw. 823000 (dort mit ASW: Orgelmusik)" />
       </category>
       <category ID="825000">
+        <label xml:lang="x-topic" text="Orchester" />
         <label xml:lang="de" text="825000 Orchester und Chöre" />
       </category>
       <category ID="826000">
+        <label xml:lang="x-topic" text="Musikinstrument" />
         <label xml:lang="de" text="826000 Musikinstrumente" />
       </category>
       <category ID="827000">
+        <label xml:lang="x-topic" text="Laienmusik" />
         <label xml:lang="de" text="827000 Laienmusik" />
       </category>
       <category ID="829000">
         <label xml:lang="de" text="829000 Musiker und Komponisten" />
+        <label xml:lang="x-topic" text="Musiker" />
       </category>
     </category>
     <category ID="840000">
       <label xml:lang="de" text="840000 Bildende Kunst" description="Volkstümliche Kunst s. 7082.." />
       <category ID="841000">
         <label xml:lang="de" text="841000 Allgemeines" />
+        <label xml:lang="x-topic" text="Bildende Kunst" />
       </category>
       <category ID="841200">
         <label xml:lang="de" text="841200 Kunstwissenschaft" />
+        <label xml:lang="x-topic" text="Kunstwissenschaft" />
       </category>
       <category ID="841300">
+        <label xml:lang="x-topic" text="Kunstgeschichte" />
         <label xml:lang="de" text="841300 Kunstgeschichte" />
       </category>
       <category ID="841500">
         <label xml:lang="de" text="841500 Kunstmuseum" description="Hier nur Literatur über die Museen oder ihre Bestände. Werke einzelner Künstler unter diese (Formstelle 16, 19 oder 46), anonyme Kunstwerke unter Malerei, Plastik usw., jeweils mit ASW: o / Museum; bei überregional bedeutenden Museen auch: Museum (Ort). Museen, die das Werk eines Künstlers sammeln, unter diesen (z.B. Seebüll)" />
+        <label xml:lang="x-topic" text="Kunstmuseum" />
       </category>
       <category ID="841700">
         <label xml:lang="de" text="841700 Kunstausstellung" description="Hier nur Ausstellungen mehrerer Kunstgattungen oder allgemeine Literatur über Kunstausstellungen. GGf. ASW: Name der Ausstellung. Ausstellungen bestimmter Künster (Formstelle 46) unter diese. Ausstellungen bestimmter Kunstgattungen unter Malerei, Plastik usw. Name der ausstellenden Institution in der Regel als ASW" />
+        <label xml:lang="x-topic" text="Kunstausstellung" />
       </category>
       <category ID="842000">
         <label xml:lang="de" text="842000 Architektur" description="Hier nur architektonische, gestalterische, künstlerischeAspekte solcher Bauten, die nicht unter &quot;Bau- undKunstdenkmäler&quot; fallen.Aber:    Bau- u. Bodenrecht  584020Baudenkmäler        8422..Baugewerbe          545030Denkmalschutz       842400Siedlung (Funktion) 57....Stadtplanung        584030Stadtsanierung      584030" />
@@ -5098,10 +5251,12 @@
         </category>
       </category>
       <category ID="842400">
+        <label xml:lang="x-topic" text="Denkmalschutz" />
         <label xml:lang="de" text="842400 Denkmalschutz" description="Hier nur Allgemeines. Einzelne Objekte des Denkmalschutzes -&gt; 8422..; s.a. 574054 und 5742.., ggf. mit ASW: Denkmalschutz / o" />
       </category>
       <category ID="843000">
         <label xml:lang="de" text="843000 Stadtbaukunst" description="Hier nur Literatur über historische Stadtbaukunst. Moderne Stadtgestaltung: -&gt; 8420..; Stadtsanierung -&gt; 584030" />
+        <label xml:lang="x-topic" text="Stadtbaukunst" />
       </category>
       <category ID="844200">
         <label xml:lang="de" text="844200 Plastik" />
@@ -5146,6 +5301,7 @@
         </category>
       </category>
       <category ID="845300">
+        <label xml:lang="x-topic" text="Photographie" />
         <label xml:lang="de" text="845300 Photographie und Photographen" description="Hier nur Literatur über Photographie und einzelne Photographen (diese mit Namens-SW und ASW: Photographie [Biographie / Photograph]). Die einzelnen photographischen Werke zum Sachgebiet (dort in der Regel mit ASW: Bildband / s ) dann ggf. auch ASW: Photographie, wenn es sich offensichtlich um Kunstwerke handelt, oder Zweiteintragung hier mit Namens-SW" />
       </category>
       <category ID="848000">
@@ -5241,8 +5397,8 @@
           <label xml:lang="x-topic" text="Firmenarchiv" />
         </category>
         <category ID="852090">
-          <label xml:lang="x-topic" text="Familienarchiv" />
           <label xml:lang="de" text="852090 Familienarchive" />
+          <label xml:lang="x-topic" text="Familienarchiv" />
         </category>
       </category>
       <category ID="854000">
@@ -5413,17 +5569,21 @@
       </category>
       <category ID="884000">
         <label xml:lang="de" text="884000 Dokumentationswesen" />
+        <label xml:lang="x-topic" text="Dokumentationswesen" />
       </category>
     </category>
     <category ID="990000">
       <label xml:lang="de" text="990000 Biographien" />
       <category ID="990100">
         <label xml:lang="de" text="990100 Allgemeines" />
+        <label xml:lang="x-topic" text="Biographie" />
       </category>
       <category ID="991000">
         <label xml:lang="de" text="991000 Biographiensammlungen" />
+        <label xml:lang="x-topic" text="Biographiensammlung" />
       </category>
       <category ID="992000">
+        <label xml:lang="x-topic" text="Biographie" />
         <label xml:lang="de" text="992000 Biographien einzelner Persönlichkeiten und Familien" description="Der gliedernde Name wird an der entsprechenden Stelle des Titel (ggf. in eckigen Klammern ergänzt, nicht in Kat. 39!) mit Fettdruck-Steuerzeichen versehen.Das g hat die Form: Name, Vorname 1 Vorname 2 - oder: Name (Familie). Fürstennamen etc. mit Klammerzusatz entspr. RSWK, aber mit runden Klammern. In der Regel r; ggf. mit Orts-(Regionen-)g, wenn die biographierte Person überwiegend an einem Ort gelebt hat bzw. genealogische oder sonstige Bedeutung für den Ort oder die Region hat. Zweiteintragung im Ortsteil sollte möglichst mit anderer Systemstelle (z.B. 240500, 762075 o.dgl.) erfolgen.Hier grundsätzlich die gesamte biographische Literatur über Personen, die auf mehreren Sachgebieten Bedeutung erlangt haben, sowie umfassende Biographien einzelner Persönlichkeiten. Fachgebundenes Schrifttum, das auch biographische Aspekte enthält, zu den einzelnen Sachgebieten mit SVW von Biographie / ... (s.a. die Anmerkungen bei entsprechenden Systemstellen) und ASW: Name. Überall kann die Berufsbezeichnung als ASW vergeben werden.  Wenn einzelne &quot;Personenstellen&quot; vorgesehen sind (z.B. Politiker, Geistlicher, Bildhauer, Maler) grundsätzlich erste Eintragung dort; hier nur Zweiteintragung, wenn es sich um echte Biographien handelt oder das Biographische überwiegt. Dann entfällt hier die Berufsbezeichnung als ASW.Über die weibliche Form bei Berufsbezeichnungen s. einleitende Hinweise." />
       </category>
     </category>
