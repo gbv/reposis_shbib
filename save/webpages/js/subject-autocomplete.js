@@ -48,7 +48,7 @@ var engines2 = {
 				},
 				prepare : function(query, settings) {
 				    
-					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+topic";
+					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+topic+AND+mycoreid:[""+TO+*]";
 					param += "&wt=json&indent=true&rows=1000";
 					
 					settings.url = settings.url.replace("%QUERY", param);
@@ -75,7 +75,7 @@ var engines2 = {
 				},
 				prepare : function(query, settings) {
 				    
-					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+geographic";
+					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+geographic+AND+mycoreid:[""+TO+*]";
 					param += "&wt=json&indent=true&rows=1000";
 					
 					settings.url = settings.url.replace("%QUERY", param);
@@ -102,7 +102,7 @@ var engines2 = {
 				},
 				prepare : function(query, settings) {
 				    
-					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+personal";
+					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+personal+AND+mycoreid:[""+TO+*]";
 					param += "&wt=json&indent=true&rows=1000";
 					
 					settings.url = settings.url.replace("%QUERY", param);
@@ -129,7 +129,7 @@ var engines2 = {
 				},
 				prepare : function(query, settings) {
 				    
-					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+corporate";
+					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+corporate+AND+mycoreid:[""+TO+*]";
 					param += "&wt=json&indent=true&rows=1000";
 					
 					settings.url = settings.url.replace("%QUERY", param);
