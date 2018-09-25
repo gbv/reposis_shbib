@@ -8,12 +8,13 @@
   xmlns:str="http://exslt.org/strings"
   exclude-result-prefixes="i18n xsl str pica" >
   <xsl:param name="parentId" />
+  <xsl:param name="WebApplicationBaseURL" />
 
   <xsl:include href="xslInclude:PPN-mods-simple"/>
   <xsl:include href="copynodes.xsl" />
   
   <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
-  <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
+  <xsl:variable name="picaUrl" select="concat($WebApplicationBaseURL,'unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
   <xsl:variable name="picaXml" select="document($picaUrl)" />
   
   <!-- <xsl:key name="kDatafield" match="$picaXml/pica:record/pica:datafield" use="position()"/>  -->
