@@ -119,7 +119,8 @@
                 </xsl:call-template>
               </xsl:if>
             </xsl:for-each>
-            <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:relatedItem[not(@type='host')]">
+            <!-- <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:relatedItem[not(@type='host')]">  -->
+            <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:relatedItem[not(@type='host' and @xlink:href)]">
               <xsl:choose>
                 <xsl:when test="@xlink:href">
                   <xsl:call-template name="printMetaDate.mods.relatedItems">
