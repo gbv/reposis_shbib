@@ -128,6 +128,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
                 LOGGER.info("Found PPN: " + ppn);
                 try {
                     SolrClient solrClient = MCRSolrClientFactory.getSolrClient();
+                    solrClient.commit();
                     SolrQuery query = new SolrQuery();
                     query.set("q", "mods.identifier:*PPN="+ppn);
                     query.set("waitSearcher", "true");

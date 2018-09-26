@@ -101,20 +101,31 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
     private void addSubject(MCRObject obj) {
     	    	
 		MCRMODSWrapper mcrmodsWrapper = new MCRMODSWrapper(obj);
-        if(mcrmodsWrapper.getMODS()==null){
-            return;
-        }
+        Element mods = new MCRMODSWrapper(obj).getMODS();
+        if(mods==null) return;
         
         for (MCRCategoryID categoryId : mcrmodsWrapper.getMcrCategoryIDs()) {
             MCRCategory category = DAO.getCategory(categoryId, 0);
             if (category == null) continue;
-            LOGGER.info ("Classificationid:"+category.getId());
+            String classID = categoryId.getRootID();
+            LOGGER.info ("Classificationid:"+classID);
+            Element subject = null;
+            Element subject2 = null;
+            for (Element sub : (List<Element>) (mods.getChildren("subject", MCRConstants.MODS_NAMESPACE))) {
+            	String href = sub.getAttributeValue("href", MCRConstants.XLINK_NAMESPACE);
+            	if (classID.equals(href)) {
+            		subject = sub;
+            		subject2 = sub;
+            		break;
+            	}
+    		}
             Optional<MCRLabel> label = category.getLabel("x-topic");
             if (label.isPresent()) {
             	String[] sChains = label.get().getText().split(";");
             	for (String sChain : sChains) {
             		String[] sTopics = sChain.split("/");
-            		Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+            		            		            		
+            		if (subject == null) subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
             		for (String sTopic: sTopics) {
             	        String taskMessage = "add subject: "+category.getId()+" "+sTopic+"";
                         LOGGER.info(taskMessage);
@@ -122,7 +133,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
                         topic.setText(sTopic);
                         subject.addContent(topic);
                     }
-            		mcrmodsWrapper.addElement(subject);
+            		if (subject.getParent() == null) mcrmodsWrapper.addElement(subject);
             	}
             };
             label = category.getLabel("x-geogra");
@@ -130,15 +141,16 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
             	String[] sChains = label.get().getText().split(";");
             	for (String sChain : sChains) {
             		String[] sGeographics = sChain.split("/");
-            		Element subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+            		if (subject2 == null) subject2 = new Element ("subject", MCRConstants.MODS_NAMESPACE);
             		for (String sGeographic: sGeographics) {
             	        String taskMessage = "add subject: "+category.getId()+" "+sGeographic+"";
                         LOGGER.info(taskMessage);
                         Element geographic = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
                         geographic.setText(sGeographic);
-                        subject.setContent(geographic);
+                        subject2.setContent(geographic);
             		}
-                    mcrmodsWrapper.addElement(subject);
+            		
+            		if (subject2.getParent() == null) mcrmodsWrapper.addElement(subject2);
             	}
             };
             
