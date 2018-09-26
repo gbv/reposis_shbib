@@ -19,6 +19,7 @@
   
   <xsl:template match="mods:subject">
     <xsl:copy>
+      <xsl:copy-of select="@*" />
       <xsl:for-each select="./*">
         <mods:mirTopic>
           <xsl:apply-templates select='.'/>
