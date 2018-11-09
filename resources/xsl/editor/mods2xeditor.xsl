@@ -10,6 +10,35 @@
   <xsl:param name="WebApplicationBaseURL" />
   <xsl:param name="MIR.PPN.DatabaseList" select="'gvk'" />
 
+  <!-- shbib specific stuff needed for group sachgruppe with subject -->
+  <xsl:template match="modsSourceContainer[@type='local']/mods:mods">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" />
+      <xsl:apply-templates
+        select="*[not( (local-name()='classification' and contains(@authorityURI,'shbib_sachgruppen')) 
+            or (local-name()='subject' and contains(@xlink:href,'shbib_sachgruppen')) )]" />
+      <xsl:for-each select="mods:classification[contains(@authorityURI,'shbib_sachgruppen')]">
+        <xsl:variable name="position">
+          <xsl:value-of select="position()" />
+        </xsl:variable>
+        <xLinkGroup>
+          <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:apply-templates select="*" />
+          </xsl:copy>
+          <!-- <xsl:apply-templates select="../mods:subject[contains(@xlink:href,concat('%5B',position(),'%5D'))]" /> -->
+          <!-- <xsl:foreach select="../mods:subject">
+            <mods:subject><mods:topic><xsl:value-of select="concat('%5B',position(),'%5D')"/></mods:topic></mods:subject>
+          </xsl:foreach> -->
+          <xsl:variable name="condition">
+            <xsl:value-of select="concat('%5B',position(),'%5D')" />
+          </xsl:variable>
+          <xsl:apply-templates select="../mods:subject[contains(@xlink:href,$condition)]" />
+        </xLinkGroup>
+      </xsl:for-each>
+    </xsl:copy>
+  </xsl:template>
+
   <!-- put value string (after authority URI) in attribute valueURIxEditor -->
   <xsl:template match="@valueURI">
     <xsl:attribute name="valueURIxEditor">
@@ -19,7 +48,7 @@
   
   <xsl:template match="mods:subject">
     <xsl:copy>
-      <xsl:copy-of select="@*" />
+      <!-- <xsl:copy-of select="@*" /> -->
       <xsl:for-each select="./*">
         <mods:mirTopic>
           <xsl:apply-templates select='.'/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mcr="http://www.mycore.org/" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:mods="http://www.loc.gov/mods/v3" xmlns:mcrmods="xalan://org.mycore.mods.classification.MCRMODSClassificationSupport" xmlns:mcrxml="xalan://org.mycore.common.xml.MCRXMLFunctions"
-  xmlns:mcrdataurl="xalan://org.mycore.datamodel.common.MCRDataURL" xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="mcrmods xlink mcr mcrxml mcrdataurl exslt" version="1.0"
+  xmlns:mcrdataurl="xalan://org.mycore.datamodel.common.MCRDataURL" xmlns:exslt="http://exslt.org/common" xmlns:math="http://exslt.org/math" exclude-result-prefixes="mcrmods xlink mcr mcrxml mcrdataurl exslt math" version="1.0"
 >
 
   <xsl:include href="copynodes.xsl" />
@@ -241,6 +241,31 @@
   
   <xsl:template match="mods:mirTopic"> 
     <xsl:apply-templates />
+  </xsl:template>
+  
+  <!-- shbib specific stuff needed for group sachgruppe with subject -->
+  <xsl:template match="modsSourceContainer[@type='local']/mods:mods">
+    <mods:mods>
+      <xsl:for-each select="xLinkGroup">
+        <xsl:variable name="position">
+          <xsl:value-of select="position()" />
+        </xsl:variable>
+        <xsl:variable name="apostrophe">'</xsl:variable>
+        <xsl:apply-templates select="mods:classification" />
+        <xsl:for-each select="mods:subject">
+          <xsl:copy>
+            <xsl:attribute name="xlink:href" namespace="http://www.w3.org/1999/xlink">
+              <xsl:value-of select="concat('xpointer(//mods:mods/mods:classification%5B@authorityURI=',$apostrophe,'http://www.mycore.org/classifications/shbib_sachgruppen',$apostrophe,'%5D%5B',$position,'%5D)')" />
+            </xsl:attribute>
+            <xsl:attribute name="xlink:type" namespace="http://www.w3.org/1999/xlink">
+              <xsl:value-of select="'simple'" />
+            </xsl:attribute>
+            <xsl:apply-templates select='@*|node()' />
+          </xsl:copy>
+        </xsl:for-each>
+      </xsl:for-each>
+      <xsl:apply-templates select="*[not(name()='xLinkGroup')]"/>
+    </mods:mods>
   </xsl:template>
 
 </xsl:stylesheet>

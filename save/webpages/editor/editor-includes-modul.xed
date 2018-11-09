@@ -3,10 +3,8 @@
 <xed:template xmlns:xed="http://www.mycore.de/xeditor" xmlns:mir="http://www.mycore.de/mir">
   
   <xed:template id="sachgruppe">
-    <!-- <xed:load-resource name="shbib_sachgruppen" uri="classification:metadata:-1:children:shbib_sachgruppen" />
-    <xed:repeat xpath="mods:classification[@authorityURI=$shbib_sachgruppen/label[@xml:lang='x-uri']/@text]" min="1" max="10">
-    -->
-    <xed:repeat xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen']" min="1" max="10">
+    
+    <xed:repeat xpath="xLinkGroup" min="1" max="10">
       <fieldset>
         <div class="row mir-fieldset-legend">
           <legend class="col-md-9" style="margin-bottom:0px;padding-top:10px;">
@@ -20,15 +18,18 @@
               Sachgruppe:
             </label>
             <div class="col-md-6">
-              <xed:bind xpath="@displayLabel" set="shbib_sachgruppen" />
-              <xed:bind xpath="@valueURIxEditor">
-                <select class="form-control form-control-inline">
-                  <xed:include uri="xslStyle:items2options_nsp:classification:editor:-1:children:shbib_sachgruppen" />
-                </select>
-              </xed:bind>  
+              <!-- <xed:bind xpath="@xlink:resource" set="shbib_sachgruppen-{xed:generate-id()}" /> -->
+              <xed:bind xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen']">
+                <xed:bind xpath="@displayLabel" set="shbib_sachgruppen" />
+                <xed:bind xpath="@valueURIxEditor">
+                  <select class="form-control form-control-inline">
+                    <xed:include uri="xslStyle:items2options_nsp:classification:editor:-1:children:shbib_sachgruppen" />
+                  </select>
+                </xed:bind> 
+              </xed:bind> 
             </div>
           </div>
-          <xed:bind xpath="../mods:subject[@xlink:href='shbib_sachgruppen']">
+          <xed:bind xpath="mods:subject">
             <xed:repeat xpath="mods:mirTopic" min="1" max="4">
               <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes-modul.xed" ref="subject.complex.topic3" />
             </xed:repeat>
@@ -211,7 +212,7 @@
   </xed:template>
   
   <xed:template id="subject.complex3">
-    <xed:repeat xpath="mods:subject[not(@xlink:href)]" min="4" max="30">
+    <xed:repeat xpath="mods:subject" min="4" max="30">
       <fieldset>
         <div class="row mir-fieldset-legend">
           <legend class="col-md-9" style="margin-bottom:0px;padding-top:10px;">
