@@ -24,6 +24,7 @@
 package org.mycore.mods;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
@@ -97,6 +98,38 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
     
     private static final MCRCategoryDAO DAO = MCRCategoryDAOFactory.getInstance();
 
+    private List<Element> createSubjects (String labelType, String labelValue, List<Element> oldSubjects) {
+    	
+    	List<Element> newSubjects = new ArrayList<Element>();
+    	
+    	String[] sChains = labelValue.split(";");
+    	
+    	for (String sChain : sChains) {
+    		for (Element oldSubject : oldSubjects) {
+            	
+            	//Element newSubject = oldSubject.clone();
+            	Element newSubject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
+            	newSubject.addContent(oldSubject.cloneContent() );
+            	
+            	String[] sChainElements = sChain.split("/");
+        		for (String sChainElement: sChainElements) {
+        	        String taskMessage = "add subjectChild:  "+sChainElement+"";
+                    LOGGER.info(taskMessage);
+                    Element subjectChild = null;
+                    if (labelType.equals("x-topic")) {
+                    	subjectChild = new Element ("topic", MCRConstants.MODS_NAMESPACE);
+                    }
+                    if (labelType.equals("x-geogra")) {
+                    	subjectChild = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
+                    }
+                    subjectChild.setText(sChainElement);
+                    newSubject.addContent(subjectChild);
+                }
+        		newSubjects.add(newSubject);
+    		}
+    	}
+    	return newSubjects;
+    }
     
     private void addSubject(MCRObject obj) {
     	    	
@@ -104,57 +137,57 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
         Element mods = new MCRMODSWrapper(obj).getMODS();
         if(mods==null) return;
         
+        int countShbibSachgruppen = 0;
+        
         for (MCRCategoryID categoryId : mcrmodsWrapper.getMcrCategoryIDs()) {
             MCRCategory category = DAO.getCategory(categoryId, 0);
             if (category == null) continue;
             String classID = categoryId.getRootID();
             LOGGER.info ("Classificationid:"+classID);
-            Element subject = null;
-            Element subject2 = null;
-            for (Element sub : (List<Element>) (mods.getChildren("subject", MCRConstants.MODS_NAMESPACE))) {
-            	String href = sub.getAttributeValue("href", MCRConstants.XLINK_NAMESPACE);
-            	if (classID.equals(href)) {
-            		subject = sub;
-            		subject2 = sub;
-            		break;
-            	}
-    		}
+            
+            List<Element> oldSubjects = new ArrayList<Element>();
+            
+            if (classID.equals("shbib_sachgruppen")) {
+            	countShbibSachgruppen++;
+            	String xpoint = "xpointer(//mods:mods/mods:classification%5B@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen'%5D%5B"+countShbibSachgruppen+"%5D)";
+                for (Element sub : (List<Element>) (mods.getChildren("subject", MCRConstants.MODS_NAMESPACE))) {
+                    String href = sub.getAttributeValue("href", MCRConstants.XLINK_NAMESPACE);
+                   	if (xpoint.equals(href)) {
+                   	    oldSubjects.add(sub);
+                    }
+                }
+            } else {
+            	continue;
+            }
+            
             Optional<MCRLabel> label = category.getLabel("x-topic");
             if (label.isPresent()) {
-            	String[] sChains = label.get().getText().split(";");
-            	for (String sChain : sChains) {
-            		String[] sTopics = sChain.split("/");
-            		            		            		
-            		if (subject == null) subject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
-            		for (String sTopic: sTopics) {
-            	        String taskMessage = "add subject: "+category.getId()+" "+sTopic+"";
-                        LOGGER.info(taskMessage);
-                        Element topic = new Element ("topic", MCRConstants.MODS_NAMESPACE);
-                        topic.setText(sTopic);
-                        subject.addContent(topic);
-                    }
-            		if (subject.getParent() == null) mcrmodsWrapper.addElement(subject);
-            	}
-            };
+            	List<Element> newTopicSubjects;
+            	newTopicSubjects=createSubjects("x-topic",label.get().getText(),oldSubjects);
+            	for (Element newTopicSubject : newTopicSubjects) {
+            		//LOGGER.info ("addTopic:"+newTopicSubject);
+            		//newTopicSubject
+                	mods.addContent(newTopicSubject);
+                }
+            }
+            
             label = category.getLabel("x-geogra");
             if (label.isPresent()) {
-            	String[] sChains = label.get().getText().split(";");
-            	for (String sChain : sChains) {
-            		String[] sGeographics = sChain.split("/");
-            		if (subject2 == null) subject2 = new Element ("subject", MCRConstants.MODS_NAMESPACE);
-            		for (String sGeographic: sGeographics) {
-            	        String taskMessage = "add subject: "+category.getId()+" "+sGeographic+"";
-                        LOGGER.info(taskMessage);
-                        Element geographic = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
-                        geographic.setText(sGeographic);
-                        subject2.setContent(geographic);
-            		}
-            		
-            		if (subject2.getParent() == null) mcrmodsWrapper.addElement(subject2);
-            	}
-            };
+            	List<Element> newGeograficSubjects;
+            	newGeograficSubjects=createSubjects("x-geogra",label.get().getText(),oldSubjects);
+            	for (Element newGeograficSubject : newGeograficSubjects) {
+                	mods.addContent(newGeograficSubject);
+                }
+            }
+            
+            for (Element oldSubject : oldSubjects) {
+            	LOGGER.info ("remove Subject:"+oldSubject);
+            	mods.removeContent(oldSubject);
+            }
             
         }
+        
+        mcrmodsWrapper.setMODS(mods);
 	}
     
 }
