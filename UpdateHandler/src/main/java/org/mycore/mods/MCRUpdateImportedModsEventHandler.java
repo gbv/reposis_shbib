@@ -96,13 +96,7 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
 	    	
 			for (Element elm : metadata.getChildren()) {
                 String s = outp.outputString(elm);
-                LOGGER.info("geladenes xml - suche uri:"+s);
-                /*for(Element oneLevelDeep : elm.getChildren()) {
-                	LOGGER.info("children:"+outp.outputString(oneLevelDeep));
-                }*/
-                if (elm.getName() =="mods"){
-                	mods=elm;
-                }
+                LOGGER.info("Verarbeite - suche uri:"+s);
                 if (elm.getName() =="sourceuri"){
                 	LOGGER.info("found source:"+elm.getText());
                 	String uri="xslStyle:PPN-mods-ndsbib,mycoreobject-migrate-nameIdentifier:"+elm.getText();
@@ -110,16 +104,24 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
                 	LOGGER.info("received xml from source: "+outp.outputString(importedMods));
                 };
             }
-			if (mods == null) {
-				mods= new Element ("mods","mods","http://www.loc.gov/mods/v3");
-				metadata.addContent(mods);
-			} 
+			
 			if (importedMods != null) {	
-				mods.removeContent();
+				/*for (Element elm : metadata.getChildren()) {
+					LOGGER.info("name to remove:"+elm.getName());
+	                if (elm.getName() =="mods"){
+	                	metadata.removeContent(elm);
+	                	LOGGER.info("remove mods");
+	                }
+				}*/
+				metadata.removeChildren("mods",MCRConstants.MODS_NAMESPACE);
+				mods= new Element ("mods","mods","http://www.loc.gov/mods/v3");
 				mods.addContent(importedMods.cloneContent());
+				metadata.addContent(mods);
+				mx.setFromDOM(metadata);
+				LOGGER.info("Ergebnissxml: "+outp.outputString(metadata));
+			} else {
+				LOGGER.info("no mods to import");
 			}
-			LOGGER.info("Ergebnissmods: "+outp.outputString(mods));
-			mx.setFromDOM(metadata);
 		}
 	}
     
