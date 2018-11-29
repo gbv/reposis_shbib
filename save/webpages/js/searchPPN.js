@@ -116,7 +116,6 @@ function loadFromUNAPI(ppn) {
 		dataType: "xml"
 	}) .done(function( xml ) {
 		mods2Preview(xml);
-		$('#sourceuri').val('http://unapi.gbv.de/?format=mods36&id=gvk:ppn:'+ppn);
 	}) .fail(function( jqXHR, ajaxOptions, thrownError ) {
 		if(jqXHR.status==404) {
 		    var html='<div style="text-align:center;color:red;" >'+jqXHR.responseText+'</div>';
@@ -130,6 +129,7 @@ function loadFromUNAPI(ppn) {
 function checkPPNValue() {
 	ppn = $('#PPN').val();
 	mycoreid = $("input[name='id']").val();
+	$('#sourceuri').val('http://unapi.gbv.de/?format=mods36&id=gvk:ppn:'+ppn);
 	if (isPPN (ppn)) {
 		
 		$('#PPNPreview').html('<div style="text-align:center;color:gray;" ><i class="fa fa-spinner" aria-hidden="true"></i> <br/> PPN wird geladen </div>');
