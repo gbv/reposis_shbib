@@ -105,28 +105,28 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
     	String[] sChains = labelValue.split(";");
     	
     	for (String sChain : sChains) {
+    		Element newSubject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
     		for (Element oldSubject : oldSubjects) {
             	
             	//Element newSubject = oldSubject.clone();
-            	Element newSubject = new Element ("subject", MCRConstants.MODS_NAMESPACE);
-            	newSubject.addContent(oldSubject.cloneContent() );
             	
-            	String[] sChainElements = sChain.split("/");
-        		for (String sChainElement: sChainElements) {
-        	        String taskMessage = "add subjectChild:  "+sChainElement+"";
-                    LOGGER.info(taskMessage);
-                    Element subjectChild = null;
-                    if (labelType.equals("x-topic")) {
-                    	subjectChild = new Element ("topic", MCRConstants.MODS_NAMESPACE);
-                    }
-                    if (labelType.equals("x-geogra")) {
-                    	subjectChild = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
-                    }
-                    subjectChild.setText(sChainElement);
-                    newSubject.addContent(subjectChild);
+            	newSubject.addContent(oldSubject.cloneContent() );
+            }
+    		String[] sChainElements = sChain.split("/");
+    		for (String sChainElement: sChainElements) {
+    	        String taskMessage = "add subjectChild:  "+sChainElement+"";
+                LOGGER.info(taskMessage);
+                Element subjectChild = null;
+                if (labelType.equals("x-topic")) {
+                	subjectChild = new Element ("topic", MCRConstants.MODS_NAMESPACE);
                 }
-        		newSubjects.add(newSubject);
-    		}
+                if (labelType.equals("x-geogra")) {
+                	subjectChild = new Element ("geographic", MCRConstants.MODS_NAMESPACE);
+                }
+                subjectChild.setText(sChainElement);
+                newSubject.addContent(subjectChild);
+            }
+    		newSubjects.add(newSubject);
     	}
     	return newSubjects;
     }
