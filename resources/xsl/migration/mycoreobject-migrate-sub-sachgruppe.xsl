@@ -11,7 +11,8 @@
    
   <xsl:template match="modsSourceContainer[@type='local']/mods:mods/mods:subject[@xlink:href='shbib_sachgruppen']">
     <mods:subject xlink:href="xpointer(//mods:mods/mods:classification%5B@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen'%5D%5B1%5D)" xlink:type="simple">
-      <mods:topic><xsl:value-of select="."></xsl:value-of></mods:topic>
+      <!-- <mods:topic><xsl:value-of select="."></xsl:value-of></mods:topic> -->
+      <xsl:apply-templates/>
     </mods:subject>
   </xsl:template>
   
