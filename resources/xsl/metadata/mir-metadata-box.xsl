@@ -7,7 +7,7 @@
   <xsl:include href="modsmetadata.xsl" />
   <!-- copied from http://www.loc.gov/standards/mods/v3/MODS3-4_HTML_XSLT1-0.xsl -->
 
-  <xsl:key use="@type" name="title-by-type" match="//mods:mods/mods:titleInfo" />
+  <xsl:key use="@type" name="title-by-type" match="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:titleInfo" />
 
   <xsl:template match="/">
     <xsl:variable name="mods" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods" />
