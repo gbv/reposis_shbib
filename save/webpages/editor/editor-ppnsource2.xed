@@ -49,6 +49,13 @@
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="date.range.extended.datetimepicker" />
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="place" />
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="publisher" />
+          <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="shelfmark" />
+          <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="identifier.repeated" />
+          <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="link.repeated" />
+          <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="extent" />
+          <xed:bind xpath="mods:relatedItem[not(@type='isReferencedBy')]">
+            <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="host.pages" />
+          </xed:bind>
           
           
           <fieldset>
