@@ -447,7 +447,7 @@
                         <xsl:value-of select="i18n:translate('object.editObject')" />
                       </a>
                     </li>
-                    <xsl:if test="string-length($adminEditURL) &gt; 0">
+                    <xsl:if test="string-length($adminEditURL) &gt; 0 and not(//modsSourceContainer[@type='remotesource'])">
                       <li>
                         <a href="{$adminEditURL}&amp;id={$id}">
                           <xsl:value-of select="i18n:translate('mir.admineditor')" />
