@@ -6,7 +6,7 @@
   <section xml:lang="all">
 
   <xed:form xmlns:xed="http://www.mycore.de/xeditor" xmlns:cmd="http://www.cdlib.org/inside/diglib/copyrightMD" method="post" role="form" class="form-horizontal" id="dynamic_editor">
-    <xed:source uri="xslStyle:mycoreobject-editor,editor/mods2xeditor:mcrobject:{$id}" />
+    <xed:source uri="xslStyle:mycoreobject-editor,editor/mods2xeditor2:mcrobject:{$id}" />
     <xed:post-processor xsl="editor/xeditor2mods.xsl" />
     
     <xed:bind xpath="/mycoreobject">
@@ -45,9 +45,11 @@
           <xed:include uri="webapp:editor/editor-includes.xed" ref="failed-validation-messages" />
         
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="title.complex.repeated" />
+          <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="name.extended.repeated" />
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="date.range.extended.datetimepicker" />
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="place" />
           <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="publisher" />
+          
           
           <fieldset>
             
