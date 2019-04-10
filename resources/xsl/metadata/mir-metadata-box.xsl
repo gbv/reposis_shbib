@@ -286,7 +286,10 @@
                 </td>
               </tr>
             </xsl:for-each>
-            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:classification[not(@generator)]" />
+            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen']" >
+              <xsl:with-param name="printParents" select="'true'" />
+            </xsl:apply-templates>
+            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:classification[not(@generator) and not (@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen')]" />
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:part/mods:extent" />
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:location/mods:url" />
             <xsl:call-template name="printMetaDate.mods">

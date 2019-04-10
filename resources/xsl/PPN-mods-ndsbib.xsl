@@ -192,8 +192,9 @@
   
   <xsl:template match="mods:languageTerm[@authority='iso639-2b']">
     <xsl:variable name="languages" select="document('classification:metadata:-1:children:rfc4646')" />
+    <xsl:variable name="biblCode" select="." />
     <xsl:variable name="rfcCode">
-      <xsl:value-of select="$languages//category[contains(label[@xml:lang='x-bibl']/@text, .)]/@ID" />
+      <xsl:value-of select="$languages//category[label[@xml:lang='x-bibl']/@text = $biblCode]/@ID" />
     </xsl:variable>
     <mods:languageTerm authority="rfc4646" type="code">
       <xsl:value-of select="$rfcCode"/>    

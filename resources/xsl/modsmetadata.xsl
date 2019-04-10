@@ -205,10 +205,25 @@
   </xsl:template>
 
   <xsl:template match="*" mode="printModsClassInfo">
-    <xsl:variable name="classlink" select="mcrmods:getClassCategLink(.)" />
+    <xsl:param name="printParents" select="'false'"/>
+    <xsl:variable name="classChildLink" select="mcrmods:getClassCategLink(.)" />
+    <xsl:variable name="classParentLink" select="mcrmods:getClassCategParentLink(.)" />
+    <xsl:variable name="classlink">
+      <xsl:choose> 
+        <xsl:when test="$printParents='true'">
+          <xsl:value-of select="$classParentLink"/>  
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$classChildLink"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="string-length($classlink) &gt; 0">
-        <xsl:for-each select="document($classlink)/mycoreclass/categories/category">
+        <xsl:for-each select="document($classlink)//category">
+          <xsl:if test="position()!=1">
+            <br />
+          </xsl:if>
           <xsl:apply-templates select="." mode="printModsClassInfo" />
         </xsl:for-each>
       </xsl:when>
@@ -741,6 +756,7 @@
   </xsl:template>
 
   <xsl:template match="mods:classification" mode="present">
+    <xsl:param name="printParents" select="'false'"/>
     <tr>
       <td valign="top" class="metaname">
         <xsl:choose>
@@ -759,7 +775,9 @@
         </xsl:choose>
       </td>
       <td class="metavalue">
-        <xsl:apply-templates select="." mode="printModsClassInfo" />
+        <xsl:apply-templates select="." mode="printModsClassInfo" >
+          <xsl:with-param name="printParents" select="$printParents" />
+        </xsl:apply-templates>
       </td>
     </tr>
   </xsl:template>
