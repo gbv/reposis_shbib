@@ -42,8 +42,8 @@
   <!-- put value string (after authority URI) in attribute valueURIxEditor -->
   <xsl:template match="@valueURI">
     <xsl:attribute name="valueURIxEditor">
-          <xsl:value-of select="substring-after(.,'#')" />
-        </xsl:attribute>
+      <xsl:value-of select="substring-after(.,'#')" />
+    </xsl:attribute>
   </xsl:template>
   
   <xsl:template match="mods:subject">
@@ -56,6 +56,12 @@
       </xsl:for-each>
     </xsl:copy>
   </xsl:template>
+  
+  <xsl:template match="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_zeitschluessel' or @authorityURI='http://www.mycore.org/classifications/shbib_formschluessel']">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()" />
+    </xsl:copy>
+  </xsl:template>
 
   <xsl:template match="mods:topic/@valueURI">
     <xsl:attribute name="valueURIxEditor">
@@ -63,7 +69,7 @@
     </xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="mods:titleInfo|mods:name|mods:typeOfResource|mods:language|mods:extension|mods:originInfo|mods:accessCondition|mods:genre|mods:relatedItem|mods:classification|mods:extent">
+  <xsl:template match="mods:mods/mods:titleInfo|mods:mods/mods:name|mods:mods/mods:typeOfResource|mods:mods/mods:language|mods:mods/mods:extension|mods:mods/mods:originInfo|mods:mods/mods:accessCondition|mods:mods/mods:genre|mods:mods/mods:relatedItem|mods:classification|mods:mods/mods:extent">
     
   </xsl:template>
 
@@ -72,6 +78,12 @@
       <xsl:apply-templates select="@*" />
       <xsl:apply-templates/>
     </xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="mods:topic[not(@authority)]">
+    <mods:topicSimple>
+      <xsl:value-of select="."/>
+    </mods:topicSimple>
   </xsl:template>
 
 
