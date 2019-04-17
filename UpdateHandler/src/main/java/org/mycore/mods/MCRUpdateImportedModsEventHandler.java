@@ -42,8 +42,11 @@ import org.mycore.datamodel.metadata.MCRObjectID;
 import org.mycore.mods.MCRMODSWrapper;
 
 import org.mycore.common.xml.MCRURIResolver;
+import org.mycore.datamodel.common.MCRISO8601Date;
 import org.mycore.datamodel.metadata.MCRMetaElement;
 import org.mycore.datamodel.metadata.MCRMetaXML;
+
+
 
 
 /**
@@ -94,34 +97,48 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
 			Element mods = null;
 	    	Element importedMods = null;
 	    	
-			for (Element elm : metadata.getChildren()) {
-                String s = outp.outputString(elm);
-                LOGGER.info("Verarbeite - suche uri:"+s);
-                if (elm.getName() =="sourceuri"){
-                	LOGGER.info("found source:"+elm.getText());
-                	String uri="xslStyle:PPN-mods-ndsbib,mycoreobject-migrate-nameIdentifier:"+elm.getText();
-                	importedMods = MCRURIResolver.instance().resolve(uri);
-                	LOGGER.info("received xml from source: "+outp.outputString(importedMods));
-                };
-            }
-			
-			if (importedMods != null) {	
-				/*for (Element elm : metadata.getChildren()) {
-					LOGGER.info("name to remove:"+elm.getName());
-	                if (elm.getName() =="mods"){
-	                	metadata.removeContent(elm);
-	                	LOGGER.info("remove mods");
-	                }
-				}*/
-				metadata.removeChildren("mods",MCRConstants.MODS_NAMESPACE);
-				mods= new Element ("mods","mods","http://www.loc.gov/mods/v3");
-				mods.addContent(importedMods.cloneContent());
-				metadata.addContent(mods);
-				mx.setFromDOM(metadata);
-				LOGGER.info("Ergebnissxml: "+outp.outputString(metadata));
-			} else {
-				LOGGER.info("no mods to import");
+			try {
+			    for (Element elm : metadata.getChildren()) {
+			        String s = outp.outputString(elm);
+			        LOGGER.info("Verarbeite - suche uri:"+s);
+			        if (elm.getName() == "sourceuri" ) {
+			            LOGGER.info("found source:"+elm.getText());
+			            String uri="xslStyle:PPN-mods-ndsbib,mycoreobject-migrate-nameIdentifier:"+elm.getText();
+			            LOGGER.info("receive xml from source:"+uri);
+			            importedMods = MCRURIResolver.instance().resolve(uri);
+			            LOGGER.debug("received xml from source: "+outp.outputString(importedMods));
+                    };
+			    }
+			    
+			    if (importedMods != null) {	
+					metadata.removeChildren("mods",MCRConstants.MODS_NAMESPACE);
+					mods= new Element ("mods","mods","http://www.loc.gov/mods/v3");
+					mods.addContent(importedMods.cloneContent());
+					metadata.addContent(mods);
+					metadata.removeChildren("orphaned");
+					metadata.removeChildren("updated");
+					Element orphaned = new Element ("orphaned");
+					orphaned.addContent("false");
+					Element updated = new Element ("updated");
+					updated.addContent(MCRISO8601Date.now().getISOString());
+					metadata.addContent(orphaned);
+					metadata.addContent(updated);
+					mx.setFromDOM(metadata);
+					LOGGER.debug("Ergebnissxml: "+outp.outputString(metadata));
+				} else {
+					LOGGER.info("no mods to import");
+				}
+			    
+			} catch (MCRException e) {
+	            LOGGER.info("Error while getting mods from source. set sourceContainer orphaned", e);
+                metadata.removeChildren("orphaned");
+                Element orphaned = new Element ("orphaned");
+                orphaned.addContent("true");
+                metadata.addContent(orphaned);
+                mx.setFromDOM(metadata);
 			}
+			
+			
 		}
 	}
     

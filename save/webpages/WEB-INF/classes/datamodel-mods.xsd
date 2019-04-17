@@ -60,6 +60,8 @@
         <xs:element ref="mods:mods" minOccurs="0"/>
         <xs:element name="sourceuri" type="xs:string" minOccurs="0"/>
         <xs:element name="sourceid" type="xs:string" minOccurs="0"/>
+        <xs:element name="orphaned" type="xs:boolean" minOccurs="0"/>
+        <xs:element name="updated" type="xs:date" minOccurs="0"/>
       </xs:all>
       <xs:attributeGroup ref="MCRMetaXML"/>
       <xs:attributeGroup ref="notInherited"/>
