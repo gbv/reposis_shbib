@@ -379,6 +379,9 @@
         <xsl:with-param name="layout" select="$layout" />
       </xsl:call-template>
     </xsl:variable>
+    <xsl:variable name="k10plusEditURL">
+      <xsl:value-of select="actionmapping:getURLforID('update-k10plus',$id,true())" xmlns:actionmapping="xalan://org.mycore.wfc.actionmapping.MCRURLRetriever" />
+    </xsl:variable>
     <xsl:variable name="adminEditURL">
       <xsl:value-of select="actionmapping:getURLforID('update-admin',$id,true())" xmlns:actionmapping="xalan://org.mycore.wfc.actionmapping.MCRURLRetriever" />
     </xsl:variable>
@@ -447,6 +450,13 @@
                         <xsl:value-of select="i18n:translate('object.editObject')" />
                       </a>
                     </li>
+                    <xsl:if test="string-length($k10plusEditURL) &gt; 0 and not(//modsSourceContainer[@type='remotesource'])">
+                      <li>
+                        <a href="{$k10plusEditURL}&amp;id={$id}">
+                          <xsl:value-of select="i18n:translate('mir.k10pluseditor')" />
+                        </a>
+                      </li>
+                    </xsl:if>
                     <xsl:if test="string-length($adminEditURL) &gt; 0 and not(//modsSourceContainer[@type='remotesource'])">
                       <li>
                         <a href="{$adminEditURL}&amp;id={$id}">

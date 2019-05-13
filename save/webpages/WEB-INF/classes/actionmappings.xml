@@ -26,6 +26,9 @@
       <when condition="(group = admin) or (group = editor)" url="/servlets/MCRLockServlet?url=/editor/editor-ppnsource.xed" />
       <when condition="(status != published) and (status != review)" url="/servlets/MCRLockServlet?url=/editor/editor-dynamic.xed" />
     </action>
+    <action action="update-k10plus">
+      <when condition="(group = admin) or (group = editor)" url="/servlets/MCRLockServlet?url=/editor/editor-ppnsource-k10p.xed" />
+    </action>
     <action action="update-admin">
       <when condition="(group = admin) or (group = editor)" url="/servlets/MCRLockServlet?url=/editor/editor-ppnsource2.xed" />
     </action>

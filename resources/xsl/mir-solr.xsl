@@ -16,6 +16,19 @@
     <field name="hasFiles">
       <xsl:value-of select="count(structure/derobjects/derobject)&gt;0" />
     </field>
+    <field name="containerSource">
+      <xsl:choose>
+        <xsl:when test="contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.gbv.de')">
+          <xsl:value-of select="'GVK'"/>
+        </xsl:when>
+        <xsl:when test="contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.k10plus.de')">
+          <xsl:value-of select="'K10+'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="'Altdaten'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </field>
   </xsl:template>
 
   <xsl:template match="mods:mods" mode="mir">

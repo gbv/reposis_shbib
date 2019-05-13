@@ -11,6 +11,10 @@
       <label xml:lang="de">Neuaufnahme</label>
       <label xml:lang="en">New </label>
     </item>
+    <item href="/editor/editor-ppnsource-k10p.xed" type="intern" replaceMenu="false" constrainPopUp="false">
+      <label xml:lang="de">Neuaufnahme - K10+</label>
+      <label xml:lang="en">New - K10+</label>
+    </item>
     <item href="/content/publish/dashboard.xml" type="intern" replaceMenu="false" constrainPopUp="false">
       <label xml:lang="de">Arbeitshilfen</label>
       <label xml:lang="en">Dashboard </label>
