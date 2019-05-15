@@ -450,7 +450,7 @@
                         <xsl:value-of select="i18n:translate('object.editObject')" />
                       </a>
                     </li>
-                    <xsl:if test="string-length($k10plusEditURL) &gt; 0 and not(//modsSourceContainer[@type='remotesource'])">
+                    <xsl:if test="string-length($k10plusEditURL) &gt; 0 and contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.k10plus.de')">
                       <li>
                         <a href="{$k10plusEditURL}&amp;id={$id}">
                           <xsl:value-of select="i18n:translate('mir.k10pluseditor')" />

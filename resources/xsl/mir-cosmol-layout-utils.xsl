@@ -53,6 +53,9 @@
             <span>
               <a href="{$WebApplicationBaseURL}editor/editor-ppnsource.xed">Neuaufname</a>
             </span>
+            <span>
+              <a href="{$WebApplicationBaseURL}editor/editor-ppnsource-k10p.xed">Neuaufname K10+</a>
+            </span>
             <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span>
               <a href="{$WebApplicationBaseURL}content/search/simple_intern.xed">Einfache Suche</a>
