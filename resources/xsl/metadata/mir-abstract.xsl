@@ -12,6 +12,19 @@
   <xsl:template match="/">
 
     <xsl:variable name="mods" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods" />
+    <xsl:variable name="containerSource">
+      <xsl:choose>
+        <xsl:when test="contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.gbv.de')">
+          <xsl:value-of select="'GVK'"/>
+        </xsl:when>
+        <xsl:when test="contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.k10plus.de')">
+          <xsl:value-of select="'K10+'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="'Altdaten'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="owner">
       <xsl:choose>
         <xsl:when test="mcrxsl:isCurrentUserInRole('admin') or mcrxsl:isCurrentUserInRole('editor')">
@@ -34,6 +47,7 @@
 
         <!-- TODO: Update badges -->
       <div id="badges">
+          
         <xsl:call-template name="categorySearchLink">
           <xsl:with-param name="class" select="'mods_genre label label-info'" />
           <xsl:with-param name="node" select="($mods/mods:genre[@type='kindof']|$mods/mods:genre[@type='intern'])[1]" />
@@ -88,6 +102,10 @@
             <xsl:with-param name="query" select="concat('&amp;fq=link:*',$accessCondition, '&amp;owner=createdby:', $owner)" />
           </xsl:call-template>
         </xsl:if>
+        
+        <span class="date_published label label-primary">
+          <xsl:value-of select="$containerSource"/>
+        </span>
       </div><!-- end: badges -->
     </div><!-- end: badgets structure -->
 
