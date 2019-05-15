@@ -57,7 +57,7 @@
         </xed:bind>
         
         <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="javascript" />
-        <script src="{$WebApplicationBaseURL}js/searchPPN.js" type="text/javascript"></script>
+        <script src="{$WebApplicationBaseURL}js/searchPPN-k10p.js" type="text/javascript"></script>
         <script src="{$WebApplicationBaseURL}js/subject-autocomplete.js" type="text/javascript"></script>
         
         <xed:bind xpath="modsSourceContainer[@type='local']/mods:mods">

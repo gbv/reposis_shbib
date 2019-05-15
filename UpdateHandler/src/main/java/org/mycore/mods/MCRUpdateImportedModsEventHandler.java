@@ -103,10 +103,11 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
 			        LOGGER.info("Verarbeite - suche uri:"+s);
 			        if (elm.getName() == "sourceuri" ) {
 			            LOGGER.info("found source:"+elm.getText());
-			            if (elm.getText().indexOf('unapi.k10plus.de') != -1) {
-			                String uri="xslStyle:PPN-mods-k10p,mycoreobject-migrate-nameIdentifier:"+elm.getText();
+			            String uri;
+			            if (elm.getText().indexOf("unapi.k10plus.de") != -1) {
+			                uri="xslStyle:PPN-mods-k10p:"+elm.getText();
 			            } else {
-			                String uri="xslStyle:PPN-mods-ndsbib,mycoreobject-migrate-nameIdentifier:"+elm.getText();
+			                uri="xslStyle:PPN-mods-ndsbib,mycoreobject-migrate-nameIdentifier:"+elm.getText();
 			            }
 			            LOGGER.info("receive xml from source:"+uri);
 			            importedMods = MCRURIResolver.instance().resolve(uri);

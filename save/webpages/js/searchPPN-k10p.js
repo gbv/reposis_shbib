@@ -129,7 +129,7 @@ function loadFromUNAPI(ppn) {
 function checkPPNValue() {
 	ppn = $('#PPN').val();
 	mycoreid = $("input[name='id']").val();
-	$('#sourceuri').val('http://unapi.k10plus.de/?format=mods36&id=gvk:ppn:'+ppn);
+	$('#sourceuri').val('http://unapi.k10plus.de/?format=picaxml&id=gvk:ppn:'+ppn);
 	if (isPPN (ppn)) {
 		
 		$('#PPNPreview').html('<div style="text-align:center;color:gray;" ><i class="fa fa-spinner" aria-hidden="true"></i> <br/> PPN wird geladen </div>');

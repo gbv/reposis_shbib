@@ -212,6 +212,8 @@
     <dynamicField name="mods.relatedItem*" type="string" multiValued="true" />
     <field name="mods.shelfLocator" type="lowercase" multiValued="true" />
 
+    <field name="containerSource" type="string" />
+
     <!-- ******************************************** -->
     <!-- * SEARCH -->
     <!-- ******************************************** -->
