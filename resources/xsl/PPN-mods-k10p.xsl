@@ -46,6 +46,11 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="pica:datafield[@tag='003@']">
+    <mods:identifier type="uri" invalid="yes">//gso.gbv.de/DB=2.1/PPNSET?PPN=<xsl:value-of select="pica:subfield[@code='0']" /></mods:identifier>
+    <mods:identifier type="local" invalid="yes">(DE-601)<xsl:value-of select="pica:subfield[@code='0']" /></mods:identifier>
+  </xsl:template>
+  
   <xsl:template match="pica:datafield[@tag='021A']">
     <mods:titleInfo>
       <mods:title><xsl:value-of select="pica:subfield[@code='a']" /></mods:title>
@@ -67,21 +72,77 @@
       <mods:nameIdentifier type="gnd"><xsl:value-of select="substring-after(pica:subfield[@code='7'],'gnd/')" /></mods:nameIdentifier>
     </mods:name>
   </xsl:template>
-
+  
+  <xsl:template match="pica:datafield[@tag='031A']">
+  </xsl:template>
+  
+  <xsl:template match="pica:datafield[@tag='031A']" mode="modsPart">
+   <mods:part>
+     <xsl:if test="pica:subfield[@code='d']">
+       <mods:detail type="volume">
+         <mods:number><xsl:value-of select="pica:subfield[@code='d']" /></mods:number>
+       </mods:detail>
+     </xsl:if>
+     <xsl:if test="pica:subfield[@code='e']">
+       <mods:detail type="issue">
+         <mods:number><xsl:value-of select="pica:subfield[@code='e']" /></mods:number>
+       </mods:detail>
+     </xsl:if>
+     <xsl:if test="pica:subfield[@code='h']">
+       <mods:extent unit="pages">
+         <mods:list><xsl:value-of select="pica:subfield[@code='h']" /></mods:list>
+       </mods:extent>
+     </xsl:if>
+   </mods:part>
+  </xsl:template>
+  
   <xsl:template match="pica:datafield[@tag='036F']">
     <mods:relatedItem type="series">
       <mods:titleInfo>
         <mods:title><xsl:value-of select="pica:subfield[@code='a']" /></mods:title>
         <mods:subTitle><xsl:value-of select="pica:subfield[@code='d']" /></mods:subTitle>
-        <mods:identifier type="local">(DE-601)<xsl:value-of select="pica:subfield[@code='9']" /></mods:identifier>
-        <mods:originInfo eventType="publication">
-          <mods:publisher supplied="yes"><xsl:value-of select="pica:subfield[@code='n']" /></mods:publisher>
-          <mods:place>
-            <mods:placeTerm type="text"><xsl:value-of select="pica:subfield[@code='p']" /></mods:placeTerm>
-          </mods:place>
-          <mods:dateIssued encoding="w3cdtf" point="start"><xsl:value-of select="pica:subfield[@code='h']" /></mods:dateIssued>
-        </mods:originInfo>
       </mods:titleInfo>
+      <mods:identifier type="local">(DE-601)<xsl:value-of select="pica:subfield[@code='9']" /></mods:identifier>
+      <mods:originInfo eventType="publication">
+        <mods:publisher supplied="yes"><xsl:value-of select="pica:subfield[@code='n']" /></mods:publisher>
+        <mods:place>
+          <mods:placeTerm type="text"><xsl:value-of select="pica:subfield[@code='p']" /></mods:placeTerm>
+        </mods:place>
+        <mods:dateIssued encoding="w3cdtf" point="start"><xsl:value-of select="pica:subfield[@code='h']" /></mods:dateIssued>
+      </mods:originInfo>
+    </mods:relatedItem>
+  </xsl:template>
+  
+  <xsl:template match="pica:datafield[@tag='039B']">
+    <xsl:variable name="displayLabel" select="subfield[@code='i']"/>
+    <mods:relatedItem type="host" displayLabel="{$displayLabel}">
+      <mods:titleInfo>
+        <mods:title><xsl:value-of select="pica:subfield[@code='t']" /></mods:title>
+        <xsl:if test="pica:subfield[@code='z']">
+          <mods:subTitle><xsl:value-of select="pica:subfield[@code='z']" /></mods:subTitle>
+        </xsl:if>
+      </mods:titleInfo>
+      <xsl:if test="pica:subfield[@code='9']">
+        <mods:identifier type="local">(DE-601)<xsl:value-of select="pica:subfield[@code='9']" /></mods:identifier>
+      </xsl:if>
+      <xsl:if test="pica:subfield[@code='1']">
+        <mods:identifier type="issn"><xsl:value-of select="pica:subfield[@code='1']" /></mods:identifier>
+      </xsl:if>
+      <xsl:if test="pica:subfield[@code='e'] or pica:subfield[@code='d'] or pica:subfield[@code='f']">
+        <mods:originInfo eventType="publication">
+          <xsl:if test="pica:subfield[@code='e']">
+            <mods:publisher supplied="yes"><xsl:value-of select="pica:subfield[@code='e']" /></mods:publisher>
+          </xsl:if>
+          <xsl:if test="pica:subfield[@code='d']">
+            <mods:place>
+              <mods:placeTerm type="text"><xsl:value-of select="pica:subfield[@code='d']" /></mods:placeTerm>
+            </mods:place>
+          </xsl:if>
+          <mods:dateIssued encoding="w3cdtf" point="start"><xsl:value-of select="pica:subfield[@code='f']" /></mods:dateIssued>
+        </mods:originInfo>
+      </xsl:if>
+      
+      <xsl:apply-templates select="//pica:datafield[@tag='031A']" mode="modsPart"/>
     </mods:relatedItem>
   </xsl:template>
   

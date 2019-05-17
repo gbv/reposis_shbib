@@ -51,10 +51,11 @@
             </span>
             <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span>
-              <a href="{$WebApplicationBaseURL}editor/editor-ppnsource.xed">Neuaufname</a>
+              <a href="{$WebApplicationBaseURL}editor/editor-ppnsource.xed">Neuaufnahme</a>
             </span>
+            <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span>
-              <a href="{$WebApplicationBaseURL}editor/editor-ppnsource-k10p.xed">Neuaufname K10+</a>
+              <a href="{$WebApplicationBaseURL}editor/editor-ppnsource-k10p.xed">Neuaufnahme K10+</a>
             </span>
             <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span>
