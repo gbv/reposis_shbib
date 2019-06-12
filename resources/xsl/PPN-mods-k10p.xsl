@@ -60,16 +60,27 @@
   
   <xsl:template match="pica:datafield[@tag='028A' or @tag='028B' or @tag='028C']">
     <mods:name type="personal" usage="primary">
-      <mods:namePart type="family"><xsl:value-of select="pica:subfield[@code='A']" /></mods:namePart>
-      <mods:namePart type="given"><xsl:value-of select="pica:subfield[@code='D']" /></mods:namePart>
+      <mods:namePart type="family"><xsl:value-of select="pica:subfield[@code='A']" /><xsl:value-of select="pica:subfield[@code='a']" /></mods:namePart>
+      <mods:namePart type="given"><xsl:value-of select="pica:subfield[@code='D']" /><xsl:value-of select="pica:subfield[@code='d']" /></mods:namePart>
       <mods:role>
-        <mods:roleTerm type="text"><xsl:value-of select="pica:subfield[@code='B']" /></mods:roleTerm>
+        <xsl:choose>
+          <xsl:when test="pica:subfield[@code='B']">
+            <mods:roleTerm type="text"><xsl:value-of select="pica:subfield[@code='B']" /></mods:roleTerm>
+          </xsl:when>
+          <xsl:when test="pica:subfield[@code='4']">
+            <mods:roleTerm authority="marcrelator" type="code"><xsl:value-of select="pica:subfield[@code='4']" /></mods:roleTerm>
+          </xsl:when>
+          <xsl:otherwise>
+            <mods:roleTerm authority="marcrelator" type="code">aut</mods:roleTerm>
+          </xsl:otherwise>
+        </xsl:choose>
       </mods:role>
-      <mods:role>
-        <mods:roleTerm authority="marcrelator" type="code"><xsl:value-of select="pica:subfield[@code='4']" /></mods:roleTerm>
-      </mods:role>
-      <mods:nameIdentifier>(DE-601)<xsl:value-of select="pica:subfield[@code='9']" /></mods:nameIdentifier>
-      <mods:nameIdentifier type="gnd"><xsl:value-of select="substring-after(pica:subfield[@code='7'],'gnd/')" /></mods:nameIdentifier>
+      <xsl:if test="pica:subfield[@code='9']">
+        <mods:nameIdentifier>(DE-601)<xsl:value-of select="pica:subfield[@code='9']" /></mods:nameIdentifier>
+      </xsl:if>
+      <xsl:if test="pica:subfield[@code='7']">
+        <mods:nameIdentifier type="gnd"><xsl:value-of select="substring-after(pica:subfield[@code='7'],'gnd/')" /></mods:nameIdentifier>
+      </xsl:if>
     </mods:name>
   </xsl:template>
   
@@ -146,8 +157,26 @@
     </mods:relatedItem>
   </xsl:template>
   
+  <xsl:template match="pica:datafield[@tag='010@']">
+    <xsl:variable name="languages" select="document('classification:metadata:-1:children:rfc4646')" />
+    <xsl:variable name="biblCode" select="pica:subfield[@code='a']" />
+    <xsl:variable name="rfcCode">
+      <xsl:value-of select="$languages//category[label[@xml:lang='x-bibl']/@text = $biblCode]/@ID" />
+    </xsl:variable>
+    <mods:language>
+      <mods:languageTerm authority="rfc4646" type="code">
+        <xsl:value-of select="$rfcCode"/>    
+      </mods:languageTerm>
+    </mods:language>
+  </xsl:template>
+  
+  <xsl:template match="pica:subfield">
+    <xsl:value-of select="concat(@code,':',.) "/>
+  </xsl:template>
+  
   <xsl:template match="pica:datafield">
     <mods:note>
+      <xsl:value-of select="concat(@tag,': ')"/>
       <xsl:apply-templates />
     </mods:note>
   </xsl:template>
