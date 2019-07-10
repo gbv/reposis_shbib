@@ -905,6 +905,9 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="mods:titleInfo/mods:title" />
+          <xsl:if test="mods:titleInfo/mods:subTitle">
+              <xsl:value-of select="concat(': ',mods:titleInfo/mods:subTitle)" />
+          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
