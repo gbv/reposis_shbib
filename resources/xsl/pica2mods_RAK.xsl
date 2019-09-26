@@ -686,14 +686,14 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
-      <xsl:if test="./p:subfield[@code='a']">
+      <xsl:if test="./p:subfield[@code='a' or @code='A']">
         <mods:namePart type="family">
-          <xsl:value-of select="./p:subfield[@code='a']" />
+          <xsl:value-of select="./p:subfield[@code='a' or @code='A']" />
         </mods:namePart>
       </xsl:if>
-      <xsl:if test="./p:subfield[@code='d']">
+      <xsl:if test="./p:subfield[@code='d' or @code='D']">
         <mods:namePart type="given">
-          <xsl:value-of select="./p:subfield[@code='d']" />
+          <xsl:value-of select="./p:subfield[@code='d' or @code='D']" />
         </mods:namePart>
       </xsl:if>
       <xsl:if test="./p:subfield[@code='P']">

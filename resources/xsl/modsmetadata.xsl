@@ -430,19 +430,21 @@
   </xsl:template>
 
   <xsl:template name="printMetaDate.mods.extent">
+    <xsl:variable name="unit" select="@unit" />
+    <xsl:variable name="unit_i18n" select="concat('component.mods.metaData.dictionary.',$unit)"/>
     <xsl:choose>
       <xsl:when test="count(mods:start) &gt; 0">
         <xsl:choose>
           <xsl:when test="count(mods:end) &gt; 0">
-            <xsl:value-of select="concat(i18n:translate('component.mods.metaData.dictionary.page.abbr'),' ',mods:start,'-',mods:end)" />
+            <xsl:value-of select="concat(i18n:translate(concat($unit_i18n,'.abbr')),' ',mods:start,'-',mods:end)" />
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="concat(i18n:translate('component.mods.metaData.dictionary.page.abbr'),' ',mods:start)" />
+            <xsl:value-of select="concat(i18n:translate(concat($unit_i18n,'.abbr')),' ',mods:start)" />
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:when test="mods:total">
-        <xsl:value-of select="concat(mods:total,' ',i18n:translate('component.mods.metaData.dictionary.pages'))" />
+        <xsl:value-of select="concat(mods:total,' ',i18n:translate($unit_i18n))" />
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="." />
@@ -958,8 +960,8 @@
               </xsl:if>
             </xsl:variable>
             <xsl:variable name="pages">
-              <xsl:if test="mods:part/mods:extent[@unit='pages']">
-                <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
+              <xsl:if test="mods:part/mods:extent[@unit='pages' or @unit='columns']">
+                <xsl:for-each select="mods:part/mods:extent[@unit='pages' or @unit='columns']" >
                   <xsl:call-template name="printMetaDate.mods.extent" />
                 </xsl:for-each>
               </xsl:if>

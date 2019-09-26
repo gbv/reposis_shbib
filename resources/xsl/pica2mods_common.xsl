@@ -2,6 +2,10 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:p="info:srw/schema/5/picaXML-v1.0" xmlns:mods="http://www.loc.gov/mods/v3"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xalan="http://xml.apache.org/xalan" xmlns:fn="http://www.w3.org/2005/xpath-functions" exclude-result-prefixes="p xalan fn">
+  <xsl:import href="pica2mods_common_include.xsl"/>
+  
+  <xsl:variable name="MyCoRe_intern" select="'false'" />
+  
   <xsl:template name="COMMON_Title">
     <mods:titleInfo>
       <xsl:attribute name="usage">primary</xsl:attribute>
@@ -359,78 +363,92 @@
     <xsl:for-each select="./p:datafield[starts-with(@tag, '028')]">
       <mods:name type="personal">
       <xsl:choose>
-        <xsl:when test="./p:subfield[@code='9']">
+        <xsl:when test="$MyCoRe_intern='true' and ./p:subfield[@code='9']">
           <xsl:variable name="query" select="concat('unapi-gvk:gvk:ppn:', ./p:subfield[@code='9'])" />
           <xsl:variable name="tp" select="document($query)"/>
-           <mods:nameIdentifier type="gnd"><xsl:value-of select="$tp/p:record/p:datafield[@tag='007K' and ./p:subfield[@code='a']='gnd']/p:subfield[@code='0']" /></mods:nameIdentifier>
-           <xsl:if test="$tp/p:record/p:datafield[@tag='006X' and ./p:subfield[@code='S']='orcid']"> 
+          <mods:nameIdentifier type="gnd"><xsl:value-of select="$tp/p:record/p:datafield[@tag='007K' and ./p:subfield[@code='a']='gnd']/p:subfield[@code='0']" /></mods:nameIdentifier>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='006X' and ./p:subfield[@code='S']='orcid']"> 
             <mods:nameIdentifier type="orcid"><xsl:value-of select="$tp/p:record/p:datafield[@tag='006X' and ./p:subfield[@code='S']='orcid']/p:subfield[@code='0']" /></mods:nameIdentifier>
-           </xsl:if>
+          </xsl:if>
            
-           <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='d']">
-              <mods:namePart type="given"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='d']" /></mods:namePart>
-           </xsl:if>
-           <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='a']">
-              <mods:namePart type="family"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='a']" /></mods:namePart>
-           </xsl:if>
-           <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='P']">
-              <mods:namePart type="family"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='P']" /></mods:namePart>
-           </xsl:if>
-           <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='c']">
-              <mods:namePart type="termsOfAddress"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='c']" /></mods:namePart>
-           </xsl:if>
-           <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='n']">
-              <mods:namePart type="termsOfAddress"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='n']" /></mods:namePart>
-           </xsl:if>
-           <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='l']">
-              <mods:namePart type="termsOfAddress"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='l']" /></mods:namePart>
-           </xsl:if>
-           <xsl:for-each select="$tp/p:record/p:datafield[@tag='060R' and ./p:subfield[@code='4']='datl']">
-               <xsl:if test="./p:subfield[@code='a']">
-                <xsl:variable name="out_date">
-                  <xsl:value-of select="./p:subfield[@code='a']" />
-                  -
-                   <xsl:value-of select="./p:subfield[@code='b']" />
-                 </xsl:variable>
-                 <mods:namePart type="date"><xsl:value-of select="normalize-space($out_date)"></xsl:value-of></mods:namePart>
-              </xsl:if>
-              <xsl:if test="./p:subfield[@code='d']">
-                 <mods:namePart type="date"><xsl:value-of select="./p:subfield[@code='d']"></xsl:value-of></mods:namePart>
-              </xsl:if>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='d']">
+            <mods:namePart type="given"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='d']" /></mods:namePart>
+          </xsl:if>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='a']">
+            <mods:namePart type="family"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='a']" /></mods:namePart>
+          </xsl:if>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='P']">
+            <mods:namePart type="family"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='P']" /></mods:namePart>
+          </xsl:if>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='c']">
+            <mods:namePart type="termsOfAddress"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='c']" /></mods:namePart>
+          </xsl:if>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='n']">
+            <mods:namePart type="termsOfAddress"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='n']" /></mods:namePart>
+          </xsl:if>
+          <xsl:if test="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='l']">
+            <mods:namePart type="termsOfAddress"><xsl:value-of select="$tp/p:record/p:datafield[@tag='028A']/p:subfield[@code='l']" /></mods:namePart>
+          </xsl:if>
+          <xsl:for-each select="$tp/p:record/p:datafield[@tag='060R' and ./p:subfield[@code='4']='datl']">
+            <xsl:if test="./p:subfield[@code='a']">
+              <xsl:variable name="out_date">
+                <xsl:value-of select="./p:subfield[@code='a']" />
+                -
+                <xsl:value-of select="./p:subfield[@code='b']" />
+              </xsl:variable>
+              <mods:namePart type="date"><xsl:value-of select="normalize-space($out_date)"></xsl:value-of></mods:namePart>
+            </xsl:if>
+            <xsl:if test="./p:subfield[@code='d']">
+              <mods:namePart type="date"><xsl:value-of select="./p:subfield[@code='d']"></xsl:value-of></mods:namePart>
+            </xsl:if>
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
-        <xsl:if test="./p:subfield[@code='d']">
-          <mods:namePart type="given">
-            <xsl:value-of select="./p:subfield[@code='d']" />
-          </mods:namePart>
-        </xsl:if>
-        <xsl:if test="./p:subfield[@code='a']">
-          <mods:namePart type="family">
-            <xsl:value-of select="./p:subfield[@code='a']" />
-          </mods:namePart>
-        </xsl:if>
-        <xsl:if test="./p:subfield[@code='c']">
-          <mods:namePart type="termsOfAddress">
-          	<xsl:value-of select="./p:subfield[@code='c']" />
-          </mods:namePart>
-        </xsl:if>
-        
-        <xsl:if test="./p:subfield[@code='P']">
-          <mods:namePart>
-            <xsl:value-of select="./p:subfield[@code='P']" />
-          </mods:namePart>
-        </xsl:if>
-        <xsl:if test="./p:subfield[@code='n']">
-          <mods:namePart type="termsOfAddress">
-            <xsl:value-of select="./p:subfield[@code='n']" />
-          </mods:namePart>
-        </xsl:if>
-        <xsl:if test="./p:subfield[@code='l']">
-          <mods:namePart type="termsOfAddress">
-            <xsl:value-of select="./p:subfield[@code='l']" />
-          </mods:namePart>
-        </xsl:if>
+          <xsl:if test="./p:subfield[@code='d' or @code='D']">
+            <mods:namePart type="given">
+              <xsl:value-of select="./p:subfield[@code='d' or @code='D']" />
+            </mods:namePart>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='a' or @code='A']">
+            <mods:namePart type="family">
+              <xsl:value-of select="./p:subfield[@code='a' or @code='A']" />
+            </mods:namePart>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='c']">
+            <mods:namePart type="termsOfAddress">
+          	  <xsl:value-of select="./p:subfield[@code='c']" />
+            </mods:namePart>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='9']">
+            <mods:nameIdentifier type="local">
+              <xsl:value-of select="concat('(DE-627)',./p:subfield[@code='9'])"/>
+            </mods:nameIdentifier>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='7']">
+            <mods:nameIdentifier type="gnd">
+              <xsl:value-of select="substring-after(./p:subfield[@code='7'],'gnd/')"/>
+            </mods:nameIdentifier>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='3']">
+            <mods:nameIdentifier type="local">
+              <xsl:value-of select="concat('(DE-576)',./p:subfield[@code='3'])"/>
+            </mods:nameIdentifier>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='P']">
+            <mods:namePart>
+              <xsl:value-of select="./p:subfield[@code='P']" />
+            </mods:namePart>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='n']">
+            <mods:namePart type="termsOfAddress">
+              <xsl:value-of select="./p:subfield[@code='n']" />
+            </mods:namePart>
+          </xsl:if>
+          <xsl:if test="./p:subfield[@code='l']">
+            <mods:namePart type="termsOfAddress">
+              <xsl:value-of select="./p:subfield[@code='l']" />
+            </mods:namePart>
+          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
       
@@ -490,10 +508,10 @@
            </mods:role>
         </xsl:when>
         <xsl:when test="@tag='028A' or @tag='028B'">
-            <mods:role>
-              <mods:roleTerm type="code" authority="marcrelator">aut</mods:roleTerm>
-              <mods:roleTerm type="text" authority="GBV">[Verfasser]</mods:roleTerm>
-            </mods:role>
+          <mods:role>
+            <mods:roleTerm type="code" authority="marcrelator">aut</mods:roleTerm>
+            <mods:roleTerm type="text" authority="GBV">[Verfasser]</mods:roleTerm>
+          </mods:role>
         </xsl:when>
         <xsl:otherwise>
           <mods:role><mods:roleTerm type="code" authority="marcrelator">oth</mods:roleTerm></mods:role>
@@ -509,7 +527,7 @@
     <xsl:for-each select="./p:datafield[starts-with(@tag, '029') or @tag='033J']">
       <mods:name type="corporate">
         <xsl:choose>
-        <xsl:when test="./p:subfield[@code='9']">
+        <xsl:when test="$MyCoRe_intern='true' and ./p:subfield[@code='9']">
           <xsl:variable name="query" select="concat('unapi-gvk:gvk:ppn:', ./p:subfield[@code='9'])" />
           <xsl:variable name="tb" select="document($query)"/>
           <mods:nameIdentifier type="gnd"><xsl:value-of select="$tb/p:record/p:datafield[@tag='007K' and ./p:subfield[@code='a']='gnd']/p:subfield[@code='0']" /></mods:nameIdentifier>
@@ -548,16 +566,32 @@
           </xsl:for-each>
 
         </xsl:when>
+        
         <xsl:otherwise>
-        <xsl:if test="./p:subfield[@code='a']">
+        <xsl:if test="./p:subfield[@code='a' or @code='A']">
           <mods:namePart>
-            <xsl:value-of select="./p:subfield[@code='a']" />
+            <xsl:value-of select="./p:subfield[@code='a' or @code='A']" />
           </mods:namePart>
         </xsl:if>
-        <xsl:if test="./p:subfield[@code='b']">
+        <xsl:if test="./p:subfield[@code='b' or @code='B']">
           <mods:namePart>
-            <xsl:value-of select="./p:subfield[@code='b']" />
+            <xsl:value-of select="./p:subfield[@code='b' or @code='B']" />
           </mods:namePart>
+        </xsl:if>
+        <xsl:if test="./p:subfield[@code='9']">
+          <mods:nameIdentifier type="local">
+            <xsl:value-of select="concat('(DE-627)',./p:subfield[@code='9'])"/>
+          </mods:nameIdentifier>
+        </xsl:if>
+        <xsl:if test="./p:subfield[@code='7']">
+          <mods:nameIdentifier type="gnd">
+            <xsl:value-of select="substring-after(./p:subfield[@code='7'],'gnd/')"/>
+          </mods:nameIdentifier>
+        </xsl:if>
+        <xsl:if test="./p:subfield[@code='3']">
+          <mods:nameIdentifier type="local">
+            <xsl:value-of select="concat('(DE-576)',./p:subfield[@code='3'])"/>
+          </mods:nameIdentifier>
         </xsl:if>
         <xsl:if test="./p:subfield[@code='d']">
           <mods:namePart type="date">
@@ -639,90 +673,7 @@
       </mods:abstract>
     </xsl:for-each>
   </xsl:template>
-  
-  <xsl:template name="COMMON_CLASS">
-      <!-- ToDoKlassifikationen aus 209O/01 $a mappen -->
-    <xsl:for-each select="./p:datafield[@tag='209O']/p:subfield[@code='a' and (starts-with(text(), 'ROSDOK:') or starts-with(text(), 'DBHSNB:'))]">
-      <xsl:variable name="class_url" select="concat($mycoreRestAPIBaseURL, 'classifications/', substring-before(substring-after(current(),':'),':'))" />
-      <xsl:variable name="class_doc" select="document($class_url)" />
-      <xsl:variable name="categid" select="substring-after(substring-after(current(),':'),':')" />
-      <xsl:if test="$class_doc//category[@ID=$categid]">
-        <xsl:element name="mods:classification">
-          <xsl:attribute name="authorityURI"><xsl:value-of select="$class_doc/mycoreclass/label[@xml:lang='x-uri']/@text" /></xsl:attribute>
-          <xsl:attribute name="valueURI"><xsl:value-of select="concat($class_doc/mycoreclass/label[@xml:lang='x-uri']/@text,'#', $categid)" /></xsl:attribute>
-          <xsl:attribute name="displayLabel"><xsl:value-of select="$class_doc/mycoreclass/@ID" /></xsl:attribute>
-          <xsl:value-of select="$class_doc//category[@ID=$categid]/label[@xml:lang='de']/@text" />
-        </xsl:element>
-      </xsl:if>
-    </xsl:for-each>
-    <xsl:choose>
-    <xsl:when test="./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:doctype:epub')]">
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:metadata')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#metadata.cc0">Lizenz Metadaten: CC0</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:deposit')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#deposit.rightsgranted">Nutzungsrechte erteilt</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:work')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#work.rightsreserved">alle Rechte vorbehalten</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:accesscondition:openaccess')])">
-        <mods:classification displayLabel="accesscondition" authorityURI="http://rosdok.uni-rostock.de/classifications/accesscondition" valueURI="http://rosdok.uni-rostock.de/classifications/accesscondition#openaccess">frei zugänglich (Open Access)</mods:classification>
-      </xsl:if>
-    </xsl:when>
-    <xsl:when test="./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'DBHSNB:doctype:epub')]">
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'DBHSNB:licenseinfo:metadata')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://digibib.hs-nb.de/classifications/licenseinfo" valueURI="http://digibib.hs-nb.de/classifications/licenseinfo#metadata.cc0">Lizenz Metadaten: CC0</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'DBHSNB:licenseinfo:deposit')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://digibib.hs-nb.de/classifications/licenseinfo" valueURI="http://digibib.hs-nb.de/classifications/licenseinfo#deposit.rightsgranted">Nutzungsrechte erteilt</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'DBHSNB:licenseinfo:work')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://digibib.hs-nb.de/classifications/licenseinfo" valueURI="http://digibib.hs-nb.de/classifications/licenseinfo#work.rightsreserved">alle Rechte vorbehalten</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'DBHSNB:accesscondition:openaccess')])">
-        <mods:classification displayLabel="accesscondition" authorityURI="http://rosdok.uni-rostock.de/classifications/accesscondition" valueURI="http://rosdok.uni-rostock.de/classifications/accesscondition#openaccess">frei zugänglich (Open Access)</mods:classification>
-      </xsl:if>
-    </xsl:when>
-    <xsl:otherwise>
-      <!-- default:  'ROSDOK:doctype:histbest' -->
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:metadata')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#metadata.cc0">Lizenz Metadaten: CC0</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:digitisedimages')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#digitisedimages.cclicense.cc-by-sa.v40">Lizenz Digitalisate: CC BY SA 4.0</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:deposit')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#deposit.publicdomain">gemeinfrei</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:licenseinfo:work')])">
-        <mods:classification displayLabel="licenseinfo" authorityURI="http://rosdok.uni-rostock.de/classifications/licenseinfo" valueURI="http://rosdok.uni-rostock.de/classifications/licenseinfo#work.publicdomain">gemeinfrei</mods:classification>
-      </xsl:if>
-      <xsl:if test="not(./p:datafield[@tag='209O']/p:subfield[@code='a' and starts-with(text(), 'ROSDOK:accesscondition:openaccess')])">
-        <mods:classification displayLabel="accesscondition" authorityURI="http://rosdok.uni-rostock.de/classifications/accesscondition" valueURI="http://rosdok.uni-rostock.de/classifications/accesscondition#openaccess">frei zugänglich (Open Access)</mods:classification>
-      </xsl:if>
-    </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-  
-   <xsl:template name="COMMON_UBR_Class_Doctype">
-    <xsl:variable name="pica0500_2" select="substring(./p:datafield[@tag='002@']/p:subfield[@code='0'],2,1)" />
-    <xsl:for-each select="./p:datafield[@tag='036E' or @tag='036L']/p:subfield[@code='a']/text()">
-      <xsl:variable name="pica4110" select="translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸŽŠŒ', 'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿžšœ')" />
-      <xsl:for-each select="document(concat($mycoreRestAPIBaseURL, 'classifications/doctype'))//category[./label[@xml:lang='x-pica-0500-2']]">
-        <xsl:if
-          test="$pica4110 = translate(./label[@xml:lang='x-pica-4110']/@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸŽŠŒ', 'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿžšœ') and contains(./label[@xml:lang='x-pica-0500-2']/@text, $pica0500_2)">
-          <xsl:element name="mods:classification">
-            <xsl:attribute name="authorityURI">http://rosdok.uni-rostock.de/classifications/doctype</xsl:attribute>
-            <xsl:attribute name="valueURI"><xsl:value-of select="concat('http://rosdok.uni-rostock.de/classifications/doctype#', ./@ID)" /></xsl:attribute>
-            <xsl:attribute name="displayLabel">doctype</xsl:attribute>
-            <xsl:value-of select="./label[@xml:lang='de']/@text" />
-          </xsl:element>
-        </xsl:if>
-      </xsl:for-each>
-    </xsl:for-each>
-  </xsl:template>
-
+    
   <xsl:template name="COMMON_UBR_Class_Collection">
     <xsl:for-each select="./p:datafield[@tag='036E' or @tag='036L']/p:subfield[@code='a']/text()">
       <xsl:variable name="pica4110" select="translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸŽŠŒ', 'abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿžšœ')" />
@@ -764,18 +715,33 @@
       
     <xsl:for-each select="./p:datafield[@tag='003@']"> <!--  0100 -->
       <mods:identifier type="PPN"><xsl:value-of select="./p:subfield[@code='0']" /></mods:identifier>
-      <mods:identifier type="uri" invalid="yes">//gso.gbv.de/DB=2.1/PPNSET?PPN=<xsl:value-of select="pica:subfield[@code='0']" /></mods:identifier>
-      <mods:identifier type="local" invalid="yes">(DE-601)<xsl:value-of select="pica:subfield[@code='0']" /></mods:identifier>          
+      <mods:identifier type="uri" invalid="yes">//gso.gbv.de/DB=2.1/PPNSET?PPN=<xsl:value-of select="p:subfield[@code='0']" /></mods:identifier>
+      <mods:identifier type="local" invalid="yes">(DE-601)<xsl:value-of select="p:subfield[@code='0']" /></mods:identifier>          
     </xsl:for-each> 
-    <xsl:for-each select="./p:datafield[@tag='004U' and contains(./p:subfield[@code='0'], 'urn:nbn:de:gbv:28')]"> <!-- 2050 -->
+    <xsl:for-each select="./p:datafield[@tag='004U']"> <!-- 2050 -->
       <mods:identifier type="urn"><xsl:value-of select="./p:subfield[@code='0']" /></mods:identifier>
     </xsl:for-each> 
-    <xsl:for-each select="./p:datafield[@tag='004V' and contains(./p:subfield[@code='0'], '/10.18453/')]"> <!-- 2051 -->
+    <xsl:for-each select="./p:datafield[@tag='004V']"> <!-- 2051 -->
       <mods:identifier type="doi"><xsl:value-of select="./p:subfield[@code='0']" /></mods:identifier>
     </xsl:for-each>
     <xsl:for-each select="./p:datafield[@tag='004P' or @tag='004A' or @tag='004J']/p:subfield[@code='0']"> <!-- ISBN, ISBN einer anderen phys. Form (z.B. printISBN), ISBN der Reproduktion -->
       <mods:identifier type="isbn"> <!-- 200x, ISBN-13 -->
-        <xsl:value-of select="." />
+        <xsl:choose>
+          <xsl:when test="translate(., '1234567890', '----------') = '----------'">
+            <xsl:call-template name="number2isbn">
+              <xsl:with-param name="isbn" select="."/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="translate(., '1234567890', '----------') = '-------------'">
+            <xsl:value-of select="concat(substring(.,1,3),'-')" />
+            <xsl:call-template name="number2isbn">
+              <xsl:with-param name="isbn" select="substring(.,4)"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="." />
+          </xsl:otherwise>
+        </xsl:choose>
       </mods:identifier>
     </xsl:for-each>
       
@@ -828,6 +794,82 @@
     </xsl:for-each>
   </xsl:template>
   
+  <xsl:template name="number2isbn_registrant">
+    <xsl:param name="rest_isbn" />
+    <xsl:variable name="testsegment_registrant" select="substring($rest_isbn,1,5)" />
+    <xsl:variable name="isbn_length" select="string-length($rest_isbn)"/>
+    <xsl:variable name="registrant_length">
+      <xsl:choose>
+        <xsl:when test="00000 &lt; $testsegment_registrant and $testsegment_registrant &lt; 19999">
+          <xsl:value-of select="2" />
+        </xsl:when>
+        <xsl:when test="20000 &lt; $testsegment_registrant and $testsegment_registrant &lt; 69999">
+          <xsl:value-of select="3" />
+        </xsl:when>
+        <xsl:when test="70000 &lt; $testsegment_registrant and $testsegment_registrant &lt; 84999">
+          <xsl:value-of select="4" />
+        </xsl:when>
+        <xsl:when test="85000 &lt; $testsegment_registrant and $testsegment_registrant &lt; 89999">
+          <xsl:value-of select="5" />
+        </xsl:when>
+        <xsl:when test="90000 &lt; $testsegment_registrant and $testsegment_registrant &lt; 94999">
+          <xsl:value-of select="6" />
+        </xsl:when>
+        <xsl:when test="95000 &lt; $testsegment_registrant and $testsegment_registrant &lt; 99999">
+          <xsl:value-of select="7" />
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>  
+    <xsl:value-of select="concat(substring($rest_isbn,1,$registrant_length),'-',substring($rest_isbn,$registrant_length + 1,$isbn_length - $registrant_length - 1),'-',substring($rest_isbn,$isbn_length,1))" />
+  </xsl:template>
   
+  <xsl:template name="number2isbn">
+    <xsl:param name="isbn" />
+    <xsl:variable name="testsegment_reggroup" select="substring($isbn,1,5)" />
+    <xsl:choose>
+      <xsl:when test="00000 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 59999">
+        <xsl:value-of select="concat(substring($isbn,1,1),'-')" />
+        <xsl:call-template name="number2isbn_registrant">
+          <xsl:with-param name="rest_isbn" select="substring($isbn,2)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="60000 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 69999">
+        <xsl:value-of select="$isbn" />
+      </xsl:when>
+      <xsl:when test="70000 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 79999">
+        <xsl:value-of select="concat(substring($isbn,1,1),'-')" />
+        <xsl:call-template name="number2isbn_registrant">
+          <xsl:with-param name="rest_isbn" select="substring($isbn,2)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="80000 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 94999">
+        <xsl:value-of select="concat(substring($isbn,1,2),'-')" />
+        <xsl:call-template name="number2isbn_registrant">
+          <xsl:with-param name="rest_isbn" select="substring($isbn,3)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="95000 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 98999">
+        <xsl:value-of select="concat(substring($isbn,1,3),'-')" />
+        <xsl:call-template name="number2isbn_registrant">
+          <xsl:with-param name="rest_isbn" select="substring($isbn,4)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="99000 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 99899">
+        <xsl:value-of select="concat(substring($isbn,1,4),'-')" />
+        <xsl:call-template name="number2isbn_registrant">
+          <xsl:with-param name="rest_isbn" select="substring($isbn,5)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="99900 &lt; $testsegment_reggroup and $testsegment_reggroup &lt; 99999">
+        <xsl:value-of select="concat(substring($isbn,1,5),'-')" />
+        <xsl:call-template name="number2isbn_registrant">
+          <xsl:with-param name="rest_isbn" select="substring($isbn,6)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$isbn" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   
 </xsl:stylesheet> 
