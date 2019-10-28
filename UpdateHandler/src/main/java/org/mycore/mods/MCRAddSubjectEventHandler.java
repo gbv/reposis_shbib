@@ -73,7 +73,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectCreated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("Start MCRAddSubjectEventHandler created");
+    	//LOGGER.info("Start MCRAddSubjectEventHandler created");
     	addSubject(obj);
     }
 
@@ -82,7 +82,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectUpdated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("Start MCRAddSubjectEventHandler updated");
+    	//LOGGER.info("Start MCRAddSubjectEventHandler updated");
     	addSubject(obj);
     }
 
@@ -115,7 +115,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
     		String[] sChainElements = sChain.split("/");
     		for (String sChainElement: sChainElements) {
     	        String taskMessage = "add subjectChild:  "+sChainElement+"";
-                LOGGER.info(taskMessage);
+                //LOGGER.info(taskMessage);
                 Element subjectChild = null;
                 if (labelType.equals("x-topic")) {
                 	subjectChild = new Element ("topic", MCRConstants.MODS_NAMESPACE);
@@ -143,7 +143,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
             MCRCategory category = DAO.getCategory(categoryId, 0);
             if (category == null) continue;
             String classID = categoryId.getRootID();
-            LOGGER.info ("Classificationid:"+classID);
+            //LOGGER.info ("Classificationid:"+classID);
             
             List<Element> oldSubjects = new ArrayList<Element>();
             
@@ -181,7 +181,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
             }
             
             for (Element oldSubject : oldSubjects) {
-            	LOGGER.info ("remove Subject:"+oldSubject);
+            	//LOGGER.info ("remove Subject:"+oldSubject);
             	mods.removeContent(oldSubject);
             }
             

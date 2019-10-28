@@ -76,7 +76,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectCreated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("Start MCRAddRelatedItemIdEventHandler created");
+    	//LOGGER.info("Start MCRAddRelatedItemIdEventHandler created");
     	addRelatedItemId(obj);
     }
 
@@ -85,7 +85,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectUpdated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("Start MCRAddRelatedItemIdEventHandler updated");
+    	//LOGGER.info("Start MCRAddRelatedItemIdEventHandler updated");
     	addRelatedItemId(obj);
     }
 

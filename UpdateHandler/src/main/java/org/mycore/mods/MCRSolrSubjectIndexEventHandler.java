@@ -89,7 +89,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectCreated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("Start MCRSolrSubjectIndexEventHandler created");
+    	//LOGGER.info("Start MCRSolrSubjectIndexEventHandler created");
     	handleSubjectsOfModsObject(obj);
     }
 
@@ -98,7 +98,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
      */
     @Override
     protected void handleObjectUpdated(final MCREvent evt, final MCRObject obj) {
-    	LOGGER.info("Start MCRSolrSubjectIndexEventHandler updated");
+    	//LOGGER.info("Start MCRSolrSubjectIndexEventHandler updated");
     	if (removeMycoreIdsFromSubjectIndex(obj)) handleSubjectsOfModsObject(obj);
     }
 
@@ -211,13 +211,13 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         String gnd;
     	
         for (Element subject : subjects) {
-        	LOGGER.info("Process Subject :" + subject);
+        	//LOGGER.info("Process Subject :" + subject);
         	List<Element> children = subject.getChildren();
         	List<String> gnds = new ArrayList<String>();
         	List<String> displayFormes = new ArrayList<String>();
         	for (Element child : children){
                 type = child.getName();
-                LOGGER.info("Process Subject (type):" + type);
+                //LOGGER.info("Process Subject (type):" + type);
                 displayForm = "";
                 subjectType ="";
                 gnd = "";
@@ -227,7 +227,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 	    displayForm = child.getText();
                 	    authorityURI = child.getAttributeValue("authorityURI");
                 	    if ( authorityURI != null && authorityURI.equals("http://d-nb.info/gnd/")) {
-                	    	LOGGER.info("Process Subject (in schleife):" );
+                	    	//LOGGER.info("Process Subject (in schleife):" );
                 	    	gnd = StringUtils.substringAfter(child.getAttributeValue("valueURI"),"#"); 
                 	    }
                 	    subjectType="topic";
@@ -254,12 +254,12 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 String hashString = displayForm + gnd;
                 int idHash = hashString.hashCode();
                 
-                LOGGER.info("Process Subject (displayForm):" + displayForm);
-                LOGGER.info("Process Subject (gnd):" + gnd);
-                LOGGER.info("Process Subject (hash):" + idHash);
-                LOGGER.info("Process Subject (mycoreid):" + mycoreid);
-                LOGGER.info("Process Subject (subjectType):" + subjectType);
-                LOGGER.info("Process Subject (publicationState):" + publicationState);
+                LOGGER.debug("Process Subject (displayForm):" + displayForm);
+                LOGGER.debug("Process Subject (gnd):" + gnd);
+                LOGGER.debug("Process Subject (hash):" + idHash);
+                LOGGER.debug("Process Subject (mycoreid):" + mycoreid);
+                LOGGER.debug("Process Subject (subjectType):" + subjectType);
+                LOGGER.debug("Process Subject (publicationState):" + publicationState);
                 
                 displayFormes.add(displayForm);
                 gnds.add(gnd);
@@ -282,7 +282,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 }
                 
                 try { 
-                	LOGGER.info("Process Subject: add Subject to index." );
+                	LOGGER.debug("Process Subject: add Subject to index." );
                 	UpdateResponse response = null;
                 	response = solrClient.add(doc);
                 	if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
@@ -327,14 +327,14 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 chain.addField("id", idHash);
                 chain.addField("type", "chain");
                 
-                LOGGER.info("Process Subject (displayForm):" + displayForm2);
-                //LOGGER.info("Process Subject (gnd):" + gnd);
-                LOGGER.info("Process Subject (hash):" + idHash);
-                LOGGER.info("Process Subject (mycoreid):" + mycoreid);
-                LOGGER.info("Process Subject (publicationState):" + publicationState);
+                LOGGER.debug("Process Subject (displayForm):" + displayForm2);
+                //LOGGER.debug("Process Subject (gnd):" + gnd);
+                LOGGER.debug("Process Subject (hash):" + idHash);
+                LOGGER.debug("Process Subject (mycoreid):" + mycoreid);
+                LOGGER.debug("Process Subject (publicationState):" + publicationState);
         	    
         	    try { 
-        	    	LOGGER.info("Process Subject: add Subject (complex) to index." );
+        	    	LOGGER.debug("Process Subject: add Subject (complex) to index." );
                 	UpdateResponse response = null;
                 	response = solrClient.add(chain);
                 	if (response.getStatus() != 0) LOGGER.error("Solr Error - Subjects of (" + mycoreid + ") were not indexed:" + response);
@@ -364,7 +364,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         modsDoc.addField("subjectid", subjectidUpdate);
         
         try { 
-        	LOGGER.info("Process Subject: add subjectid to objectindex." );
+        	LOGGER.debug("Process Subject: add subjectid to objectindex." );
         	UpdateResponse response = null;
         	response = modsSolrClient.add(modsDoc);
         	if (response.getStatus() != 0) LOGGER.error("Solr Error - mods (" + mycoreid + ") were not updated:" + response);
