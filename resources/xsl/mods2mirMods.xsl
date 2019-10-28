@@ -9,20 +9,33 @@
   exclude-result-prefixes="i18n xsl str pica" >
   <xsl:param name="parentId" />
   <xsl:param name="WebApplicationBaseURL" />
+  
+  <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
-  <xsl:include href="xslInclude:PPN-mods-simple"/>
-  <xsl:include href="copynodes.xsl" />
+  <xsl:include href="xslInclude:PPN-mods-simple"/> 
+  <xsl:include href="copynodes.xsl" />  
   
   <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
   
+  <!--<xsl:template match="/">
+    <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-6.xsd" version="3.6">
+      <mods:titleInfo>
+        <mods:title>Grenzfälle_mods2mir</mods:title>
+        <mods:subTitle>als Test für ...2</mods:subTitle>
+      </mods:titleInfo>
+      <mods:typeOfResource>text</mods:typeOfResource>
+    </mods:mods>
+  </xsl:template>  -->
   
-  <xsl:template match="*">
-    <xsl:element name="mods:{name()}">
+  <!-- Set the prefix mods to all mods nodes. -->
+  <xsl:template match="*[contains(namespace-uri(),'www.loc.gov/mods')]">  
+    <xsl:element name="mods:{local-name()}"> 
       <xsl:copy-of select="namespace::*" />
       <xsl:apply-templates select="node()|@*" />
     </xsl:element>
   </xsl:template>
-
+  
+  <!-- Remove originInfo without eventType. Copy if not originInfo without @eventType='publication' is present.-->
   <xsl:template match="mods:originInfo[not(@eventType)]">
     <xsl:if test="not(//mods:mods/mods:originInfo/@eventType='publication')">
       <mods:originInfo eventType="publication">
@@ -31,21 +44,19 @@
     </xsl:if>
   </xsl:template>
   
+  <!-- Special Case for old unapi mods. Copy edition.-->
   <xsl:template match="mods:originInfo[@eventType='publication']">
-    <xsl:copy>
+    <mods:originInfo>
       <xsl:apply-templates select="node()|@*" />
       <xsl:if test="not(mods:edition) and ../mods:originInfo[not(@eventType)]/mods:edition">
-        <xsl:copy-of select="../mods:originInfo[not(@eventType)]/mods:edition" />
+        <xsl:apply-templates select="../mods:originInfo[not(@eventType)]/mods:edition" />
       </xsl:if>
-    </xsl:copy>
+    </mods:originInfo>
   </xsl:template> 
 
   <xsl:template name="yearRAK2w3cdtf">
     <xsl:param name="date"/>
     <xsl:value-of select="translate($date,'[]?ca','')"/>
-  </xsl:template>
-  
-  <xsl:template match="mods:genre[@authority='marcgt']">
   </xsl:template>
   
   <xsl:template match="mods:dateIssued[@encoding='marc'][not(../mods:dateIssued[not(@encoding)])]">
@@ -163,28 +174,6 @@
     </mods:languageTerm>
   </xsl:template>
   
-  <!-- remove all classifications -->
-  <xsl:template match="mods:classification">
-  </xsl:template>
-  
-  <!-- remove all subjects -->
-  <xsl:template match="mods:subject">
-  </xsl:template>
-  
-  
-  
-  <xsl:template match="mods:identifier[@type='oclc']">
-  </xsl:template>
-  
-  <xsl:template match="mods:identifier[string-length(@type) = 0]">
-  </xsl:template>
-  
-  <xsl:template match="mods:relatedItem[count(*) = 0]">
-  </xsl:template>
-  
-  <xsl:template match="mods:relatedItem[string-length(@type) = 0]">
-  </xsl:template>
-  
   <xsl:template match="mods:number">
     <mods:number>
       <xsl:variable name="number">
@@ -228,26 +217,6 @@
   <xsl:template match="mods:start[contains(.,'-')]">
     <mods:start><xsl:value-of select="substring-before(.,'-')"/></mods:start>
     <mods:end><xsl:value-of select="substring-after(.,'-')"/></mods:end>
-  </xsl:template>
-  
-  <xsl:template match="mods:name[@type='corporate'][not(mods:role)]">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" />
-      <xsl:apply-templates select="*" />
-      <mods:role>
-        <mods:roleTerm authority="marcrelator" type="code">ctb</mods:roleTerm>
-      </mods:role>
-    </xsl:copy>
-  </xsl:template>
-  
-  <xsl:template match="mods:detail[not(@type)]">
-  </xsl:template>
-  
-  
-  <xsl:template match="mods:note[@type='action' or @type='bibliography']">
-  </xsl:template>
-  
-  <xsl:template match="mods:part/mods:text">
   </xsl:template>
   
   <xsl:template match="mods:roleTerm[@authority='marcrelator'][@type='code'][text()='edit']">
