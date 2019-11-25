@@ -105,9 +105,9 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
 			            LOGGER.info("found source:"+elm.getText());
 			            String uri;
 			            if (elm.getText().indexOf("unapi.k10plus.de") != -1) {
-			                uri="xslStyle:mods2mods_shbib,mods2mirMods,pica2mods.xsl:"+elm.getText();
+			                uri="xslStyle:pica2mods,mods2mirMods,mods2mods_shbib:"+elm.getText();
 			            } else {
-			                uri="xslStyle:mods2mods_shbib,mods2mirMods,PPN-mods-gvk,mycoreobject-migrate-nameIdentifier:"+elm.getText();
+			                uri="xslStyle:PPN-mods-gvk,mycoreobject-migrate-nameIdentifier,mods2mirMods,mods2mods_shbib:"+elm.getText();
 			            }
 			            importedMods = MCRURIResolver.instance().resolve(uri);
 			            LOGGER.info("received xml from source: "+outp.outputString(importedMods));

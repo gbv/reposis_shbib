@@ -15,8 +15,7 @@
   <xsl:include href="xslInclude:PPN-mods-simple"/> 
   <xsl:include href="copynodes.xsl" />  
   
-  <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
-  
+   
   <!--<xsl:template match="/">
     <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-6.xsd" version="3.6">
       <mods:titleInfo>
@@ -68,7 +67,7 @@
     </mods:dateIssued>
   </xsl:template>
 
-  <xsl:template match="mods:dateIssued[not(@encoding)]">
+  <xsl:template match="mods:dateIssued[not(@encoding)][not(../mods:dateIssued[@encoding = 'w3cdtf'])]">
     <!-- TODO: check date format first! -->
     <mods:dateIssued>
       <xsl:value-of select="."/>
@@ -163,7 +162,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="mods:languageTerm[@authority='iso639-2b']">
+  <xsl:template match="mods:languageTerm[@authority='iso639-2b' and not(../mods:languageTerm[@authority='rfc4646'])]">
     <xsl:variable name="languages" select="document('classification:metadata:-1:children:rfc4646')" />
     <xsl:variable name="biblCode" select="." />
     <xsl:variable name="rfcCode">

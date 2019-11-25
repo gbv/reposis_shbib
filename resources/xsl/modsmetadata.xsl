@@ -74,11 +74,19 @@
         <xsl:if test="local-name()='dateIssued'">
           <meta property="datePublished">
             <xsl:attribute name="content">
-                    <xsl:value-of select="." />
-                  </xsl:attribute>
+              <xsl:value-of select="." />
+            </xsl:attribute>
           </meta>
         </xsl:if>
-        <xsl:apply-templates select="." mode="rangeDate"/>
+        <xsl:choose>
+          <xsl:when test="not(@encoding)">
+            <xsl:value-of select="."/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="rangeDate"/>
+          </xsl:otherwise>
+        </xsl:choose>
+        
       </td>
     </tr>
   </xsl:if>
@@ -916,8 +924,8 @@
       <!-- mods:part -->
       <xsl:if test="@type='host' or @type='series'">
         <xsl:choose>
-          <xsl:when test="mods:part/mods:text">
-            <xsl:value-of select="mods:part/mods:text" />
+          <xsl:when test="mods:part/mods:text[not(@type='sortstring' or @type='article series')]">
+            <xsl:value-of select="mods:part/mods:text[not(@type='sortstring' or @type='article series')]" />
           </xsl:when>
           <xsl:otherwise>
             <!-- Volume -->
@@ -975,6 +983,13 @@
             </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
+        <xsl:if test="mods:part/mods:text[@type='article series']">
+          <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
+        </xsl:if>
+        <xsl:for-each select="mods:part/mods:text[@type='article series']">
+          <xsl:value-of select="."/>
+          <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
+        </xsl:for-each>
       </xsl:if>
     </td>
   </tr>

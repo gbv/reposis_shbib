@@ -174,11 +174,20 @@
             </xsl:apply-templates>
             <xsl:apply-templates select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='collection']/mods:dateCaptured"
               mode="present" />
-            <xsl:apply-templates select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']"
-              mode="present" />
+            <xsl:choose>
+              <xsl:when test="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='publication']/mods:dateIssued[not(@encoding)]">
+                <xsl:apply-templates select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='publication']/mods:dateIssued[not(@encoding)]"
+                  mode="present" />
+              </xsl:when>
+              <xsl:when test="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+                <xsl:apply-templates select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']"
+                  mode="present" />
+              </xsl:when>
+              
+            </xsl:choose>
             <xsl:apply-templates select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='update']/mods:dateModified"
               mode="present" />
-            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type!='open-aire' and @type!='intern' and @type!='issn']" />
+            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type!='open-aire' and @type!='intern' and @type!='issn' and @type!='local' and @type!='PPN']" />
             <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type='issn']">
                 <tr>
                     <td class="metaname" valign="top">
@@ -292,9 +301,11 @@
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:classification[not(@generator) and not (@authorityURI='http://www.mycore.org/classifications/shbib_sachgruppen')]" />
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:part/mods:extent" />
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:location/mods:url" />
+            <!-- 
             <xsl:call-template name="printMetaDate.mods">
               <xsl:with-param name="nodes" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:location/mods:physicalLocation[not(starts-with(@xlink:href, '#'))]" />
             </xsl:call-template>
+             -->
             <xsl:call-template name="printMetaDate.mods">
               <xsl:with-param name="nodes" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:location/mods:shelfLocator" />
               <xsl:with-param name="label" select="i18n:translate('mir.shelfmark')" />

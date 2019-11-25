@@ -141,6 +141,9 @@
           <mods:languageTerm authority="rfc4646" type="code">
             <xsl:value-of select="$rfcCode"/>
           </mods:languageTerm>
+          <mods:languageTerm type="code" authority="iso639-2b">
+            <xsl:value-of select="$biblCode" />
+          </mods:languageTerm>
         </mods:language>
       </xsl:for-each>
     </xsl:for-each>

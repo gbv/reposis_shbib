@@ -19,6 +19,9 @@
       <mods:recordIdentifier source="DE-28">
         <xsl:value-of select="concat('rosdok/ppn',./p:datafield[@tag='003@']/p:subfield[@code='0'])" />
       </mods:recordIdentifier>
+      <mods:recordIdentifier source="DE-601">
+        <xsl:value-of select="./p:datafield[@tag='003@']/p:subfield[@code='0']" />
+      </mods:recordIdentifier>
       <mods:descriptionStandard>rda</mods:descriptionStandard>
       <mods:recordOrigin>
         <xsl:value-of select="normalize-space(concat('Converted from PICA to MODS using ',$XSL_VERSION_RDA))" />
@@ -31,7 +34,8 @@
 
     <!-- Titel fingiert, wenn kein Titel in 4000 -->
     <xsl:choose>
-      <xsl:when test="$pica0500_2='f' or $pica0500_2='F' ">
+      <!-- Add test for 021A. Inferred Title is only nesessary if no main Title is present. -->
+      <xsl:when test="($pica0500_2='f' or $pica0500_2='F') and not(./p:datafield[@tag='021A'])">
         <xsl:for-each select="./p:datafield[@tag='036C']"><!-- 4150 -->
           <xsl:call-template name="COMMON_Title" />
         </xsl:for-each>
@@ -382,7 +386,7 @@
 
     <!-- mehrere digitalisierende Einrichtungen -->
     <!-- RS: mods:originInfo wiederholen oder wie jetzt mehrere Publisher/Orte aufsammeln? - Wir verlieren so die Beziehung publisher-ort -->
-    <!-- Wechsel von eventType online_publication zu publication, da an diese Stelle noch keine Prüfung stattfand, ob es eine online Resourcq ist
+    <!-- Wechsel von eventType online_publication zu publication, da an diese Stelle noch keine Prüfung stattfand, ob es eine online Resource ist
          Gegebeispiel PPN:875796303 (Buch,rda)-->
     <!-- <mods:originInfo eventType="online_publication">  --><!-- 4030 -->
     <mods:originInfo eventType="publication">
@@ -400,28 +404,14 @@
           </mods:place>
         </xsl:if>
       </xsl:for-each>
-      <xsl:if test="../p:datafield[@tag='032@']/p:subfield[@code='a']">
+      <xsl:if test="//p:datafield[@tag='032@']/p:subfield[@code='a']">
         <mods:edition>
-          <xsl:value-of select="../p:datafield[@tag='032@']/p:subfield[@code='a']" />
+          <xsl:value-of select="//p:datafield[@tag='032@']/p:subfield[@code='a']" />
         </mods:edition>
       </xsl:if>
-      <xsl:for-each select="./p:datafield[@tag='011@']">
-        <xsl:choose>
-          <xsl:when test="./p:subfield[@code='b']">
-            <mods:dateIssued point="start">
-              <xsl:value-of select="./p:subfield[@code='a']" />
-            </mods:dateIssued>
-            <mods:dateIssued point="end">
-              <xsl:value-of select="./p:subfield[@code='b']" />
-            </mods:dateIssued>
-          </xsl:when>
-          <xsl:otherwise>
-            <mods:dateIssued>
-              <xsl:value-of select="./p:subfield[@code='a']" />
-            </mods:dateIssued>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
+      
+      <xsl:call-template name="COMMON_dateIssued"/>
+      
       <!--  Uncommenting following code excpect DataCaptured in 011B not in 011@-->
       <!-- 1109, RDA 1100 011@ -->
       <!--  <xsl:for-each select="./p:datafield[@tag='011@']">   
@@ -456,7 +446,17 @@
     <xsl:call-template name="COMMON_UBR_Class_Collection" />
     <xsl:call-template name="COMMON_Class_Doctype" />
     <xsl:call-template name="COMMON_CLASS" />
-
+    <xsl:call-template name="COMMON_ABSTRACT" />
+    <xsl:call-template name="COMMON_Location" />
+    
+    <xsl:for-each select="./p:datafield[@tag='030F']">
+      <xsl:call-template name="COMMON_Conference" />
+    </xsl:for-each>
+    
+    <xsl:for-each select="./p:datafield[@tag='037C']">
+      <xsl:call-template name="COMMON_Thesis" />
+    </xsl:for-each>
+    
     <xsl:for-each select="./p:datafield[@tag='017H']"> <!-- 4961 URL für sonstige Angaben zur Resource -->
       <mods:note type="source note">
         <xsl:attribute name="xlink:href"><xsl:value-of select="./p:subfield[@code='u']" /></xsl:attribute>

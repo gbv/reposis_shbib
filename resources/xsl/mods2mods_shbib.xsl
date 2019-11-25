@@ -15,8 +15,6 @@
   <xsl:include href="xslInclude:PPN-mods-simple"/> 
   <xsl:include href="copynodes.xsl" />  
   
-  <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
-  
   <xsl:template match="mods:genre[@authority='marcgt']">
   </xsl:template>
   
@@ -49,7 +47,11 @@
   </xsl:template>
   
   <xsl:template match="mods:roleTerm[@authority='marcrelator'][@type='code'][text()='edit']">
-    <roleTerm authority="marcrelator" type="code">edt</roleTerm>
+    <mods:roleTerm authority="marcrelator" type="code">edt</mods:roleTerm>
   </xsl:template>
-    
+  
+  <xsl:template match="mods:location[not(mods:physicalLocation = '0068')]">
+      
+  </xsl:template>
+  
 </xsl:stylesheet>
