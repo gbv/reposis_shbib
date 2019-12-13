@@ -14,7 +14,8 @@
   <xsl:include href="copynodes.xsl" />
   
   <xsl:variable name="ppn" select="//mods:mods/mods:recordInfo/mods:recordIdentifier[@source='DE-601']" />
-  <xsl:variable name="picaUrl" select="concat($WebApplicationBaseURL,'unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
+  <!-- <xsl:variable name="picaUrl" select="concat($WebApplicationBaseURL,'unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" /> -->
+  <xsl:variable name="picaUrl" select="concat('https://reposis-test.gbv.de/shbib/unapiproxy/?format=picaxml&amp;id=gvk:ppn:', $ppn )" />
   <xsl:variable name="picaXml" select="document($picaUrl)" />
   
   <!-- <xsl:key name="kDatafield" match="$picaXml/pica:record/pica:datafield" use="position()"/>  -->
@@ -32,6 +33,7 @@
           <xsl:variable name="shelfmark" select="pica:subfield[@code='a']"/>
           <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
             <mods:location> 
+              <mods:physicalLocation authority="ELN">0068</mods:physicalLocation>
               <mods:shelfLocator>
                 <xsl:value-of select="$shelfmark"/>
               </mods:shelfLocator>
