@@ -43,7 +43,7 @@
   <xsl:template match="mods:note[@type='action' or @type='bibliography']">
   </xsl:template>
   
-  <xsl:template match="mods:part/mods:text">
+  <xsl:template match="mods:part/mods:text[not(@type='article series')]">
   </xsl:template>
   
   <xsl:template match="mods:roleTerm[@authority='marcrelator'][@type='code'][text()='edit']">
