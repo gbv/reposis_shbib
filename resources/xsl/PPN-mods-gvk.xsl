@@ -55,7 +55,7 @@
   </xsl:template>
 
   <xsl:template match="*">
-    <xsl:element name="{name()}">
+    <xsl:element name="mods:{name()}">
       <xsl:copy-of select="namespace::*" />
       <xsl:apply-templates select="node()|@*" />
     </xsl:element>
