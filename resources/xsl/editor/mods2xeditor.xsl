@@ -69,7 +69,22 @@
     </xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="mods:mods/mods:titleInfo|mods:mods/mods:name|mods:mods/mods:typeOfResource|mods:mods/mods:language|mods:mods/mods:extension|mods:mods/mods:originInfo|mods:mods/mods:accessCondition|mods:mods/mods:genre|mods:mods/mods:relatedItem|mods:classification|mods:mods/mods:extent">
+  <!-- Delte from old imported Data - TODO Improve XPATH -->
+  <xsl:template match="mods:mods/mods:titleInfo
+                      |mods:mods/mods:name
+                      |mods:mods/mods:typeOfResource
+                      |mods:mods/mods:language
+                      |mods:mods/mods:extension
+                      |mods:mods/mods:originInfo
+                      |mods:mods/mods:accessCondition
+                      |mods:mods/mods:genre
+                      |mods:mods/mods:identifier[not(@type='intern')]
+                      |mods:mods/mods:note[not(@type='admin' or @type='annotation')]
+                      |mods:mods/mods:relatedItem
+                      |mods:mods/mods:physicalDescription
+                      |mods:mods/mods:location
+                      |mods:classification
+                      |mods:mods/mods:extent">
     
   </xsl:template>
 
