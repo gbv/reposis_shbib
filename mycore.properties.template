@@ -1,0 +1,185 @@
+#
+# by paul.borchert@gbv.de
+#
+# created 2016-12-19
+#
+
+##############################################################################
+#                                                                            #
+# basic application configuration                                            #
+#                                                                            #
+##############################################################################
+
+# name of project
+  MCR.NameOfProject=
+  MIR.projectid.default=
+
+# application base URL and proxy IP
+# MCR.baseurl=http://reposis-test.gbv.de/shbib/
+
+
+# supported languages
+  MCR.Metadata.Languages=de
+
+# SOLR-URL
+  MCR.Module-solr.ServerURL=
+  
+# SOLR-Subject
+  MCR.solrSubject.ServerURL=
+
+# Data directory
+  MCR.datadir=/mcr/shbib/data
+  MCR.Save.FileSystem=/mcr/shbib/.mycore/shbib/save
+
+# Layout
+  MIR.Layout.Theme=cosmol
+  MIR.DefaultLayout.CSS=journal.min
+  MIR.CustomLayout.CSS=shbib.css
+  MIR.CustomLayout.JS=shbib.js
+
+
+# Set PIWIK-ID in mycore.properties.private for test (2) or productive (1), default is 2
+# piwikID=2
+
+# this is a productive environment
+  MIR.testEnvironment=false
+
+# disable classification mapping
+#  MCR.EventHandler.MCRObject.016.Class=
+
+# disable access keys
+  MIR.Strategy.AccessKey.ObjectTypes=
+
+
+##############################################################################
+#                                                                            #
+# Google - ReCaptcha (https://www.google.com/recaptcha)                      #
+# registered for: reposis-test.gbv.de, reposis.gbv.de                        #
+#                                                                            #
+##############################################################################
+
+  MIR.ReCaptcha.secret.key=
+  MIR.ReCaptcha.site.key=
+
+
+##############################################################################
+# Google Sitemap                                                             #
+##############################################################################
+MCR.GoogleSitemap.Types=mods
+
+
+##############################################################################
+#                                                                            #
+# Sherpa/Romeo API Key                                                       #
+# http://www.sherpa.ac.uk/romeo/api29.php?ak=                                #
+#                                                                            #
+##############################################################################
+
+# you can register your application for sherpa/romeo api key
+# see http://www.sherpa.ac.uk/romeo/apiregistry.php
+# MCR.Mods.SherpaRomeo.ApiKey=PAT9IYDueFw
+
+
+##############################################################################
+#                                                                            #
+# Generic mail configuration for MCRMailer                                   #
+#                                                                            #
+##############################################################################
+
+# The server for outgoing mails
+  MCR.Mail.Server=
+# The mail protocol
+  MCR.Mail.Protocol=smtp
+# The debug option
+  MCR.Mail.Debug=false
+# Encoding for the mail
+  MCR.Mail.Encoding=UTF-8
+# Number of send tries
+  MCR.Mail.NumTries=1
+# Editor Mail adresses for Messages add1@serv1,add2@serv2,...
+  MCR.Mail.Address=
+  MCR.mir-module.EditorMail=
+  MCR.mir-module.MailSender=
+
+
+##############################################################################
+#                                                                            #
+# URN configuration                                                          #
+#                                                                            #
+##############################################################################
+
+#  MCR.URN.SubNamespace.Default.Prefix=urn:nbn:de:shbib-
+#  MCR.URN.SubNamespace.Default.NISSBuilder=org.mycore.urn.services.MCRNISSBuilderUUID
+
+# MCR.Persistence.URN.XPath.mods=/mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type='urn']
+
+
+##############################################################################
+#                                                                            #
+# OAI Data Provider                                                          #
+#                                                                            #
+##############################################################################
+
+#MCR.OAIDataProvider.OAI2.RepositoryName=
+#MCR.OAIDataProvider.OAI2.RepositoryIdentifier=
+#MCR.OAIDataProvider.OAI2.AdminEmail=
+
+#MCR.OAIDataProvider.OAI2.RecordSampleID=
+
+#MCR.OAIDataProvider.OAI2.MetadataFormats=oai_dc,epicur
+
+#MCR.OAIDataProvider.OAI2.Sets=open_access,GENRE
+#MCR.OAIDataProvider.OAI2.Sets.open_access=webapp:oai/set_open_access.xml
+#MCR.OAIDataProvider.OAI2.Sets.GENRE=xslStyle:classification2sets:classification:metadata:10:children:mir_genres
+#MCR.OAIDataProvider.OAI2.FilterEmptySets=false
+
+# reposis-oai allg
+# MCR.OAIDataProvider.OAI2.Adapter=org.mycore.oai.MCROAIAdapter
+# MCR.OAIDataProvider.OAI2.Adapter.HeaderURIPattern=xslStyle:mods2oaiheader:mcrobject:{id}
+# MCR.OAIDataProvider.OAI2.Adapter.RecordURIPattern=xslStyle:mods2{format}:mcrobject:{id}
+
+# MCR.OAIDataProvider.OAI2.Search.RequestHandler=/oai_search
+# added Restriction as workaround, without we get no results
+# MCR.OAIDataProvider.OAI2.Search.Restriction=modified:*
+# MCR.OAIDataProvider.OAI2.Search.SortBy=modified desc, id desc
+# MCR.OAIDataProvider.OAI2.Search.FromUntil=modified
+
+
+##############################################################################
+# MIR OAS                                                                    #
+##############################################################################
+# show OAS Statistics in metadata view ('show', 'hide')
+# MIR.OAS=show
+
+# URL of the graphprovider
+#  MIR.OAS.GraphProviderURL=http://reposis-test.gbv.de/openagrar/graphprovider/
+#  MIR.OAS.Prefix=oai:openagrar.bmel-forschung.de
+
+
+##############################################################################
+# Error Page                                                                 #
+##############################################################################
+# Set mcr_error properties in your mycore.properties.private to show OA error page without StackTrace
+#  MCR.ContentTransformer.mcr_error.Stylesheet=xsl/errorPage.xsl,%MCR.LayoutTransformerFactory.Default.Stylesheets%
+
+##############################################################################
+# Updatehandler mods source                                                  #
+##############################################################################
+
+# Move MCRAccessEventHandler from 010 to 009
+MCR.EventHandler.MCRObject.009.Class=org.mycore.access.MCRAccessEventHandler
+
+
+MCR.EventHandler.MCRObject.010.Class=org.mycore.mods.MCRUpdateImportedModsEventHandler
+MCR.EventHandler.MCRObject.011.Class=org.mycore.mods.MCRMergeModsEventHandler
+MCR.EventHandler.MCRObject.012.Class=org.mycore.mods.MCRAddRelatedItemIdEventHandler
+MCR.EventHandler.MCRObject.018.Class=org.mycore.mods.MCRAddSubjectEventHandler
+MCR.EventHandler.MCRObject.105.Class=org.mycore.mods.MCRSolrSubjectIndexEventHandler
+
+
+##############################################################################
+# Error Page                                                                   #
+##############################################################################
+# Set mcr_error properties in your mycore.properties.private to show OA error page without StackTrace
+#  MCR.ContentTransformer.mcr_error.Class=org.mycore.common.content.transformer.MCRXSLTransformer
+#  MCR.ContentTransformer.mcr_error.Stylesheet=xsl/errorPage.xsl,%MCR.LayoutTransformerFactory.Default.Stylesheets%
