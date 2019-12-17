@@ -212,7 +212,7 @@
     <dynamicField name="mods.relatedItem*" type="string" multiValued="true" />
     <field name="mods.shelfLocator" type="lowercase" multiValued="true" />
 
-    <field name="containerSource" type="string" />
+    
 
     <!-- ******************************************** -->
     <!-- * SEARCH -->
@@ -248,9 +248,9 @@
    <!--dynamicField name="*" type="ignored" multiValued="true" /-->
      <!-- SHIB specific schema-->
      <field name="recordIdentifier" type="string" multiValued="true" />
-     <field name="recordIdentifier.source.DE-601" type="string" />
+     <field name="recordIdentifier.source.DE-601" type="string" multiValued="true"/>
      <field name="shelfLocator" type="lowercase" multiValued="true" />
-
+     <field name="containerSource" type="string" />
 
 
  <!-- Field to use to determine and enforce document uniqueness.
