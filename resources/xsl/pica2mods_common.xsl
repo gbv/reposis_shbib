@@ -1119,52 +1119,45 @@
   </xsl:template>
 
   <xsl:template name="COMMON_Location">
-    <xsl:for-each select="./p:datafield[@tag='202D']">
-      <xsl:variable name="current202D" select="." />
-      <xsl:variable name="eln" >
-        <xsl:choose>
-          <xsl:when test="contains(p:subfield[@code='a'],'/')">
-            <xsl:value-of select="substring-before(p:subfield[@code='a'],'/')" />
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="p:subfield[@code='a']"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-      
+    <!-- for each exemplar -->
+    <!-- didn't use 201A, because some times the 201A didn't occur (see 119103680) -->
+    <xsl:for-each select="./p:datafield[@tag='201B']">
+      <xsl:variable name="current201B" select="." />
       <mods:location>
-         
-        <xsl:if test="string-length($eln) &gt; 0">
-          <mods:physicalLocation authority="ELN">
-            <xsl:value-of select="$eln" />
-          </mods:physicalLocation>
-        </xsl:if>
-        
-        <!-- <xsl:for-each select="following-sibling::p:datafield[@tag='209A'][preceding-sibling::p:datafield[@tag='202D'][1]/p:subfield[@code='a']/text()=$current202D/p:subfield[@code='a']/text()][preceding-sibling::p:datafield[@tag='202D'][1]/@occurrence=$current202D/@occurrence]"> -->
-        <xsl:for-each
-          select="following-sibling::p:datafield[preceding-sibling::p:datafield[@tag='202D'][1]/p:subfield[@code='a']/text()=$current202D/p:subfield[@code='a']/text()][preceding-sibling::p:datafield[@tag='202D'][1]/@occurrence=$current202D/@occurrence]">
-          <!-- 
-          <xsl:if test="@tag='209G'">
-            <xsl:variable name="isl" select="substring-before(p:subfield[@code='a'],'$')" />
-            <xsl:if test="string-length($isl) &gt; 0">
-              <mods:physicalLocation authority="ISL">
-                <xsl:value-of select="$isl" />
-              </mods:physicalLocation>
-            </xsl:if>
-          </xsl:if>
-           -->
-          <xsl:if test="@tag='209A'">
-            <xsl:variable name="shelfmark" select="p:subfield[@code='a']" />
-            <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
-              <mods:shelfLocator>
-                <xsl:value-of select="$shelfmark" />
-              </mods:shelfLocator>
-            </xsl:if>
-          </xsl:if>
+        <!-- All nodes between the actual 201B and the next 201B  -->
+        <!-- <xsl:for-each select="following-sibling::p:datafield[preceding-sibling::p:datafield[@tag='201B'][1]=.]">  -->
+        <xsl:for-each select="following-sibling::p:datafield[generate-id(preceding-sibling::p:datafield[@tag='201B'][1]) = generate-id($current201B)]">
+          <xsl:choose>
+            <xsl:when test="@tag='202D'">
+              <xsl:variable name="eln" >
+                <xsl:choose>
+                  <xsl:when test="contains(p:subfield[@code='a'],'/')">
+                    <xsl:value-of select="substring-before(p:subfield[@code='a'],'/')" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="p:subfield[@code='a']"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
+              <xsl:if test="string-length($eln) &gt; 0">
+                <mods:physicalLocation authority="ELN">
+                  <xsl:value-of select="$eln" />
+                </mods:physicalLocation>
+              </xsl:if>
+            </xsl:when>
+            <xsl:when test="@tag='209A'">
+              <xsl:variable name="shelfmark" select="p:subfield[@code='a']" />
+              <xsl:if test=" string-length($shelfmark) &gt; 0 and not($shelfmark='Einzelsignatur')">
+                <mods:shelfLocator>
+                  <xsl:value-of select="$shelfmark" />
+                </mods:shelfLocator>
+              </xsl:if>
+            </xsl:when>
+          </xsl:choose>
         </xsl:for-each>
       </mods:location>
     </xsl:for-each>
-
+    
   </xsl:template>
 
   <xsl:template match="p:datafield[@tag='031A']">
