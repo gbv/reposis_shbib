@@ -1219,7 +1219,7 @@
     </xsl:if>
     <xsl:if test="./p:subfield[@code='y']">
       <mods:text type="display">
-        <xsl:value-of select="substring(./p:subfield[@code='y'],1,4)" />
+        <xsl:value-of select="./p:subfield[@code='y']" />
       </mods:text>
     </xsl:if>
   </xsl:template>
