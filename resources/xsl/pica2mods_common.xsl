@@ -1117,6 +1117,8 @@
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
+  
+  <xsl:key use="generate-id(preceding-sibling::p:datafield[@tag='201B'][1])" name="key-id-pre2018" match="p:datafield"/>
 
   <xsl:template name="COMMON_Location">
     <!-- for each exemplar -->
@@ -1124,9 +1126,7 @@
     <xsl:for-each select="./p:datafield[@tag='201B']">
       <xsl:variable name="current201B" select="." />
       <mods:location>
-        <!-- All nodes between the actual 201B and the next 201B  -->
-        <!-- <xsl:for-each select="following-sibling::p:datafield[preceding-sibling::p:datafield[@tag='201B'][1]=.]">  -->
-        <xsl:for-each select="following-sibling::p:datafield[generate-id(preceding-sibling::p:datafield[@tag='201B'][1]) = generate-id($current201B)]">
+        <xsl:for-each select="key('key-id-pre2018' , generate-id() )">
           <xsl:choose>
             <xsl:when test="@tag='202D'">
               <xsl:variable name="eln" >
