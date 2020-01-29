@@ -487,14 +487,14 @@
           <xsl:when test="./p:subfield[@code='4']">
             <xsl:for-each select="./p:subfield[@code='4']">
               <mods:role>
+                <mods:roleTerm type="code" authority="marcrelator">
+                  <xsl:value-of select="." />
+                </mods:roleTerm>
                 <xsl:if test="preceding-sibling::p:subfield[@code='B']">
                   <mods:roleTerm type="text" authority="GBV">
                     <xsl:value-of select="preceding-sibling::p:subfield[@code='B']" />
                   </mods:roleTerm>
                 </xsl:if>
-                <mods:roleTerm type="code" authority="marcrelator">
-                  <xsl:value-of select="." />
-                </mods:roleTerm>
               </mods:role>
             </xsl:for-each>
           </xsl:when>
