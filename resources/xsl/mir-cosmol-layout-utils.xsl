@@ -95,8 +95,12 @@
           <xsl:call-template name="mir.basketMenu" />
           <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='misc']" />
         </ul>
+        <div id="shbib_feedback">
+          <a href="mailto:bibliographie@shlb.landsh.de">Feedback</a>
+        </div>
       </nav>
     </div>
+    
   </xsl:template>
 
   <xsl:template name="mir.footer">
