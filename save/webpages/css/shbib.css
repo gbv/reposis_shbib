@@ -881,3 +881,11 @@ div.mir-fieldset-content > div.subject_select > div.form-group > div.col-md-6 {
     padding-left: 13px;
     padding-bottom: 5px;
 }
+
+.input-group > .input-group-addon {
+    border-width: 1px 0;
+}
+
+:not(.input-group-btn)  > .btn {
+    margin-right: 0px;
+}
