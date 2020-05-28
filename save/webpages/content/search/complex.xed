@@ -74,26 +74,11 @@
                 <mir:template name="textInput"
                   xpath="condition[@field='id,isbn,mods.identifier']/@value" id="inputIdentifier1"
                   i18n="editor.search.mir.identifier" tooltip="editor.search.mir.identifier.tooltip" />
-              <!-- Institution -->
-                <mir:template name="selectInput"
-                  xpath="condition[@field='category.top'][1]/@value" id="inputInst1"
-                  i18n="editor.search.mir.institute" tooltip="editor.search.mir.institute.tooltip"
-                  uri="xslStyle:items2options:classification:editorComplete:-1:children:mir_institutes" />
-              <!-- DNB Sachgruppe -->
-                <mir:template name="selectInput"
-                  xpath="condition[@field='category.top'][2]/@value" id="inputSDNB1"
-                  i18n="editor.search.mir.sdnb" tooltip="editor.search.mir.sdnb.tooltip"
-                  uri="xslStyle:items2options:classification:editorComplete:-1:children:SDNB" />
               <!-- Genre -->
                 <mir:template name="selectInput"
                   xpath="condition[@field='category.top'][3]/@value" id="inputGenre1"
                   i18n="editor.search.mir.genre" tooltip="editor.search.genre.tooltip"
                   uri="xslStyle:items2options:classification:editorComplete:-1:children:mir_genres" />
-              <!-- Licenses -->
-                <mir:template name="selectInput"
-                  xpath="condition[@field='category.top'][4]/@value" id="inputLicense1"
-                  i18n="editor.search.mir.license" tooltip="editor.search.license.tooltip"
-                  uri="xslStyle:items2options:classification:editorComplete:-1:children:mir_licenses" />
               <!-- Datum -->
                 <div class="form-group">
                   <xed:bind xpath="condition[@field='mods.dateIssued']">
@@ -118,18 +103,6 @@
                       </xed:bind>
                     </div>
                   </xed:bind>
-                </div>
-              <!-- Volltext -->
-                <div class="form-group">
-                  <div class="col-md-offset-3 col-md-9">
-                    <xed:bind xpath="condition[@field='derCount'][@value='0']/@operator"
-                      default="&gt;=">
-                      <label class="checkbox-inline">
-                        <input type="checkbox" value="&gt;" />
-                        <xed:output i18n="editor.search.mir.hasFiles" />
-                      </label>
-                    </xed:bind>
-                  </div>
                 </div>
               </xed:bind>
             <!-- sort -->
