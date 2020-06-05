@@ -646,14 +646,6 @@ ul.navbar-nav {
   background-size: contain;
 }
 
-#header_flag {
-  background-image: url("../images/flag.png");
-  position:absolute;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 #header_login {
   width: 180px;
   height: 50px;
