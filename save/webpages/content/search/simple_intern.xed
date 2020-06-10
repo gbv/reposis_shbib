@@ -9,6 +9,7 @@
       <xed:source uri="webapp:editor/search/template/simple_intern.xml" />
       <xed:bind xpath="query">
         <xed:bind xpath="@mask" default="search/simple_intern.xed" />
+        <xed:bind xpath="sortBy/field/@name" set="score" />
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
