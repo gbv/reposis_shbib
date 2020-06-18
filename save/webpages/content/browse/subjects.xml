@@ -12,8 +12,8 @@
         </h3>
       </div>
     </div>
-    <div class="row">
-      <form>
+    <form>
+      <div class="row">
         <div class="col-md-6">  
           <div class="input-group">
             <input id="subjectSearch_subject" class="form-control subjectSuggest" placeholder="Schlagwort" 
@@ -26,8 +26,16 @@
             </span>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-1">  
+          <div class="input-group">
+            <label class="radio-inline"> <input type="radio" id="subjectSearch-typ-trunc" name="searchtyp" value="trunc" checked="checked" /> beginnt mit</label>
+            <label class="radio-inline"> <input type="radio" id="subjectSearch-typ-part" name="searchtyp" value="part" /> Teil von</label>
+          </div>
+        </div>
+      </div>
+    </form>
     <div class="row" style="margin-top:15px">
       <div class="col-md-8">  
         <div>

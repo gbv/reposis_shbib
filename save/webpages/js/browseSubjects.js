@@ -1,5 +1,15 @@
 var RowsPerPage = 20;
 
+function escapeSearchvalue(text) {
+  var map = {
+    ' ': '\\ ',
+    '(': '\\(',
+    ')': '\\)'
+    
+  };
+  return text.replace(/[ ()]/g, function(m) { return map[m]; });
+}
+
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',
@@ -13,7 +23,6 @@ function escapeHtml(text) {
 }
 
 function getSearchfunction(Query,Start,Rows) {
-	//var str = 'alert(searchSubjects(&#039;' + escapeHtml(Query) + '&#039;,' + Start + ',' +  Rows + ')); return false;';
 	var str = 'searchSubjects(&#039;' + escapeHtml(Query) + '&#039;,' + Start + ',' +  Rows + '); return false;';
 	return (str);
 }
@@ -36,7 +45,6 @@ function showresult(json) {
     var html="";
     $.each(json.response.docs, function (index,doc) {
         length = ('mycoreid' in doc) ? doc.mycoreid.length : 0; 
-        //searchlink = webApplicationBaseURL + 'servlets/solr/select?q=mods.subject%3A\\' + doc.displayForm + '&wt=xml';
         searchlink = webApplicationBaseURL + 'servlets/solr/select?q=mods.subject%3A%22\\' + doc.displayForm + '%22&wt=xml';
         html += '<li> ';
         html += '<a title="Suche nach allen Publikationen" href="' + searchlink + '" >';
@@ -177,13 +185,20 @@ $(document).ready( function() {
 	
 	var query = 'mycoreid:[""+TO+*]';
 	searchSubjects(query,0,20);
+	
 	$('#subjectSearch_submit').click( function () {
 	    var searchValue = $('#subjectSearch_subject').val();
-	    var fuzzyQuery= "suggest:" + searchValue +"~";
-	    var trunkQuery= "suggest:" + searchValue +"*";
+	    var squery = "";
+	    if ($('#subjectSearch-typ-part').prop("checked") ) {
+	    	$.each (searchValue.split(" "), function (key, value) {
+	    		squery += "suggest:*" + escapeSearchvalue(value) +"*+AND+"; 
+	    	});
+	    	squery = squery.substring(0, squery.length - 4);
+	    } else {
+	        squery= "suggest:" + escapeSearchvalue(searchValue) +"*";
+	    }
 	    var onlyWithMIDs = 'mycoreid:[""+TO+*]';
-		//searchSubjects( "((" + fuzzyQuery + ")OR(" + trunkQuery + "))AND("+onlyWithMIDs+")",0,20);
-		searchSubjects( "(" + trunkQuery + ")AND("+onlyWithMIDs+")",0,20);
+		searchSubjects( "(" + squery + ")AND("+onlyWithMIDs+")",0,20);
 	});
 	
 });

@@ -1,31 +1,38 @@
 var engines2 = {
 	subjectSuggest : {
-		engine : new Bloodhound({
+		engine : new Bloodhound({	
 			// datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
 			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('displayForm'),
 			queryTokenizer : Bloodhound.tokenizers.whitespace,
+		    
 			remote : {
-				url : webApplicationBaseURL + 'solrsubjectproxy/suggest?%QUERY',
+				url : webApplicationBaseURL + 'solrsubjectproxy/select?%QUERY',
 				wildcard : '%QUERY',
 				transform : function(list) {
-					list = list.suggest.default;
-					var returnList = [];
+					list = list.response.docs;
 					$.each(list, function(index, item) {
-					    $.each(item.suggestions, function(index2, item2) { 
-					        var returnListItem = new Object();
-					        returnListItem.name = item2.term;
-					        returnListItem.value = jQuery('<p>' + item2.term + '</p>').text();
-					        returnList.push(returnListItem);
-					    } );
+						item.name = item['displayForm'];
+						item.value = item['displayForm'];
 					});
-					return returnList;
+					return list;
+					
 				},
 				prepare : function(query, settings) {
-				    
-					var param = "suggest.q=" + query + "&wt=json&indent=true";
+					var squery = "";
+					if ($('#subjectSearch-typ-part').prop("checked") ) {
+				    	$.each (query.split(" "), function (key, value) {
+				    	    squery += "suggest:*" + value +"*+AND+"; 
+				        });
+				        squery = squery.substring(0, squery.length - 6);
+					} else {
+						squery = "suggest%3A" + escapeSearchvalue(query) + "*";
+					} 
+					var param = "q=" + squery + "*+AND+mycoreid:[\"\"+TO+*]";
+					param += "&wt=json&indent=true&rows=100";
 					
 					settings.url = settings.url.replace("%QUERY", param);
 					return settings;
+					
 				}
 			}
 		})
@@ -49,7 +56,7 @@ var engines2 = {
 				prepare : function(query, settings) {
 				    
 					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+topic+AND+mycoreid:[\"\"+TO+*]";
-					param += "&wt=json&indent=true&rows=1000";
+					param += "&wt=json&indent=true&rows=100";
 					
 					settings.url = settings.url.replace("%QUERY", param);
 					return settings;
@@ -76,7 +83,7 @@ var engines2 = {
 				prepare : function(query, settings) {
 				    
 					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+geographic+AND+mycoreid:[\"\"+TO+*]";
-					param += "&wt=json&indent=true&rows=1000";
+					param += "&wt=json&indent=true&rows=100";
 					
 					settings.url = settings.url.replace("%QUERY", param);
 					return settings;
@@ -103,7 +110,7 @@ var engines2 = {
 				prepare : function(query, settings) {
 				    
 					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+personal+AND+mycoreid:[\"\"+TO+*]";
-					param += "&wt=json&indent=true&rows=1000";
+					param += "&wt=json&indent=true&rows=100";
 					
 					settings.url = settings.url.replace("%QUERY", param);
 					return settings;
@@ -130,7 +137,7 @@ var engines2 = {
 				prepare : function(query, settings) {
 				    
 					var param = "q=displayForm%3A" + query + "*+AND+subjectType%3A+corporate+AND+mycoreid:[\"\"+TO+*]";
-					param += "&wt=json&indent=true&rows=1000";
+					param += "&wt=json&indent=true&rows=100";
 					
 					settings.url = settings.url.replace("%QUERY", param);
 					return settings;
@@ -146,7 +153,7 @@ var engines2 = {
 					queryTokenizer : Bloodhound.tokenizers.whitespace,
 					remote : {
 						url : webApplicationBaseURL
-								+ 'servlets/solr/select?&q=%2Bmods.title%3A*%QUERY*+%2Bcategory.top%3A%22mir_genres\%3Aseries%22+%2BobjectType%3A%22mods%22&version=4.5&rows=1000&fl=mods.title%2Cid%2Cmods.identifier&wt=json',
+								+ 'servlets/solr/select?&q=%2Bmods.title%3A*%QUERY*+%2Bcategory.top%3A%22mir_genres\%3Aseries%22+%2BobjectType%3A%22mods%22&version=4.5&rows=100&fl=mods.title%2Cid%2Cmods.identifier&wt=json',
 						transform : function(list) {
 							return {};
 						}
@@ -185,8 +192,18 @@ $(document).ready(function() {
 
 			},
 			highlighter: function (obj) {
+				var query = this.query;
+				var words = query.split(' ');
+				for (i=0; i < words.length ;i++) {
+					word = words[i];
+					var re = new RegExp(word,"i");
+				    obj = obj.replace(re, function (x) {return "<b>" + x + "</b>"});
+				}
 				return (obj);
- 			}
+ 			},
+ 			matcher: function (item) {
+                return -1;
+            },
 		});
 
 	});
