@@ -9,6 +9,11 @@
 
   <xsl:template name="COMMON_Title">
     <mods:titleInfo>
+      <xsl:choose>
+        <xsl:when test="@tag='021G'">
+          <xsl:attribute name="type">translated</xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
       <xsl:attribute name="usage">primary</xsl:attribute>
       <xsl:if test="./p:subfield[@code='a']">
         <xsl:variable name="mainTitle" select="./p:subfield[@code='a']" />
