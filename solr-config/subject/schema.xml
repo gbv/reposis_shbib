@@ -143,7 +143,7 @@
 
     <fieldType class="solr.TextField" name="stringSuggest" positionIncrementGap="100">
       <analyzer>
-	<tokenizer class="solr.KeywordTokenizerFactory"/>      
+	    <tokenizer class="solr.KeywordTokenizerFactory"/>      
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType> 
