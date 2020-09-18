@@ -114,8 +114,8 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
             }
     		String[] sChainElements = sChain.split("/");
     		for (String sChainElement: sChainElements) {
+    			sChainElement = sChainElement.trim();
     	        String taskMessage = "add subjectChild:  "+sChainElement+"";
-                //LOGGER.info(taskMessage);
                 Element subjectChild = null;
                 if (labelType.equals("x-topic")) {
                 	subjectChild = new Element ("topic", MCRConstants.MODS_NAMESPACE);
