@@ -885,24 +885,24 @@ div.mir-fieldset-content > div.subject_select > div.form-group > div.col-md-6 {
   right: -24px;
   transform: rotate(-90deg);
   display: block;
-  background: #e19e95;
+  background: #c74a39;
   padding: 8px 0px;
   font-family: Arial, sans-serif;
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
-  border-bottom: solid 1px #e19e95;
-  border-left: solid 0px #e19e95;
-  border-right: solid 1px #e19e95;
+  border-bottom: solid 1px #c74a39;
+  border-left: solid 0px #c74a39;
+  border-right: solid 1px #c74a39;
   z-index: 999;
   width: 80px;
   text-align: center; 
 }
 #shbib_feedback:hover {
-  background: #c74a39;
-  border-bottom: solid 1px #c74a39;
-  border-left: solid 0px #c74a39;
-  border-right: solid 1px #c74a39;
+  background: #e19e95; 
+  border-bottom: solid 1px #e19e95;
+  border-left: solid 0px #e19e95;
+  border-right: solid 1px #e19e95;
 }
 #shbib_feedback a {
   color: #fff;
@@ -910,4 +910,19 @@ div.mir-fieldset-content > div.subject_select > div.form-group > div.col-md-6 {
 
 :not(.input-group-btn)  > .btn {
     margin-right: 0px;
+}
+
+/* Barrierefreiheit */
+.mir-prop-nav .navbar-nav > li > a {
+	color: #666;
+    font-size: 85%;
+    padding: 0;
+}
+.breadcrumb > .active {
+    color: #666666;
+}
+.panel-default > .panel-heading {
+    color: #666;
+    background-color: #f9f9f9;
+    border-color: #ddd;
 }
