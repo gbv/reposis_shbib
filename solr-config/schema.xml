@@ -247,6 +247,7 @@
         unknown fields indexed and/or stored by default -->
    <!--dynamicField name="*" type="ignored" multiValued="true" /-->
      <!-- SHIB specific schema-->
+     <field name="sourceid" type="string" multiValued="true"/>
      <field name="recordIdentifier" type="string" multiValued="true" />
      <field name="recordIdentifier.source.DE-601" type="string" multiValued="true"/>
      <field name="shelfLocator" type="lowercase" multiValued="true" />
