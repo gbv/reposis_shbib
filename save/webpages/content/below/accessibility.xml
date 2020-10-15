@@ -6,12 +6,17 @@
       <div class="col-md-10" lang="de">
         <h1>Erklärung zur Barrierefreiheit</h1>
         <p>
-          Informationen über die Zugänglichkeit dieser Webseiten Landesbehindertengleichstellungsgesetz (LBGG) 
-          für Schleswig-Holstein sowie über diesbezügliche Kontaktmöglichkeiten.
+          Informationen über die Zugänglichkeit dieser Webseiten nach dem  
+          Landesbehindertengleichstellungsgesetz (LBGG) für Schleswig-Holstein sowie über diesbezügliche Kontaktmöglichkeiten.
         </p>
         <p>
           Diese Erklärung zur Barrierefreiheit gilt für die Webseiten der Schleswig-Holsteinische Bibliographie online, erreichbar 
           unter der Domain bibliographie.schleswig-holstein.de.
+        </p>
+        <p>
+          Beim BITV-Test über die funktionale Teile und das Design sind unterschiedlichste <span lang="en">Issues</span>
+          identifiziert worden, die eine barrierefreie Nutzung der Webseite erschweren. Diese sind in dem 
+          <a href="accessibility_test_mir.xml">Protokoll</a> vom Test aufgelistet und werden sukzessive behoben. 
         </p>
         <h2> 
           Nicht barrierefreie Inhalte
@@ -23,8 +28,9 @@
           in einem kontinuierlichen Verbesserungsprozess, der sukzessive abgearbeitet wird. 
         </p>
         <p>
-          Die Metadaten inbesonder die Abstracts und Titel, sind ggf. nicht barrierfrei, da diese aus einer externen 
-          Quelle dem Verbundkatalog K10+ geholt werden.
+          Die Metadaten inbesonder die Titel und Inhaltsbescheibungen, sind ggf. nicht barrierfrei, da diese aus einer externen 
+          Quelle, dem Verbundkatalog K10+, importiert werden. Die Begriffe aus der Systematik und der Verschlagwortung sowie die
+          verwendeten Abkürzungen sind normiert und können nicht verändert werden.
         </p>
         <p>
           Nach Rücksprachen mit entsprechenden Verbänden wird die Vorlesefunktionder persönlichen Screenreader bevorzugt,
@@ -35,7 +41,9 @@
           Erstellung dieser Erklärung zur Barrierefreiheit
         </h2>
         <p>
-          Diese Erklärung wurde am 22.09.2020 erstellt. Die Einschätzung basiert auf Selbstbewertung. 
+          Diese Erklärung wurde am 22.09.2020 erstellt. Die Einschätzung basiert auf Selbstbewertung. Teil davon
+          ist ein <a href="accessibility_test_mir.xml">Protokoll</a> von einem BITV-Test über die funktionale
+          Teile und das Design der Webseite. 
         </p>
         <p>
           Die von den Mitarbeiter der Landesbibliothke Schlewsig Holstein redaktionell zu veranwortende Seiten wurden in einem 
@@ -46,7 +54,15 @@
         </h2>
         <p>
           Über folgenden Kontakt können Sie Mängel in Bezug auf die Einhaltung der
-          Barrierefreiheitsanforderungen mitteilen: XXXX
+          Barrierefreiheitsanforderungen mitteilen: 
+        </p>
+        <p> 
+          Schleswig-Holsteinische Landesbibliothek<br/>
+          Wall 47/51 <br/>
+          24103 Kiel <br/>
+          Telefon: 0431 69677-51<br/> 
+          Telefax: 0431 69677-11 <br/>
+          E-Mail: verwaltung@shlb.landsh.de<br/>
         </p>
         <h2>
           Beschwerdeverfahren
@@ -66,23 +82,18 @@
           Das Beschwerdeverfahren ist kostenlos. Sie brauchen auch keinen Rechtsbeistand.
         </p>
         <p>
-          Auf der Internetseite der Beschwerdestelle finden Sie alle Informationen zum Beschwerdeverfahren. 
+          Auf der <a href="https://www.landtag.ltsh.de/beauftragte/beschwerdestelle-fuer-barrieren/">
+          Internetseite der Beschwerdestelle</a> finden Sie alle Informationen zum Beschwerdeverfahren. 
           Dort können Sie nachlesen, wie ein Beschwerdeverfahren abläuft.<br/>
           <br/>
           Sie erreichen die Beschwerdestelle unter folgender Adresse:<br/>
           <br/>
-          Beschwerdestelle nach dem Behindertengleichstellungsgesetz <br/>
-          beim Landesbeauftragten für Menschen mit Behinderung<br/>
-          Büroanschrift:<br/>
+          Beschwerdestelle für barrierefreie Informationstechnik Schleswig-Holstein  <br/>
           Karolinenweg 1<br/>
           24105 Kiel<br/>
           <br/>
-          Postanschrift:<br/>
-          Postfach 7121<br/>
-          24171 Kiel<br/>
-          <br/>
           Telefon: 0431 988-1620<br/>
-          E-Mail: lb@landtag.ltsh.de<br/>
+          E-Mail: <span class="madress">bbit [at] landtag.ltsh.de</span><br/>
         </p>
       </div>
     </div>

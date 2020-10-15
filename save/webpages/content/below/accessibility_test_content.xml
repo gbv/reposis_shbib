@@ -33,10 +33,22 @@
         <p>
           Die Texte sind durch die entsprechen Strukturelemente sinnvoll gegliedert.
         </p>
-        <h3>2.4.2a Sinnvolle Dokumenttitel</h3>
-        <h3>2.4.6a Aussagekräftige Überschriften und Beschriftungen</h3>
-        <h3>3.1.2a Anderssprachige Wörter und Abschnitte ausgezeichnet</h3>
-        <h3>....</h3>
+        <h3>2.4.2a Sinnvolle Dokumenttitel: ja</h3>
+        <p>
+          Der Dokumenttitel enthält zwei Bestandteile: eine immer gleiche, 
+          allgemeine Bezeichnung des Webauftritts und eine unterscheidende,
+          individuelle Bezeichnung der jeweiligen Seite.
+        </p>
+        <h3>2.4.6a Aussagekräftige Überschriften und Beschriftungen: ja</h3>
+        <p>
+          Die Überschriften bezeichnen exakt den durch sie strukturierten Inhalt. Beschriftungen
+          sind nicht vorhanden.
+        </p>
+        <h3>3.1.2a Anderssprachige Wörter und Abschnitte ausgezeichnet: nicht anwendbar</h3>
+        <p>
+          Anderssprachige Wörter und Abschnitte sind nicht vorhanden.
+        </p>
+        
       </div>
     </div>
   </section>
