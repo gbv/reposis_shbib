@@ -39,6 +39,9 @@
                             <option value="mods.name">
                               <xed:output i18n="editor.search.mir.name" />
                             </option>
+                            <option value="mods.subjectindex">
+                              <xed:output i18n="editor.search.mir.subject" />
+                            </option>
                             <option value="allMeta">
                               <xed:output i18n="editor.search.mir.metadata" />
                             </option>
