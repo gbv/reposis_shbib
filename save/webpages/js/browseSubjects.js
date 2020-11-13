@@ -4,8 +4,8 @@ function escapeSearchvalue(text) {
   var map = {
     ' ': '\\ ',
     '(': '\\(',
-    ')': '\\)'
-    
+    ')': '\\)',
+    '%': '\\%'
   };
   return text.replace(/[ ()]/g, function(m) { return map[m]; });
 }
@@ -75,8 +75,8 @@ function showresult(json) {
     	EndPage = ActualPage+3;
     }
     
-    PagQuery = Query;
-    if (FQuery != '') PagQuery += '&fq='+FQuery;
+    PagQuery = escapeSearchvalue(Query);
+    if (FQuery != '') PagQuery += '&fq='+escapeSearchvalue(FQuery);
     html+=' <ul class="pagination pagination-sm" id="solr-result-paginate">';
     if (ActualPage > 1) {
     	html+='   <li>';
