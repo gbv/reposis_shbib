@@ -12,27 +12,23 @@
         <p>
           Die geprüften Seiten sind:
           <ul>
-            <li>Desing der Webseite</li>
+            <li>Design der Webseite</li>
             <li>Menüs</li>
             <li>Detailansicht der Dokumente</li>
-            <li>Suchergebnissseite</li>
+            <li>Suchergebnisseite</li>
             <li>Merkliste</li>
-            <li>Browsing Seiten und Personensuche</li>
+            <li>Browsing-Seiten und Personensuche</li>
             <li>Eingabemasken für die Suche</li>
-            <li>Das von den Autoren nutzbare Erfasungsformular</li>
-            <li>Formular zur Selbstregistrierung</li>
           </ul>
         </p>
-        <h2>Protoll</h2>
+        <h2>Protokoll</h2>
         <h3>1.1.1a - Alternativtexte für Bedienelemente: </h3>
         <p>
           Die Alternativtexte fehlen bei:
           <ul>
             <li>Einschlitzsuche</li>
             <li>mehre Eingabefelder für komplexe Suche</li>
-            <li>Captcha bei der Selbstregistrierung</li>
-            <li>Bestätigung der Datenschutzerklärung bei der Selbstregistrierung</li>
-            <li>Paginierungsbuttons in der Suchergebnisse</li>
+            <li>Paginierungsbuttons in der Suchergebnisseite</li>
           </ul>
         </p>
         <h3>1.1.1b Alternativtexte für Grafiken und Objekte: teilweise erfüllt</h3>
@@ -48,9 +44,9 @@
             <li>Logo im Footer sollte leeres alt-Atribute haben</li>
           </ul>
         </p>
-        <h3>1.1.1d Alternativen für CAPTCHAs: eher nicht erfüllt</h3>
+        <h3>1.1.1d Alternativen für CAPTCHAs: nicht anwendbar</h3>
         <p>
-          Für die Selbstregirierung wird reCaptcha von Google genutzt. Derzeit in einer nicht barrierefreien Form.
+          Es werden keine CAPTCHAs genutzt.
         </p>
         <h3>1.2.1a Alternativen für Audiodateien und stumme Videos: Nicht anwendbar</h3>
         <p>
@@ -100,9 +96,7 @@
         </p>
         <h3>1.3.1.h Beschriftung von Formularelementen programmatisch ermittelbar: eher erfüllt</h3>
         <p>
-          Die Erfassungsformulare für die Autoren haben die Felbschriftungen kein for-Attribute. Da
-          der Kreis der Betroffen klein und der Aufwand das Problem zu beheben sehr groß ist, wird eine
-          Beseitigung angestrebt aber vorerst nicht umgesetzt. 
+          In der komplexen Suche sind einige Formularlemente nicht beschriftet. 
         </p>
         <h3>1.3.2a Sinnvolle Reihenfolge: erfüllt</h3>
         <h3>1.3.3a Ohne Bezug auf sensorische Merkmale nutzbar: erfüllt</h3>
@@ -111,40 +105,33 @@
         </p>
         <h3>1.3.4a Keine Beschränkung der Bildschirmausrichtung: erfüllt</h3>
         <p>
-          Die Webseite kann sowohl im Hoch als auch im Querformat genutzt werden.
+          Die Webseite kann sowohl im Hoch- als auch im Querformat genutzt werden.
         </p>
         <h3>1.3.5a Eingabefelder zu Nutzerdaten vermitteln den Zweck: nicht erfüllt</h3>
         <p>
           Es sind keine Formularfelder mit einem autocomplete-Attribut versehen.
-          Formulare bei denen es sinnvoll wäre sind folgende:
+          Formulare, bei denen es sinnvoll wäre, sind folgende:
           <ul>
             <li>Login</li>
-            <li>Selbstregistrierung</li>
-            <li>Bearbeiten der eigen Nutzerdaten</li>
           </ul>
         </p>
         <h3>1.4.1a Ohne Farben nutzbar: erfüllt</h3>
-        <p>
-          Bei Formulareingaben und Workflowschritten wird mittel Farbgebung der Nutzer informiert, ob
-          es fehlende Einträg gibt oder Aktionen (z.B.) Speichern fehlgeschlagen sind. Diese sind jedoch stets
-          mit einer aussagekräftigen Textmeldung versehen.
-        </p>
         <h3>1.4.2a Ton abschaltbar: nicht anwendbar</h3>
         <p>
-          Das Abspielen von Audiodaten muss immer vom Nutzer initiert werden.
+          Das Abspielen von Audiodaten muss immer vom Nutzer initiiert werden.
         </p>
         <h3>1.4.3a Kontraste von Texten ausreichend: teilweise erfüllt</h3>
         <p>
           Nicht erfüllt:
           <ul>
-            <li>Textteile in der Suchergebnissliste: aus (erschienen in), Erscheinungsort, auf die Merkliste</li>
-            <li>Klappbuttons und Anzahl der Dokuemnte beim Browsen nach Einrichtung, Dokumenttyp, Sachgruppe</li>
-            <li>Personensuche: Buchstabenbutton, "Suchen"-button</li>
+            <li>Textteile in der Suchergebnisliste: aus (erschienen in), Erscheinungsort, auf die Merkliste</li>
+            <li>Klappbuttons und Anzahl der Dokumente beim Browsen nach Einrichtung, Dokumenttyp, Sachgruppe</li>
+            <li>Personensuche: Buchstabenbutton, "Suchen"-Button</li>
           </ul>
         </p>
         <h3>1.4.4a Text auf 200% vergrößerbar: eher erfüllt</h3>
         <p>
-          Detailansicht: auf die Merkliste wird nicht ordentlich dargestellt.
+          Detailansicht: "auf die Merkliste" wird nicht ordentlich dargestellt.
         </p>
         <h3>1.4.5a Verzicht auf Schriftgrafiken:erfüllt</h3>
         <h3>1.4.10a Inhalte brechen um: erfüllt</h3>
@@ -181,35 +168,35 @@
         <h3>2.4.2a Sinnvolle Dokumenttitel: eher erfüllt</h3>
         <p>
           Jede Seite, bis auf die Suchergebnisse, hat einen individuellen aussagekräftigen 
-          Titel. Eine allgemeine Bezeichnung des Webauftritts ist bisher nicht Teil des Titel.
+          Titel. Eine allgemeine Bezeichnung des Webauftritts ist bisher nicht Teil des Titels.
         </p>
         <h3>2.4.3a Schlüssige Reihenfolge bei der Tastaturbedienung: eher erfüllt</h3>
         <p>
           Nach dem Breadcrumb springt der Fokus auf die Merkliste/Aktionen und nicht auf die Badges.
           <ul>
-            <li>In der Suchergebnissseite ist der Button "Alle Treffier dieser Seite merken" nicht erreichbar</li>
-            <li>In der Suchergebnissseite bekommen die Faceten den Fokus vor den Suchergebnissen. </li>
+            <li>In der Suchergebnisseite ist der Button "Alle Treffer dieser Seite merken" nicht erreichbar</li>
+            <li>In der Suchergebnisseite bekommen die Faceten den Fokus vor den Suchergebnissen. </li>
           </ul>
           Der Feedbackbutton wird nach dem linken Menü angesprungen.
         </p>
         <h3>2.4.4a Aussagekräftige Linktexte: teilweise erfüllt</h3>
         <p>
           <ul>
-            <li>Link zum Auf und Zuklappen des Abtracts</li>
+            <li>Link zum Auf- und Zuklappen des Abtracts</li>
             <li>Sprachenlinks in den Tabs vom Abstrakt</li>
-            <li> GND Links in den Suchergebnissen und der Detailansicht </li>
-            <li> Namenslinks in der Detailansicht </li>
-            <li> Badges in der Detailansicht </li>
+            <li>GND-Links in den Suchergebnissen und der Detailansicht </li>
+            <li>Namenslinks in der Detailansicht </li>
+            <li>Badges in der Detailansicht </li>
           </ul>
         </p>
         <h3>2.4.5a Alternative Zugangswege: erfüllt</h3>
         <p>
-          Das Repository bietet dem der Suche weiter Zugangsmöglichkeiten wie das Browsen nach Instituten,
-          Personen oder Fachgebieten. 
+          Das Repository bietet neben der Suche weitere Zugangsmöglichkeiten wie das Browsen nach Sachgruppen,
+          Formschlüssel, Zeitschlüssel, Personen und Schlagwörtern. 
         </p>
         <h3>2.4.6a Aussagekräftige Überschriften und Beschriftungen: erfüllt</h3>
         <p>
-          Die redaktionen Inhaltseiten werden in einem gesonderter Protokoll geprüft.
+          Die redaktionellen Inhaltsseiten werden in einem gesondertern Protokoll geprüft.
         </p>
         <h3>2.4.7a Aktuelle Position des Fokus deutlich: eher nicht erfüllt</h3>
         <p>
@@ -218,13 +205,13 @@
             <li>Link auf die Startseite: Logo links oben.</li>
             <li>Menu im Header</li>
             <li>Zitierlink kopiere in der Detailansicht</li>
-            <li>Button zum einklappen des linken Menüs</li>
+            <li>Button zum Einklappen des linken Menüs</li>
           </ul>
         </p>
         <h3>2.5.1a Alternativen für komplexe Zeiger-Gesten: nicht anwendbar</h3>
         <h3>2.5.2a Zeigergesten-Eingaben können abgebrochen oder widerrufen werden: teilweise erfüllt</h3>
         <p>
-          Die Testsergebnisse zu diesem Punkt waren wiedersprüchlich und hingen vom verwendeten Browser ab. 
+          Die Testergebnisse zu diesem Punkt waren widersprüchlich und hingen vom verwendeten Browser ab. 
           Sie sollten zu einem späteren Zeitpunkt wiederholt werden. 
         </p>
         <h3>2.5.3a Sichtbare Beschriftung Teil des zugänglichen Namens: nicht erfüllt</h3>
@@ -234,18 +221,18 @@
         <h3>2.5.4a Alternativen für Bewegungsaktivierung: nicht anwendbar</h3>
         <h3>3.1.1a Hauptsprache angegeben:erfüllt</h3>
         <p>
-          Es wird je nachdem welche Sprache ausgewählt wird diese als Hauptsprache ausgegeben.
+          Es wird, je nachdem welche Sprache ausgewählt wird, diese als Hauptsprache ausgegeben.
         </p>
         <h3>3.1.2a Anderssprachige Wörter und Abschnitte ausgezeichnet: nicht erfüllt</h3>
         <p>
-          Die Auszeichnung von andersprachigen Wörtern im Inhalt der redaktionellen Seiten und 
+          Die Auszeichnung von anderssprachigen Wörtern im Inhalt der redaktionellen Seiten und 
           in den Metadaten wird in einem anderen Protokoll dokumentiert.
         </p>
         <p>
           
           <ul>
             <li>"Browsen" in dem Headmenü.</li>
-            <li>In der Detailansicht wird die Sprache des Titel, des Abstracts nicht mit angegeben.</li>
+            <li>In der Detailansicht wird die Sprache des Titels, des Abstracts nicht mit angegeben.</li>
             <li>Die Sprache der Schlagwörter ist nicht erfassbar.</li>
           </ul>
         </p>
@@ -258,9 +245,9 @@
           Angaben in Formularen werden vor dem Abschicken nicht automatisch überprüft, sondern serverseitig
           validiert. 
         </p>
-        <h3>3.3.2a Beschriftungen von Formularelementen vorhanden: erfüllt</h3>
+        <h3>3.3.2a Beschriftungen von Formularelementen vorhanden: eher erfüllt</h3>
         <p>
-          Die Formularelemente alle ordnungsgemaß beschriftet.
+          Es gibt in der komplexen Suche Formularlemente, die nicht beschriftet sind.
         </p>
         <h3>4.1.1a Korrekte Syntax: nicht efüllt</h3>
         <p>
@@ -272,13 +259,13 @@
         </p>
         <h3>4.1.2a Name, Rolle, Wert verfügbar</h3>
         <p>
-          In den Inhaltsseiten werden die mailto Links durch Javascript erzeugt. Dies ist eine Sicherheitsmaßnahme
+          In den Inhaltsseiten werden die mailto-Links durch Javascript erzeugt. Dies ist eine Sicherheitsmaßnahme,
           um Spamern das automatische Harvesten der Mailadressen zu erschweren. Für Menschen ist auch ohne Javascript
           ersichtlich, dass es sich um eine Mailadresse handelt. 
         </p>
         <h3>4.1.3a Statusmeldungen programmatisch verfügbar</h3>
         <p>
-          Es erfolgt weder visuell noch im Screenreader ein Hinweis das, das ein Dokument auf die Merkliste
+          Es erfolgt weder visuell noch im Screenreader ein Hinweis das, dass ein Dokument auf die Merkliste
           gesetzt wurde. Die entsprechende "Role" wird im Rahmen eines Updates ergänzt.
         </p>
       </div>
