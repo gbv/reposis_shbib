@@ -187,7 +187,7 @@
             </xsl:choose>
             <xsl:apply-templates select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:originInfo[@eventType='update']/mods:dateModified"
               mode="present" />
-            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type!='open-aire' and @type!='intern' and @type!='issn' and @type!='local' and @type!='PPN']" />
+            <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type!='open-aire' and @type!='intern' and @type!='issn' and @type!='local' and @type!='PPN' and @type!='isbn']" />
             <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type='issn']">
                 <tr>
                     <td class="metaname" valign="top">
@@ -198,6 +198,18 @@
                         <div class="sherpa-issn hidden"><xsl:value-of select="."/></div>
                     </td>
                 </tr>
+            </xsl:for-each>
+            <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:identifier[@type='isbn']">
+              <xsl:if test="not( string-length(.) = 13 and contains(../mods:identifier[@type='isbn'], substring(.,1,12)) )">
+                <tr>
+                  <td class="metaname" valign="top">
+                    <xsl:value-of select="i18n:translate('mir.identifier.isbn')" />
+                  </td>
+                  <td class="metavalue">
+                    <xsl:value-of select="."/>
+                  </td>
+                </tr>
+              </xsl:if>
             </xsl:for-each>
             <xsl:apply-templates mode="present" select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:language" />
             <!-- <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:typeOfResource">
