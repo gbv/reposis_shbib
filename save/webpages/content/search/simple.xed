@@ -27,7 +27,7 @@
               <mir:template name="textInput" xpath="condition[@field='mods.name']/@value" id="inputName1" i18n="editor.search.mir.name" tooltip="editor.search.mir.name.tooltip" />
             <!-- Topic -->
               <mir:template name="textInput" xpath="condition[@field='mods.subjectindex']/@value" id="inputTopic1" i18n="editor.search.mir.topic" tooltip="editor.search.mir.topic.tooltip" />
-              <xed:bind xpath="condition[@field='mods.subjectindex']/@operator" set="contains"/>
+              <xed:bind xpath="condition[@field='mods.subjectindex']/@operator" set="phrase"/>
             <!-- Content -->
               <!-- 
                 <mir:template name="textInput" xpath="condition[@field='content']/@value" id="inputContent1" i18n="editor.search.derivate" tooltip="editor.search.derivate.tooltip" />
