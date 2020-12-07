@@ -508,6 +508,13 @@
         </mods:relatedItem>
       </xsl:for-each>
     </xsl:if>
+    
+    <xsl:if test="./p:datafield[@tag='031@']">
+      <mods:note type="publication_course">
+        <xsl:value-of select="./p:datafield[@tag='031@']/p:subfield[@code='a']" />
+      </mods:note>
+    </xsl:if>
   </xsl:template>
 
+  
 </xsl:stylesheet> 
