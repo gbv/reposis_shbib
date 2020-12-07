@@ -247,7 +247,16 @@
         <xsl:attribute name="displayLabel"><xsl:value-of select="$displayLabel" /></xsl:attribute>
       </xsl:if>
       <mods:titleInfo>
-        <xsl:variable name="mainTitle" select="./p:subfield[@code='t']" />
+        <xsl:variable name="mainTitle">
+          <xsl:choose>
+            <xsl:when test="./p:subfield[@code='t']">
+              <xsl:value-of select="./p:subfield[@code='t']"/>
+            </xsl:when>
+            <xsl:when test="./p:subfield[@code='a']">
+              <xsl:value-of select="./p:subfield[@code='a']"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <!-- Switch from subfieldcode a to t -->
         <xsl:if test="$mainTitle">
           <xsl:choose>
