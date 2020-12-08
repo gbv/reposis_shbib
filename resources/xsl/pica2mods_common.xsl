@@ -70,6 +70,16 @@
           </mods:partName>
         </xsl:if>
       </xsl:if>
+      
+      <xsl:if test="@tag='021A' and ../p:datafield[@tag='021C']">
+        <!-- ex: PPN 1023340623 -->
+        <xsl:for-each select="../p:datafield[@tag='021C']/p:subfield[@code='a']">
+          <mods:partName>
+            <xsl:value-of select="translate(., '@', '')" />
+          </mods:partName>
+        </xsl:for-each>
+      </xsl:if>
+      
     </mods:titleInfo>
 
     <xsl:if test="./../p:datafield[@tag='021A' or @tag='036F']/p:subfield[@code='h']">
@@ -78,7 +88,7 @@
       </mods:note>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template name="COMMON_Alt_Uniform_Title">
     <!-- 3260/027A$a abweichender Titel, 4212/046C abweichender Titel, 4213/046D früherere Hauptitel 4002/021F Paralleltitel, 4000/021A$f Paralleltitel (RAK), 3210/022A Werktitel, 3232/026C Zeitschriftenkurztitel -->
     <xsl:for-each select="./p:datafield[@tag='027A' or @tag='021F' or @tag='046C' or @tag='046D']/p:subfield[@code='a'] | ./p:datafield[@tag='021A']/p:subfield[@code='f'] ">

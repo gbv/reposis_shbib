@@ -166,19 +166,28 @@
           <xsl:with-param name="withSubtitle" select="true()" />
         </xsl:apply-templates>
       </h1>
-      <xsl:if test="$mods/mods:titleInfo/mods:partNumber or $mods/mods:titleInfo/mods:partName">  
-        <h3>
-          <xsl:if test="$mods/mods:titleInfo/mods:partNumber" >
-            <xsl:value-of select="$mods/mods:titleInfo/mods:partNumber" />
-            <xsl:if test="$mods/mods:titleInfo/mods:partName" >
-              <xsl:value-of select="': '" />
+      <xsl:choose>
+        <xsl:when test="$mods/mods:titleInfo/mods:partNumber or count($mods/mods:titleInfo/mods:partName) = 0">  
+          <h3>
+            <xsl:if test="$mods/mods:titleInfo/mods:partNumber" >
+              <xsl:value-of select="$mods/mods:titleInfo/mods:partNumber" />
+              <xsl:if test="$mods/mods:titleInfo/mods:partName" >
+                <xsl:value-of select="': '" />
+              </xsl:if>
             </xsl:if>
-          </xsl:if>
-          <xsl:if test="$mods/mods:titleInfo/mods:partName" >
-            <xsl:value-of select="$mods/mods:titleInfo/mods:partName" />
-          </xsl:if>
-        </h3>
-     </xsl:if> 
+            <xsl:if test="$mods/mods:titleInfo/mods:partName" >
+              <xsl:value-of select="$mods/mods:titleInfo/mods:partName" />
+            </xsl:if>
+          </h3>
+        </xsl:when >
+        <xsl:when test="count($mods/mods:titleInfo/mods:partName) &gt; 0">
+          <xsl:for-each select="$mods/mods:titleInfo/mods:partName">
+            <h3>
+              <xsl:value-of select="."/>
+            </h3>
+          </xsl:for-each>
+        </xsl:when> 
+      </xsl:choose> 
     </div>
 
     <!-- authors, description, children -->
