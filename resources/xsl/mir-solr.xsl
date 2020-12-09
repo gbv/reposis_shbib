@@ -18,10 +18,10 @@
     </field>
     <field name="containerSource">
       <xsl:choose>
-        <xsl:when test="contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.gbv.de')">
+        <xsl:when test="contains(.//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.gbv.de')">
           <xsl:value-of select="'GVK'"/>
         </xsl:when>
-        <xsl:when test="contains(//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.k10plus.de')">
+        <xsl:when test="contains(.//modsSourceContainer[@type='remotesource']/sourceuri,'unapi.k10plus.de')">
           <xsl:value-of select="'K10+'"/>
         </xsl:when>
         <xsl:otherwise>
@@ -217,7 +217,7 @@
         </field>
       </xsl:if>
     </xsl:for-each>
-    <xsl:for-each select="//mods:shelfLocator">
+    <xsl:for-each select=".//mods:shelfLocator">
       <field name="mods.shelfLocator">
         <xsl:value-of select="." />
       </field>
