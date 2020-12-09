@@ -9,11 +9,6 @@
 
   <xsl:template name="COMMON_Title">
     <mods:titleInfo>
-      <xsl:choose>
-        <xsl:when test="@tag='021G'">
-          <xsl:attribute name="type">translated</xsl:attribute>
-        </xsl:when>
-      </xsl:choose>
       <xsl:attribute name="usage">primary</xsl:attribute>
       <xsl:if test="./p:subfield[@code='a']">
         <xsl:variable name="mainTitle" select="./p:subfield[@code='a']" />
@@ -91,11 +86,29 @@
   
   <xsl:template name="COMMON_Alt_Uniform_Title">
     <!-- 3260/027A$a abweichender Titel, 4212/046C abweichender Titel, 4213/046D früherere Hauptitel 4002/021F Paralleltitel, 4000/021A$f Paralleltitel (RAK), 3210/022A Werktitel, 3232/026C Zeitschriftenkurztitel -->
-    <xsl:for-each select="./p:datafield[@tag='027A' or @tag='021F' or @tag='046C' or @tag='046D']/p:subfield[@code='a'] | ./p:datafield[@tag='021A']/p:subfield[@code='f'] ">
-      <mods:titleInfo type="alternative">
+    <!-- move 027A to abbreviated -->
+    <xsl:for-each select="./p:datafield[@tag='021G' or @tag='021F' or @tag='046C' or @tag='046D']/p:subfield[@code='a'] | ./p:datafield[@tag='021A']/p:subfield[@code='f'] ">
+      <!-- <mods:titleInfo type="alternative"> -->
+      <mods:titleInfo>
+        <xsl:choose>
+          <xsl:when test="./p:subfield[@code='L'] != .././p:datafield[@tag='010@']/p:subfield[@code='a']">
+            <xsl:attribute name="type">translated</xsl:attribute>
+            <xsl:call-template name="COMMON_Language_Atribute">
+              <xsl:with-param name="langcode" select="./p:subfield[@code='L']"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:attribute name="type">alternative</xsl:attribute>
+          </xsl:otherwise>
+        </xsl:choose>
         <mods:title>
           <xsl:value-of select="translate(., '@', '')" />
         </mods:title>
+        <xsl:if test="../p:subfield[@code='d']">
+          <mods:subTitle>
+            <xsl:value-of select="../p:subfield[@code='d']" />
+          </mods:subTitle>
+        </xsl:if>
       </mods:titleInfo>
     </xsl:for-each>
     <xsl:for-each select="./p:datafield[@tag='022A']">
@@ -105,13 +118,15 @@
         </mods:title>
       </mods:titleInfo>
     </xsl:for-each>
-    <xsl:for-each select="./p:datafield[@tag='026C']">
+    <!-- remove 027A and  026C cause it schould'n displayed-->
+    <!-- <xsl:for-each select="./p:datafield[@tag='027A' or @tag='026C']">
       <mods:titleInfo type="abbreviated">
         <mods:title>
           <xsl:value-of select="translate(./p:subfield[@code='a'], '@', '')" />
         </mods:title>
       </mods:titleInfo>
     </xsl:for-each>
+     -->
   </xsl:template>
 
   <xsl:template name="COMMON_Parent_Identifier">
@@ -1124,10 +1139,21 @@
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="Date_allFormats">
-            <xsl:with-param name="date" select="./p:subfield[@code='a']" />
-            <xsl:with-param name="keyDate" select="'yes'" />
-          </xsl:call-template>
+          <xsl:choose>
+            <xsl:when test="substring(./p:subfield[@code='n'],5,1) = '-'">
+              <xsl:call-template name="Date_allFormats">
+                <xsl:with-param name="date" select="./p:subfield[@code='a']" />
+                <xsl:with-param name="point" select="'start'" />
+                <xsl:with-param name="keyDate" select="'yes'" />
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="Date_allFormats">
+                <xsl:with-param name="date" select="./p:subfield[@code='a']" />
+                <xsl:with-param name="keyDate" select="'yes'" />
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:if test="./p:subfield[@code='n']">
@@ -1236,10 +1262,28 @@
     </xsl:if>
 
     <!-- Date -->
+    
     <xsl:if test="./p:subfield[@code='j']">
-      <mods:date encoding="iso8601">
+      <xsl:variable name="date">
         <xsl:value-of select="substring(./p:subfield[@code='j'],1,4)" />
+        <xsl:if test="./p:subfield[@code='c']">
+          <xsl:value-of select="concat('-',./p:subfield[@code='c'])" />
+          <xsl:if test="./p:subfield[@code='b']">
+            <xsl:value-of select="concat('-',./p:subfield[@code='c'])" />
+          </xsl:if>
+        </xsl:if>
+      </xsl:variable>
+      <mods:date encoding="iso8601">
+        <xsl:value-of select="$date" />
       </mods:date>
+      <mods:date encoding="w3cdtf">
+        <xsl:value-of select="$date" />
+      </mods:date>
+      <xsl:if test="string-length(./p:subfield[@code='j']) != 4">
+        <mods:date>
+          <xsl:value-of select="./p:subfield[@code='j']" />
+        </mods:date>
+      </xsl:if>
     </xsl:if>
     <xsl:if test="./p:subfield[@code='y']">
       <mods:text type="display">

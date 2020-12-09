@@ -936,7 +936,12 @@
               </xsl:if>
               <xsl:if test="mods:part/mods:date or ../mods:originInfo[@eventType='publication']/mods:dateIssued">
                 <xsl:choose>
-                  <xsl:when test="mods:part/mods:date"><xsl:value-of select="concat(' (',mods:part/mods:date,')')" /></xsl:when>
+                  <xsl:when test="mods:part/mods:date[not (@encoding)]">
+                    <xsl:value-of select="concat(' (',mods:part/mods:date[not (@encoding)],')')" />
+                  </xsl:when>
+                  <xsl:when test="not(mods:part/mods:date[not (@encoding)]) and mods:part/mods:date[@encoding='w3cdtf']">
+                    <xsl:value-of select="concat(' (',mods:part/mods:date[@encoding='w3cdtf'],')')" />
+                  </xsl:when>
                   <xsl:otherwise>
                     <xsl:variable name="year">
                       <xsl:choose>

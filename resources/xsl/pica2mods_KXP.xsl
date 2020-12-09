@@ -49,11 +49,7 @@
       </xsl:otherwise>
     </xsl:choose>
     
-    <xsl:for-each select="./p:datafield[@tag='021G']"> <!-- 4002 -->
-      <xsl:call-template name="COMMON_Title" />
-    </xsl:for-each>
-
-        <!-- Titel fingiert, wenn kein Titel in 4000 -->
+            <!-- Titel fingiert, wenn kein Titel in 4000 -->
     <xsl:call-template name="COMMON_Alt_Uniform_Title" />
     <xsl:call-template name="COMMON_Language" />
 

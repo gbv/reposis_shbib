@@ -153,6 +153,18 @@
     <xsl:call-template name="COMMON_MIR_Language" />
   </xsl:template>
   
+  <xsl:template name="COMMON_Language_Atribute">
+    <xsl:param name="langcode"/>
+    <xsl:variable name="languages" select="document('classification:metadata:-1:children:rfc4646')" />
+    <xsl:variable name="biblCode" select="$langcode" />
+    <xsl:variable name="rfcCode">
+      <xsl:value-of select="$languages//category[label[@xml:lang='x-bibl']/@text = $biblCode]/@ID" />
+    </xsl:variable>
+    <xsl:attribute name="xml:lang">
+      <xsl:value-of select="$rfcCode"/>
+    </xsl:attribute>
+  </xsl:template>
+  
   <!-- Nicht gewünschte URNs und DOI sollten in einer zweiten Stufe entfernt werden.
   <xsl:for-each select="./p:datafield[@tag='004U' and contains(./p:subfield[@code='0'], 'urn:nbn:de:gbv:28')]"> --><!-- 2050 -->
   <!--     <mods:identifier type="urn"><xsl:value-of select="./p:subfield[@code='0']" /></mods:identifier>
