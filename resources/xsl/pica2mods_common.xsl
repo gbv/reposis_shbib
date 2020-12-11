@@ -863,11 +863,20 @@
 
   <xsl:template name="COMMON_Identifier">
     <xsl:for-each select="./p:datafield[@tag='017C']"> <!-- 4950 (kein eigenes Feld) -->
-      <xsl:if test="contains(./p:subfield[@code='u'], '//purl.uni-rostock.de')">
-        <mods:identifier type="purl">
-          <xsl:value-of select="./p:subfield[@code='u']" />
-        </mods:identifier>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="contains(./p:subfield[@code='u'], '//purl.uni-rostock.de')">
+          <mods:identifier type="purl">
+            <xsl:value-of select="./p:subfield[@code='u']" />
+          </mods:identifier>
+        </xsl:when>
+        <xsl:otherwise>
+          <mods:location>
+            <mods:url>
+              <xsl:value-of select="./p:subfield[@code='u']"/>
+            </mods:url>
+          </mods:location>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:for-each>
 
     <xsl:for-each select="./p:datafield[@tag='003@']"> <!-- 0100 -->

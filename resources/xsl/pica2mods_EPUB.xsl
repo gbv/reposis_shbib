@@ -266,8 +266,14 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+    
+    <xsl:for-each select="@tag='046L'"><!-- 4221-->
+      <mods:note type="language">
+        <xsl:value-of select="./p:subfield[@code='a']" />
+      </mods:note>
+    </xsl:for-each>
 
-    <xsl:for-each select="./p:datafield[@tag='037B' or @tag='046L' or @tag='046F' or @tag='046G' or @tag='046H' or @tag='046I']"><!-- 4201, 4202, 4221, 4215, 4216, 4217, 4218 RDA raus 4202, 4215, 4216 neu 4210, 4212, 4221, 4223, 4226 (einfach den ganzen Anmerkungskrams mitnehmen" -->
+    <xsl:for-each select="./p:datafield[@tag='037B' or @tag='046F' or @tag='046G' or @tag='046H' or @tag='046I']"><!-- 4201, 4202, 4215, 4216, 4217, 4218 RDA raus 4202, 4215, 4216 neu 4210, 4212, 4221, 4223, 4226 (einfach den ganzen Anmerkungskrams mitnehmen" -->
       <mods:note type="other">
         <xsl:value-of select="./p:subfield[@code='a']" />
       </mods:note>

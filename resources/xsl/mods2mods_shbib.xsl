@@ -50,7 +50,7 @@
     <mods:roleTerm authority="marcrelator" type="code">edt</mods:roleTerm>
   </xsl:template>
   
-  <xsl:template match="mods:location[not(mods:physicalLocation = '0068')]">
+  <xsl:template match="mods:location[not(mods:physicalLocation = '0068' or mods:url)]">
       
   </xsl:template>
   
