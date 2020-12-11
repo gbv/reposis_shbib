@@ -1269,7 +1269,7 @@
         <xsl:if test="./p:subfield[@code='c']">
           <xsl:value-of select="concat('-',./p:subfield[@code='c'])" />
           <xsl:if test="./p:subfield[@code='b']">
-            <xsl:value-of select="concat('-',./p:subfield[@code='c'])" />
+            <xsl:value-of select="concat('-',./p:subfield[@code='b'])" />
           </xsl:if>
         </xsl:if>
       </xsl:variable>
