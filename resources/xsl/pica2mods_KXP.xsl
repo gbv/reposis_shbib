@@ -313,7 +313,7 @@
       </mods:note>
     </xsl:for-each>
 
-    <xsl:for-each select="@tag='046L'"><!-- 4221-->
+    <xsl:for-each select="./p:datafield[@tag='046L']"><!-- 4221-->
       <mods:note type="language">
         <xsl:value-of select="./p:subfield[@code='a']" />
       </mods:note>
