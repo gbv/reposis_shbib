@@ -45,7 +45,7 @@ function showresult(json) {
     var html="";
     $.each(json.response.docs, function (index,doc) {
         length = ('mycoreid' in doc) ? doc.mycoreid.length : 0; 
-        searchlink = webApplicationBaseURL + 'servlets/solr/select?q=mods.subject%3A%22\\' + doc.displayForm + '%22&wt=xml';
+        searchlink = webApplicationBaseURL + 'servlets/solr/select?q=mods.subject%3A%22\\' + encodeURIComponent(doc.displayForm) + '%22&wt=xml';
         html += '<li> ';
         html += '<a title="Suche nach allen Publikationen" href="' + searchlink + '" >';
         html +=  doc.displayForm ; //+ ' (' + length + ')';
