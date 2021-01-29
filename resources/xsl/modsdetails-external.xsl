@@ -445,11 +445,12 @@
               <xsl:if test="$accessedit">
                 <xsl:choose>
                   <xsl:when test="string-length($editURL) &gt; 0">
-                    <li>
+                    <!-- <li>
                       <a href="{$editURL}">
                         <xsl:value-of select="i18n:translate('object.editObject')" />
                       </a>
                     </li>
+                     -->
                     <xsl:if test="string-length($k10plusEditURL) &gt; 0">
                       <li>
                         <a href="{$k10plusEditURL}&amp;id={$id}">
