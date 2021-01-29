@@ -137,14 +137,16 @@
         <xsl:variable name="rfcCode">
           <xsl:value-of select="$languages//category[label[@xml:lang='x-bibl']/@text = $biblCode]/@ID" />
         </xsl:variable>
-        <mods:language>
-          <mods:languageTerm authority="rfc4646" type="code">
-            <xsl:value-of select="$rfcCode"/>
-          </mods:languageTerm>
-          <mods:languageTerm type="code" authority="iso639-2b">
-            <xsl:value-of select="$biblCode" />
-          </mods:languageTerm>
-        </mods:language>
+        <xsl:if test="$rfcCode">
+          <mods:language>
+            <mods:languageTerm authority="rfc4646" type="code">
+              <xsl:value-of select="$rfcCode"/>
+            </mods:languageTerm>
+            <mods:languageTerm type="code" authority="iso639-2b">
+              <xsl:value-of select="$biblCode" />
+            </mods:languageTerm>
+          </mods:language>
+        </xsl:if>
       </xsl:for-each>
     </xsl:for-each>
   </xsl:template>
