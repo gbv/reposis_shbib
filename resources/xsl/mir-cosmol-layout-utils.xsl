@@ -49,7 +49,6 @@
               </button>
             </span>
             <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span style="padding-left:10px;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span>
               <a href="{$WebApplicationBaseURL}editor/editor-ppnsource-k10p.xed">Neuaufnahme K10+</a>
             </span>
