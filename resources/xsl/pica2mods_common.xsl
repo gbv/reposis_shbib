@@ -101,6 +101,10 @@
             <xsl:attribute name="type">alternative</xsl:attribute>
           </xsl:otherwise>
         </xsl:choose>
+        <xsl:if test="../p:subfield[@code='i']">
+          <xsl:attribute name="displayLabel"><xsl:value-of select="../p:subfield[@code='i']"/></xsl:attribute>
+        </xsl:if>
+        
         <mods:title>
           <xsl:value-of select="translate(., '@', '')" />
         </mods:title>
