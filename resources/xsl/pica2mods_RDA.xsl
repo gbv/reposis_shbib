@@ -490,7 +490,7 @@
     </xsl:for-each>
 
     <!-- Vorgänger, Nachfolger Verknüpfung ZDB -->
-    <xsl:if test="$pica0500_2='b'">
+    <xsl:if test="$pica0500_2='b' or $pica0500_2='d'"> 
       <xsl:for-each select="./p:datafield[@tag='039E' and (./p:subfield[@code='b' and text()='f'] or ./p:subfield[@code='b'and text()='s'])]"><!-- 4244 -->
         <mods:relatedItem>
           <xsl:if test="./p:subfield[@code='b' and text()='f']">
@@ -499,6 +499,9 @@
           <xsl:if test="./p:subfield[@code='b' and text()='s']">
             <xsl:attribute name="type">succeeding</xsl:attribute>
           </xsl:if>
+          <xsl:if test="./p:subfield[@code='i']">
+            <xsl:attribute name="displayLabel"><xsl:value-of select="./p:subfield[@code='i']"/></xsl:attribute>
+          </xsl:if> 
           <xsl:if test="./p:subfield[@code='t']">
             <mods:titleInfo>
               <mods:title>
