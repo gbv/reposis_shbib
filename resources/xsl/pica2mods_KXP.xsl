@@ -32,7 +32,7 @@
     <!-- Titel fingiert, wenn kein Titel in 4000 -->
     <xsl:choose>
       <!-- Add test for 021A. Inferred Title is only necessary if no main Title is present. -->
-      <xsl:when test="($pica0500_2='f' or $pica0500_2='F') and not(./p:datafield[@tag='021A'])">
+      <xsl:when test="($pica0500_2='f' or $pica0500_2='F') and not(./p:datafield[@tag='021A']/p:subfield[@code='a'])">
         <xsl:for-each select="./p:datafield[@tag='036C']"><!-- 4150 -->
           <xsl:call-template name="COMMON_Title" />
         </xsl:for-each>
