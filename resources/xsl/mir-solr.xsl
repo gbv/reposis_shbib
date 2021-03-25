@@ -222,6 +222,52 @@
         <xsl:value-of select="." />
       </field>
     </xsl:for-each>
+    <!-- shbib -->
+    <xsl:for-each select="mods:subject">
+      <xsl:variable name="subjectchain">
+        <xsl:for-each select="child::*">
+          <xsl:choose>
+            <xsl:when test="name() = 'mods:topic'">
+              <xsl:value-of select="text()"/>
+            </xsl:when>
+            <xsl:when test="name() = 'mods:geographic'">
+              <xsl:value-of select="text()"/>
+            </xsl:when>
+            <xsl:when test="name() = 'mods:name'">
+              <xsl:value-of select="mods:displayForm/text()"/>
+            </xsl:when>
+          </xsl:choose>
+          <xsl:value-of select="'/'"/>
+        </xsl:for-each>
+      </xsl:variable>
+      <field name="mods.subject"> <xsl:value-of select="substring($subjectchain,1,string-length($subjectchain)-1)"/> </field>
+      <xsl:for-each select="child::*">
+        <xsl:choose>
+          <xsl:when test="name() = 'mods:topic'">
+            <field name="mods.subject"><xsl:value-of select="text()"/></field>
+            <field name="mods.subjectindex"><xsl:value-of select="text()"/></field>
+            <field name="mods.subject.topic"><xsl:value-of select="text()"/></field>
+          </xsl:when>
+          <xsl:when test="name() = 'mods:geographic'">
+            <field name="mods.subject"><xsl:value-of select="text()"/></field>
+            <field name="mods.subjectindex"><xsl:value-of select="text()"/></field>
+            <field name="mods.subject.geographic"><xsl:value-of select="text()"/></field>
+          </xsl:when>
+          <xsl:when test="name() = 'mods:name'">
+            <field name="mods.subject"><xsl:value-of select="mods:displayForm/text()"/></field>
+            <field name="mods.subjectindex"><xsl:value-of select="mods:displayForm/text()"/></field>
+            <field name="mods.subject.name"><xsl:value-of select="mods:displayForm/text()"/></field>
+            <xsl:if test="@type='personal'">
+              <field name="mods.subject.name.personal"><xsl:value-of select="mods:displayForm/text()"/></field>
+            </xsl:if>
+            <xsl:if test="@type='corporate'">
+              <field name="mods.subject.name.corporate"><xsl:value-of select="mods:displayForm/text()"/></field>
+            </xsl:if>
+          </xsl:when>
+          
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>
