@@ -7,6 +7,7 @@
   exclude-result-prefixes="xalan xlink mcr mcrxsl i18n acl mods mcrmods rdf ns1"
   version="1.0">
   <xsl:param name="MCR.Handle.Resolver.MasterURL" />
+  <xsl:param name="MCR.DOI.Resolver.MasterURL" />
   <xsl:param name="MCR.Mods.SherpaRomeo.ApiKey" select="''" />
   <xsl:param name="ServletsBaseURL" />
   <xsl:param name="wcms.useTargets" select="'no'" /><!-- TODO: refacture! -->
@@ -19,12 +20,6 @@
     <xsl:param name="label" select="i18n:translate(concat('component.mods.metaData.dictionary.',local-name($nodes[1])))" />
     <xsl:param name="sep" select="''" />
     <xsl:param name="property" select="''" />
-    <xsl:message>
-      <xsl:value-of select="concat('label: ',$label)" />
-    </xsl:message>
-    <xsl:message>
-      <xsl:value-of select="concat('nodes: ',count($nodes))" />
-    </xsl:message>
     <xsl:if test="$nodes">
       <tr>
         <td valign="top" class="metaname">
@@ -56,6 +51,9 @@
               <xsl:call-template name="lf2br">
                 <xsl:with-param name="string" select="normalize-space(.)" />
               </xsl:call-template>
+              <xsl:if test="@authority='gnd' and @valueURI">
+                <xsl:apply-templates select="." mode="gnd"/>
+              </xsl:if>
             </xsl:if>
           </xsl:for-each>
         </td>
@@ -63,8 +61,25 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="mods:topic[@authority='gnd']" mode="gnd">
+    <a href="{@valueURI}" title="Link zu GND"><sup>GND</sup></a>
+  </xsl:template>
+
+  <xsl:template match="mods:geographic[@authority='gnd']" mode="gnd">
+    <a href="{@valueURI}" title="Link zu GND"><sup>GND</sup></a>
+  </xsl:template>
+
   <xsl:template match="mods:dateCreated|mods:dateOther|mods:dateIssued|mods:dateCaptured|mods:dateModified" mode="present">
-    <xsl:param name="label" select="i18n:translate(concat('component.mods.metaData.dictionary.',local-name()))" />
+    <xsl:param name="label">
+      <xsl:choose>
+        <xsl:when test="(@point='start' or @point='end') and i18n:exists(concat('component.mods.metaData.dictionary.',local-name(), '.range'))">
+          <xsl:value-of select="i18n:translate(concat('component.mods.metaData.dictionary.',local-name(), '.range'))"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="i18n:translate(concat('component.mods.metaData.dictionary.',local-name()))"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:param>
     <xsl:if test="not(@point='end' and (preceding-sibling::*[name(current())=name()][@point='start']  or following-sibling::*[name(current())=name()][@point='start']))">
     <tr>
       <td valign="top" class="metaname">
@@ -379,14 +394,7 @@
         </div>
         <div class="c15r">
           <xsl:if test="./structure/derobjects">
-            <xsl:variable name="objectBaseURL">
-              <xsl:if test="$objectHost != 'local'">
-                <xsl:value-of select="document('webapp:hosts.xml')/mcr:hosts/mcr:host[@alias=$objectHost]/mcr:url[@type='object']/@href" />
-              </xsl:if>
-              <xsl:if test="$objectHost = 'local'">
-                <xsl:value-of select="concat($WebApplicationBaseURL,'receive/')" />
-              </xsl:if>
-            </xsl:variable>
+            <xsl:variable name="objectBaseURL" select="concat($WebApplicationBaseURL,'receive/')" />
             <xsl:variable name="staticURL">
               <xsl:value-of select="concat($objectBaseURL,@ID)" />
             </xsl:variable>
@@ -438,21 +446,19 @@
   </xsl:template>
 
   <xsl:template name="printMetaDate.mods.extent">
-    <xsl:variable name="unit" select="@unit" />
-    <xsl:variable name="unit_i18n" select="concat('component.mods.metaData.dictionary.',$unit)"/>
     <xsl:choose>
       <xsl:when test="count(mods:start) &gt; 0">
         <xsl:choose>
           <xsl:when test="count(mods:end) &gt; 0">
-            <xsl:value-of select="concat(i18n:translate(concat($unit_i18n,'.abbr')),' ',mods:start,'-',mods:end)" />
+            <xsl:value-of select="concat(i18n:translate('component.mods.metaData.dictionary.page.abbr'),' ',mods:start,'-',mods:end)" />
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="concat(i18n:translate(concat($unit_i18n,'.abbr')),' ',mods:start)" />
+            <xsl:value-of select="concat(i18n:translate('component.mods.metaData.dictionary.page.abbr'),' ',mods:start)" />
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:when test="mods:total">
-        <xsl:value-of select="concat(mods:total,' ',i18n:translate($unit_i18n))" />
+        <xsl:value-of select="concat(mods:total,' ',i18n:translate('component.mods.metaData.dictionary.pages'))" />
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="." />
@@ -723,35 +729,28 @@
       <td class="metavalue">
         <xsl:variable name="link" select="." />
         <xsl:choose>
-          <xsl:when test="contains(.,'ppn') or contains(.,'PPN')">
-            <a>
-              <xsl:attribute name="href">
+          <xsl:when test="contains($link,'ppn') or contains($link,'PPN')">
+            <a class="ppn" href="{$link}">
                 <xsl:choose>
-                  <xsl:when test="contains(., 'PPN=')">
-                    <xsl:value-of select="$link" />
+                <xsl:when test="contains($link, 'PPN=')">
+                  <xsl:value-of select="substring-after($link, 'PPN=')" />
                   </xsl:when>
+                <xsl:when test="contains($link, ':ppn:')">
+                  <xsl:value-of select="substring-after($link, ':ppn:')"/>
+                </xsl:when>
                   <xsl:otherwise>
-                    <xsl:variable name="uriResolved" select="document(concat($link,'?format=xml'))/rdf:RDF/rdf:Description/ns1:page/@rdf:resource" />
-                    <xsl:choose>
-                      <xsl:when test="string-length($uriResolved) &gt; 0"><xsl:value-of select="$uriResolved" /></xsl:when>
-                      <xsl:otherwise><xsl:value-of select="$link" /></xsl:otherwise>
-                    </xsl:choose>
+                  <xsl:value-of select="$link"/>
                   </xsl:otherwise>
                 </xsl:choose>
-              </xsl:attribute>
-              <xsl:choose>
-                <xsl:when test="contains(., 'PPN=')"><xsl:value-of select="substring-after($link, 'PPN=')" /></xsl:when>
-                <xsl:otherwise><xsl:value-of select="substring-after($link, ':ppn:')"/></xsl:otherwise>
-              </xsl:choose>
             </a>
           </xsl:when>
           <xsl:when test="@type='doi' and not(contains($link,'http'))">
-            <a href="http://dx.doi.org/{$link}">
+            <a href="{$MCR.DOI.Resolver.MasterURL}{$link}">
               <xsl:value-of select="$link" />
             </a>
           </xsl:when>
           <xsl:when test="@type='urn' and not(contains($link,'http'))">
-            <a href="http://nbn-resolving.de/{$link}">
+            <a href="https://nbn-resolving.org/{$link}">
               <xsl:value-of select="$link" />
             </a>
           </xsl:when>
@@ -799,7 +798,7 @@
         <xsl:value-of select="concat(i18n:translate('component.mods.metaData.dictionary.language'), ':')" />
       </td>
       <td class="metavalue">
-        <xsl:for-each select="mods:languageTerm[@authority='rfc4646']">
+        <xsl:for-each select="mods:languageTerm[@authority='rfc5646']">
           <xsl:if test="position()!=1">
             <xsl:choose>
               <xsl:when test="string-length($sep)&gt;0">
@@ -824,7 +823,14 @@
   <xsl:template match="mods:url" mode="present">
     <tr>
       <td valign="top" class="metaname">
+        <xsl:choose>
+          <xsl:when test="@access">
+            <xsl:value-of select="concat(i18n:translate(concat('component.mods.metaData.dictionary.url.',mcrxsl:regexp(@access,' ','_'))),':')" />
+          </xsl:when>
+          <xsl:otherwise>
         <xsl:value-of select="concat(i18n:translate('component.mods.metaData.dictionary.url'),':')" />
+          </xsl:otherwise>
+        </xsl:choose>
       </td>
       <td class="metavalue">
         <a>
@@ -873,6 +879,9 @@
               <xsl:when test="contains($trimmed, 'oa')">
                 <xsl:apply-templates select="." mode="oa-logo" />
               </xsl:when>
+              <xsl:when test="contains($trimmed, 'ogl')">
+                <xsl:apply-templates select="." mode="ogl-logo" />
+              </xsl:when>
               <xsl:otherwise>
                 <xsl:value-of select="." />
               </xsl:otherwise>
@@ -920,81 +929,53 @@
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
       <!-- mods:part -->
       <xsl:if test="@type='host' or @type='series'">
-        <xsl:choose>
-          <xsl:when test="mods:part/mods:text[not(@type='sortstring' or @type='article series')]">
-            <xsl:value-of select="mods:part/mods:text[not(@type='sortstring' or @type='article series')]" />
-          </xsl:when>
-          <xsl:otherwise>
-            <!-- Volume -->
-            <xsl:variable name="volume">
-              <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
-                <xsl:value-of select="concat('Vol. ',mods:part/mods:detail[@type='volume']/mods:number)" />
-               
-              </xsl:if>
-              <xsl:if test="mods:part/mods:date or ../mods:originInfo[@eventType='publication']/mods:dateIssued">
-                <xsl:choose>
-                  <xsl:when test="mods:part/mods:date[not (@encoding)]">
-                    <xsl:value-of select="concat(' (',mods:part/mods:date[not (@encoding)],')')" />
-                  </xsl:when>
-                  <xsl:when test="not(mods:part/mods:date[not (@encoding)]) and mods:part/mods:date[@encoding='w3cdtf']">
-                    <xsl:value-of select="concat(' (',mods:part/mods:date[@encoding='w3cdtf'],')')" />
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:variable name="year">
-                      <xsl:choose>
-                        <xsl:when test="contains(../mods:originInfo[@eventType='publication']/mods:dateIssued,'-')">
-                          <xsl:value-of select="substring-before(../mods:originInfo[@eventType='publication']/mods:dateIssued,'-')" />
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:value-of select="../mods:originInfo[@eventType='publication']/mods:dateIssued" />
-                        </xsl:otherwise> 
-                      </xsl:choose>
-                    </xsl:variable>
-                    <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
-                      <xsl:value-of select="'.'" />
-                    </xsl:if>
-                    <xsl:value-of select="$year" />
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:if>
-            </xsl:variable>
-            <xsl:variable name="issue">
-              <xsl:if test="mods:part/mods:detail[@type='issue']/mods:caption">
-                <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:caption" />
-              </xsl:if>
-              <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
-                <!-- <xsl:if test="not(mods:part/mods:detail[@type='issue']/mods:caption)">
-                  <xsl:value-of select="'H. '" />
-                </xsl:if> -->
-                <xsl:value-of select="mods:part/mods:detail[@type='issue']/mods:number" />
-              </xsl:if>
-            </xsl:variable>
-            <xsl:variable name="pages">
-              <xsl:if test="mods:part/mods:extent[@unit='pages' or @unit='columns']">
-                <xsl:for-each select="mods:part/mods:extent[@unit='pages' or @unit='columns']" >
-                  <xsl:call-template name="printMetaDate.mods.extent" />
-                </xsl:for-each>
-              </xsl:if>
-            </xsl:variable>
-            <xsl:value-of select="$volume" />
-            <xsl:if test="string-length($volume) &gt; 0  and string-length($issue) &gt; 0">
-              <xsl:value-of select="concat(', ',$issue)"/>
-            </xsl:if>
-            <xsl:if test="(string-length($volume) &gt; 0 and string-length($issue) &gt; 0) or string-length($pages) &gt; 0">
-              <xsl:value-of select="concat(', ',$pages)"/>
-            </xsl:if>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if test="mods:part/mods:text[@type='article series']">
-          <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
+        <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
+        <xsl:variable name="dateIssued">
+          <xsl:choose>
+            <xsl:when test="(./@type='host' or ./@type='series') and ../../mods:originInfo[@eventType='publication']/mods:dateIssued">
+              <xsl:apply-templates select="../../mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate"/>
+            </xsl:when>
+            <xsl:when test="(./@type='host' or ./@type='series') and ../mods:originInfo[@eventType='publication']/mods:dateIssued">
+              <xsl:apply-templates select="../mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate"/>
+            </xsl:when>
+            <xsl:when test="mods:originInfo[@eventType='publication']/mods:dateIssued">
+              <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate"/>
+            </xsl:when>
+            <xsl:when test="mods:part/mods:date">
+              <xsl:apply-templates select="mods:part/mods:date" mode="formatDate"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <!-- Volume -->
+        <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
+          <xsl:value-of
+            select="concat(i18n:translate('component.mods.metaData.dictionary.volume.shortcut'),' ',mods:part/mods:detail[@type='volume']/mods:number)" />
+          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
         </xsl:if>
-        <xsl:for-each select="mods:part/mods:text[@type='article series']">
-          <xsl:value-of select="."/>
-          <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
-        </xsl:for-each>
+        <!-- Issue -->
+        <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
+          <xsl:value-of
+            select="concat(i18n:translate('component.mods.metaData.dictionary.issue.shortcut'),' ',mods:part/mods:detail[@type='issue']/mods:number)" />
+        </xsl:if>
+        <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number or mods:part/mods:detail[@type='volume']/mods:number and string-length($dateIssued) &gt; 0">
+          <xsl:text> </xsl:text>
+        </xsl:if>
+        <xsl:if test="string-length($dateIssued) &gt; 0">
+          <xsl:text>(</xsl:text>
+          <xsl:value-of select="$dateIssued" />
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+        <!-- Pages -->
+        <xsl:if test="mods:part/mods:extent[@unit='pages']">
+          <xsl:text>, </xsl:text>
+          <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
+            <xsl:call-template name="printMetaDate.mods.extent" />
+          </xsl:for-each>
+        </xsl:if>
       </xsl:if>
     </td>
   </tr>
@@ -1291,14 +1272,7 @@
           </div>
           <div class="c15r">
             <xsl:if test="./structure/derobjects">
-              <xsl:variable name="objectBaseURL">
-                <xsl:if test="$objectHost != 'local'">
-                  <xsl:value-of select="document('webapp:hosts.xml')/mcr:hosts/mcr:host[@alias=$objectHost]/mcr:url[@type='object']/@href" />
-                </xsl:if>
-                <xsl:if test="$objectHost = 'local'">
-                  <xsl:value-of select="concat($WebApplicationBaseURL,'receive/')" />
-                </xsl:if>
-              </xsl:variable>
+              <xsl:variable name="objectBaseURL" select="concat($WebApplicationBaseURL,'receive/')" />
               <xsl:variable name="staticURL">
                 <xsl:value-of select="concat($objectBaseURL,@ID)" />
               </xsl:variable>
