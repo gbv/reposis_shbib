@@ -73,6 +73,11 @@
           <xsl:value-of select="substring-after(., 'http://www.viaf.org/')" />
         </mods:nameIdentifier>
       </xsl:when>
+      <xsl:when test="starts-with(../@authorityURI, 'http://d-nb.info/gnd/')">
+        <xsl:attribute name="valueURI">
+          <xsl:value-of select="concat(../@authorityURI,.)" />
+        </xsl:attribute>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="valueURI">
           <xsl:value-of select="concat(../@authorityURI,'#',.)" />
@@ -204,6 +209,12 @@
     </xsl:variable>
     <mods:identifier type="uri">
       <xsl:value-of select="concat('http://uri.gbv.de/document/', $database, ':ppn:', text())" />
+    </mods:identifier>
+  </xsl:template>
+
+  <xsl:template match="mods:identifierManaged">
+    <mods:identifier>
+      <xsl:apply-templates select="@*|node()" />
     </mods:identifier>
   </xsl:template>
 
