@@ -13,8 +13,8 @@
           <mir:help-pmud pmud="true" />
         </div>
         <div class="mir-fieldset-content">
-          <div class="form-group">
-            <label class="col-md-3 control-label">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
               Sachgruppe:
             </label>
             <div class="col-md-6">
@@ -44,8 +44,8 @@
     <xed:repeat xpath="mods:classification[@authorityURI=$shbib_zeitschluessel/label[@xml:lang='x-uri']/@text]" min="1" max="10">
      -->
     <xed:repeat xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_zeitschluessel']" min="1" max="10">
-      <div class="form-group">
-        <label class="col-md-3 control-label">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">
           Zeit / Epoche:
         </label>
         <div class="col-md-6">
@@ -66,8 +66,8 @@
     <xed:repeat xpath="mods:classification[@authorityURI=$shbib_formschluessel/label[@xml:lang='x-uri']/@text]" min="1" max="10">
      -->
     <xed:repeat xpath="mods:classification[@authorityURI='http://www.mycore.org/classifications/shbib_formschluessel']" min="1" max="10">
-      <div class="form-group">
-        <label class="col-md-3 control-label">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">
           Publikationsform:
         </label>
         <div class="col-md-6">
@@ -88,8 +88,8 @@
   
   <xed:template id="admincomment">
     <xed:bind xpath="mods:note[@type='admin']">
-      <div class="form-group">
-        <label class="col-md-3 control-label">Interner Kommentar:</label>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">Interner Kommentar:</label>
         <div class="col-md-6">
           <textarea class="form-control" rows="5"></textarea>
         </div>
@@ -99,8 +99,8 @@
   
   <xed:template id="source_note">
     <xed:bind xpath="mods:note[@type='annotation']">
-      <div class="form-group">
-        <label class="col-md-3 control-label">Anmerkung:</label>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">Anmerkung:</label>
         <div class="col-md-6">
           <textarea class="form-control" rows="5"></textarea>
         </div>
@@ -114,8 +114,8 @@
       <mir:textfield  xpath="mods:topicSimple" label="mir.subject.topic" help-text="{i18n:mir.help.subject.topic}" />
       <mir:textfield xpath="mods:geographic" label="mir.geographic" help-text="{i18n:mir.help.cartographics.place}" />
       <mir:role.repeated role="aut" label="mir.search.name" help-text="{i18n:mir.help.role.author}" />
-      <!-- <div class="form-group">
-        <label class="col-md-3 control-label">
+      <!-- <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">
           Schlagwort(Klass.):
         </label>
         <div class="col-md-6">
@@ -156,8 +156,8 @@
   
   <xed:template id="subject.complex.topic3">
     <div class="subject_select">
-      <div class="form-group">
-        <label class="col-md-3 control-label "> Schlagwort </label>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right "> Schlagwort </label>
         <div class="col-md-6">
           <xed:bind xpath="mods:topicSimple">
             <input class="form-control subjectSuggest" 
@@ -167,8 +167,8 @@
         </div>
         <div class="col-md-3"></div>
       </div>
-      <div class="form-group">
-        <label class="col-md-3 control-label "> Geographicum </label>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right "> Geographicum </label>
         <div class="col-md-6">
           <xed:bind xpath="mods:geographic">
             <input class="form-control subjectSuggest" 
@@ -178,8 +178,8 @@
         </div>
         <div class="col-md-3"></div>
       </div>
-      <div class="form-group">
-        <label class="col-md-3 control-label "> Person </label>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right "> Person </label>
         <div class="col-md-6">
           <xed:bind xpath="mods:name[@type='personal']">
             <xed:bind xpath="mods:displayForm">
@@ -197,8 +197,8 @@
         </div>
         <div class="col-md-3"></div>
       </div>
-      <div class="form-group">
-        <label class="col-md-3 control-label "> Organisation </label>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right "> Organisation </label>
         <div class="col-md-6">
           <xed:bind xpath="mods:name[@type='corporate']/mods:displayForm">
             <input class="form-control subjectSuggest" 
@@ -244,8 +244,8 @@
           <mir:textfield  xpath="mods:topicSimple" repeat="true" min="1" max="10" label="mir.subject.topic" help-text="{i18n:mir.help.subject.topic}" />
           <mir:topic.repeated min="1" max="10" label="mir.subject.topic.gnd" help-text="{i18n:mir.help.subject.topic.gnd}" extended="true" />
           <mir:textfield xpath="mods:geographic" repeat="true" min="1" max="10" label="mir.geographic" help-text="{i18n:mir.help.cartographics.place}" />
-          <div class="form-group">
-            <label class="col-md-3 control-label">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
               Schlagwort(Klass.):
             </label>
             <div class="col-md-6">

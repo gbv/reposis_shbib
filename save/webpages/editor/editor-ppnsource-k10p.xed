@@ -17,8 +17,8 @@
       <!--<xed:bind xpath="metadata/def.modsContainer[@class='MCRMetaXML'][@notinherit='true']/modsContainer/mods:mods/mods:typeOfResource" default="text"/>-->
       <xed:bind xpath="metadata/def.modsContainer[@class='MCRMetaXML'][@notinherit='true']/modsContainer/mods:mods/mods:typeOfResource[@mcr:categId='typeOfResource:text']" />
       <xed:bind xpath="service">
-        <div class="form-group">
-          <label class="col-md-3 control-label">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text-right">
             <xed:output i18n="component.mods.metaData.dictionary.status" />
           </label>
           <xed:bind xpath="servstates[@class='MCRMetaClassification']/servstate[@classid='state']/@categid" initially="published">
@@ -40,14 +40,14 @@
               <input id="sourceuri" type="hidden" />
             </xed:bind>
             <xed:bind xpath="sourceid" default="{$ppn}">
-              <div class="form-group">
-                <label class="col-md-3 control-label">PPN</label>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">PPN</label>
                 <div class="col-md-6">
                   <input id="PPN" class="form-control" />
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-md-3 control-label"></label>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right"></label>
                 <div id="PPNPreview" class="col-md-6" style="min-height: 100px;">
                   Bitte PPN eingeben.
                 </div>
