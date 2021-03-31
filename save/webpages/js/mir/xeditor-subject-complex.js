@@ -37,7 +37,7 @@ SubjectComplex.prototype= {
   ,changeTopic: function (index) {
       if (index < this.topics.length && index >= 0) {
           var subject = this;
-          subject.topics.addClass("hidden");
+          subject.topics.addClass("d-none");
           subject.topics.each( function (tindex,topic) {
               $(topic).find("label").children().detach();
               $(topic).find("label").text(subject.labels[tindex]);
@@ -46,7 +46,7 @@ SubjectComplex.prototype= {
               }
           }); 
           this.select.find("option").eq(index).prop('selected', true);
-          subject.topics.eq(index).removeClass("hidden");
+          subject.topics.eq(index).removeClass("d-none");
           subject.topics.eq(index).find("label").empty();
           subject.topics.eq(index).find("label").append(this.select);
           
@@ -54,7 +54,7 @@ SubjectComplex.prototype= {
   }
   
   ,unhideAll: function () {
-      this.topics.removeClass("hidden");
+      this.topics.removeClass("d-none");
   }
   
   ,replaceLabels: function () {
