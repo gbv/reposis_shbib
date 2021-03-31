@@ -11,6 +11,10 @@ div.mir-fieldset-content > div.subject_select > div.form-group:last-of-type > di
   border-bottom-left-radius: 10px;
 }
  
+div.mir-fieldset-content > div.subject_select > div.form-group {
+    margin-bottom: 0px;
+}
+ 
 div.mir-fieldset-content > div.subject_select > div.form-group > div.col-md-6 {
     border-style: solid;
     border-width: 0 0 0 2px;
