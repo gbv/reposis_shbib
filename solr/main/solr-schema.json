@@ -1,0 +1,144 @@
+[
+  {
+    "add-field-type": {
+        "name":"text_lower",
+        "class":"solr.TextField",
+        "positionIncrementGap":"100",
+        "analyzer":{
+          "tokenizer":{
+            "class":"solr.KeywordTokenizerFactory"},
+          "filters":[{
+              "class":"solr.LowerCaseFilterFactory"}]}}
+  },
+  {
+    "add-field": {
+        "name":"mods.title.series",
+        "type":"text_general",
+        "multiValued":true}
+  },
+  {
+    "add-field": {
+        "name":"mods.genre.host",
+        "type":"string",
+        "multiValued":true}
+  },
+  {
+    "add-field": {
+        "name":"mods.yearIssued.host",
+        "type":"int",
+        "multiValued":false}
+  },
+  {
+    "add-field": {
+        "name":"mods.physicalLocation",
+        "type":"string",
+        "multiValued":true}
+  },
+  {
+    "add-field": {
+        "name":"mods.subject",
+        "type":"text_de",
+        "multiValued":true,
+        "indexed":true,
+        "stored":false}
+  },
+  {
+    "add-field": {
+        "name":"corporate",
+        "type":"string",
+        "multiValued":true}
+  },
+  {
+    "replace-field": {
+        "name":"mods.nameIdentifier",
+        "type":"text_lower",
+        "multiValued":true}
+  },
+  {
+    "replace-field": {
+        "name":"mods.nameIdentifier.top",
+        "type":"text_lower",
+        "multiValued":true}
+  },
+  {
+    "replace-field": {
+        "name":"mods.identifier",
+        "type":"text_lower",
+        "multiValued":true}
+  },
+  {
+    "replace-field": {
+        "name":"mods.identifier.host",
+        "type":"text_lower",
+        "multiValued":true}
+  },
+  {
+    "add-field": {
+        "name":"mods.title.autocomplete",
+        "type":"text_lower",
+        "multiValued":false}
+  },
+  {
+    "add-field": {
+      "name": "sourceid",
+      "type": "string",
+      "multiValued":true
+    }
+  },
+  {
+    "add-field": {
+      "name": "recordIdentifier",
+      "type": "string",
+      "multiValued":true
+    }
+  },
+  {
+    "add-field": {
+      "name": "recordIdentifier.source.DE-601",
+      "type": "string",
+      "multiValued":true
+    }
+  },
+  {
+    "add-field": {
+      "name": "shelfLocator",
+      "type": "text_lower",
+      "multiValued":true
+    }
+  },
+  {
+    "add-field": {
+        "name":"containerSource",
+        "type":"string",
+        "multiValued":false
+    }
+  },
+  {
+    "add-field": {
+        "name":"mods.subjectindex",
+        "type":"text_de",
+        "multiValued":true
+    }
+  },
+  {
+    "add-field": {
+        "name":"mods.subject",
+        "type":"text_lower",
+        "multiValued":true
+    }
+  },
+  {
+    "add-dynamic-field": {
+        "name":"mods.subject.*",
+        "type":"string",
+        "multiValued":true
+    }
+  },
+  {
+    "add-field": {
+        "name":"subjectid",
+        "type":"string",
+        "multiValued":true
+    }
+  }
+]
