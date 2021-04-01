@@ -4,7 +4,10 @@
   <section xml:lang="all" xmlns:xed="http://www.mycore.de/xeditor" xmlns:mir="http://www.mycore.de/mir"
       i18n="component.mods.editor.search.simple.pagetitle">
     <xed:form class="form-horizontal" role="form">
-      <xed:post-processor xsl="query-postprocessor.xsl" />
+      <xed:cleanup-rule xpath="//condition" relevant-if="(string-length(@value) &gt; 0) or value[string-length(text()) &gt; 0 ]" />
+      <xed:cleanup-rule xpath="//boolean" relevant-if="boolean|condition" />
+      <xed:cleanup-rule xpath="//condition[@selectable='true']" relevant-if="@id = ../selectCondition/@keep" />
+      <xed:cleanup-rule xpath="//*/@selectable|//selectCondition" relevant-if="false()" />
       <xed:source uri="searchInput:{$id}" />
       <xed:source uri="webapp:editor/search/template/simple.xml" />
       <xed:bind xpath="query">
@@ -12,15 +15,13 @@
         <xed:bind xpath="sortBy/field/@name" set="score" />
         <xed:bind xpath="conditions/boolean">
           <xed:bind xpath="boolean[@operator='or']/condition[@field='createdby']/@value" default="{$CurrentUser}" />
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
                 <xed:output i18n="component.mods.editor.search.label" />
               </h3>
             </div>
-            <div class="panel-body">
-            <!-- Metadata -->
-              <mir:template name="textInput" xpath="condition[@field='allMeta']/@value" id="inputMeta1" i18n="editor.search.metadata" tooltip="editor.search.metadata.tooltip" />
+            <div class="card-body">
             <!-- Title -->
               <mir:template name="textInput" xpath="condition[@field='mods.title']/@value" id="inputTitle1" i18n="editor.search.mir.title" tooltip="editor.search.mir.title.tooltip" />
             <!-- Name -->
@@ -29,19 +30,10 @@
             <!-- Topic -->
               <mir:template name="textInput" xpath="condition[@field='mods.subjectindex']/@value" id="inputTopic1" i18n="editor.search.mir.topic" tooltip="editor.search.mir.topic.tooltip" />
               <xed:bind xpath="condition[@field='mods.subjectindex']/@operator" set="phrase"/>
-            <!-- Content -->
-              <!-- 
-                <mir:template name="textInput" xpath="condition[@field='content']/@value" id="inputContent1" i18n="editor.search.derivate" tooltip="editor.search.derivate.tooltip" />
-               -->
-            <!-- Institution -->
-              <!-- 
-              <mir:template name="selectInput" xpath="condition[@field='category'][1]/@value" id="inputInst1" i18n="editor.search.mir.institute"
-                tooltip="editor.search.mir.institute.tooltip" uri="xslStyle:items2options:classification:editorComplete:-1:children:mir_institutes" />
-               -->
             </div>
             <!-- submit -->
-            <div class="panel-footer clearfix">
-              <div class="pull-right">
+            <div class="card-footer clearfix">
+              <div class="float-right">
                 <mir:template name="submitButton" i18n="editor.search.search" target="servlet_MCRQLSearchServlet" />
               </div>
             </div>
