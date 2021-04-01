@@ -25,7 +25,7 @@
   {
     "add-field": {
         "name":"mods.yearIssued.host",
-        "type":"int",
+        "type":"pint",
         "multiValued":false}
   },
   {
@@ -33,14 +33,6 @@
         "name":"mods.physicalLocation",
         "type":"string",
         "multiValued":true}
-  },
-  {
-    "add-field": {
-        "name":"mods.subject",
-        "type":"text_de",
-        "multiValued":true,
-        "indexed":true,
-        "stored":false}
   },
   {
     "add-field": {
@@ -121,9 +113,10 @@
     }
   },
   {
-    "add-field": {
+    "replace-field": {
         "name":"mods.subject",
         "type":"text_lower",
+        "indexed":true,
         "multiValued":true
     }
   },
