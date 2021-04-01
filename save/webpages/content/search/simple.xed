@@ -22,6 +22,8 @@
               </h3>
             </div>
             <div class="card-body">
+            <!-- Metadata -->
+              <mir:template name="textInput" xpath="condition[@field='allMeta']/@value" id="inputMeta1" i18n="editor.search.metadata" tooltip="editor.search.metadata.tooltip" />
             <!-- Title -->
               <mir:template name="textInput" xpath="condition[@field='mods.title']/@value" id="inputTitle1" i18n="editor.search.mir.title" tooltip="editor.search.mir.title.tooltip" />
             <!-- Name -->
