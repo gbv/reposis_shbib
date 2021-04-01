@@ -45,6 +45,7 @@ import org.mycore.access.MCRAccessException;
 import org.mycore.common.MCRConstants;
 import org.mycore.common.MCRException;
 import org.mycore.common.MCRPersistenceException;
+import org.mycore.common.config.MCRConfiguration2;
 import org.mycore.common.events.MCREvent;
 import org.mycore.common.events.MCREventHandlerBase;
 import org.mycore.datamodel.metadata.MCRMetaLinkID;
@@ -127,22 +128,25 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
                 String ppn = identifierValue.substring(identifierValue.lastIndexOf(")") + 1);
                 LOGGER.info("Found PPN: " + ppn);
                 try {
-                    SolrClient solrClient = MCRSolrClientFactory.getSolrClient();
-                    solrClient.commit();
-                    SolrQuery query = new SolrQuery();
-                    query.set("q", "mods.identifier:*PPN="+ppn);
-                    query.set("waitSearcher", "true");
-                    query.setStart(0);
-                    query.setRows(10);
-                    query.setFields("id");
-                    query.setRequestHandler("find");
+                	if (MCRConfiguration2.getString("MCR.Solr.ServerURL").isPresent()) {
+                        final SolrClient solrClient = MCRSolrClientFactory.getMainSolrClient();
+                        //SolrClient solrClient = MCRSolrClientFactory.getSolrClient();
+                        solrClient.commit();
+                        SolrQuery query = new SolrQuery();
+                        query.set("q", "mods.identifier:*PPN="+ppn);
+                        query.set("waitSearcher", "true");
+                        query.setStart(0);
+                        query.setRows(10);
+                        query.setFields("id");
+                        query.setRequestHandler("find");
                     
-                    QueryResponse queryResponse = solrClient.query(query);
-                    SolrDocumentList results = queryResponse.getResults();
+                        QueryResponse queryResponse = solrClient.query(query);
+                        SolrDocumentList results = queryResponse.getResults();
                     
-                    LOGGER.info("Found "+results.size()+"ids ");
-                    if (results.size() == 0) continue;
-                    relatedItem.setAttribute("href", results.get(0).getFieldValue("id").toString(), MCRConstants.XLINK_NAMESPACE);
+                        LOGGER.info("Found "+results.size()+"ids ");
+                        if (results.size() == 0) continue;
+                        relatedItem.setAttribute("href", results.get(0).getFieldValue("id").toString(), MCRConstants.XLINK_NAMESPACE);
+                	}
                 } catch (SolrServerException e ) {
                 	LOGGER.warn("SolrError so the mycoreid of relatedItem wasn't set. ");
                 } catch (IOException e) {

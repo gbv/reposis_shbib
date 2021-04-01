@@ -121,7 +121,8 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     	
     	String mycoreid = obj.getId().toString();
     	SolrClient solrClient = new HttpSolrClient.Builder(solrURL).build();
-    	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
+    	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
+    	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	UpdateResponse response = null;
     	
     	try {
@@ -193,7 +194,8 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     private void handleSubjectsOfModsObject(MCRObject obj) {
     	
     	SolrClient solrClient = new HttpSolrClient.Builder(solrURL).build();
-    	SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
+    	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
+    	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	
     	if (!MCRMODSWrapper.isSupported(obj)){
             return;
