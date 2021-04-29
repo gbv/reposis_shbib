@@ -5,6 +5,7 @@
   exclude-result-prefixes="i18n mods xlink xalan mcrxsl">
   <xsl:import href="xslImport:modsmeta:metadata/mir-metadata-box.xsl" />
   <xsl:include href="modsmetadata.xsl" />
+  <xsl:include href="mir-mods-utils.xsl" />
   <!-- copied from http://www.loc.gov/standards/mods/v3/MODS3-4_HTML_XSLT1-0.xsl -->
 
   <xsl:key use="@type" name="title-by-type" match="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:titleInfo" />
@@ -100,7 +101,7 @@
                         <xsl:if test="position()!=1">
                           <xsl:value-of select="'; '" />
                         </xsl:if>
-                        <xsl:apply-templates select="." mode="nameLink" />
+                        <xsl:apply-templates select="." mode="mirNameLink" />
                       </xsl:for-each>
                         <xsl:if test="$mods/mods:name/mods:etal">
                             <em>et.al.</em>
@@ -119,7 +120,6 @@
                 </xsl:call-template>
               </xsl:if>
             </xsl:for-each>
-            <!-- <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:relatedItem[not(@type='host')]">  -->
             <xsl:for-each select="mycoreobject/metadata/def.modsContainer/modsContainer/mods:mods/mods:relatedItem[not(@type='host' and @xlink:href)]">
               <xsl:variable name="relItemLabel">
                 <xsl:choose>
@@ -195,7 +195,6 @@
                     </td>
                     <td class="metavalue">
                         <xsl:value-of select="."/>
-                        <div class="sherpa-issn hidden"><xsl:value-of select="."/></div>
                     </td>
                 </tr>
             </xsl:for-each>
@@ -285,24 +284,24 @@
                   <xsl:value-of select="i18n:translate('mir.cartographics.coordinates')" />
                 </td>
                 <td class="metavalue">
-                  <xsl:value-of select="." /><br />
+                  <xsl:choose>
+                    <xsl:when test="contains(., ', ')">
+                      <div id="displayCoords" data-fullcoords="{.}">
+                        <xsl:value-of select="substring-before(., ', ')" />
+                        <a id="flipCoords" role="button">...</a>
+                      </div>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="." />
+                    </xsl:otherwise>
+                  </xsl:choose>
                   <div>
-                    <button type="button" class="show_openstreetmap btn btn-default" data="{.}" >
+                    <button type="button" class="show_openstreetmap btn btn-secondary" data-coords="{.}" >
                       OpenStreetMap
                     </button>
                   </div>
-                  <div class="openstreetmap-container collapse" style="width:555px;">
-                    <div id="header">
-                      <div id="osm">
-                        (c)
-                        <a href="//www.openstreetmap.org">OpenStreetMap</a>
-                        und
-                        <a href="//www.openstreetmap.org/copyright">Mitwirkende</a>
-                        ,
-                        <a href="//creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>
-                      </div>
-                    </div>
-                    <div class="map" style="width:555px;height:380px;"></div>
+                  <div class="openstreetmap-container collapse">
+                    <div class="map"></div>
                   </div>
                 </td>
               </tr>
