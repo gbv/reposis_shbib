@@ -1182,14 +1182,26 @@
   </xsl:template>
   
   <xsl:key use="generate-id(preceding-sibling::p:datafield[@tag='201B'][1])" name="key-id-pre2018" match="p:datafield"/>
+  <xsl:key use="generate-id(preceding-sibling::p:datafield[@tag='101@'][1])" name="key-id-pre101at" match="p:datafield"/>
 
   <xsl:template name="COMMON_Location">
     <!-- for each exemplar -->
     <!-- didn't use 201A, because some times the 201A didn't occur (see 119103680) -->
-    <xsl:for-each select="./p:datafield[@tag='201B']">
-      <xsl:variable name="current201B" select="." />
+    <!-- didn't use 202B, because i need the the 101@/a if in 202D/a no eln is present -->
+    <!-- <xsl:for-each select="./p:datafield[@tag='201B']">  -->
+    <xsl:for-each select="./p:datafield[@tag='101@']">
+      <!-- <xsl:variable name="current201B" select="." /> -->
+      <xsl:variable name="current101at" select="." />
+      <xsl:variable name="elnFrom101">
+        <xsl:choose>
+          <xsl:when test="p:subfield[@code='a']='104'">
+            <xsl:value-of select="'0068'"/>   <!-- ELN Landesbibliothek Schleswig Holstein  -->
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
       <mods:location>
-        <xsl:for-each select="key('key-id-pre2018' , generate-id() )">
+        <!-- <xsl:for-each select="key('key-id-pre2018' , generate-id() )">  -->
+        <xsl:for-each select="key('key-id-pre101at' , generate-id() )">
           <xsl:choose>
             <xsl:when test="@tag='202D'">
               <xsl:variable name="eln" >
@@ -1204,7 +1216,14 @@
               </xsl:variable>
               <xsl:if test="string-length($eln) &gt; 0">
                 <mods:physicalLocation authority="ELN">
-                  <xsl:value-of select="$eln" />
+                  <xsl:choose>
+                    <xsl:when test="$elnFrom101">
+                      <xsl:value-of select="$elnFrom101"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="$eln" />
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </mods:physicalLocation>
               </xsl:if>
             </xsl:when>

@@ -33,6 +33,8 @@
         </div>
       </xed:bind>
       
+      <!-- <xed:include uri="xslStyle:editor/mir2xeditor:webapp:editor/editor-includes.xed" ref="toc-layout" /> -->
+      
       <xed:bind xpath="metadata/def.modsSourceContainer[@class='MCRMetaXML'][@notinherit='true']">
         <xed:bind xpath="modsSourceContainer[@type='remotesource']">
           <fieldset>
