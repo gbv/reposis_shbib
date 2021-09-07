@@ -1,0 +1,76 @@
+/*
+ *  header settings
+ */
+
+// Extra large devices (large desktops)
+// set the defaults for all responsive levels here
+// no (xl) media query necessary (desktop first)
+
+// logo and menu container
+
+  .header-box {
+    margin-top: 1rem;
+    &__content {
+      background-color: $sb-gray;
+      #options_nav_box {
+        padding: 14px 15px 19px 15px;
+      }
+      #project_logo_box {
+        border-top: 2px solid $sb-dark-blue;
+        margin-left: 4rem;
+        a {
+          color: $sb-blue;
+          padding: 14px 15px 19px 15px;
+          display: block;
+          &:hover {
+            color: white;
+            background-color: $sb-dark-blue;
+          }
+        }
+      }
+
+    }
+  }
+  .project-link {
+    color: #003064;
+    &:hover {
+      color: #003064;
+      text-decoration: none;
+    }
+    h1 {
+      font-weight: 100;
+    }
+  }
+  .project-header {
+    background-image: url(../../../../images/back_books.png);
+    background-size: cover;
+    padding: 0;
+    &__name {
+      padding: 0.5rem 0 0.5rem 5rem;
+      background-color: rgba(white, 0.6)
+    }
+  }
+
+  .searchfield_box {
+    padding-right: 15px;
+  }
+
+// Large devices (desktops) and below: <= 1200px
+@include media-breakpoint-down(lg) {
+  // add/overwrite styles for responsive level lg and lower
+}
+
+// Medium devices (tablets) and below: <= 992px
+@include media-breakpoint-down(md) {
+  // add/overwrite styles for responsive level md and lower
+}
+
+// Small devices (landscape phones) and below: <= 768px
+@include media-breakpoint-down(sm) {
+  // add/overwrite styles for responsive level sm and lower
+}
+
+// Extra small devices (portrait phones): <= 576px
+@include media-breakpoint-down(xs) {
+  // add/overwrite styles for responsive level xs
+}

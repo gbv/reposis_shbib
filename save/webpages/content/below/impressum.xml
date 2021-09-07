@@ -3,30 +3,26 @@
 <MyCoReWebPage>
   <section xml:lang="de" title="Impressum">
     <div>
-      <h1>Impressum</h1>
       <div class="row">
-        <div class="col-md-8">
-          <p style="padding-left: 10px;">
-            Schleswig-Holsteinische Landesbibliothek
-            <br />
-            Dr. Martin Lätzel
-            <br />
-            Wall 47/51
-            <br/>
-            24103 Kiel
-            <br />
-            Tel.: (0431) 69677-51  
-            <br />
+        <div class="col-md-10 offset-1">
+
+          <h1>Impressum</h1>
+          <p>
+            Schleswig-Holsteinische Landesbibliothek<br />
+            Dr. Martin Lätzel<br />
+            Wall 47/51<br/>
+            24103 Kiel<br />
+            Tel.: (0431) 69677-51<br />
             E-Mail: 
-            <a href="mailto:verwaltung@shlb.landsh.de"
-              shape="rect">verwaltung@shlb.landsh.de</a>
+            <a
+              href="mailto:verwaltung@shlb.landsh.de"
+              shape="rect">verwaltung@shlb.landsh.de
+            </a>
           </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8">
+
           <h2>Haftung</h2>
-          <p>Die Landesbibliothek Schleswig Holstein steht nicht für die
+          <p>
+            Die Landesbibliothek Schleswig Holstein steht nicht für die
             Korrektheit, Vollständigkeit oder Aktualität ihrer Internetseiten
             ein. Für Schäden, die durch die Nutzung der Internetseiten
             verursacht werden, haftet die Bibliothek grundsätzlich nicht, es
@@ -35,25 +31,20 @@
             Internetseiten jederzeit ohne gesonderte Ankündigung verändern,
             ergänzen oder löschen. Die Bibliothek haftet nicht für fremde
             Internetseiten, auf die sie mit einem Link verweist und die nach
-            der Linksetzung verändert wurden.</p>
-        </div>
-      </div>
-      <h2>Technischer Betrieb</h2>
-      <div class="row">
-        <div class="col-md-12">
-          <p style="padding-left: 10px;">
-            Verbundzentrale des GBV (VZG)
-            <br />
-            Platz der Göttinger Sieben 1
-            <br />
+            der Linksetzung verändert wurden.
+          </p>
+
+          <h2>Technischer Betrieb</h2>
+          <p>
+            Verbundzentrale des GBV (VZG)<br />
+            Platz der Göttinger Sieben 1<br />
             D-37073 Göttingen
           </p>
+
         </div>
       </div>
     </div>
   </section>
-
-  
   <meta>
     <log date="2017-02-30" time="09:19" labelPath=" » Kontakt" lastEditor="Paul Borchert" />
   </meta>

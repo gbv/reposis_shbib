@@ -3,51 +3,45 @@
 <MyCoReWebPage>
   <section xml:lang="de" title="Kontakt">
   <div>
-    <h1>
-      Kontakt
-    </h1>
     <div class="row">
-      <div class="col-md-12" lang="de">
-        <h3> Fachliche Fragen </h3>
-        <p style="padding-left: 10px;">
-          <b>Schleswig-Holsteinische Landesbibliothek</b>
-          <br/>
-          Bibliographie
-          <br/>
-          Anne Bartels
-          <br />
-          Wall 47/51
-          <br />
-          24103 Kiel
-          <br />
-          Tel. (0431) 69677-29 
-          <br />
-          E-Mail: 
-          <a href="mailto:Anne.Bartels@shlb.landsh.de"
-            shape="rect">Anne.Bartels@shlb.landsh.de</a>
-        </p>
-        <h3> Technischer Betrieb</h3>
-        <p style="padding-left: 10px;">
-          <b>Verbundzentrale des GBV (VZG)</b>
-          <br/>
-          Platz der Göttinger Sieben 1
-          <br/>
-          37073 Göttingen
-          <br/>
-          Tel.: (0551) 39-5207
-          <br/>
-          Fax: (0551) 39-13980
-          <br/>
-          Digitale Bibliothek, Reposis
-          <br/>
-          <a href="https://www.gbv.de/Verbundzentrale/serviceangebote/reposis-repository-service"
-            shape="rect">https://www.gbv.de/Verbundzentrale/serviceangebote/reposis-repository-service</a>
-          <br/>
-          E-Mail: 
-          <a href="mailto:dms-list@lists.gbv.de"
-            shape="rect">dms-list@lists.gbv.de</a>
+      <div class="col-md-10 offset-1" lang="de">
 
-        </p> 
+        <h1>Kontakt</h1>
+        <h3>Fachliche Fragen</h3>
+        <p>
+          <strong>Schleswig-Holsteinische Landesbibliothek</strong><br/>
+          Bibliographie<br/>
+          Anne Bartels<br />
+          Wall 47/51<br />
+          24103 Kiel<br />
+          Tel. (0431) 69677-29<br />
+          E-Mail: 
+          <a
+            href="mailto:Anne.Bartels@shlb.landsh.de"
+            shape="rect">Anne.Bartels@shlb.landsh.de
+          </a>
+        </p>
+
+        <h3> Technischer Betrieb</h3>
+        <p>
+          <strong>Verbundzentrale des GBV (VZG)</strong><br/>
+          Platz der Göttinger Sieben 1<br/>
+          37073 Göttingen<br/>
+          Tel.: (0551) 39-5207<br/>
+          Fax: (0551) 39-13980<br/>
+          Digitale Bibliothek, Reposis<br/>
+          <a
+            href="https://www.gbv.de/Verbundzentrale/serviceangebote/reposis-repository-service"
+            shape="rect">https://www.gbv.de/Verbundzentrale/serviceangebote/reposis-repository-service
+          </a>
+          <br/>
+          E-Mail: 
+          <a
+            href="mailto:dms-list@lists.gbv.de"
+            shape="rect">dms-list@lists.gbv.de
+          </a>
+        </p>
+
       </div>
     </div>
   </div>

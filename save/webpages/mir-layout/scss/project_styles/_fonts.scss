@@ -1,0 +1,32 @@
+/* font family definition
+ * - add the needed fonts here
+ */
+
+ @font-face {
+  font-family: "MuseoSans";
+  src: url('../../../../fonts/MuseoSans_100Web.eot');
+  src: url('../../../../fonts/MuseoSans_100Web.eot?#iefix') format('embedded-opentype'), url('../../../../fonts/MuseoSans_100Web.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MuseoSans";
+  src: url('../../../../fonts/MuseoSans_700Web.eot');
+  src: url('../../../../fonts/MuseoSans_700Web.eot?#iefix') format('embedded-opentype'), url('../../../../fonts/MuseoSans_700Web.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MuseoSans";
+  src: url('../../../../fonts/MuseoSans_500Web.eot');
+  src: url('../../../../fonts/MuseoSans_500Web.eot?#iefix') format('embedded-opentype'), url('../../../../fonts/MuseoSans_500Web.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MuseoSans";
+  src: url('../../../../fonts/MuseoSans_300Web.eot');
+  src: url('../../../../fonts/MuseoSans_300Web.eot?#iefix') format('embedded-opentype'), url('../../../../fonts/MuseoSans_300Web.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}

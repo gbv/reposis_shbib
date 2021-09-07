@@ -1,42 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MyCoReWebPage>
   <section xml:lang="de" title="Schleswig-Holsteinische Bibliographie">
-    <div class="row">
+    <div class="jumbotwo">
+      <div class="row">
 
-      <div class="col-md-12" >
-        <h1>
-          Schleswig-Holsteinische Bibliographie online
-        </h1>
+        <div class="col-10 offset-1" lang="de">
+          <h1>
+            Schleswig-Holsteinische Bibliographie online
+          </h1>
+        </div>
+
+        <div class="col-8 offset-2 mb-5 mt-4">
+          <form action="../servlets/solr/find" id="shbib-searchMainPage" class="form-inline" role="search">
+            <div class="input-group input-group-lg w-100">
+              <input
+                name="condQuery"
+                placeholder="Suche in 16.000 Dokumenten"
+                class="form-control search-query"
+                id="shbib-searchInput"
+                type="text" />
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-10 offset-1">
+          <p>
+            Bei der im Oktober 2020 freigeschalteten Schleswig-Holsteinischen Bibliographie online handelt es sich
+            um eine Beta-Version, d. h., die Entwicklung ist zwar noch nicht vollständig abgeschlossen, aber so
+            weit gediehen, daß die Datenbank nutzbar ist. Hinweise und Anregungen über die Feedback-Schaltfläche
+            sind willkommen.
+          </p>
+
+          <p>
+            Die Schleswig-Holsteinische Bibliographie ist eine Literaturdokumentation. Erfaßt werden Bücher,
+            Karten, Zeitschriften, Aufsätze aus Zeitschriften und (in Ausnahmefällen) aus Tageszeitungen
+            sowie Einzelbeiträge aus Sammelwerken, die einen Bezug zu Schleswig-Holstein, einzelnen Regionen,
+            Inseln oder Orten des Landes oder schleswig-holsteinischen Persönlichkeiten haben. Dabei sind ehemals
+            schleswig-holsteinische Gebiete (z.B. Nordschleswig, Altona) einbezogen, soweit die erfaßte Literatur
+            die Zeit der Zugehörigkeit zu Schleswig-Holstein oder grenzüberschreitende Fragen (z.B. Verkehr,
+            Küstenschutz, Minderheiten) betrifft. Der inhaltliche Bezug wird in jedem Falle weit ausgelegt und
+            umfaßt alle Wissensgebiete und Lebensbereiche. Rezensionen werden nur in Ausnahmefällen, Haushaltspläne,
+            Fahrpläne, Telefonbücher usw. seit 1987 gar nicht mehr verzeichnet.
+          </p>
+
+          <p>
+            Das hier vorliegende Titelmaterial geht zurück bis zum Berichtsjahr 1987. Die Retrokonvertierung der
+            früheren, in gedruckter Form vorliegenden Bände ist in Arbeit.
+          </p>
+
+        </div>
       </div>
-      
-      <div class="col-md-12" lang="de">
-        <p>
-          Bei der im Oktober 2020 freigeschalteten Schleswig-Holsteinischen Bibliographie online handelt es sich
-          um eine Beta-Version, d. h., die Entwicklung ist zwar noch nicht vollständig abgeschlossen, aber so  
-          weit gediehen, daß die Datenbank nutzbar ist. Hinweise und Anregungen über die Feedback-Schaltfläche
-          sind willkommen.
-        </p> 
-        <p>
-          Die Schleswig-Holsteinische Bibliographie ist eine Literaturdokumentation. Erfaßt werden Bücher,
-          Karten, Zeitschriften, Aufsätze aus Zeitschriften und (in Ausnahmefällen) aus Tageszeitungen
-          sowie Einzelbeiträge aus Sammelwerken, die einen Bezug zu Schleswig-Holstein, einzelnen Regionen, 
-          Inseln oder Orten des Landes oder schleswig-holsteinischen Persönlichkeiten haben. Dabei sind ehemals
-          schleswig-holsteinische Gebiete (z.B. Nordschleswig, Altona) einbezogen, soweit die erfaßte Literatur
-          die Zeit der Zugehörigkeit zu Schleswig-Holstein oder grenzüberschreitende Fragen (z.B. Verkehr,
-          Küstenschutz, Minderheiten) betrifft. Der inhaltliche Bezug wird in jedem Falle weit ausgelegt und
-          umfaßt alle Wissensgebiete und Lebensbereiche. Rezensionen werden nur in Ausnahmefällen, Haushaltspläne,
-          Fahrpläne, Telefonbücher usw. seit 1987 gar nicht mehr verzeichnet.
-        </p>
-        <p>  
-          Das hier vorliegende Titelmaterial geht zurück bis zum Berichtsjahr 1987. Die Retrokonvertierung der
-          früheren, in gedruckter Form vorliegenden Bände ist in Arbeit. 
-        </p>
-          
-      </div>
-      
     </div>
-    </section>
-    <meta>
-        <log lastEditor="administrator" date="2017-02-30" time="09:18"/>
-    </meta>
+    <script src="../js/jquery.number.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $.ajax({
+          type: "GET",
+          url: "../api/v1/search?q=objectType:mods AND state:published&amp;rows=0&amp;wt=json&amp;json.wrf=?",
+          dataType: "jsonp",
+          success: function (data) {
+            $('#shbib-searchInput').attr('placeholder', 'Suche in ' + $.number(data.response.numFound,0, ',', '.') + ' Dokumenten');
+          },
+        });
+      });
+    </script>
+  </section>
+  <meta>
+    <log lastEditor="administrator" date="2017-02-30" time="09:18"/>
+  </meta>
 </MyCoReWebPage>

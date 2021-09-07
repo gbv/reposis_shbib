@@ -1,0 +1,53 @@
+// **************************************************
+//  Variables
+// **************************************************
+
+// --------------------------------------------------
+//  modifies bootstrap/bootswatch settings
+// --------------------------------------------------
+//  You can't use bootstrap variables here,
+//  they are unknown yet.
+//  But if you set them here, you will overwrite
+//  the bootstrap defaults! in this way
+
+// --------------------------------------------------
+//  project settings
+// --------------------------------------------------
+
+$sb-red: #d4004b;
+$sb-gray: #f2f2f2;
+$sb-dark-blue: #011f4b;
+$sb-blue: #003064;
+
+
+// --------------------------------------------------
+//  overwrite bootstrap
+// --------------------------------------------------
+
+$primary: $sb-blue;
+$secondary: $sb-red;
+
+$body-color: black;
+$link-color: $sb-dark-blue;
+
+$font-size-base: 1rem;
+
+$h1-font-size: 2.125rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.25rem;
+
+$border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+
+$dropdown-bg: $sb-blue;
+$dropdown-color: white;
+$dropdown-link-color: white;
+$dropdown-link-hover-color: white;
+$dropdown-link-hover-bg: transparent;
+$dropdown-border-color: transparent;
+$dropdown-border-radius: 0;
+$dropdown-divider-bg: white;
+
+$line-height-base: 1.2;
+$font-family-sans-serif: "MuseoSans", Euphemia, Segoe UI, Arial, Helvetica, sans-serif, "Droid Sans";

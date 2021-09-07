@@ -13,10 +13,17 @@ $(document).ready(function() {
 
   // adjust editor from id
   setEditorID();
-  
+
   setCollapseHead();
-  
-  
+
+  // activate empty search on start page
+  $("#shbib-searchMainPage").submit(function (evt) {
+    $(this).find(":input").filter(function () {
+          return !this.value;
+      }).attr("disabled", true);
+    return true;
+  });
+
   $('#btn-toogle-head').click(function(){
     // adjust editor from id
     toggleCollapseHead();
@@ -56,7 +63,7 @@ $(document).ready(function() {
 function setCollapseHead() {
   if ($('#btn-toogle-head') .length == 0) {
     return;
-  } 
+  }
   if ( typeof(Storage) !== "undefined" ) {
     if (localStorage.getItem("collapseHead")=="true" ) {
       $('#head').removeClass('in');

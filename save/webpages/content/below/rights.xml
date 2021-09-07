@@ -3,27 +3,25 @@
 <MyCoReWebPage>
   <section xml:lang="de" title="Datenschutz">
   <div>
-    <h1>
-      Datenschutz
-    </h1>
     <div class="row">
-      <div class="col-md-8" lang="de">
+      <div class="col-md-10 offset-1" lang="de">
+        <h1>Datenschutz</h1>
         <p>
-          Name und Kontaktdaten des Verantwortlichen:<br/> 
+          Name und Kontaktdaten des Verantwortlichen:<br/>
           Schleswig-Holsteinische Landesbibliothek <br/>
           Wall 47/51 <br/>
           24103 Kiel <br/>
-          Telefon: 0431 69677-51 <br/> 
+          Telefon: 0431 69677-51 <br/>
           Telefax: 0431 69677-11 <br/>
           E-Mail: <span class="madress"> verwaltung [at] shlb.landsh.de </span>
         </p>
         <p>
           Kontaktdaten des Datenschutzbeauftragten:<br/>
-          Ministerium für Bildung, Wissenschaft und Kultur des Landes Schleswig-Holstein<br/> 
+          Ministerium für Bildung, Wissenschaft und Kultur des Landes Schleswig-Holstein<br/>
           III DSB <br/>
-          Brunswiker Straße 16 – 22<br/> 
+          Brunswiker Straße 16 – 22<br/>
           24105 Kiel <br/>
-          Telefon: 0431 988-2452<br/> 
+          Telefon: 0431 988-2452<br/>
           Fax: 0431 988-613-2452 <br/>
           E-Mail: <span class="madress"> DatenschutzbeauftragterMinisterium@bimi.landsh.de </span>
         </p>
@@ -37,15 +35,15 @@
           Die meisten Browser (Internet-Explorer, Firefox, Edge und andere) sind so eingestellt, dass sie Cookies
           automatisch akzeptieren. Sie können das Speichern von Cookies jedoch deaktivieren oder Ihren Browser so
           einstellen, dass Cookies nur für die Dauer der jeweiligen Verbindung zum Internet gespeichert werden.
-          Eine vollständige Deaktivierung von Cookies beeinträchtigt möglicherweise die Nutzung dieser Internetseite. 
+          Eine vollständige Deaktivierung von Cookies beeinträchtigt möglicherweise die Nutzung dieser Internetseite.
         </p>
-        <!-- 
+        <!--
         <h2>Anonymisierte Nutzungsanalyse mit Matomo und dem Plugin AnonymizeIP</h2>
         <p>
           Für die Optimierung unserer Angebote liefern personenbezogene Daten keinen Mehrwert. Sie werden nicht erhoben.
           Für die Webanalyse setzten wir deshalb die von Datenschützern empfohlene Nutzungsanalyse-Software Matomo ein.
           Durch eine automatische Anonymisierung der IP-Adressen mit AnonymizeIP können die erhobenen Daten nicht mehr
-          bestimmten Personen zugeordnet werden. 
+          bestimmten Personen zugeordnet werden.
         </p>
         <p>
           Sie haben zusätzlich die Möglichkeit, grundsätzlich zu verhindern, daß Ihre Aktivitäten auf dieser Seite
