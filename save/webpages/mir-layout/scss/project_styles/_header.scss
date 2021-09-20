@@ -16,7 +16,7 @@
         padding: 14px 15px 19px 15px;
       }
       #project_logo_box {
-        border-top: 2px solid $sb-dark-blue;
+        //border-top: 2px solid $sb-dark-blue;
         margin-left: 4rem;
         a {
           color: $sb-blue;
@@ -45,7 +45,7 @@
     }
   }
   .project-header {
-    background-image: url(../../../../images/back_snb.png);
+    background-image: url(../../../../images/back_snb_sky.png);
     background-size: cover;
     padding: 0;
     &__name {
