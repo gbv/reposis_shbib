@@ -41,7 +41,7 @@
         <div>
           <ul id="resultList">
           </ul>
-          <div id="resultListPagination" class="text-center">
+          <div id="resultListPagination" class="pagination_box text-center">
           </div>
         </div>
       </div>
@@ -51,8 +51,8 @@
       </div>
     </div>
     <script src="../../js/browseSubjects.js" type="text/javascript"></script>
-    <script src="../../assets/jquery/plugins/typeahead/bloodhound.js" type="text/javascript"></script>
-    <script src="../../assets/jquery/plugins/bootstrap3-typeahead/bootstrap3-typeahead.js" type="text/javascript"></script>
+    <script src="../../assets/jquery/plugins/typeahead/bloodhound.min.js" type="text/javascript"></script>
+    <script src="../../assets/jquery/plugins/bootstrap3-typeahead/bootstrap3-typeahead.min.js" type="text/javascript"></script>
     <script src="../../js/subject-autocomplete.js" type="text/javascript"></script>
     
   </section>

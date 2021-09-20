@@ -77,51 +77,51 @@ function showresult(json) {
     
     PagQuery = escapeSearchvalue(Query);
     if (FQuery != '') PagQuery += '&fq='+escapeSearchvalue(FQuery);
-    html+=' <ul class="pagination pagination-sm" id="solr-result-paginate">';
+    html+=' <ul class="pagination pagination-sm d-inline-flex" id="solr-result-paginate">';
     if (ActualPage > 1) {
-    	html+='   <li>';
-    	html+='     <a title="erste Seite" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,0,Rows)  + '">«<span class="sr-only">erste Seite</span></a>';
+    	html+='   <li class="page-item">';
+    	html+='     <a class="page-link" title="erste Seite" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,0,Rows)  + '">«<span class="sr-only">erste Seite</span></a>';
     	html+='   </li>';
     } else {
-    	html+='   <li class="disabled">';
-    	html+='     <span>«<span class="sr-only">erste Seite</span></span>';
+    	html+='   <li class="page-item disabled">';
+    	html+='     <a class="page-link"><span>«<span class="sr-only">erste Seite</span></span></a>';
     	html+='   </li>';
     }
     if (ActualPage > 1) { 
-    	html+='   <li class="disabled">';
-    	html+='     <a title="vorherige Seite" tabindex="0" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(ActualPage -1)*Rows,Rows)  + '">‹<span class="sr-only">vorherige Seite</span></a>';
+    	html+='   <li class="page-item">';
+    	html+='     <a class="page-link" title="vorherige Seite" tabindex="0" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(ActualPage -2)*Rows,Rows)  + '">‹<span class="sr-only">vorherige Seite</span></a>';
     	html+='   </li>';
     } else {
-       	html+='   <li class="disabled">';
-    	html+='     <span>‹<span class="sr-only">vorherige Seite</span></span>';
+       	html+='   <li class="page-item disabled">';
+    	html+='     <a class="page-link"><span>‹<span class="sr-only">vorherige Seite</span></span></a>';
     	html+='   </li>';
     }
     for (var i = StartPage; i <= EndPage ; i++) {
-    	var active = ((i == ActualPage) ? 'class="active"' : '');
+    	var active = ((i == ActualPage) ? 'class="page-item active"' : 'class="page-item"');
     	html+='   <li ' + active + ' >';
     	if (i == ActualPage) {
-    		html+='     <span>' + i + '</span>';
+    		html+='     <a class="page-link"><span>' + i + '</span></a>';
     	} else {
-    		html+='     <a tabindex="0" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(i-1)*Rows,Rows)  + '">' + i + '</a>';
+    		html+='     <a class="page-link" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(i-1)*Rows,Rows)  + '">' + i + '</a>';
     	}
     	html+='   </li>';
    	}
     if (ActualPage < CountPages) {
-    	html+='   <li>';
-    	html+='     <a title="nächste Seite" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,0,Rows)  + '">›<span class="sr-only">nächste Seite</span></a>';
+    	html+='   <li class="page-item">';
+    	html+='     <a class="page-link" title="nächste Seite" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(ActualPage)*Rows,Rows)  + '">›<span class="sr-only">nächste Seite</span></a>';
     	html+='   </li>';
     } else {
-    	html+='   <li class="disabled">';
-    	html+='     <span>›<span class="sr-only">nächste Seite</span></span>';
+    	html+='   <li class="page-item disabled">';
+    	html+='     <a class="page-link"><span>›<span class="sr-only">nächste Seite</span></span></a>';
     	html+='   </li>';
     }
     if (ActualPage < CountPages) { 
-    	html+='   <li class="disabled">';
-    	html+='     <a title="letzte Seite" tabindex="0" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(CountPages -1)*Rows,Rows)  + '">»<span class="sr-only">letzte Seite</span></a>';
+    	html+='   <li class="page-item">';
+    	html+='     <a class="page-link" title="letzte Seite" tabindex="0" href="javascript:void(0)" onclick="' + getSearchfunction(PagQuery,(CountPages -1)*Rows,Rows)  + '">»<span class="sr-only">letzte Seite</span></a>';
     	html+='   </li>';
     } else {
-       	html+='   <li class="disabled">';
-    	html+='     <span>»<span class="sr-only">letzte Seite</span></span>';
+       	html+='   <li class="page-item disabled">';
+    	html+='     <a class="page-link"><span>»<span class="sr-only">letzte Seite</span></span></a>';
     	html+='   </li>';
     }
 	
