@@ -26,8 +26,8 @@
         <p>
           Die Alternativtexte fehlen bei:
           <ul>
-            <li>Einschlitzsuche</li>
-            <li>mehre Eingabefelder für komplexe Suche</li>
+            <li>der Einschlitzsuche</li>
+            <li>mehreren Eingabefeldern der komplexe Suche</li>
             <li>Paginierungsbuttons in der Suchergebnisseite</li>
           </ul>
         </p>
@@ -92,16 +92,16 @@
         </p>  
         <h3>1.3.1g Kein Strukturmarkup für Layouttabellen: nicht anwendbar</h3>
         <p>
-          Es werden keine Tabellen zu Layoutzweken verwendet.
+          Es werden keine Tabellen zu Layoutzwecken verwendet.
         </p>
         <h3>1.3.1.h Beschriftung von Formularelementen programmatisch ermittelbar: eher erfüllt</h3>
         <p>
-          In der komplexen Suche sind einige Formularlemente nicht beschriftet. 
+          In der komplexen Suche sind einige Formularelemente nicht beschriftet. 
         </p>
         <h3>1.3.2a Sinnvolle Reihenfolge: erfüllt</h3>
         <h3>1.3.3a Ohne Bezug auf sensorische Merkmale nutzbar: erfüllt</h3>
         <p>
-          Der Nutzer kann die Webseite ohne Farb oder Tonsignale nutzen.
+          Der Nutzer kann die Webseite ohne Farb- oder Tonsignale nutzen.
         </p>
         <h3>1.3.4a Keine Beschränkung der Bildschirmausrichtung: erfüllt</h3>
         <p>
@@ -183,7 +183,7 @@
         <p>
           <ul>
             <li>Link zum Auf- und Zuklappen des Abtracts</li>
-            <li>Sprachenlinks in den Tabs vom Abstrakt</li>
+            <li>Sprachenlinks in den Tabs vom Abstract</li>
             <li>GND-Links in den Suchergebnissen und der Detailansicht </li>
             <li>Namenslinks in der Detailansicht </li>
             <li>Badges in der Detailansicht </li>
@@ -196,7 +196,7 @@
         </p>
         <h3>2.4.6a Aussagekräftige Überschriften und Beschriftungen: erfüllt</h3>
         <p>
-          Die redaktionellen Inhaltsseiten werden in einem gesondertern Protokoll geprüft.
+          Die redaktionellen Inhaltsseiten werden in einem gesonderten Protokoll geprüft.
         </p>
         <h3>2.4.7a Aktuelle Position des Fokus deutlich: eher nicht erfüllt</h3>
         <p>
@@ -249,7 +249,7 @@
         <p>
           Es gibt in der komplexen Suche Formularlemente, die nicht beschriftet sind.
         </p>
-        <h3>4.1.1a Korrekte Syntax: nicht efüllt</h3>
+        <h3>4.1.1a Korrekte Syntax: nicht erfüllt</h3>
         <p>
           Die Webseite ist nicht 100% valide.
           <ul>
@@ -265,7 +265,7 @@
         </p>
         <h3>4.1.3a Statusmeldungen programmatisch verfügbar</h3>
         <p>
-          Es erfolgt weder visuell noch im Screenreader ein Hinweis das, dass ein Dokument auf die Merkliste
+          Es erfolgt weder visuell noch im Screenreader ein Hinweis, dass ein Dokument auf die Merkliste
           gesetzt wurde. Die entsprechende "Role" wird im Rahmen eines Updates ergänzt.
         </p>
       </div>
