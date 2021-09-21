@@ -652,6 +652,11 @@
                     <xsl:value-of select="$status-i18n" />
                   </span>
                 </div>
+                <div class="hit_license">
+                  <span class="badge badge-primary">
+                    <xsl:value-of select="str[@name='containerSource']" />
+                  </span>
+                </div>
               </xsl:if>
               <xsl:if test="string-length($MCR.ORCID.OAuth.ClientSecret) &gt; 0">
                 <div class="orcid-status" data-id="{$identifier}" />
