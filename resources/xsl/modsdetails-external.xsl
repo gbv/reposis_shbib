@@ -576,10 +576,12 @@
               </xsl:if>
               <xsl:variable name="genreHosts" select="document('classification:metadata:-1:children:mir_genres')" />
               <xsl:variable name="child-layout">
+                <!-- There's no need to create childs via Actionmenu. The child relation are automaticly create by an eventhandler
                 <xsl:for-each select="$genreHosts//category[contains(label[@xml:lang='x-hosts']/@text, $mods-type)]">
                   <xsl:value-of select="@ID" />
                   <xsl:text>|</xsl:text>
                 </xsl:for-each>
+                -->
               </xsl:variable>
               <!-- xsl:message>
                 mods-type:
@@ -634,7 +636,7 @@
                     </xsl:for-each>
                   </xsl:otherwise>
                 </xsl:choose>
-                </xsl:if>
+              </xsl:if>
 
               <xsl:if test="(key('rights', @ID)/@accKeyEnabled) and (key('rights', @ID)/@write)">
                 <xsl:variable name="action">
