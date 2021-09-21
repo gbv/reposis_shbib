@@ -934,17 +934,17 @@
         <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
         <xsl:variable name="dateIssued">
           <xsl:choose>
-            <xsl:when test="(./@type='host' or ./@type='series') and ../../mods:originInfo[@eventType='publication']/mods:dateIssued">
-              <xsl:apply-templates select="../../mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate"/>
+            <xsl:when test="(./@type='host' or ./@type='series') and ../../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+              <xsl:apply-templates select="../../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
             </xsl:when>
-            <xsl:when test="(./@type='host' or ./@type='series') and ../mods:originInfo[@eventType='publication']/mods:dateIssued">
-              <xsl:apply-templates select="../mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate"/>
+            <xsl:when test="(./@type='host' or ./@type='series') and ../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+              <xsl:apply-templates select="../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
             </xsl:when>
-            <xsl:when test="mods:originInfo[@eventType='publication']/mods:dateIssued">
-              <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued" mode="formatDate"/>
+            <xsl:when test="mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+              <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
             </xsl:when>
-            <xsl:when test="mods:part/mods:date">
-              <xsl:apply-templates select="mods:part/mods:date" mode="formatDate"/>
+            <xsl:when test="mods:part/mods:date[@encoding='w3cdtf']">
+              <xsl:apply-templates select="mods:part/mods:date[@encoding='w3cdtf']" mode="formatDate"/>
             </xsl:when>
           </xsl:choose>
         </xsl:variable>
