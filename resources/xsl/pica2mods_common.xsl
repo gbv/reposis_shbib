@@ -69,7 +69,7 @@
       <xsl:if test="@tag='021A' and ../p:datafield[@tag='021C']">
         <!-- ex: PPN 1023340623 -->
         <xsl:for-each select="../p:datafield[@tag='021C']/p:subfield[@code='a']">
-          <mods:partName>
+          <mods:partName displayLabel="Unterreihe">
             <xsl:value-of select="translate(., '@', '')" />
           </mods:partName>
         </xsl:for-each>
