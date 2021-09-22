@@ -347,7 +347,6 @@
                   <xsl:value-of select="$dfield/p:subfield[@code='x']" />
                 </mods:text>
               </xsl:if>
-              <xsl:apply-templates select="./../p:datafield[@tag='031A']" /> <!-- 4070 -->
               <mods:text type="article series">
                 <xsl:value-of select="concat(./p:subfield[@code='a'],' - ',./p:subfield[@code='y'])" />
               </mods:text>

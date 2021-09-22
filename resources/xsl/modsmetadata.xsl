@@ -932,50 +932,64 @@
       <!-- mods:part -->
       <xsl:if test="@type='host' or @type='series'">
         <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
-        <xsl:variable name="dateIssued">
-          <xsl:choose>
-            <xsl:when test="(./@type='host' or ./@type='series') and ../../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
-              <xsl:apply-templates select="../../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
-            </xsl:when>
-            <xsl:when test="(./@type='host' or ./@type='series') and ../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
-              <xsl:apply-templates select="../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
-            </xsl:when>
-            <xsl:when test="mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
-              <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
-            </xsl:when>
-            <xsl:when test="mods:part/mods:date[@encoding='w3cdtf']">
-              <xsl:apply-templates select="mods:part/mods:date[@encoding='w3cdtf']" mode="formatDate"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <!-- Volume -->
-        <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
-          <xsl:value-of
-            select="concat(i18n:translate('component.mods.metaData.dictionary.volume.shortcut'),' ',mods:part/mods:detail[@type='volume']/mods:number)" />
-          <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
-            <xsl:text>, </xsl:text>
-          </xsl:if>
-        </xsl:if>
-        <!-- Issue -->
-        <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
-          <xsl:value-of
-            select="concat(i18n:translate('component.mods.metaData.dictionary.issue.shortcut'),' ',mods:part/mods:detail[@type='issue']/mods:number)" />
-        </xsl:if>
-        <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number or mods:part/mods:detail[@type='volume']/mods:number and string-length($dateIssued) &gt; 0">
-          <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:if test="string-length($dateIssued) &gt; 0">
-          <xsl:text>(</xsl:text>
-          <xsl:value-of select="$dateIssued" />
-          <xsl:text>)</xsl:text>
-        </xsl:if>
-        <!-- Pages -->
-        <xsl:if test="mods:part/mods:extent[@unit='pages']">
-          <xsl:text>, </xsl:text>
-          <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
-            <xsl:call-template name="printMetaDate.mods.extent" />
-          </xsl:for-each>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="mods:part/mods:text[not(@type='sortstring' or @type='article series')]">
+            <xsl:value-of select="mods:part/mods:text[not(@type='sortstring' or @type='article series')]" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="dateIssued">
+              <xsl:choose>
+                <xsl:when test="mods:part/mods:date[not(@encoding)]">
+                  <xsl:value-of select="mods:part/mods:date[not(@encoding)]"/>
+                </xsl:when>
+                <xsl:when test="mods:part/mods:date[@encoding='w3cdtf']">
+                  <xsl:apply-templates select="mods:part/mods:date[@encoding='w3cdtf']" mode="formatDate"/>
+                </xsl:when>
+                <xsl:when test="(./@type='host' or ./@type='series') and ../../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+                  <xsl:apply-templates select="../../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
+                </xsl:when>
+                <xsl:when test="(./@type='host' or ./@type='series') and ../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+                  <xsl:apply-templates select="../mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
+                </xsl:when>
+                <xsl:when test="mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']">
+                  <xsl:apply-templates select="mods:originInfo[@eventType='publication']/mods:dateIssued[@encoding='w3cdtf']" mode="formatDate"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:variable>
+            <!-- Volume -->
+            <xsl:if test="mods:part/mods:detail[@type='volume']/mods:number">
+              <xsl:value-of
+                select="concat(i18n:translate('component.mods.metaData.dictionary.volume.shortcut'),' ',mods:part/mods:detail[@type='volume']/mods:number)" />
+              <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
+                <xsl:text>, </xsl:text>
+              </xsl:if>
+            </xsl:if>
+            <!-- Issue -->
+            <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number">
+              <xsl:value-of
+                select="concat(i18n:translate('component.mods.metaData.dictionary.issue.shortcut'),' ',mods:part/mods:detail[@type='issue']/mods:number)" />
+            </xsl:if>
+            <xsl:if test="mods:part/mods:detail[@type='issue']/mods:number or mods:part/mods:detail[@type='volume']/mods:number and string-length($dateIssued) &gt; 0">
+              <xsl:text> </xsl:text>
+            </xsl:if>
+            <xsl:if test="string-length($dateIssued) &gt; 0">
+              <xsl:text>(</xsl:text>
+              <xsl:value-of select="$dateIssued" />
+              <xsl:text>)</xsl:text>
+            </xsl:if>
+            <!-- Pages -->
+            <xsl:if test="mods:part/mods:extent[@unit='pages']">
+              <xsl:text>, </xsl:text>
+              <xsl:for-each select="mods:part/mods:extent[@unit='pages']">
+                <xsl:call-template name="printMetaDate.mods.extent" />
+              </xsl:for-each>
+            </xsl:if>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:for-each select="mods:part/mods:text[@type='article series']">
+          <xsl:text disable-output-escaping="yes">&lt;br /></xsl:text>
+          <xsl:value-of select="."/>
+        </xsl:for-each>
       </xsl:if>
     </td>
   </tr>
