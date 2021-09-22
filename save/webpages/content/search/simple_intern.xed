@@ -36,7 +36,11 @@
               <mir:template name="textInput" xpath="condition[@field='recordIdentifier']/@value" id="inputPPN1" i18n="editor.search.mir.ppn" tooltip="editor.search.mir.ppn.tooltip" />
             <!-- Signatur -->
               <mir:template name="textInput" xpath="condition[@field='shelfLocator']/@value" id="inputShelfmark1" i18n="editor.search.mir.shelfmark" tooltip="editor.search.mir.shelfmark.tooltip" />    
+            <!-- Status -->
+              <mir:template name="selectInput" xpath="condition[@field='state']/@value" id="inputStatus1" i18n="editor.search.status" tooltip="editor.search.status.tooltip"
+                uri="xslStyle:items2options:classification:editor:-1:children:state" />
             </xed:bind>
+            
           </div>
          <!-- submit -->
           <div class="card-footer clearfix">
