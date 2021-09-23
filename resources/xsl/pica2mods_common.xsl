@@ -265,97 +265,74 @@
       </mods:part>
     </mods:relatedItem>
   </xsl:template>
-
-  <xsl:template name="COMMON_ArticleParent">
-    <!-- . is 039B in every case. ToDo transform to template match -->
-    <mods:relatedItem>
-      <!-- ToDo teilweise redundant mit title template -->
-      <xsl:attribute name="type">host</xsl:attribute>
-      <xsl:variable name="displayLabel" select="./p:subfield[@code='i']" />
-      <xsl:if test="$displayLabel">
-        <xsl:attribute name="displayLabel"><xsl:value-of select="$displayLabel" /></xsl:attribute>
+  
+  <xsl:template name="COMMON_039B_039C_039D">
+    <xsl:variable name="displayLabel" select="./p:subfield[@code='i']" />
+    <xsl:if test="$displayLabel">
+      <xsl:attribute name="displayLabel"><xsl:value-of select="$displayLabel" /></xsl:attribute>
+    </xsl:if>
+    <mods:titleInfo>
+      <xsl:variable name="mainTitle">
+        <xsl:choose>
+          <xsl:when test="./p:subfield[@code='t']">
+            <xsl:value-of select="./p:subfield[@code='t']"/>
+          </xsl:when>
+          <xsl:when test="./p:subfield[@code='a']">
+            <xsl:value-of select="./p:subfield[@code='a']"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <!-- Switch from subfieldcode a to t -->
+      <xsl:if test="$mainTitle">
+        <xsl:choose>
+          <xsl:when test="contains($mainTitle, '@')">
+            <xsl:variable name="nonSort" select="normalize-space(substring-before($mainTitle, '@'))" />
+            <xsl:choose>
+              <xsl:when test="string-length(nonSort) &lt; 9">
+                <mods:nonSort>
+                  <xsl:value-of select="$nonSort" />
+                </mods:nonSort>
+                <mods:title>
+                  <xsl:value-of select="substring-after($mainTitle, '@')" />
+                </mods:title>
+              </xsl:when>
+              <xsl:otherwise>
+                <mods:title>
+                  <xsl:value-of select="$mainTitle" />
+                </mods:title>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <mods:title>
+              <xsl:value-of select="$mainTitle" />
+            </mods:title>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
-      <mods:titleInfo>
-        <xsl:variable name="mainTitle">
-          <xsl:choose>
-            <xsl:when test="./p:subfield[@code='t']">
-              <xsl:value-of select="./p:subfield[@code='t']"/>
-            </xsl:when>
-            <xsl:when test="./p:subfield[@code='a']">
-              <xsl:value-of select="./p:subfield[@code='a']"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <!-- Switch from subfieldcode a to t -->
-        <xsl:if test="$mainTitle">
-          <xsl:choose>
-            <xsl:when test="contains($mainTitle, '@')">
-              <xsl:variable name="nonSort" select="normalize-space(substring-before($mainTitle, '@'))" />
-              <xsl:choose>
-                <xsl:when test="string-length(nonSort) &lt; 9">
-                  <mods:nonSort>
-                    <xsl:value-of select="$nonSort" />
-                  </mods:nonSort>
-                  <mods:title>
-                    <xsl:value-of select="substring-after($mainTitle, '@')" />
-                  </mods:title>
-                </xsl:when>
-                <xsl:otherwise>
-                  <mods:title>
-                    <xsl:value-of select="$mainTitle" />
-                  </mods:title>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-              <mods:title>
-                <xsl:value-of select="$mainTitle" />
-              </mods:title>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:if>
-        <!-- removed subfield d , d is place of publish -->
-      </mods:titleInfo>
+      <!-- removed subfield d , d is place of publish -->
+    </mods:titleInfo>
 
-      <xsl:call-template name="COMMON_Parent_Identifier" />
+    <xsl:call-template name="COMMON_Parent_Identifier" />
 
-      <xsl:variable name="publisher" select="./p:subfield[@code='e']" />
-      <xsl:variable name="place" select="./p:subfield[@code='d']" />
-      <xsl:if test="$publisher">
-        <mods:originInfo type="publication">
-          <mods:publisher>
-            <xsl:value-of select="$publisher" />
-          </mods:publisher>
-          <mods:place>
-            <xsl:value-of select="$place" />
-          </mods:place>
-        </mods:originInfo>
-      </xsl:if>
+    <xsl:variable name="publisher" select="./p:subfield[@code='e']" />
+    <xsl:variable name="place" select="./p:subfield[@code='d']" />
+    <xsl:if test="$publisher">
+      <mods:originInfo type="publication">
+        <mods:publisher>
+          <xsl:value-of select="$publisher" />
+        </mods:publisher>
+        <mods:place>
+          <xsl:value-of select="$place" />
+        </mods:place>
+      </mods:originInfo>
+    </xsl:if>
 
-      <xsl:variable name="dfield" select="." />
-      <xsl:choose>
-        <xsl:when test="./../p:datafield[@tag='031C']">
-          <xsl:for-each select="./../p:datafield[@tag='031C']">
-            <mods:part>
-              <xsl:if test="$dfield/p:subfield[@code='x']">
-                <xsl:attribute name="order">
-                  <xsl:value-of select="substring($dfield/p:subfield[@code='x'],1,4)" />   
-                </xsl:attribute>
-              </xsl:if>
-              <xsl:if test="$dfield/p:subfield[@code='x']">
-                <mods:text type="sortstring">
-                  <xsl:value-of select="$dfield/p:subfield[@code='x']" />
-                </mods:text>
-              </xsl:if>
-              <mods:text type="article series">
-                <xsl:value-of select="concat(./p:subfield[@code='a'],' - ',./p:subfield[@code='y'])" />
-              </mods:text>
-            </mods:part>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
+    <xsl:variable name="dfield" select="." />
+    <xsl:choose>
+      <xsl:when test="./../p:datafield[@tag='031C']">
+        <xsl:for-each select="./../p:datafield[@tag='031C']">
           <mods:part>
-            <!-- ToDo make decision: Should we use Sortstring from subfield x. X is generated from 031A.   -->
             <xsl:if test="$dfield/p:subfield[@code='x']">
               <xsl:attribute name="order">
                 <xsl:value-of select="substring($dfield/p:subfield[@code='x'],1,4)" />   
@@ -366,10 +343,55 @@
                 <xsl:value-of select="$dfield/p:subfield[@code='x']" />
               </mods:text>
             </xsl:if>
-            <xsl:apply-templates select="./../p:datafield[@tag='031A']" /> <!-- 4070 -->
+            <mods:text type="article series">
+              <xsl:value-of select="concat(./p:subfield[@code='a'],' - ',./p:subfield[@code='y'])" />
+            </mods:text>
           </mods:part>
-        </xsl:otherwise>
-      </xsl:choose>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <mods:part>
+          <!-- ToDo make decision: Should we use Sortstring from subfield x. X is generated from 031A.   -->
+          <xsl:if test="$dfield/p:subfield[@code='x']">
+            <xsl:attribute name="order">
+              <xsl:value-of select="substring($dfield/p:subfield[@code='x'],1,4)" />   
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="$dfield/p:subfield[@code='x']">
+            <mods:text type="sortstring">
+              <xsl:value-of select="$dfield/p:subfield[@code='x']" />
+            </mods:text>
+          </xsl:if>
+          <xsl:apply-templates select="./../p:datafield[@tag='031A']" /> <!-- 4070 -->
+        </mods:part>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="COMMON_ArticleParent">
+    <!-- . is 039B in every case. ToDo transform to template match -->
+    <mods:relatedItem>
+      <!-- ToDo teilweise redundant mit title template -->
+      <xsl:attribute name="type">host</xsl:attribute>
+      <xsl:call-template name="COMMON_039B_039C_039D"/>
+    </mods:relatedItem>
+  </xsl:template>
+
+  <xsl:template name="COMMON_039C">
+    <!-- . is 039C in every case. ToDo transform to template match -->
+    <mods:relatedItem>
+      <!-- ToDo teilweise redundant mit title template -->
+      <xsl:attribute name="type">constituent</xsl:attribute>
+      <xsl:call-template name="COMMON_039B_039C_039D"/>
+    </mods:relatedItem>
+  </xsl:template>
+  
+  <xsl:template name="COMMON_039D">
+    <!-- . is 039D in every case. ToDo transform to template match -->
+    <mods:relatedItem>
+      <!-- ToDo teilweise redundant mit title template -->
+      <xsl:attribute name="type">otherFormat</xsl:attribute>
+      <xsl:call-template name="COMMON_039B_039C_039D"/>
     </mods:relatedItem>
   </xsl:template>
 
