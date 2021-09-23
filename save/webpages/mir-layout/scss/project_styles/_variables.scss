@@ -14,10 +14,12 @@
 //  project settings
 // --------------------------------------------------
 
-$sb-red: #d4004b;
-$sb-gray: #f2f2f2;
-$sb-dark-blue: #011f4b;
-$sb-blue: #003064;
+$sb-red:        #d4004b;
+$sb-gray:       #f2f2f2;
+$sb-dark-blue:  #011f4b;
+$sb-blue:       #003064;
+$gray:          #b4bcc2;
+$gray-light:    #ededed;
 
 
 // --------------------------------------------------
@@ -29,6 +31,8 @@ $secondary: $sb-red;
 
 $body-color: black;
 $link-color: $sb-dark-blue;
+$link-hover-color: $link-color;
+$link-hover-decoration: underline;
 
 $font-size-base: 1rem;
 
@@ -54,3 +58,16 @@ $font-weight-base: 300;
 $font-weight-normal: 300;
 $headings-font-weight: 500;
 $font-family-sans-serif: "MuseoSans", Euphemia, Segoe UI, Arial, Helvetica, sans-serif, "Droid Sans";
+
+$pagination-color: white;
+$pagination-bg: $primary;
+$pagination-border-color: $primary;
+$pagination-hover-color: white;
+$pagination-hover-bg: darken($pagination-bg, 10%);
+$pagination-hover-border-color: darken($pagination-bg, 10%);
+$pagination-active-color: white;
+$pagination-active-bg: darken($pagination-bg, 10%);
+$pagination-active-border-color: darken($pagination-bg, 10%);
+$pagination-disabled-color: $gray;
+$pagination-disabled-bg: $gray-light;
+$pagination-disabled-border-color: $gray-light;
