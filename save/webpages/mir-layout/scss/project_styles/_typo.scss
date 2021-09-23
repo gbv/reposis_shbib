@@ -9,6 +9,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+$sprinteSource: "../../../../images/sprite.png?__blob=normal&v=1";
+p > a {
+  font-weight: 500;
+  padding-left: 1em;
+  background: url($sprinteSource) no-repeat 4px -10801px;
+  &:hover {
+    background: url($sprinteSource) no-repeat 4px -11899px;
+  }
+}
+
 // Large devices (desktops) and below: <= 1200px
 @include media-breakpoint-down(lg) {
   // add/overwrite styles for responsive level lg and lower
