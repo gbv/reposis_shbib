@@ -10,12 +10,20 @@ body {
 }
 
 $sprinteSource: "../../../../images/sprite.png?__blob=normal&v=1";
-p > a {
-  font-weight: 500;
-  padding-left: 1em;
-  background: url($sprinteSource) no-repeat 4px -10801px;
-  &:hover {
-    background: url($sprinteSource) no-repeat 4px -11899px;
+p,
+dd {
+  & > a:not(.btn) {
+    font-weight: 500;
+    padding-left: 1em;
+    background: url($sprinteSource) no-repeat 4px -10801px;
+    &:hover {
+      background: url($sprinteSource) no-repeat 4px -11899px;
+    }
+  }
+}
+.detail_row {
+  h1 {
+    font-size: 1.8rem;
   }
 }
 
