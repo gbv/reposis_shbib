@@ -35,12 +35,15 @@
     }
 }
 
-.quick-menu {
-  margin-top: .5rem;
-  a {
-    padding: 0 15px;
+  .quick-menu {
+    margin-top: .5rem;
+    a {
+      padding: 0 15px;
+    }
   }
-}
+  .detail_block {
+    margin-bottom: 1rem;
+  }
 
 // Extra large devices (large desktops)
 // set the defaults for all responsive levels here
