@@ -10,8 +10,7 @@ body {
 }
 
 $sprinteSource: "../../../../images/sprite.png?__blob=normal&v=1";
-p,
-dd {
+p {
   & > a:not(.btn) {
     font-weight: 500;
     padding-left: 1em;
@@ -24,6 +23,12 @@ dd {
 .detail_row {
   h1 {
     font-size: 1.8rem;
+  }
+}
+
+.main_col {
+  a:not(.btn):not(.badge) {
+    font-weight: 500;
   }
 }
 
