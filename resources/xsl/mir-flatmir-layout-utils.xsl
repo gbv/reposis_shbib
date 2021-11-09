@@ -26,7 +26,7 @@
               <div id="project_logo_box">
                 <a href="https://www.schleswig-holstein.de/DE/Landesregierung/LBSH/lbsh_node.html">
                   <span class="d-none">Schleswig-Holsteinische Landesbibliothek</span>
-                  <img src="{$WebApplicationBaseURL}images/logo-shlb.png" />
+                  <img src="{$WebApplicationBaseURL}images/logo-shlb_8x1.png" />
                 </a>
               </div>
             </div>
