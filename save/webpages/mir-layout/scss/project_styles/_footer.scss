@@ -14,7 +14,7 @@
       margin: 0 auto;
     }
     .shbib-footer {
-      height: 270px;
+      height: 340px;
       background-color: white;
       padding: 15px 10px;
       position: relative;
@@ -23,7 +23,7 @@
       justify-content: flex-end;
       &::before {
         content: " ";
-        background: url("../../../../images/bg_footer_red.svg") no-repeat bottom;
+        background: url("../../../../images/footer_bg_large.svg") no-repeat bottom;
         z-index: 1;
         left: 0;
         width: 100%;
