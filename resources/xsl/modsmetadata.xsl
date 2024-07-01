@@ -734,8 +734,7 @@
               <xsl:attribute name="href">
                 <xsl:choose>
                   <xsl:when test="contains($link, 'uri.gbv.de/')"><xsl:value-of select="concat($link, '?format=redirect')"/></xsl:when>
-                  //gso.gbv.de/DB=2.1/PPNSET?PPN=1848868901  https://uri.gbv.de/document/opac-de-84:ppn:1885204639?format=redirect
-                  <xsl:when test="contains($link, 'gso.gbv.de')"><xsl:value-of select="concat('https://uri.gbv.de/document/k10plus:ppn:', substring-after($link, 'PPN='), '?format=redirect')"/></xsl:when>
+                  <xsl:when test="contains($link, 'gso.gbv.de')"><xsl:value-of select="concat('https://uri.gbv.de/document/gvk:ppn:', substring-after($link, 'PPN='), '?format=redirect')"/></xsl:when>
                   <xsl:otherwise><xsl:value-of select="$link"/></xsl:otherwise>
                 </xsl:choose>
               </xsl:attribute>
