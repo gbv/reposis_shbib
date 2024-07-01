@@ -730,18 +730,26 @@
         <xsl:variable name="link" select="." />
         <xsl:choose>
           <xsl:when test="contains($link,'ppn') or contains($link,'PPN')">
-            <a class="ppn" href="{$link}">
+            <a class="ppn">
+              <xsl:attribute name="href">
                 <xsl:choose>
+                  <xsl:when test="contains($link, 'uri.gbv.de/')"><xsl:value-of select="concat($link, '?format=redirect')"/></xsl:when>
+                  //gso.gbv.de/DB=2.1/PPNSET?PPN=1848868901  https://uri.gbv.de/document/opac-de-84:ppn:1885204639?format=redirect
+                  <xsl:when test="contains($link, 'gso.gbv.de')"><xsl:value-of select="concat('https://uri.gbv.de/document/k10plus:ppn:', substring-after($link, 'PPN='), '?format=redirect')"/></xsl:when>
+                  <xsl:otherwise><xsl:value-of select="$link"/></xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+              <xsl:choose>
                 <xsl:when test="contains($link, 'PPN=')">
                   <xsl:value-of select="substring-after($link, 'PPN=')" />
-                  </xsl:when>
+                </xsl:when>
                 <xsl:when test="contains($link, ':ppn:')">
                   <xsl:value-of select="substring-after($link, ':ppn:')"/>
                 </xsl:when>
-                  <xsl:otherwise>
+                <xsl:otherwise>
                   <xsl:value-of select="$link"/>
-                  </xsl:otherwise>
-                </xsl:choose>
+                </xsl:otherwise>
+              </xsl:choose>
             </a>
           </xsl:when>
           <xsl:when test="@type='doi' and not(contains($link,'http'))">
@@ -751,6 +759,11 @@
           </xsl:when>
           <xsl:when test="@type='urn' and not(contains($link,'http'))">
             <a href="https://nbn-resolving.org/{$link}">
+              <xsl:value-of select="$link" />
+            </a>
+          </xsl:when>
+          <xsl:when test="@type='zdbid' and not(contains($link,'http'))">
+            <a href="https://ld.zdb-services.de/resource/{$link}">
               <xsl:value-of select="$link" />
             </a>
           </xsl:when>
