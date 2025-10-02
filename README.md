@@ -1,5 +1,5 @@
 
-# Hawk
+# shbib Schleswig Holsteinische Landesbibliografie
 
 ## Installation Instructions
 

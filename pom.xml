@@ -26,7 +26,7 @@
     <version>2020.06-SNAPSHOT</version>
   </parent>
 
-  <artifactId>reposis_hawk</artifactId>
+  <artifactId>reposis_shbib</artifactId>
   <version>2020.06-SNAPSHOT</version>
   <properties>
     <MCR.AppName>hawk</MCR.AppName>
