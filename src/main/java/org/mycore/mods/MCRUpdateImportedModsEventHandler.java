@@ -25,7 +25,8 @@ package org.mycore.mods;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.jdom2.Content;
 import org.jdom2.Element;
 import org.jdom2.output.XMLOutputter;
@@ -83,7 +84,7 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
     	updateMetadataFromSource(obj);
     }
 
-    private final static Logger LOGGER = Logger.getLogger(MCRUpdateImportedModsEventHandler.class);
+    private final static Logger LOGGER = LogManager.getLogger(MCRUpdateImportedModsEventHandler.class);
 
     
     private void updateMetadataFromSource(MCRObject obj) {

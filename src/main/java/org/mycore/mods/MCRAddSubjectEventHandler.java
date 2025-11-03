@@ -27,7 +27,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jdom2.Content;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -94,7 +95,7 @@ public class MCRAddSubjectEventHandler extends MCREventHandlerBase {
     	addSubject(obj);
     }
 
-    private final static Logger LOGGER = Logger.getLogger(MCRAddSubjectEventHandler.class);
+    private final static Logger LOGGER = LogManager.getLogger(MCRAddSubjectEventHandler.class);
     
     private static final MCRCategoryDAO DAO = MCRCategoryDAOFactory.getInstance();
 

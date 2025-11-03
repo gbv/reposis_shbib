@@ -27,7 +27,8 @@ import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -98,7 +99,7 @@ public class MCRAddRelatedItemIdEventHandler extends MCREventHandlerBase {
     	addRelatedItemId(obj);
     }
 
-    private final static Logger LOGGER = Logger.getLogger(MCRAddRelatedItemIdEventHandler.class);
+    private final static Logger LOGGER = LogManager.getLogger(MCRAddRelatedItemIdEventHandler.class);
     
     private void addRelatedItemId(MCRObject obj) {
     	

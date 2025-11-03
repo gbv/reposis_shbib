@@ -24,12 +24,15 @@
     <groupId>de.gbv.reposis</groupId>
     <artifactId>reposis_mir_parent</artifactId>
     <version>2020.06-SNAPSHOT</version>
-  </parent>
+  </parent>  
 
   <artifactId>reposis_shbib</artifactId>
+  <groupId>de.gbv.reposis</groupId>
   <version>2020.06-SNAPSHOT</version>
   <properties>
-    <MCR.AppName>hawk</MCR.AppName>
+    <MCR.AppName>shbib</MCR.AppName>
+    <mycore-version>2020.06.2</mycore-version>
+    <log4j.version>2.17.1</log4j.version>
   </properties>
   <build>
     <plugins>
@@ -54,6 +57,35 @@
     </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>org.mycore</groupId>
+      <artifactId>mycore-base</artifactId>
+      <version>${mycore-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mycore</groupId>
+      <artifactId>mycore-mods</artifactId>
+      <version>${mycore-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-bom</artifactId>
+      <version>${log4j.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+    <!--  <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
+      <type>pom</type>
+    </dependency>-->
+    <dependency>
+        <groupId>org.apache.solr</groupId>
+        <artifactId>solr-solrj</artifactId>
+        <version>9.9.0</version>
+    </dependency>
+     
     <!-- enable theese if you write code using them
     <dependency>
       <groupId>jakarta.servlet</groupId>
@@ -72,10 +104,10 @@
         <artifactId>mycore-pi</artifactId>
     </dependency>
     -->
-    <dependency>
+    <!-- <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
-    </dependency>
+    </dependency>  -->
   </dependencies>
 </project>

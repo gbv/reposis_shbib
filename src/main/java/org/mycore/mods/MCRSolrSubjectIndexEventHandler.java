@@ -31,7 +31,8 @@ import java.util.Map;
 import java.io.IOException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -115,7 +116,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     	removeMycoreIdsFromSubjectIndex(obj);
     }
 
-    private final static Logger LOGGER = Logger.getLogger(MCRSolrSubjectIndexEventHandler.class);
+    private final static Logger LOGGER = LogManager.getLogger(MCRSolrSubjectIndexEventHandler.class);
     
     private boolean removeMycoreIdsFromSubjectIndex(MCRObject obj) {
     	
