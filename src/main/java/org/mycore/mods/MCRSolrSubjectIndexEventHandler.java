@@ -53,6 +53,7 @@ import org.mycore.access.MCRAccessException;
 import org.mycore.common.MCRConstants;
 import org.mycore.common.MCRException;
 import org.mycore.common.MCRPersistenceException;
+import org.mycore.common.config.MCRConfiguration2;
 import org.mycore.common.events.MCREvent;
 import org.mycore.common.events.MCREventHandlerBase;
 import org.mycore.datamodel.metadata.MCRMetaLinkID;
@@ -63,12 +64,6 @@ import org.mycore.mods.MCRMODSWrapper;
 import org.mycore.datamodel.metadata.MCRObject;
 import org.mycore.solr.MCRSolrClientFactory;
 import org.mycore.solr.search.MCRSolrSearchUtils;
-
-
-//import org.mycore.common.xml.MCRURIResolver;
-//import org.mycore.datamodel.metadata.MCRMetaElement;
-//import org.mycore.datamodel.metadata.MCRMetaXML;
-import org.mycore.common.config.MCRConfiguration;
 
 
 /**
@@ -82,7 +77,8 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
 	private static String solrURL;
 	
 	static {
-		solrURL = MCRConfiguration.instance().getString("MCR.solrSubject.ServerURL");
+		solrURL = MCRConfiguration2.getString("MCR.solrSubject.ServerURL")
+		        .orElse(null); 
 	}
 	
     /* (non-Javadoc)
