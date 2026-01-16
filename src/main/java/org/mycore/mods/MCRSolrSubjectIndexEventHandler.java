@@ -263,12 +263,12 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                 displayFormes.add(displayForm);
                 gnds.add(gnd);
                 
-                SolrInputDocument doc = new SolrInputDocument(
-                    "id", idHash,
-                    "displayForm", displayForm,
-                    "subjectType", subjectType,
-                    "identifier.gnd", gnd
-                );
+                
+                SolrInputDocument doc = new SolrInputDocument(new HashMap<>());
+                doc.addField("id",idHash);
+                doc.addField("displayForm",displayForm);
+                doc.addField("subjectType",subjectType);
+                doc.addField("identifier.gnd",gnd);
                 
                 Map<String, String> mycoreidUpdate = new HashMap<String, String>();
                 mycoreidUpdate.put("add", mycoreid); 
