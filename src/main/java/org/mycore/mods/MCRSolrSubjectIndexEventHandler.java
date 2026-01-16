@@ -33,7 +33,7 @@ import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.impl.Http2SolrClient;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -117,7 +117,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     private boolean removeMycoreIdsFromSubjectIndex(MCRObject obj) {
     	
     	String mycoreid = obj.getId().toString();
-    	SolrClient solrClient = new HttpSolrClient.Builder(solrURL).build();
+    	SolrClient solrClient = new Http2SolrClient.Builder(solrURL).build();
     	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
     	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	UpdateResponse response = null;
@@ -190,7 +190,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     
     private void handleSubjectsOfModsObject(MCRObject obj) {
     	
-    	SolrClient solrClient = new HttpSolrClient.Builder(solrURL).build();
+    	SolrClient solrClient = new Http2SolrClient.Builder(solrURL).build();
     	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
     	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	
