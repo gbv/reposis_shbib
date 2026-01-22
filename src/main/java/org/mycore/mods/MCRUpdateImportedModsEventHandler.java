@@ -101,7 +101,7 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
 			try {
 			    for (Element elm : metadata.getChildren()) {
 			        String s = outp.outputString(elm);
-			        LOGGER.info("Verarbeite - suche uri:"+s);
+			        LOGGER.debug("Process - search uri:"+s);
 			        if (elm.getName() == "sourceuri" ) {
 			            LOGGER.info("found source:"+elm.getText());
 			            String uri;
@@ -111,7 +111,7 @@ public class MCRUpdateImportedModsEventHandler extends MCREventHandlerBase {
 			                uri="xslStyle:PPN-mods-gvk,mycoreobject-migrate-nameIdentifier,mods2mirMods,mods2mods_shbib:"+elm.getText();
 			            }
 			            importedMods = MCRURIResolver.instance().resolve(uri);
-			            LOGGER.info("received xml from source: "+outp.outputString(importedMods));
+			            LOGGER.debug("received xml from source: "+outp.outputString(importedMods));
                     };
 			    }
 			    

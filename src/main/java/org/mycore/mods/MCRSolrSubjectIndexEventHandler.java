@@ -192,7 +192,6 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     	
         SolrClient solrClient =  MCRSolrClientFactory.get("subject").get().getClient();
     	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
-    	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	
     	if (!MCRMODSWrapper.isSupported(obj)){
             return;
@@ -354,8 +353,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     private void addSubjectIdToObjectIndex(String mycoreid, String subjectid,SolrClient modsSolrClient) {
     	
     	LOGGER.info("Process Subject: add subjectid to objectindex (mycoreid:"+mycoreid+")(subjectid:"+subjectid+")" );
-    	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
-        SolrInputDocument modsDoc = new SolrInputDocument(new HashMap<>());
+    	SolrInputDocument modsDoc = new SolrInputDocument(new HashMap<>());
         modsDoc.addField("id",mycoreid);
                         
         Map<String, String> subjectidUpdate = new HashMap<String, String>();
