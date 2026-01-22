@@ -117,7 +117,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     private boolean removeMycoreIdsFromSubjectIndex(MCRObject obj) {
     	
     	String mycoreid = obj.getId().toString();
-    	SolrClient solrClient = new Http2SolrClient.Builder(solrURL).build();
+        SolrClient solrClient = MCRSolrClientFactory.get("subject").get().getClient();
     	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
     	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	UpdateResponse response = null;
@@ -135,7 +135,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
                         
             for (SolrDocument subject : queryResponse.getResults()) {
             	
-            	SolrInputDocument delDoc = new SolrInputDocument();
+                SolrInputDocument delDoc = new SolrInputDocument(new HashMap<>());
                 delDoc.addField("id",subject.getFieldValue("id"));
                 Map<String, String> mycoreidRemove = new HashMap<String, String>();
                 mycoreidRemove.put("remove", mycoreid);
@@ -190,7 +190,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     
     private void handleSubjectsOfModsObject(MCRObject obj) {
     	
-    	SolrClient solrClient = new Http2SolrClient.Builder(solrURL).build();
+        SolrClient solrClient =  MCRSolrClientFactory.get("subject").get().getClient();
     	SolrClient modsSolrClient = MCRSolrClientFactory.getMainSolrClient();
     	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
     	
@@ -301,7 +301,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
         	if (displayFormes.size() > 1) {
         		String displayForm2 = "";
         	    
-        	    SolrInputDocument chain = new SolrInputDocument();
+                    SolrInputDocument chain = new SolrInputDocument(new HashMap<>());
         	    for (int i = 0; i < displayFormes.size(); i++) {
         	    	displayForm2 += displayFormes.get(i) + "/";
         	    	Map<String, String> gndUpdate = new HashMap<String, String>();
@@ -355,7 +355,7 @@ public class MCRSolrSubjectIndexEventHandler extends MCREventHandlerBase {
     	
     	LOGGER.info("Process Subject: add subjectid to objectindex (mycoreid:"+mycoreid+")(subjectid:"+subjectid+")" );
     	//SolrClient modsSolrClient = MCRSolrClientFactory.getSolrClient();
-    	SolrInputDocument modsDoc = new SolrInputDocument();
+        SolrInputDocument modsDoc = new SolrInputDocument(new HashMap<>());
         modsDoc.addField("id",mycoreid);
                         
         Map<String, String> subjectidUpdate = new HashMap<String, String>();
