@@ -15,6 +15,6 @@
     <mods:identifier type="local">
       <xsl:value-of select="concat('(DE-601)',$setParent)" />
     </mods:identifier>
-  </xsl:template> 
-  
+  </xsl:template>
+    
 </xsl:stylesheet>
