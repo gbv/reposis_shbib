@@ -25,7 +25,7 @@
               <xed:repeat xpath="boolean[@operator='and']">
                 <div class="jumbotron col-md-10">
                   <xed:repeat
-                    xpath="condition[contains(',mods.title,mods.author,mods.name,allMeta,', concat(',',@field,','))]"
+                    xpath="condition[contains(',mods.title,mods.author,mods.name,allMeta,mods.subjectindex,', concat(',',@field,','))]"
                     method="clone">
                     <!-- Title -->
                     <div class="form-group row">
